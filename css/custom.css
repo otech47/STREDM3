@@ -1,0 +1,654 @@
+html
+{
+	height:100%;
+	width:100%;
+}
+
+body
+{
+	background-image:url(../images/tworld.jpg);
+	background-position:top center;
+	background-size:100% 108.5%;
+	background-repeat:no-repeat;
+	height:100%;
+	width:100%;
+	overflow-y:hidden;
+}
+h1
+{
+	margin:0;
+	padding:0;
+}
+.scroll-wrapper
+{
+	height:85%;
+	width:100%;
+	overflow-y:scroll;
+}
+.page-wrapper
+{
+	height:100%;
+	width:100%;
+	margin:0;
+	padding:0;
+}
+.navbar 
+{
+	border-radius: 0px;
+	background-color: white;
+	height: 10%;
+	margin: 0%;
+	box-shadow: 0px 1px 20px black;
+}
+.page-container
+{
+	height:100%;
+	width:100%;
+	margin:0;
+	text-align:center;
+}
+.app-container
+{
+	height:100%;
+	width:55%;
+	margin:auto;
+	padding:6%;
+}
+.app-background
+{
+	height: 80%;
+	width: 86%;
+	margin-top: 5%;
+	margin: auto;
+	padding: 0;
+	box-shadow: 0px 0px 9px 1px #428bca;
+	border-radius: 40px;
+	background-color: rgba(255, 255, 255, 0.9);
+}
+.select-buttons
+{
+	height:100%;
+	width:100%;
+	margin:0;
+	padding:0;
+}
+.random-search
+{
+	display:none;
+	height:100%;
+	width:100%;
+	margin:0;
+	padding:4%;
+}
+.specific-search
+{
+	display:none;
+	height:100%;
+	width:100%;
+	margin:0;
+	padding:4%;
+}
+.select-header
+{
+	height: 10%;
+    margin: 0;
+    padding: 0;
+}
+.widget-container
+{
+	height:28%;
+	width:100%;
+	margin:0;
+	padding:7% 5%;
+}
+.random-search-back
+{
+	height:11%;
+	width:100%;
+	margin:0;
+	padding: 0% 90% 0% 0%;
+}
+.random-stredm
+{
+	margin:20% 0 0 0;
+}
+.random-back-button
+{
+	height:87%;
+	width:100%;
+	margin:0;
+	padding:0;
+}
+.specific-search-back
+{
+	height:13%;
+	width:100%;
+	margin:0;
+	padding: 0% 90% 0 0;
+}
+.specific-stredm
+{
+}
+.specific-back-button
+{
+	height:87%;
+	width:100%;
+	margin:0;
+	padding:0;
+}
+.option-button
+{
+	height:50%;
+	margin:0;
+	padding:1%;
+}
+.option-label
+{
+	margin:0;
+	padding:1%;
+	height:100%;
+}
+.label-header
+{
+	height:100%;
+	margin:0;
+	width:100%;
+}
+.label-icon
+{
+	height:100%;
+	margin:0;
+	padding:10% 0%;
+}
+.stredming-wrapper
+{
+	height: 100%;
+	width: 100%;
+	padding: 0% 10%;
+	display: none;
+	background-size: 100% 103%;
+	background-repeat: no-repeat;
+	background-image: url(../images/newrukes.jpg);
+}
+.stredming-container
+{
+	height:100%;
+	width:100%;
+	background-color: rgba(255, 255, 255, 0.85);
+}
+.stredming-top
+{
+	margin:0;
+	padding: 3% 2% 0% 2%;
+	height: 36%;
+}
+.stredming-bottom
+{
+	margin: 0;
+	padding: 0% 1% 1%;
+	height: 64%;
+}
+.stredming-player-container
+{
+	height: 90%;
+	padding: 0%;
+}
+.stredming-result
+{
+	height:100%;
+	width:100%;
+	box-shadow: 0 0 6px 2px black;
+}
+.stredming-tracklist
+{
+	box-shadow: 0 0 6px 2px black;
+	height: 90%;
+	margin: 0;
+	overflow-y: scroll;
+	padding: 1%;
+}
+.twitter-container
+{
+	padding:0;
+	height:100%;
+}
+.twitter
+{
+	height:100%;
+	width:100%;
+	padding:0;
+	margin:0;
+}
+.twitter-timeline
+{
+	width: 100%;
+	height: 100%;
+	margin: 0%;
+	padding:0;
+}
+.promotion-container 
+{
+	height: 100%;
+	padding: 0;
+	margin:0;
+}
+.promotion 
+{
+	height: 100%;
+	background-image: url(../images/evolve.png);
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+}
+.promotion-header
+{
+	height:10%;
+}
+.picture-container
+{
+	height:40%;
+}
+.description-container
+{
+	height:40%;
+}
+.ticket-container
+{
+	height:10%;
+}
+.concert-title 
+{
+	margin:0%;
+}
+.concert-link
+{
+	font-size: 20px;
+	color:black;
+	margin: 0% 0% 0% 2%;
+}
+.concert-link:hover 
+{
+	color:#AA00FF;
+	text-decoration: none;
+}
+.picture 
+{
+	padding: 2% 4% 1% 4%;
+}
+.event-pic
+{
+	height: 100px;
+	width: 74%;
+	box-shadow: 0px 0px 2px 3px black;
+	margin: 1% 0% 2% 12%;
+}
+.text-container
+{
+	padding: 1% 2% 0%;
+	height:100%;
+}
+.event-description
+{
+	font-weight: 600;
+	color: black;
+	margin: 0%;
+	font-size: 15px;
+	letter-spacing: 0px;
+	line-height: 27px;
+}
+.tag-link
+{
+	color:black;
+}
+.tag-link:hover 
+{	color:#AA00FF;
+	text-decoration: none;
+}
+.ticket-button-container 
+{
+	padding: 1% 10%;
+	margin:0;
+}
+.btn-tickets
+{
+		width: 100%;
+		font-size:14px;
+	  background-color: hsl(0, 0%, 1%) !important;
+	  background-repeat: repeat-x;
+	  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#303030", endColorstr="#020202");
+	  background-image: -khtml-gradient(linear, left top, left bottom, from(#303030), to(#020202));
+	  background-image: -moz-linear-gradient(top, #303030, #020202);
+	  background-image: -ms-linear-gradient(top, #303030, #020202);
+	  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #303030), color-stop(100%, #020202));
+	  background-image: -webkit-linear-gradient(top, #303030, #020202);
+	  background-image: -o-linear-gradient(top, #303030, #020202);
+	  background-image: linear-gradient(#303030, #020202);
+	  border-color: #020202 #020202 hsl(0, 0%, -3.5%);
+	  color: #fff !important;
+	  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.29);
+	  -webkit-font-smoothing: antialiased;
+}
+.tickets 
+{
+	color: white;
+}
+.btn-tickets:hover 
+{
+	background-color: hsl(281, 100%, 27%) !important;
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#cc60ff", endColorstr="#5e0089");
+  background-image: -khtml-gradient(linear, left top, left bottom, from(#cc60ff), to(#5e0089));
+  background-image: -moz-linear-gradient(top, #cc60ff, #5e0089);
+  background-image: -ms-linear-gradient(top, #cc60ff, #5e0089);
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #cc60ff), color-stop(100%, #5e0089));
+  background-image: -webkit-linear-gradient(top, #cc60ff, #5e0089);
+  background-image: -o-linear-gradient(top, #cc60ff, #5e0089);
+  background-image: linear-gradient(#cc60ff, #5e0089);
+  border-color: #5e0089 #5e0089 hsl(281, 100%, 16.5%);
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.69);
+}
+.instagram-container
+{
+	height:100%;
+	padding:0;
+}
+.instagram
+{
+	height: 100%;
+	padding: 0%;
+	background-color: white;
+}
+.instagram-top
+{
+	height: 14%;
+	margin:0;
+}
+.instagram-header
+{
+	height:100%;
+	padding:0;
+	margin:0;
+}
+.fb
+{
+	padding:0;
+}
+.line
+{
+	margin: 0%;
+}
+.instagram-widget
+{
+	border:none; 
+	overflow:hidden; 
+	width:97%; 
+	height:86%; 
+	margin-left: 3%; 
+	margin-top: 5%;
+}
+.header-menu
+{
+	height:15%;
+	width:100%;
+	margin:0;
+	padding:0;
+	background-color: rgba(255,255,255,1);
+	z-index:100;
+}
+.header-left
+{
+	height:100%;
+	padding:0;
+	margin:0;
+}
+.header-right
+{
+	height:100%;
+	padding:0;
+	margin:0;
+	background-color: rgba(255,255,255,1);
+}
+.logo-container
+{
+	padding:0;
+	height:100%;
+}
+.logo-text-container
+{
+	padding:0;
+}
+.logo 
+{
+	width: 100%;
+	height:100%;
+}
+.logo-text
+{
+	float: left;
+	padding: 10% 0% 0% 0%;
+	font-size: 7em;
+	line-height: 20px;
+	font-weight: 500;
+	font-family: rage;
+	color: #428bca;
+}
+.header-logo
+{
+	padding: 0;
+	margin: auto;
+	max-height:100%;
+	width:auto;
+}
+.header-icon
+{
+	padding:5% 0 0;
+}
+.stredming
+{
+	background-color: rgba(0, 0, 0, 0.9);
+	height: 32%;
+	display: none;
+	margin-right: 5%;
+	border-radius: 8px;;
+}
+.stredming-header
+{
+	color: white;
+	margin:0;
+	padding:0;
+}
+.stredming-header h1
+{
+	margin: 0;
+	padding: .5% .5%;
+	font-size: 175%;
+	font-weight: 500;
+}
+.result
+{
+	height: 100%;
+	padding: 0%;
+}
+.stredm-logo
+{
+	height:98%;
+}
+.stredm-panel-container
+{
+	padding: 1% 0% 0% 0%;
+	height: 98%;
+	right: 1%;
+}
+.stredm-select-container
+{
+	height: 100%;
+}
+.select-container
+{
+}
+.event-select
+{
+	margin:0;
+	padding:5% 0%;
+}
+.artist-select
+{
+	margin:0;
+	padding:5% 0%;
+}
+.select-text
+{
+	color: white;
+	font-size: 2.2em;
+	font-family: test;
+	letter-spacing: 2px;
+	margin: -1.5% 0% 1% 0%;
+	padding: 0% 0% 0% 4%;
+}
+.select-form
+{
+	padding:0;
+}
+.instructions-container
+{
+	color: #FFFFFF;
+	line-height: 300%;
+	text-align: center;
+	font-size: 2.2em;
+	height:48%;
+}
+.random-button-container
+{
+	text-align:center;
+	padding:0;
+	margin:0;
+	height:65%;
+}
+.specific-button-container
+{
+	text-align:center;
+	padding:0;
+}
+.btn-sample {
+color: #FFFFFF;
+padding: 10px 12px;
+text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+background-color: #357EBD;
+background-image: -moz-linear-gradient(top, #428BCA, #357EBD);
+background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#428BCA), to(#357EBD));
+background-image: -webkit-linear-gradient(top, #428BCA, #357EBD);
+background-image: -o-linear-gradient(top, #428BCA, #357EBD);
+background-image: linear-gradient(to bottom, #428BCA, #357EBD);
+background-repeat: repeat-x;
+border-color: #357EBD;
+border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+border-radius: 5px;
+font-size: 16px;
+font-weight: 500;
+font-family: "Avantgarde", sans-serif;
+letter-spacing: 1px;
+filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#428BCA', endColorstr='#357EBD', GradientType=0);
+filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
+}
+@font-face 
+{
+	font-family:'rage';
+	src:url('../fonts/rage.ttf');
+}
+
+@font-face 
+{
+	font-family:'cabin';
+	src:url('../fonts/cabin.ttf');
+}
+.ui-autocomplete {
+	max-height: 200px;
+	overflow-y: auto;
+	overflow-x: hidden;
+}
+input[type=text]
+{
+	
+}
+
+
+@media only screen and (max-width: 768px) 
+{
+
+body
+{
+	overflow-y:hidden;
+}
+.app-container
+{
+	width:85%;
+	padding:6% 0;
+}
+.stredming-container
+{
+}
+.stredming-top
+{
+}
+.stredming-bottom
+{
+	margin:42% 3% 3%;
+}
+.stredming-tracklist
+{
+	height:130px;
+	width:100%;
+}
+.header-menu
+{
+	height:12%;
+}
+.header-icon
+{
+	padding-top:1%;
+}
+.page-wrapper
+{
+	margin: 0;
+}
+.scroll-wrapper
+{
+	height:90%;
+	overflow-x:hidden;
+}
+.logo-text
+{
+	font-size:5em;
+}
+.stredming-wrapper
+{
+	height:310%;
+}
+.label-header
+{
+	padding:20% 0;
+}
+.header-right
+{
+	height:75%;
+}
+
+
+}
+
+@media only screen and (max-width: 1200px) 
+{
+
+.stredming-wrapper
+{
+	padding: 0 5%;
+	height:140%;
+}
+.widget-container
+{
+	padding:2% 5%;
+}
+.select-header
+{
+	font-size:120%;
+}
+
+}
