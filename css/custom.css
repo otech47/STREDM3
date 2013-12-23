@@ -21,6 +21,7 @@ body
 	height: 25%;
 	margin: 11% 0% 0% 28%;
 	position:absolute;
-	border-radius: 10px
+	border-radius: 10px;
+	box-shadow: 0px 0px 3px 3px white;
 }
 
