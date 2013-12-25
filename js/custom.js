@@ -1,4 +1,47 @@
 $(document).ready( function() {
+	function searchSet()
+	{
+		var searchString = window.location.search.substring(1);
+		var searchArray = searchString.split('&');
+		var temp1 = searchArray[0].split('=');
+		var temp2 = searchArray[1].split('=');
+		var event = temp1[1];
+		var artist = temp2[1];
+		event = event.replace(/%20/g, " ");
+		artist = artist.replace(/%20/g, " ");
+		var postdata = {
+			event:event,
+			artist:artist
+			};
+		jQuery.ajax({
+			type: "POST",
+			url: '../scripts/request.php',
+			data: postdata,
+			success: function(data) 
+			{
+				var result = data;
+				$(".stredming-wrapper").css("display","block");
+				$('.scroll-wrapper').animate({scrollTop: $(document).height()}, '1000');
+				$(".stredming-player-container").slideDown(100);
+				$(".stredming-result").empty();
+				jQuery("div.stredming-result").append("<div class='result'>"+result+"</div>");
+				var urlSrc = $("#current-result").attr("src");
+				var urlSelection = urlSrc.substring(0, urlSrc.length-31);
+				$(".stredming-tracklist").empty();
+				var urlpostdata = {url:urlSelection}
+				jQuery.ajax({
+					type: "POST",
+					url: '../scripts/requestTracklist.php',
+					data: urlpostdata,
+					success: function(data) 
+					{
+						var result = data;
+						jQuery("div.stredming-tracklist").append("<div class='tracklist-result'>"+result+"</div>");
+					}
+				});
+			}
+		});
+	}
 	function getEventTags()
 	{
 		var artistSelection = $("input[id='artists']").val();
@@ -56,6 +99,10 @@ $(document).ready( function() {
 				$("#select-combined").autocomplete("search", "");
 			}
 		});
+	}
+	if(window.location.search && document.getElementById("stredming-wrapper").style.display != 'block')
+	{
+		searchSet();
 	}
 	$("#select-combined").autocomplete({
 		minLength: 0
@@ -132,6 +179,7 @@ $(document).ready( function() {
 		$('.scroll-wrapper').animate({scrollTop: $(document).height()}, '1000');
 		$(".stredming-player-container").slideDown(100);
 		$(".stredming-result").empty();
+		window.location.search = "?event="+eventSelection+"&artist="+artistSelection;
 		jQuery.ajax({
 			type: "POST",
 			url: '../scripts/request.php',
@@ -140,6 +188,7 @@ $(document).ready( function() {
 			{
 				var result = data;
 				jQuery("div.stredming-result").append("<div class='result'>"+result+"</div>");
+				stredm = false;
 				var urlSrc = $("#current-result").attr("src");
 				var urlSelection = urlSrc.substring(0, urlSrc.length-31);
 				$(".stredming-tracklist").empty();
@@ -178,6 +227,7 @@ $(document).ready( function() {
 			{
 				var result = data;
 				jQuery("div.stredming-result").append("<div class='result'>"+result+"</div>");
+				stredm = false;
 				var urlSrc = $("#current-result").attr("src");
 				var urlSelection = urlSrc.substring(0, urlSrc.length-31);
 				$(".stredming-tracklist").empty();
