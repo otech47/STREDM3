@@ -106,7 +106,7 @@ $(document).ready( function() {
 	}
 	$("#select-combined").autocomplete({
 		minLength: 0,
-		position: { my: "left top", at: "left bottom", of: ".autocomplete-wrapper"}
+		position: { my: "left top+10", at: "left top", of: ".autocomplete-wrapper"}
 	}).click(function() {
 		getAllTags();
 	});
