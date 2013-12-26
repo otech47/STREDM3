@@ -105,7 +105,8 @@ $(document).ready( function() {
 		searchSet();
 	}
 	$("#select-combined").autocomplete({
-		minLength: 0
+		minLength: 0,
+		position: { my: "left top", at: "left bottom", of: ".autocomplete-wrapper"}
 	}).click(function() {
 		getAllTags();
 	});
@@ -252,9 +253,5 @@ $(document).ready( function() {
 	$("#current-result").ready( function() {
 		var player = SC.Widget(document.getElementById('current-result'));
 		player.play();
-	});
-	$("#ui-id-1").isotope({
-		itemSelector: ".ui-menu-item",
-		layourMode: "fitRows"
 	});
 });
