@@ -253,4 +253,8 @@ $(document).ready( function() {
 		var player = SC.Widget(document.getElementById('current-result'));
 		player.play();
 	});
+	$("#ui-id-1").isotope({
+		itemSelector: ".ui-menu-item",
+		layourMode: "fitRows"
+	});
 });
