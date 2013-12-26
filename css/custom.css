@@ -118,7 +118,6 @@ i
 {
 	height: 30%;
 	width: 100%;
-	background-color: #000;
 	margin: 0%;
 	padding: 0%;
 }
@@ -131,10 +130,30 @@ i
 	height: 70%;
 }
 
-#carousel-main
+#myCarousel
 {
 	height: 100%;
 	background-color: rgba(255,255,255,.7);
+}
+
+.carousel-inner {
+	position: relative;
+	width: 100%;
+	overflow: hidden;
+	display: block;
+	height: 100%;
+}
+
+#carousel-arrow-left
+{
+	margin: 115% 20% 0% 0%;
+	color: black;
+}
+
+#carousel-arrow-right
+{
+	margin: 115% 20% 0% 0%;
+	color: black;
 }
 
 #ui-id-1
