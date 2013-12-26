@@ -105,9 +105,16 @@ i
 .stredming-wrapper
 {
 	height: 100%;
-	width: 100%;
+	width: 100%; 
+	display: block;
 }
-#ui-id-1
+
+.test
+{
+	height: 50%;
+	width: 50%;
+	background-color: #000;
+}#ui-id-1
 {
 	height: 25%;
 	width: 100%;
