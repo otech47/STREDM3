@@ -125,6 +125,7 @@ i
 .ui-widget-content
 {
 	background: none!important;
+	border: none!important;
 }
 .ui-menu-item
 {
@@ -132,7 +133,9 @@ i
 	display: inline-block;
 	width:15%!important;
 	height:100%;
-	padding: 10% 0 0!important;
+	padding: 3% 0 0!important;
 	margin: 0 3%!important;
-	text-align: center
+	text-align: center;
+	border-radius: 5px;
+	
 }
