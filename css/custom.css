@@ -107,14 +107,37 @@ i
 	height: 100%;
 	width: 100%; 
 	display: block;
+	background-image:url(../images/new-york.jpg);
+	background-position:top center;
+	background-size:100% 100%;
+	background-repeat:no-repeat;
+	overflow: hidden;
 }
 
-.test
+.player-wrapper
 {
-	height: 50%;
-	width: 50%;
+	height: 30%;
+	width: 100%;
 	background-color: #000;
-}#ui-id-1
+	margin: 0%;
+	padding: 0%;
+}
+
+.carousel-wrapper
+{
+	width: 100%;
+	margin: 0%;
+	padding: 0%;
+	height: 70%;
+}
+
+#carousel-main
+{
+	height: 100%;
+	background-color: rgba(255,255,255,.7);
+}
+
+#ui-id-1
 {
 	height: 47%;
 	width: 100%!important;
