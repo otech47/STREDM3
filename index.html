@@ -90,28 +90,47 @@ mixpanel.init("ea091fd1d0073af2c48de623590cd53b");</script><!-- end Mixpanel -->
   					 </ol>
 					 <div class="carousel-inner">
 					 	<div class="item active" id="contact-slide">
-					 		<img src="..." alt="...">
-      						<div class="carousel-caption">
+					 		<img src="..." alt="..." class="carousel-img">
+      						<div class="carousel-caption" id="contact-form">
+      							<form role="form" class="main-form">
+      							  <div class="contact row">
+      							  	<p id="contact-us">Contact Us!</p>
+      							  </div>
+								  <div class="form-group">
+								    <label for="exampleInputEmail1">Email address</label>
+								    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+								  </div>
+								  <div class="form-group">
+								    <label for="exampleInputPassword1">Password</label>
+								    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+								  </div>
+								  <div class="checkbox">
+								    <label>
+								      <input type="checkbox"> Check me out
+								    </label>
+								  </div>
+								  <button type="submit" class="btn btn-default">Submit</button>
+								</form>
       						</div>
 					 	</div>
 					 	<div class="item" id="social-media-slide">
-					 		<img src="..." alt="...">
+					 		<img src="..." alt="..." class="carousel-img">
       						<div class="carousel-caption">
       						</div>
 					 	</div>
 					 	<div class="item" id="sets-slide">
-					 		<img src="..." alt="...">
+					 		<img src="..." alt="..." class="carousel-img">
       						<div class="carousel-caption">
       						</div>
 					 	</div>
 					 	<div class="item" id="promotion-slide">
-					 		<img src="..." alt="...">
+					 		<img src="..." alt="..." class="carousel-img">
       						<div class="carousel-caption">
       						</div>
 					 	</div>
 					 </div>
-					 <a class="carousel-control left" href="#myCarousel" data-slide="prev"><i class="fa fa-chevron-left fa-3x" id="carousel-arrow-left"></i></a>  
-  					 <a class="carousel-control right" href="#myCarousel" data-slide="next"><i class="fa fa-chevron-right fa-3x" id="carousel-arrow-right"></i></a> 
+					 <a class="carousel-control left" id="carousel-control-left" href="#myCarousel" data-slide="prev"><i class="fa fa-chevron-left fa-3x" id="carousel-arrow-left"></i></a>  
+  					 <a class="carousel-control right" id="carousel-control-right" href="#myCarousel" data-slide="next"><i class="fa fa-chevron-right fa-3x" id="carousel-arrow-right"></i></a> 
 				</div>
 			</div>
 		</div>
