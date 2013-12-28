@@ -184,6 +184,11 @@ i
 	padding: 0% 0% 0% 0%;
 }
 
+.main-form
+{
+	height: 100%;
+}
+
 #contact-form
 {
 	background-color: rgba(255,255,255,1);
@@ -198,15 +203,73 @@ i
 
 #contact-us
 {
-	margin: 0% 80% 0% 0%;
+	margin: 0% 79% 0% 0%;
 	padding:2% 0% 0% 0%;
 	font-size: 2.5em;
 	color: black;
 }
 
-.main-form
+#content-wrapper
 {
 	height: 100%;
+	margin: 0;
+	padding: 0% 0% 0% 2%;
+}
+
+#text-area-wrapper
+{
+	height: 100%;
+	margin: 0;
+	padding: 0;
+}
+.info
+{
+	margin: 0%;
+	height: 75%;
+}
+
+#contact-reasons
+{
+	margin: 11% 0% 0% 0%;
+}
+
+label
+{
+	font-size: 1.3em;
+	color: black;
+	font-weight: normal;
+	margin: 0% 79% 0% 0%;
+	padding: 0% 0% 1% 0%;
+}
+
+#emaillabel
+{
+	margin: 0% 72% 0% 0%;
+}
+
+.message-intro
+{
+	margin: 0%;
+}
+
+#message-intro-p
+{
+	font-size: 1.3em;
+	color: black;
+	margin: 0% 74% 0% 0%;
+	padding: 0% 0% 1% 0%;
+}
+
+.text-area
+{
+	height: 83%;
+	width: 86%;
+}
+
+.submit
+{
+	height: 10%;
+	margin: 0;
 }
 
 #ui-id-1
