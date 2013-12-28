@@ -273,17 +273,10 @@ label
 }
 #promotion-main
 {
-	width: 50%;
-	margin: 0% 0% 65% 5%;
-	border-radius: 15px;
-	background: #ff5959; /* Old browsers */
-	background: -moz-radial-gradient(center, ellipse cover, #ff5959 0%, #ff0000 100%); /* FF3.6+ */
-	background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%,#ff5959), color-stop(100%,#ff0000)); /* Chrome,Safari4+ */
-	background: -webkit-radial-gradient(center, ellipse cover, #ff5959 0%,#ff0000 100%); /* Chrome10+,Safari5.1+ */
-	background: -o-radial-gradient(center, ellipse cover, #ff5959 0%,#ff0000 100%); /* Opera 12+ */
-	background: -ms-radial-gradient(center, ellipse cover, #ff5959 0%,#ff0000 100%); /* IE10+ */
-	background: radial-gradient(ellipse at center, #ff5959 0%,#ff0000 100%); /* W3C */
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ff5959', endColorstr='#ff0000',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+	background-image: url(../images/buku.jpg);
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+	border-radius: 0;
 }
 
 .featured-festival
