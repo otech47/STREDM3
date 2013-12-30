@@ -271,6 +271,46 @@ label
 	height: 10%;
 	margin: 0;
 }
+
+#sets-main
+{
+	background-color: rgba(0,0,0,.5);
+	box-shadow: 0px 0px 0px 0px white;
+}
+.sets-main-wrapper
+{
+	height: 100%;
+	margin: 0;
+	padding: 0;
+}
+
+.sets-body-container
+{
+	height: 100%;
+	padding: 2% 3%;
+}
+
+.top-sets-container
+{
+	padding: 0;
+	margin: 0;
+}
+
+#top-sets-header-container
+{
+	height: 10%;
+}
+
+#top-sets-options-container
+{
+	height: 10%;
+}
+
+#top-sets-body-container
+{
+	height: 80%;
+}
+
 #promotion-main
 {
 	background-image: url(../images/buku.jpg);
@@ -433,6 +473,44 @@ font-weight: normal;
 	background-color:  #FF794D;
 	background-repeat: repeat-x;
 	border-color: #994c00 #994c00 hsl(30, 100%, 25%);
+}
+
+.past-sets-wrapper 
+{
+	height: 94%;
+	margin: 0% 6% 0% 6%;
+	padding: 0% 0% 0% 0%;
+	background-color: #FFF;
+	border-radius: 4px;
+	box-shadow:0px 0px 1px 2px #476BD6;
+}
+
+.past-sets-header-container
+{
+	height: 10%;
+	margin:0;
+	padding: 0;
+	background-color: #476BD6;
+}
+
+.past-sets-header-wrapper
+{
+	padding: 0;
+}
+
+#past-sets-header
+{
+	padding: 0;
+	margin: 0% 20% 0% 0%;
+	color: #FF794D;
+	font-weight: normal;
+}
+
+#sets-down-arrow
+{
+	color: #FF794D;
+	padding: 0;
+	margin: 0% 0% 0% 71%;
 }
 
 #ui-id-1
