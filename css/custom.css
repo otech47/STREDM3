@@ -291,6 +291,7 @@ label
 	font-size: 3em;
 	margin: 0% 26% 0% 0%;
 	padding: 1% 0% 0% 0%;
+	font-weight: bolder;
 }
 
 #festival-header 
@@ -303,6 +304,51 @@ label
 	margin: 0%;
 	padding: 0%;
 	height: 87%;
+}
+
+#festival-lineup
+{
+	color: #FF794D;
+	margin: 0;
+	padding: 0;
+}
+
+#line-up
+{
+	margin: 0;
+padding: 0;
+font-size: 2.2em;
+font-weight: normal;
+}
+
+#lineup
+{
+	margin: 0% 0% 0% 5%;
+	padding: 3% 0% 0% 0%;
+	font-size: 2em;
+	text-align: center;
+	font-weight: normal;
+}
+
+.line-up
+{
+	margin: 0;
+	padding: 0;
+	height: 100%;
+}
+
+.content-info
+{
+	margin: 0;
+	padding: 0;
+	height: 100%;
+}
+
+.sm-promo
+{
+	padding: 4% 0% 0% 0%;
+	margin:0;
+	color: #FF794D
 }
 
 .main-promotion-container
@@ -331,9 +377,62 @@ label
 	height: 100%;
 }
 
+.aftermovie-announcement
+{
+	padding: 0%;
+	margin: 0%;
+	height: 10%;
+}
+
+#recap-info
+{
+	color: #FF794D;
+	margin: 0% 61% 0% 0%;
+	padding: 0;
+	font-weight: normal;
+	text-align: center;
+	vertical-align: middle;
+}
+
 #aftermovie-wrapper
 {
-	height: 56%;
+	height: 59%;
+	padding: 0%;
+	margin: 0%;
+}
+
+.line-up-content-info
+{
+	height: 10%;
+	padding: 0%;
+	background-color: #476BD6;
+	width: 92%;
+	margin: 0% 0% 0% 4%;
+	border-radius: 4px;
+} 
+
+.tickest-button-container
+{
+	height: 21%;
+	padding: 0%;
+	margin: 0%;
+}
+
+#ticket-button
+{
+	width: 92%;
+	padding: 0% 0% 0% 0%;
+	margin: 6% 0% 0% 0%;
+	height: 45%;
+	font-size: 2em;
+	text-align: center;
+	border-radius: 3px;
+	color: #476BD6;
+	font-family: helvetica;
+	font-weight: bold;
+	background-color:  #FF794D;
+	background-repeat: repeat-x;
+	border-color: #994c00 #994c00 hsl(30, 100%, 25%);
 }
 
 #ui-id-1
