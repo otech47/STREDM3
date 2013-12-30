@@ -303,14 +303,35 @@ label
 	height: 10%;
 }
 
+#top-ten 
+{
+	height: 100%;
+	color: black;
+	font-size: 2em;
+}
+
 #top-sets-options-container
 {
 	height: 10%;
 }
 
+#top-sets-options
+{
+	width: 100%;
+	box-shadow: 0px 0px 0px 1px #428bca;
+	border-radius: 3px;
+}
+
+.top-ten-btn
+{
+	width: 25.4%;
+}
+
 #top-sets-body-container
 {
 	height: 80%;
+	background-color: white;
+	box-shadow: 0px 0px 0px 1px #428bca;
 }
 
 #promotion-main
