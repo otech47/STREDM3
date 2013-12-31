@@ -334,6 +334,32 @@ label
 	box-shadow: 0px 0px 0px 1px #428bca;
 }
 
+.related-sets-container
+{
+	margin: 0;
+	padding: 0;
+	background-color:rgba(255,255,255,.9);
+	border-radius: 4px;
+}
+
+#related-sets-header-wrapper
+{
+	height: 10%;
+
+}
+
+#related-sets
+{
+	height: 100%;
+	color: black;
+	font-size: 2em;
+}
+
+#related-sets-body-wrapper 
+{
+	height: 90%;
+}
+
 #promotion-main
 {
 	background-image: url(../images/buku.jpg);
