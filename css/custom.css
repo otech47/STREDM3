@@ -121,6 +121,7 @@ i
 	width: 100%;
 	margin: 0%;
 	padding: 0%;
+	background-color: rgba(255,255,255,.9);
 }
 
 .carousel-wrapper
@@ -272,6 +273,92 @@ label
 	margin: 0;
 }
 
+#social-media-main
+{
+	background-image: url(../images/SM1.png);
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+}
+
+.sm
+{
+	margin: 0;
+	padding: 0;
+} 
+
+#sm-slider-header-wrapper
+{
+	height: 10%;
+	background-color: white;
+	border-radius: 12px;
+}
+
+#stredm-family
+{
+	padding: 0;
+	margin: 0% 53% 0% 0%;
+	font-size: 3em;
+	color:black;
+	font-weight: bolder;
+}
+
+#sm-slider-body-wrapper
+{
+	height: 90%;
+}
+
+.sm-body-container
+{
+	height: 100%;
+} 
+
+.labels-wrapper
+{
+	box-shadow: 0px 0px 2px 2px black;
+}
+
+#sm-labels-container
+{
+	padding: 4% 2% 7% 2%;
+	height: 96%
+}
+
+.labels-container
+{
+	background-color: rgba(0,0,0,.5);
+	height: 100%;
+	width:100%;
+}
+.pull-right
+{
+	margin: 0% 0% 0% 0%;
+	font-size: 3.5em;
+}
+
+.list-group-item-heading
+{
+	margin: 0% 50% 0% 1%;
+}
+
+.list-group-item-text
+{
+	margin: 0;
+	padding: 2% 0% 0% 0%;
+	font-size: 1.5em;
+}
+
+a.facebook-like i,.facebook-like h4.list-group-item-heading { color:#3b5998; }
+a.facebook-like:hover { background-color:#3b5998; }
+a.facebook-like:hover * { color:#FFF; }
+
+a.twitter i,.twitter h4.list-group-item-heading { color:#00acee; }
+a.twitter:hover { background-color:#00acee; }
+a.twitter:hover * { color:#FFF; }
+
+a.youtube i,.youtube h4.list-group-item-heading { color:#c4302b; }
+a.youtube:hover { background-color:#c4302b; }
+a.youtube:hover * { color:#FFF; }
+
 #sets-main
 {
 	background-color: rgba(0,0,0,.5);
@@ -358,6 +445,8 @@ label
 #related-sets-body-wrapper 
 {
 	height: 90%;
+	background-color: white;
+	box-shadow: 0px 0px 1px 1px #428bca;
 }
 
 #promotion-main
