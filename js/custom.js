@@ -254,4 +254,15 @@ $(document).ready( function() {
 		var player = SC.Widget(document.getElementById('current-result'));
 		player.play();
 	});
+
+	$(function(){
+		  $("#slides").slidesjs({
+		    navigation: {
+		    	 width: 275,
+       			 height: 300
+		      	 active: true,
+		      	 effect: "slide"
+		    }
+		  });
+		});
 });

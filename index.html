@@ -35,6 +35,16 @@ mixpanel.init("ea091fd1d0073af2c48de623590cd53b");</script><!-- end Mixpanel -->
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10/jquery.min.js">
 	</script>
 	<script src="js/custom.js"></script>
+	<div id="fb-root"></div>
+	<script>(function(d, s, id) {
+	var js, fjs = d.getElementsByTagName(s)[0];
+	if (d.getElementById(id)) return;
+	js = d.createElement(s); js.id = id;
+	js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+	fjs.parentNode.insertBefore(js, fjs);
+	}(document, 'script', 'facebook-jssdk'));</script>
+	 <script src="jquery.slides.min.js"></script>
+	 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 	<div class="scroll-wrapper">
 		<div class="home-page-wrapper">
 			<div class="main-search-wrapper">
@@ -142,7 +152,7 @@ mixpanel.init("ea091fd1d0073af2c48de623590cd53b");</script><!-- end Mixpanel -->
       									<div class="labels-wrapper">
 	      									<div class="labels-container">
 	      										<div class="list-groups">
-	      											<a href="https://www.facebook.com/Stredm?ref=br_tf" class="list-group-item facebook-like">
+	      											<a href="https://www.facebook.com/Stredm?ref=br_tf" class="list-group-item facebook-like" target="_blank" >
 									                    <h3 class="pull-right" id="fb">
 									                        <i class="fa fa-facebook-square"></i>
 									                    </h3>
@@ -183,6 +193,17 @@ mixpanel.init("ea091fd1d0073af2c48de623590cd53b");</script><!-- end Mixpanel -->
       									</div>
       								</div>
       								<div class="sm-body-container col-md-8" id="sm-inside-slider-container">
+      									<div class="inner-carousel-sm">
+
+      										<div id="slides">
+
+												    <div class="twitter-container">
+		      										<a class="twitter-timeline" href="https://twitter.com/Stredm_Music" data-widget-id="418929296392998912">Tweets by @Stredm_Music</a>
+													<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+												    </div>
+ 											</div>
+
+										</div>
       								</div>
       							</div>
       						</div>
