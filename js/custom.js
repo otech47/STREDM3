@@ -49,18 +49,46 @@ $(document).ready( function() {
 			source: autocompleteData
 		});
 		acWidget.select();
-		acWidget.autocomplete("search", "");
 	}
+	function updateResults()
+	{
+		updateArtists();
+		// updateEvents();
+		// updateRadiomixes();
+		// updateGenres();
+		// updateMiscs();
+	}
+	function updateArtists()
+	{
+		var postdata = { array:searchArray };
+		var artistArray = new Array();
+		$.ajax({
+			type: "POST",
+			url: '../scripts/filterArtists.php',
+			data: postdata,
+			success: function(data, status)
+			{
+				alert(status);
+			}
+		});
+	}
+	var searchArray = new Array();
 	var acWidget = $("#select-combined").autocomplete({
 		minLength: 0,
-		position: { my: "left top+10", at: "left top", of: ".autocomplete-wrapper"}
+		position: { my: "left top+10", at: "left top", of: ".artist-column"},
 	});
-	var resultsList = $("ul#ui-id-1");
 	acWidget.click(function() {
 		getAllTags();
-		resultsList.detach();
-		$(".autocomplete-wrapper").append(resultsList);
-		
+	});
+	acWidget.autocomplete({
+		response: function(event, ui) {
+			var objectArray = ui.content;
+			searchArray = new Array();
+			$.each(objectArray, function(index, value) {
+				searchArray.push(value.label);
+			});
+			updateArtists();
+		}
 	});
 	$("div.stredming-tracklist").click(function(){
 		var player = SC.Widget(document.getElementById('current-result'));
