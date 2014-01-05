@@ -75,14 +75,13 @@ $(document).ready( function() {
 		$.each(searchArray, function(index, value) {
 			if($.inArray(value, artistArray) != -1)
 			{
-				$("<div class='result'>").append(value).appendTo(".artist-column .results-wrapper .results-container");
+				$("<div class='result'>").append(value).appendTo("#rc-1");
 			}
 		});
 	}
 	var searchArray = new Array();
 	var acWidget = $("#select-combined").autocomplete({
 		minLength: 0,
-		position: { my: "left top+10", at: "left top", of: ".artist-column"},
 	});
 	acWidget.click(function() {
 		getAllTags();
