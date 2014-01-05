@@ -123,11 +123,20 @@ i
 	margin:0 10%;
 	height:10%;
 }
-.results-container
+.results-wrapper
 {
 	height:90%;
 	padding:3% 9%;
 }
+.results-container
+{
+	height:100%;
+	width:100%;
+}
+.result
+{
+	height:30%;
+]
 .stredming-wrapper
 {
 	height: 100%;

@@ -60,15 +60,22 @@ $(document).ready( function() {
 	}
 	function updateArtists()
 	{
-		var postdata = { array:searchArray };
 		var artistArray = new Array();
-		$.ajax({
-			type: "POST",
-			url: '../scripts/filterArtists.php',
-			data: postdata,
-			success: function(data, status)
+		// $.ajax({
+			// type: "GET",
+			// url: "scripts/getAllArtists.php",
+			// success: function(data)
+			// {
+				// artistArray = data;
+			// }
+		// });
+		artistArray = ["Above and Beyond", "Fedde Le Grand"];
+		var arrayToAdd = new Array();
+		$(".results-container").empty();
+		$.each(searchArray, function(index, value) {
+			if($.inArray(value, artistArray) != -1)
 			{
-				alert(status);
+				$("<div class='result'>").append(value).appendTo(".artist-column .results-wrapper .results-container");
 			}
 		});
 	}
@@ -90,6 +97,7 @@ $(document).ready( function() {
 			updateArtists();
 		}
 	});
+	$("#ui-id-1").remove();
 	$("div.stredming-tracklist").click(function(){
 		var player = SC.Widget(document.getElementById('current-result'));
 		player.pause();
