@@ -45,22 +45,22 @@ $(document).ready( function() {
 	function getAllTags()
 	{
 		var autocompleteData = [ "Ultra Music Festival 2013", "Fedde Le Grand", "Above and Beyond", "Beyond Wonderland 2013" ];
-		// acwidget.autocomplete({
-			// source: autocompleteData
-		// });
-		// acwidget.select();
-		// acwidget.autocomplete("search", "");
-		$("input[id='select-combined']").autocomplete({
+		acWidget.autocomplete({
 			source: autocompleteData
 		});
-		$("#select-combined").select();
-		$("#select-combined").autocomplete("search", "");
+		acWidget.select();
+		acWidget.autocomplete("search", "");
 	}
-	$("#select-combined").autocomplete({
+	var acWidget = $("#select-combined").autocomplete({
 		minLength: 0,
 		position: { my: "left top+10", at: "left top", of: ".autocomplete-wrapper"}
-	}).click(function() {
+	});
+	var resultsList = $("ul#ui-id-1");
+	acWidget.click(function() {
 		getAllTags();
+		resultsList.detach();
+		$(".autocomplete-wrapper").append(resultsList);
+		
 	});
 	$("div.stredming-tracklist").click(function(){
 		var player = SC.Widget(document.getElementById('current-result'));
