@@ -42,28 +42,84 @@ $(document).ready( function() {
 			}
 		});
 	}
+	function getEventTags()
+	{
+		var artistSelection = $("input[id='artists']").val();
+		var postdata = { artist:artistSelection };
+		jQuery.ajax({
+			type: "POST",
+			url: '../scripts/eventTags.php',
+			data: postdata,
+			success: function(data) 
+			{
+				var autocompleteData = JSON.parse(data);
+				$("input[id='events']").autocomplete({
+					source: autocompleteData
+				});
+				$("#events").select();
+				$("#events").autocomplete("search", "");
+			}
+		});
+	}
+	function getArtistTags()
+	{
+		var eventSelection = $("input[id='events']").val();
+		var postdata = { event:eventSelection };
+		jQuery.ajax({
+			type: "POST",
+			url: '../scripts/artistTags.php',
+			data: postdata,
+			success: function(data) 
+			{
+				var autocompleteData = JSON.parse(data);
+				$("input[id='artists']").autocomplete({
+					source: autocompleteData
+				});
+				$("#artists").select();
+				$("#artists").autocomplete("search", "");
+			}
+		});
+	}
 	function getAllTags()
 	{
-		var autocompleteData = [ "Ultra Music Festival 2013", "Fedde Le Grand", "Above and Beyond", "Beyond Wonderland 2013" ];
-		acwidget.autocomplete({
-			source: autocompleteData
+		var eventSelection = "";
+		var artistSelection = "";
+		var postdata = {event:eventSelection};
+		jQuery.ajax({
+			type: "POST",
+			url: '../scripts/allTags.php',
+			data: postdata,
+			success: function(data) 
+			{
+				var autocompleteData = JSON.parse(data);
+				$("input[id='select-combined']").autocomplete({
+					source: autocompleteData
+				});
+				$("#select-combined").select();
+				$("#select-combined").autocomplete("search", "");
+			}
 		});
-		acwidget.select();
-		acwidget.autocomplete("search", "");
 	}
-	var acwidget = $("#select-combined").autocomplete( {
+	if(window.location.search && document.getElementById("stredming-wrapper").style.display != 'block')
+	{
+		searchSet();
+	}
+	$("#select-combined").autocomplete({
 		minLength: 0,
 		position: { my: "left top+10", at: "left top", of: ".autocomplete-wrapper"}
-	});
-	var resultsList = $("ul#ui-id-1");
-	acwidget.click(function() {
+	}).click(function() {
 		getAllTags();
 	});
-	// acwidget.autocomplete({open: function() {
-			// var resultsList = $("ul#ui-id-1").remove();
-			// $(".autocomplete-wrapper").append(resultsList);
-		// }
-	// }):
+	$("#artists").autocomplete({
+		minLength: 0
+	}).click(function() {
+		getArtistTags();
+	});
+	$("#events").autocomplete({
+		minLength: 0
+	}).click(function() {
+		getEventTags();
+	});
 	$(".option-button").hover(function(){
 		$(this).css("box-shadow","0 0 2px 5px grey inset")
 		},
@@ -198,15 +254,4 @@ $(document).ready( function() {
 		var player = SC.Widget(document.getElementById('current-result'));
 		player.play();
 	});
-
-	$(function(){
-		  $("#slides").slidesjs({
-		    navigation: {
-		    	 width: 275,
-       			 height: 300
-		      	 active: true,
-		      	 effect: "slide"
-		    }
-		  });
-		});
 });
