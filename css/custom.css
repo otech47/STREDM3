@@ -26,6 +26,7 @@ body
 	height: 100%;
 	width: 100%;
 	padding: 4% 0 0;
+	overflow:hidden;
 }
 
 .main-search-wrapper 
@@ -101,6 +102,11 @@ i
 	height: 64%;
 	padding: 1% 0 .5%;
 }
+.buffer
+{
+	height:110%;
+	width:100%;
+}
 .column-wrapper
 {
 	height:100%;
@@ -132,18 +138,19 @@ i
 {
 	height:100%;
 	width:100%;
+	overflow-y:scroll;
 }
 .result
 {
 	height:30%;
 	width:100%;
 	display:table;
-]
+}
 .stredming-wrapper
 {
 	height: 100%;
 	width: 100%; 
-	display: block;
+	display: none;
 	background-image:url(../images/new-york.jpg);
 	background-position:top center;
 	background-size:100% 100%;
@@ -736,4 +743,22 @@ font-weight: normal;
 	text-align: center;
 	border-radius: 5px;
 	
+}
+
+/* CSS3 Animations */
+
+.slideUp
+{
+	animation: bufferUp 0.5s forwards;
+	-webkit-animation: bufferUp 0.5s forwards;
+}
+@keyframes bufferUp
+{
+	from {height: 110%;}
+	to {height: 0%;}
+}
+@-webkit-keyframes bufferUp
+{
+	from {height: 110%;}
+	to {height: 0%;}
 }

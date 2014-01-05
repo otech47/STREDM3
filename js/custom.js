@@ -44,7 +44,7 @@ $(document).ready( function() {
 	}
 	function getAllTags()
 	{
-		var autocompleteData = [ "Ultra Music Festival 2013", "Fedde Le Grand", "Above and Beyond", "Beyond Wonderland 2013" ];
+		var autocompleteData = [ "Ultra Music Festival 2013", "Fedde Le Grand", "Above and Beyond", "Beyond Wonderland 2013", "Tomorrowland 2013", "EDC Las Vegas", "Hardwell", "Dimitri Vegas and Like Mike", "Calvin Harris" ];
 		acWidget.autocomplete({
 			source: autocompleteData
 		});
@@ -52,8 +52,10 @@ $(document).ready( function() {
 	}
 	function updateResults()
 	{
+		$(".results-container").empty();
+		$(".buffer").addClass("slideUp");
 		updateArtists();
-		// updateEvents();
+		updateEvents();
 		// updateRadiomixes();
 		// updateGenres();
 		// updateMiscs();
@@ -69,13 +71,32 @@ $(document).ready( function() {
 				// artistArray = data;
 			// }
 		// });
-		artistArray = ["Above and Beyond", "Fedde Le Grand"];
+		artistArray = ["Above and Beyond", "Fedde Le Grand", "Hardwell", "Dimitri Vegas and Like Mike", "Calvin Harris" ];
 		var arrayToAdd = new Array();
-		$(".results-container").empty();
 		$.each(searchArray, function(index, value) {
 			if($.inArray(value, artistArray) != -1)
 			{
 				$("<div class='result'>").append(value).appendTo("#rc-1");
+			}
+		});
+	}
+	function updateEvents()
+	{
+		var eventArray = new Array();
+		// $.ajax({
+			// type: "GET",
+			// url: "scripts/getAllArtists.php",
+			// success: function(data)
+			// {
+				// artistArray = data;
+			// }
+		// });
+		eventArray = ["Ultra Music Festival 2013", "Beyond Wonderland 2013", "Tomorrowland 2013", "EDC Las Vegas"];
+		var arrayToAdd = new Array();
+		$.each(searchArray, function(index, value) {
+			if($.inArray(value, eventArray) != -1)
+			{
+				$("<div class='result'>").append(value).appendTo("#rc-2");
 			}
 		});
 	}
@@ -89,14 +110,18 @@ $(document).ready( function() {
 	acWidget.autocomplete({
 		response: function(event, ui) {
 			var objectArray = ui.content;
+			if(document.getElementById("select-combined").val() == "")
+			{
+				
+			}
+			$("#ui-id-1").remove();
 			searchArray = new Array();
 			$.each(objectArray, function(index, value) {
 				searchArray.push(value.label);
 			});
-			updateArtists();
+			updateResults();
 		}
 	});
-	$("#ui-id-1").remove();
 	$("div.stredming-tracklist").click(function(){
 		var player = SC.Widget(document.getElementById('current-result'));
 		player.pause();
