@@ -168,9 +168,9 @@ $(document).ready( function() {
 	$("div.results-container").delegate(".result", "mouseenter", function() {
 		currentResult = $(this);
 		column = $(this).parent().parent().parent().parent();
-		column.children(".autocomplete-column").fadeOut(500, function (){
-			$(".tile-selection-wrapper").fadeIn();
-		});
+		// column.children(".autocomplete-column").fadeOut(500, function (){
+			// $(".tile-selection-wrapper").fadeIn();
+		// });
 		column.css("float","left");
 		var columnWrappers = $(".column-wrapper");
 		$.each(columnWrappers, function(index,value) {
@@ -185,9 +185,9 @@ $(document).ready( function() {
 		if(column.width()/column.parent().width()*100 == "100") 
 		{
 			$(".column-wrapper").css("padding-top", "400px");
-			$(".tile-selection-wrapper").fadeOut(200, function (){
-				column.children(".autocomplete-column").fadeIn();
-			});
+			// $(".tile-selection-wrapper").fadeOut(200, function (){
+				// column.children(".autocomplete-column").fadeIn();
+			// });
 			column.css("float","none");
 			column.css("width","19.5%");
 			window.setTimeout(function() {
