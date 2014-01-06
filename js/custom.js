@@ -74,11 +74,12 @@ $(document).ready( function() {
 	function updateResults()
 	{
 		updateArtists();
+		// alert("e");
 		updateEvents();
-		$('.results-container').isotope({
-			itemSelector: '.result',
-			layoutMode: "fitRows"
-		});
+		// var test = $('.results-container').isotope({
+			// layoutMode : "masonry"
+		// });
+		// alert("aaa");
 		// updateRadiomixes();
 		// updateGenres();
 		// updateMiscs();
