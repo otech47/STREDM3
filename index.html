@@ -37,11 +37,11 @@ mixpanel.init("ea091fd1d0073af2c48de623590cd53b");</script><!-- end Mixpanel -->
 	<script src="js/custom.js"></script>
 	<div id="fb-root"></div>
 	<script>(function(d, s, id) {
-	var js, fjs = d.getElementsByTagName(s)[0];
-	if (d.getElementById(id)) return;
-	js = d.createElement(s); js.id = id;
-	js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
-	fjs.parentNode.insertBefore(js, fjs);
+	  var js, fjs = d.getElementsByTagName(s)[0];
+	  if (d.getElementById(id)) return;
+	  js = d.createElement(s); js.id = id;
+	  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+	  fjs.parentNode.insertBefore(js, fjs);
 	}(document, 'script', 'facebook-jssdk'));</script>
 	 <script src="jquery.slides.min.js"></script>
 	 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
@@ -93,10 +93,10 @@ mixpanel.init("ea091fd1d0073af2c48de623590cd53b");</script><!-- end Mixpanel -->
 			<div class="carousel-wrapper row">
 				<div id="myCarousel" class="carousel slide" data-ride="carousel">
 					 <ol class="carousel-indicators">
-					    <li data-target="myCarousel" data-slide-to="0" class="active"></li>
-					    <li data-target="myCarousel" data-slide-to="1"></li>
-					    <li data-target="myCarousel" data-slide-to="2"></li>
-					    <li data-target="myCarousel" data-slide-to="3"></li>
+					    <li data-target="myCarousel" data-slide-to="0" class="active" style="height:15px;width:15px"></li>
+					    <li data-target="myCarousel" data-slide-to="1" style="height:15px;width:15px"></li>
+					    <li data-target="myCarousel" data-slide-to="2" style="height:15px;width:15px"></li>
+					    <li data-target="myCarousel" data-slide-to="3" style="height:15px;width:15px"></li>
   					 </ol>
 					 <div class="carousel-inner">
 					 	<div class="item active" id="contact-slide">
@@ -151,60 +151,82 @@ mixpanel.init("ea091fd1d0073af2c48de623590cd53b");</script><!-- end Mixpanel -->
       								<div class="sm-body-container col-md-4" id="sm-labels-container">
       									<div class="labels-wrapper">
 	      									<div class="labels-container">
-	      										<div class="list-groups">
-	      											<a href="https://www.facebook.com/Stredm?ref=br_tf" class="list-group-item facebook-like" target="_blank" >
-									                    <h3 class="pull-right" id="fb">
-									                        <i class="fa fa-facebook-square"></i>
-									                    </h3>
-									                    <h4 class="list-group-item-heading count">
-									                        1000</h4>
-									                    <p class="list-group-item-text">
-									                        Facebook Likes</p>
-									                </a>
-									                <a href="https://twitter.com/stredm_music" class="list-group-item twitter" target="_blank">
-									                    <h3 class="pull-right">
-									                        <i class="fa fa-twitter-square"></i>
-									                    </h3>
-									                    <h4 class="list-group-item-heading count">
-									                        1000</h4>
-									                    <p class="list-group-item-text">
-									                        Twitter Followers</p>
-									                </a>
-									                <a href="http://www.youtube.com/channel/UCfUCj0dW4bTHVkrI9VTweyA" class="list-group-item youtube" target="_blank">
-								                        <h3 class="pull-right">
-								                            <i class="fa fa-youtube-play"></i>
-								                        </h3>
-								                        <h4 class="list-group-item-heading count">
-								                            1000</h4>
-								                        <p class="list-group-item-text">
-								                            Youtube Subscribers</p>
-								                    </a>
-								                    <a href="http://instagram.com/stredm" class="list-group-item youtube" target="_blank">
-								                        <h3 class="pull-right">
-								                            <i class="fa fa-instagram"></i>
-								                        </h3>
-								                        <h4 class="list-group-item-heading count">
-								                            1000</h4>
-								                        <p class="list-group-item-text">
-								                            Instagram Followers</p>
-								                    </a>
-	      										</div>
+		      										<div class="list-groups">
+		      											<a href="https://www.facebook.com/Stredm?ref=br_tf" class="list-group-item facebook-like" target="_blank" >
+										                    <h3 class="pull-right" id="fb">
+										                        <i class="fa fa-facebook-square"></i>
+										                    </h3>
+										                    <h4 class="list-group-item-heading count">
+										                        1000</h4>
+										                    <p class="list-group-item-text">
+										                        Facebook Likes</p>
+										                </a>
+										                <a href="https://twitter.com/stredm_music" class="list-group-item twitter" target="_blank">
+										                    <h3 class="pull-right">
+										                        <i class="fa fa-twitter-square"></i>
+										                    </h3>
+										                    <h4 class="list-group-item-heading count">
+										                        1000</h4>
+										                    <p class="list-group-item-text">
+										                        Twitter Followers</p>
+										                </a>
+										                <a href="http://www.youtube.com/channel/UCfUCj0dW4bTHVkrI9VTweyA" class="list-group-item youtube" target="_blank">
+									                        <h3 class="pull-right">
+									                            <i class="fa fa-youtube-play"></i>
+									                        </h3>
+									                        <h4 class="list-group-item-heading count">
+									                            1000</h4>
+									                        <p class="list-group-item-text">
+									                            Youtube Subscribers</p>
+									                    </a>
+									                    <a href="http://instagram.com/stredm" class="list-group-item youtube" target="_blank">
+									                        <h3 class="pull-right">
+									                            <i class="fa fa-instagram"></i>
+									                        </h3>
+									                        <h4 class="list-group-item-heading count">
+									                            1000</h4>
+									                        <p class="list-group-item-text">
+									                            Instagram Followers</p>
+									                    </a>
+									                  </div>
 	      									</div>
       									</div>
       								</div>
       								<div class="sm-body-container col-md-8" id="sm-inside-slider-container">
-      									<div class="inner-carousel-sm">
-
-      										<div id="slides">
-
-												    <div class="twitter-container">
-		      										<a class="twitter-timeline" href="https://twitter.com/Stredm_Music" data-widget-id="418929296392998912">Tweets by @Stredm_Music</a>
-													<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
-												    </div>
- 											</div>
-
-										</div>
-      								</div>
+      									<div class="inner-carousel-wrapper">
+	      									<div id="inner-carousel-sm" class="carousel slide" data-ride="carousel">
+	      										    <ol class="carousel-indicators" id="indicators">
+												      <li data-target="#inner-carousel-sm" data-slide-to="0" style="height:13px;width:13px;border:2px solid black"></li>
+												      <li data-target="#inner-carousel-sm" data-slide-to="1" style="height:13px;width:13px;border:2px solid black"></li>
+												      <li data-target="#inner-carousel-sm" data-slide-to="2" style="height:13px;width:13px;border:2px solid black"></li>
+												      <li data-target="inner-carousel-sm" data-slide-to="3" style="height:13px;width:13px;border:2px solid black"></li>
+												    </ol>
+												    <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev" id="sm-carousel-left">
+												      <i class="fa fa-chevron-left"></i>
+												    </a>
+												    <a class="right carousel-control" href="#carousel-example-generic" data-slide="next" id="sm-carousel-right">
+												      <i class="fa fa-chevron-right"></i>
+												    </a>
+												    <div class="carousel-inner">
+												      <div class="item active">
+												        <img src="..." alt="..." class="sm-carousel-image">
+												        <div class="carousel-caption">
+												        </div>
+												      </div>
+												      <div class="item">
+												        <img src="..." alt="..." class="sm-carousel-image">
+												        <div class="carousel-caption">
+												        </div>
+												      </div>
+												      <div class="item">
+												        <img src="..." alt="..." class="sm-carousel-image">
+												        <div class="carousel-caption">
+												        </div>
+												      </div>
+													</div>
+	      									</div>
+	      								</div>
+	      							</div>
       							</div>
       						</div>
 					 	</div>

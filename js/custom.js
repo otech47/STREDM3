@@ -257,12 +257,17 @@ $(document).ready( function() {
 
 	$(function(){
 		  $("#slides").slidesjs({
-		    navigation: {
 		    	 width: 275,
-       			 height: 300
-		      	 active: true,
-		      	 effect: "slide"
-		    }
+       			 height: 300,
 		  });
 		});
+	
+	$(function(){
+  $("#slides").slidesjs({
+    navigation: {
+      active: true,
+      effect: "slide"
+    }
+  });
+});
 });
