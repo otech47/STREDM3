@@ -222,23 +222,4 @@ $(document).ready( function() {
 		var player = SC.Widget(document.getElementById('current-result'));
 		player.play();
 	});
-<<<<<<< HEAD
-
-	$(function(){
-		  $("#slides").slidesjs({
-		    	 width: 275,
-       			 height: 300,
-		  });
-		});
-	
-	$(function(){
-  $("#slides").slidesjs({
-    navigation: {
-      active: true,
-      effect: "slide"
-    }
-  });
-});
-=======
->>>>>>> d97dba50fdabac7a2056eb4da39c75e399c6c884
 });
