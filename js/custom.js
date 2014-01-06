@@ -5,7 +5,7 @@ $(document).ready( function() {
 		this.callNext = function() { 
 			typeof arr[i] == 'function' && arr[i++]();
 		};
-	}	
+	}
 	function searchSet()
 	{
 		var searchString = window.location.search.substring(1);
@@ -75,6 +75,10 @@ $(document).ready( function() {
 	{
 		updateArtists();
 		updateEvents();
+		$('.results-container').isotope({
+			itemSelector: '.result',
+			layoutMode: "fitRows"
+		});
 		// updateRadiomixes();
 		// updateGenres();
 		// updateMiscs();
