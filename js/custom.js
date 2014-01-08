@@ -255,4 +255,16 @@ $(document).ready( function() {
 	$("form.navbar-form").mouseleave(function(){
 		$("#q").css("margin-right", "-400px");
 	});
+
+
+
+	$("#search-button").mouseenter(function(){
+		$("#q").css("margin-right", "200px");
+	});
+	$("form.navbar-form").mouseleave(function(){
+		$("#q").css("margin-right", "-400px");
+	});
+
+
+
 });
