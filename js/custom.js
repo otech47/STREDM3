@@ -91,6 +91,7 @@ $(document).ready( function() {
 			{
 				animationIsActive = true;
 				activeColumn.siblings(".column-wrapper").css("margin-left","-600px");
+				result.siblings().fadeOut(100);
 				result.css("height", "80%");
 				infoPanel.appendTo(".autocomplete-container");
 				window.setTimeout(function () {
@@ -101,6 +102,7 @@ $(document).ready( function() {
 		});
 		activeColumn.find("h1").mouseenter(function() {
 			result.css("height", "30%");
+			result.siblings().fadeIn(100);
 		});
 	}
 	function animateColumns()
@@ -230,16 +232,17 @@ $(document).ready( function() {
 	$("#q").keyup( function(e) {
 		backspaceDetect = e;
 	});
-	$(".main-search-wrapper").mouseenter(function() {
+	$(".autocomplete-wrapper").mouseleave(function() {
 		acWidget.autocomplete("search");
 	});
-
-	
 	$("#search-button").mouseenter(function(){
 		$("#q").css("margin-right", "200px");
 	});
-	$("form.navbar-form").mouseleave(function(){
-		$("#q").css("margin-right", "-400px");
+	$("input#q").bind('blur', function(){
+		if($("#q").val().length == 0)
+		{
+			$("#q").css("margin-right", "-400px");
+		}
 	});
 
 
