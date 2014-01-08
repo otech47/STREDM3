@@ -332,15 +332,52 @@ i
 	margin: 0%;
 	padding: 0%;
 	height: 70%;
-	padding: 5% 0% 0% 0%;
+	padding: 4% 0% 0% 0%;
 }
 
 .slide-link
 {
-	height: 80%;
+	height: 90%;
 	padding: 0;
 	margin: 0;
 	background-color: white;
+}
+
+.info-slide-container
+{
+	padding: 0;
+	height: 100%;
+}
+
+#jumbotron-container
+{
+	height: 100%;
+	background-color: white;
+	padding: 10% 0% 0% 12%;
+}
+
+#pronounciation-header
+{
+	font-size: 3.5em;
+	font-style: italic;
+	margin: 4% 0% 4% 0%;
+}
+
+.info-memo
+{
+	margin: 0% 0% 0% 2%;
+	line-height: 1.5em;
+}
+
+#memo-p-1
+{
+	border-bottom: 1px solid #CCC;
+	padding: 0% 0% 1% 0%;
+}
+
+#memo-p-2
+{
+	padding: 1% 0% 0% 0%;
 }
 /*
 
