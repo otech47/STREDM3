@@ -71,17 +71,6 @@ $(document).ready( function() {
 			columnType = {title:"Genre", id:"rc-4"};
 		if(type == "misc")
 			columnType = {title:"Miscellaneous", id:"5"};
-		// function f1() {$("#artist-wrapper").css("padding-top", "0");}
-		// function f2() {$("#event-wrapper").css("padding-top", "0");}
-		// function f3() {$("#radiomix-wrapper").css("padding-top", "0");}
-		// function f4() {$("#genre-wrapper").css("padding-top", "0");}
-		// function f5() {$("#misc-wrapper").css("padding-top", "0");}
-		// var queue = new Queue([f1, f2, f3, f4, f5]);
-		// queue.callNext();
-		// queue.callNext();
-		// queue.callNext();
-		// queue.callNext();
-		// queue.callNext();
 		var columnCode = $("<div>").append("<div class='autocomplete-column'><h1>" +columnType.title+ "</h1><div class='results-wrapper'><div class='results-container' id='"+columnType.id+"'></div></div></div></div>");
 		columnCode.addClass("column-wrapper");
 		columnCode.attr("id", type+"-wrapper");
@@ -199,7 +188,7 @@ $(document).ready( function() {
 		$('.scroll-wrapper').animate({scrollTop: $(document).height()}, "1000");
 	};
 	var searchArray = new Array();
-	var acWidget = $("#select-combined").autocomplete({
+	var acWidget = $("#q").autocomplete({
 		minLength: 0,
 	});
 	var backspaceDetect;
@@ -220,7 +209,7 @@ $(document).ready( function() {
 	acWidget.autocomplete({
 		response: function(event, ui) {
 			var objectArray = ui.content;
-			if(backspaceDetect.keyCode == 8 && $("#select-combined").val().length == 0)
+			if(backspaceDetect.keyCode == 8 && $("#q").val().length == 0)
 			{
 				$(".column-wrapper").css("margin-left", "-500px");
 				$(".tile-selection-wrapper").remove();
@@ -240,24 +229,14 @@ $(document).ready( function() {
 			updateResults();
 		}
 	});
-	$("#select-combined").keyup( function(e) {
+	$("#q").keyup( function(e) {
 		backspaceDetect = e;
 	});
 	$(".main-search-wrapper").mouseenter(function() {
 		acWidget.autocomplete("search");
 	});
 
-
-
-	$("#search-button").mouseenter(function(){
-		$("#q").css("margin-right", "200px");
-	});
-	$("form.navbar-form").mouseleave(function(){
-		$("#q").css("margin-right", "-400px");
-	});
-
-
-
+	
 	$("#search-button").mouseenter(function(){
 		$("#q").css("margin-right", "200px");
 	});
