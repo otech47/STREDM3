@@ -47,6 +47,53 @@ mixpanel.init("ea091fd1d0073af2c48de623590cd53b");</script><!-- end Mixpanel -->
 	 <script src="js/custom.js"></script>
 	<div class="scroll-wrapper">
 		<div class="home-page-wrapper">
+			<nav class="navbar navbar-default navbar-fixed-top" role="navigation" id="main-nav">
+				<div class="navbar-header col-sm-7 navbar-left row" id="main-nav-header">
+					<div class="nav-header-container col-sm-2" id="logo-container">
+					</div>
+					<div class="nav-header-container col-sm-3" id="character-container">
+						<h1 id="main-header">Stredm</h1>
+					</div>
+					<div class="nav-header-container col-sm-7" id="main-search-container"> 
+						<form class="navbar-form" action="http://bootsnipp.com/search" method="GET" id="search-form" role="search">
+							<div class="form-group form-slide" style="overflow:hidden" id="search-width">
+								<input type="text" class="form-control form-input-slide" id="q" placeholder="Start searching or press 'Enter' for random" style="margin-right: -400px;">
+							</div>
+							<button type="submit" class="btn btn-default search-btn" id="search-button">
+								<i class="fa fa-search fa-lg"></i>
+							</button>
+						</form>
+					</div>
+				</div>
+				<div class="navbar-body col-sm-5 navbar-right" id="main-nav-body">
+					<div class="nav-menu-container col-sm-8 row" id="links-container">
+							<p class="navbar-text"><a href="#" class="navbar-link">Info</a></p>
+							<p class="navbar-text"><a href="#" class="navbar-link">Event</a></p>
+							<p class="navbar-text"><a href="#" class="navbar-link">Join</a></p>
+							<p class="navbar-text"><a href="#" class="navbar-link">App</a></p>
+					</div>
+					<div class="nav-menu-container col-sm-4 row" id="sm-container">
+							<div class="header-icon col-sm-3">
+								<a href="https://www.facebook.com/Stredm" target="_blank">
+								<i class="fa fa-facebook-square fa-3x"></i></a>
+							</div>
+							<div class="header-icon col-sm-3">
+								<a href="http://instagram.com/stredm" target="_blank">
+								<i class="fa fa-instagram fa-3x"></i></a>
+							</div>
+							<div class="header-icon col-sm-3">
+								<a href="https://twitter.com/stredm_music" target="_blank">
+								<i class="fa fa-twitter-square fa-3x"></i>
+								</a>
+							</div>
+							<div class="header-icon col-sm-3">
+								<a href="http://www.youtube.com/channel/UCfUCj0dW4bTHVkrI9VTweyA" target="_blank">
+								<i class="fa fa-youtube-square fa-3x"></i></a>
+							</div>
+					</div>
+				</div>
+			</nav>
+			<!--
 			<div class="main-search-wrapper">
 				<div class="main-search-brand row">
 						<div class="main-brand col-sm-7 row" id="main-brand-left">
@@ -154,6 +201,7 @@ mixpanel.init("ea091fd1d0073af2c48de623590cd53b");</script><!-- end Mixpanel -->
 				</div>
 			</div>
 		</div>
+	-->
 		<div class="stredming-wrapper">
 			<div class="player-wrapper row">
 			</div>
@@ -166,7 +214,7 @@ mixpanel.init("ea091fd1d0073af2c48de623590cd53b");</script><!-- end Mixpanel -->
 					    <li data-target="myCarousel" data-slide-to="3" style="height:15px;width:15px"></li>
   					 </ol>
 					 <div class="carousel-inner">
-					 	<div class="item active" id="contact-slide">
+					 	<div class="item active carousel-slide" id="contact-slide">
 					 		<img src="..." alt="..." class="carousel-img">
       						<div class="carousel-caption" id="contact-form">
       							<form role="form" class="main-form">

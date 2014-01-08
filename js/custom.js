@@ -227,4 +227,16 @@ $(document).ready( function() {
 		var player = SC.Widget(document.getElementById('current-result'));
 		player.play();
 	});
+
+
+
+	$("#search-button").mouseenter(function(){
+		$("#q").css("margin-right", "0");
+	});
+	$("form.navbar-form").mouseleave(function(){
+		$("#q").css("margin-right", "-400px");
+	});
+
+
+
 });
