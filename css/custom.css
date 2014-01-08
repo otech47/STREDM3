@@ -302,7 +302,7 @@ i
 	height: 100%;
 	width: 100%; 
 	display: none;
-	background-image:url(../images/new-york.jpg);
+	background-image:url(../images/red.jpg);
 	background-position:top center;
 	background-size:100% 100%;
 	background-repeat:no-repeat;
@@ -316,7 +316,14 @@ i
 	width: 100%;
 	margin: 0%;
 	padding: 0%;
-	background-color: rgba(255,255,255,.9);
+	background: rgb(128,0,255); /* Old browsers */
+	background: -moz-radial-gradient(center, ellipse cover, rgba(128,0,255,1) 0%, rgba(63,24,153,1) 100%); /* FF3.6+ */
+	background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%,rgba(128,0,255,1)), color-stop(100%,rgba(63,24,153,1))); /* Chrome,Safari4+ */
+	background: -webkit-radial-gradient(center, ellipse cover, rgba(128,0,255,1) 0%,rgba(63,24,153,1) 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-radial-gradient(center, ellipse cover, rgba(128,0,255,1) 0%,rgba(63,24,153,1) 100%); /* Opera 12+ */
+	background: -ms-radial-gradient(center, ellipse cover, rgba(128,0,255,1) 0%,rgba(63,24,153,1) 100%); /* IE10+ */
+	background: radial-gradient(ellipse at center, rgba(128,0,255,1) 0%,rgba(63,24,153,1) 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#8000ff', endColorstr='#3f1899',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
 }
 
 .carousel-wrapper
