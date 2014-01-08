@@ -25,7 +25,7 @@ body
 {
 	height: 100%;
 	width: 100%;
-	padding: 4% 0 0;
+	padding: 1% 0 0;
 	overflow:hidden;
 }
 
@@ -33,7 +33,7 @@ body
 {
 	background-color: rgba(255,255,255,.9);
 	width: 50%;
-	height: 36%;
+	height: 27%;
 	margin: 0 auto;
 	border-radius: 10px;
 	box-shadow: 0px 0px 7px 1px black;
@@ -99,7 +99,7 @@ i
 .autocomplete-wrapper
 {
 	width: 100%;
-	height: 64%;
+	height: 73%;
 	padding: 1% 0 .5%;
 	transition: all 5s linear;
 }
@@ -117,36 +117,36 @@ i
 	text-align:center;
 	overflow-y:hidden;
 	transition: all 1s linear;
+	padding:0 1%;
 }
 .autocomplete-column
 {
 	height:100%;
 	transition: all 1s linear;
-	background-color: rgba(255,255,255,.7);
 }
 .column-wrapper
 {
 	height:100%;
 	width:19.5%;
 	display:inline-block;
-	transition: all 0.5s ease-out;
-	padding-top:400px;
+	transition: all 0.3s ease-out;
+	float:left;
+	padding:0 1%;
+	margin-left:-500px;
+	background-color: rgba(255,255,255,.7);
 }
 .tile-selection-wrapper
 {
-	display:none;
+	background-color:rgba(255,255,255,.7);
+	display:block;
 	height:100%;
-	width:100%;
-	padding:2% 5%;
+	width:0%;
+	transition:all 0.5s ease-out;
 }
 .tile-selection
 {
-	background-color:blue;
-	display:block;
-	height:100%;
-	width:100%;
+	background-color:red;
 }
-
 .autocomplete-column > h1
 {
 	font-size:210%;
@@ -158,23 +158,22 @@ i
 .results-wrapper
 {
 	height:90%;
-	padding:3px 10px;
-	transition: all 1s linear;
+	transition: all 0.5s linear;
+	overflow-y:scroll;
 }
 .results-container
 {
 	height:100%;
 	width:100%;
-	overflow-y:scroll;
 	display:table;
 	transition: all 1s linear;
 }
 .result
 {
-	height:0%;
+	height:30%;
 	width:65%;
 	display:table;
-	transition: all 1s linear;
+	transition: all .2s linear;
 	background-color: rgba(150,150,150,.8);
 	margin:25px auto;
 	font-size:175%;
@@ -816,7 +815,6 @@ font-weight: normal;
 	margin: 0 !important;
 	text-align: center;
 	border-radius: 5px;
-	
 }
 
 /* CSS3 Animations */

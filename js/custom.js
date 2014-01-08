@@ -57,25 +57,88 @@ $(document).ready( function() {
 		});
 		acWidget.select();
 	}
-	function columnUp()
+	function columnCreate(type, tileName)
 	{
-		function f1() {$("#artist-wrapper").css("padding-top", "0");}
-		function f2() {$("#event-wrapper").css("padding-top", "0");}
-		function f3() {$("#radiomix-wrapper").css("padding-top", "0");}
-		function f4() {$("#genre-wrapper").css("padding-top", "0");}
-		function f5() {$("#misc-wrapper").css("padding-top", "0");}
-		var queue = new Queue([f1, f2, f3, f4, f5]);
-		queue.callNext();
-		queue.callNext();
-		queue.callNext();
-		queue.callNext();
-		queue.callNext();
+		var columnType;
+		var results = new Array();
+		if(type == "artist")
+			columnType = {title:"Artist", id:"rc-1"};
+		if(type == "event")
+			columnType = {title:"Event", id:"rc-2"};
+		if(type == "radiomix")
+			columnType = {title:"Radio Mix", id:"rc-3"};
+		if(type == "genre")
+			columnType = {title:"Genre", id:"rc-4"};
+		if(type == "misc")
+			columnType = {title:"Miscellaneous", id:"5"};
+		// function f1() {$("#artist-wrapper").css("padding-top", "0");}
+		// function f2() {$("#event-wrapper").css("padding-top", "0");}
+		// function f3() {$("#radiomix-wrapper").css("padding-top", "0");}
+		// function f4() {$("#genre-wrapper").css("padding-top", "0");}
+		// function f5() {$("#misc-wrapper").css("padding-top", "0");}
+		// var queue = new Queue([f1, f2, f3, f4, f5]);
+		// queue.callNext();
+		// queue.callNext();
+		// queue.callNext();
+		// queue.callNext();
+		// queue.callNext();
+		var columnCode = $("<div>").append("<div class='autocomplete-column'><h1>" +columnType.title+ "</h1><div class='results-wrapper'><div class='results-container' id='"+columnType.id+"'></div></div></div></div>");
+		columnCode.addClass("column-wrapper");
+		columnCode.attr("id", type+"-wrapper");
+		columnCode.attr("style", "margin-left: -500px");
+		columnCode = columnCode.appendTo(".autocomplete-container");
+		$.each(tileName, function (index, value) {
+			var a = value.appendTo("#"+columnType.id);
+			a.addClass("result");
+			openPanel(a);
+		});
+		return results;
+	}
+	function openPanel(result) 
+	{
+		var activeColumn = result.parent().parent().parent().parent();
+		var infoPanel = $("<div>").append("<div class='info-panel'></div>");
+		infoPanel.addClass("tile-selection-wrapper");
+		result.mouseenter(function() {
+			if(animationIsActive == false)
+			{
+				animationIsActive = true;
+				activeColumn.siblings(".column-wrapper").css("margin-left","-600px");
+				result.css("height", "80%");
+				infoPanel.appendTo(".autocomplete-container");
+				window.setTimeout(function () {
+					infoPanel.css("width","100%");
+					animationIsActive = false;
+				},300);
+			}
+		});
+		activeColumn.find("h1").mouseenter(function() {
+			result.css("height", "30%");
+		});
+	}
+	function animateColumns()
+	{
+		$(".column-wrapper").css("margin-left","0");
 	}
 	function updateResults()
 	{
-		updateArtists();
-		// alert("e");
-		updateEvents();
+		columnCodeArray = new Array();
+		resultsCodeArray = new Array();
+		var g = generateArtistTiles();
+		if(!(g[0]))
+		{
+			columnCreate(g[1], artistTiles);
+		}
+		g = generateEventTiles();
+		if(!(g[0]))
+		{
+			columnCreate(g[1], eventTiles);
+		}
+		window.setTimeout(function() {
+			$(".column-wrapper").css("margin-left","0");
+		},1);
+		// if(generateEventTiles()[0]);
+			// columnCreate(eventTiles);
 		// var test = $('.results-container').isotope({
 			// layoutMode : "masonry"
 		// });
@@ -84,9 +147,10 @@ $(document).ready( function() {
 		// updateGenres();
 		// updateMiscs();
 	}
-	function updateArtists()
+	function generateArtistTiles()
 	{
 		var artistArray = new Array();
+		var isEmpty = true;
 		// $.ajax({
 			// type: "GET",
 			// url: "scripts/getAllArtists.php",
@@ -96,19 +160,20 @@ $(document).ready( function() {
 			// }
 		// });
 		artistArray = ["Above and Beyond", "Fedde Le Grand", "Hardwell", "Dimitri Vegas and Like Mike", "Calvin Harris" ];
-		var arrayToAdd = new Array();
+		artistTiles = new Array();
 		$.each(searchArray, function(index, value) {
 			if($.inArray(value, artistArray) != -1)
 			{
-				tiles[index] =(tiles[index]).appendTo("#rc-1");
-				(tiles[index]).addClass("result");
-				(tiles[index]).css("height","40%");
+				artistTiles.push(tiles[index]);
+				isEmpty = false;
 			}
 		});
+		return [isEmpty, "artist"];
 	}
-	function updateEvents()
+	function generateEventTiles()
 	{
 		var eventArray = new Array();
+		var isEmpty = true;
 		// $.ajax({
 			// type: "GET",
 			// url: "scripts/getAllArtists.php",
@@ -118,15 +183,15 @@ $(document).ready( function() {
 			// }
 		// });
 		eventArray = ["Ultra Music Festival 2013", "Beyond Wonderland 2013", "Tomorrowland 2013", "EDC Las Vegas 2013"];
-		var arrayToAdd = new Array();
+		eventTiles = new Array();
 		$.each(searchArray, function(index, value) {
 			if($.inArray(value, eventArray) != -1)
 			{
-				tiles[index] = (tiles[index]).appendTo("#rc-2");
-				(tiles[index]).addClass("result");
-				(tiles[index]).css("height","40%");
+				eventTiles.push(tiles[index]);
+				isEmpty = false;
 			}
 		});
+		return [isEmpty, "event"];
 	}
 	var stredm = function ()
 	{
@@ -139,8 +204,16 @@ $(document).ready( function() {
 	});
 	var backspaceDetect;
 	var tiles = new Array();
+	var artistTiles = new Array();
+	var eventTiles = new Array();
+	var radiomixTiles = new Array();
+	var genreTiles = new Array();
+	var miscTiles = new Array();
 	var column;
 	var currentResult;
+	var columnCodeArray;
+	var resultsCodeArray;
+	var animationIsActive = false;
 	acWidget.click(function() {
 		getAllTags();
 	});
@@ -149,7 +222,8 @@ $(document).ready( function() {
 			var objectArray = ui.content;
 			if(backspaceDetect.keyCode == 8 && $("#select-combined").val().length == 0)
 			{
-				$(".column-wrapper").css("padding-top", "400px");
+				$(".column-wrapper").css("margin-left", "-500px");
+				$(".tile-selection-wrapper").remove();
 				return;
 			}
 			$("#ui-id-1").remove();
@@ -162,69 +236,17 @@ $(document).ready( function() {
 				tiles.push($("<div>").append("<p>"+value+"</p>"));
 			});
 			$(".results-container").empty();
-			columnUp();
+			$(".autocomplete-container").empty();
 			updateResults();
 		}
 	});
 	$("#select-combined").keyup( function(e) {
 		backspaceDetect = e;
 	});
-	$("div.results-container").delegate(".result", "click", stredm);
-	$("div.results-container").delegate(".result", "mouseenter", function() {
-		currentResult = $(this);
-		column = $(this).parent().parent().parent().parent();
-		// column.children(".autocomplete-column").fadeOut(500, function (){
-			// $(".tile-selection-wrapper").fadeIn();
-		// });
-		column.css("float","left");
-		var columnWrappers = $(".column-wrapper");
-		$.each(columnWrappers, function(index,value) {
-			if(value.id != column.attr('id'))
-			{
-				$(document.getElementById(value.id)).css("display","none");
-			}
-		});
-		column.css("width","100%");
+	$(".main-search-wrapper").mouseenter(function() {
+		acWidget.autocomplete("search");
 	});
-	$("div.autocomplete-wrapper").on("mouseleave", function() {
-		if(column.width()/column.parent().width()*100 == "100") 
-		{
-			$(".column-wrapper").css("padding-top", "400px");
-			// $(".tile-selection-wrapper").fadeOut(200, function (){
-				// column.children(".autocomplete-column").fadeIn();
-			// });
-			column.css("float","none");
-			column.css("width","19.5%");
-			window.setTimeout(function() {
-				var columnWrappers = $(".column-wrapper");
-				$.each(columnWrappers, function(index,value) {
-					$(document.getElementById(value.id)).css("display","inline-block");
-				});
-				columnUp();
-			},500);
-		}
-		else
-		{
-			window.setTimeout(function() {
-				$(".column-wrapper").css("padding-top", "400px");
-				column.css("float","none");
-				column.css("width","19.5%");
-				window.setTimeout(function() {
-					var columnWrappers = $(".column-wrapper");
-					$.each(columnWrappers, function(index,value) {
-						$(document.getElementById(value.id)).css("display","inline-block");
-					});
-					columnUp();
-				},500);
-			}, 500);
-		}
-	});
-	$("div.stredming-tracklist").click(function(){
-		var player = SC.Widget(document.getElementById('current-result'));
-		player.pause();
-	});
-	$("#current-result").ready( function() {
-		var player = SC.Widget(document.getElementById('current-result'));
-		player.play();
-	});
+	// $("div.autocomplete-wrapper").click(function() {
+		// alert(resultsCodeArray[0].html());
+	// });
 });
