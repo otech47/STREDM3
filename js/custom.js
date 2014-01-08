@@ -231,7 +231,7 @@ $(document).ready( function() {
 
 
 	$("#search-button").mouseenter(function(){
-		$("#q").css("margin-right", "0");
+		$("#q").css("margin-right", "200px");
 	});
 	$("form.navbar-form").mouseleave(function(){
 		$("#q").css("margin-right", "-400px");
