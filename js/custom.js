@@ -246,7 +246,13 @@ $(document).ready( function() {
 	$(".main-search-wrapper").mouseenter(function() {
 		acWidget.autocomplete("search");
 	});
-	// $("div.autocomplete-wrapper").click(function() {
-		// alert(resultsCodeArray[0].html());
-	// });
+
+
+
+	$("#search-button").mouseenter(function(){
+		$("#q").css("margin-right", "200px");
+	});
+	$("form.navbar-form").mouseleave(function(){
+		$("#q").css("margin-right", "-400px");
+	});
 });
