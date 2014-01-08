@@ -25,7 +25,7 @@ body
 {
 	height: 100%;
 	width: 100%;
-	padding: 1% 0 0;
+	padding: 6% 0 0;
 	overflow:hidden;
 }
 
@@ -172,20 +172,14 @@ i
 	margin:0% 0% 0% 0%;
 }
 
-#select-combined 
-{
-	height: 50px;
-	width: 96%;
-	margin: 2% 0% 0% 2%;
-	font-size: 1.6em;
-}
+/* Functional columns, wrappers, panels */
 
 .autocomplete-wrapper
 {
 	width: 100%;
-	height: 73%;
-	padding: 1% 0 .5%;
-	transition: all 5s linear;
+	height: 100%;
+	padding: 1% 0;
+	transition: all 0.5s linear;
 }
 .buffer
 {
@@ -200,7 +194,7 @@ i
 	margin: 0 auto;
 	text-align:center;
 	overflow-y:hidden;
-	transition: all 1s linear;
+	transition: all 0.5s linear;
 	padding:0 1%;
 }
 .autocomplete-column
@@ -226,10 +220,38 @@ i
 	height:100%;
 	width:0%;
 	transition:all 0.5s ease-out;
+	padding:0 0 0 19%;
 }
-.tile-selection
+.info-panel-container
 {
-	background-color:red;
+	background-color:rgba(200,200,200,.7);
+	width:100%;
+	height:100%;
+	padding:1%;
+}
+.info-panel
+{
+	height:100%;
+	width:100%;
+	background-color:rgba(150,105,155,.7);
+}
+.search-container
+{
+	height: 10%;
+    padding: 1% 0 0;
+}
+.tiles-wrapper
+{
+	height: 90%;
+    width: 100%;
+}
+.info-search
+{
+	border-radius: 15px;
+    font-size: 170%;
+    height: 80%;
+    padding: 0 2%;
+    width: 62%;
 }
 .autocomplete-column > h1
 {
@@ -268,6 +290,9 @@ i
 	display:table-cell;
 	vertical-align:middle;
 }
+
+/*Stredming (second screen) */
+
 .stredming-wrapper
 {
 	height: 100%;

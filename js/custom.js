@@ -60,7 +60,6 @@ $(document).ready( function() {
 	function columnCreate(type, tileName)
 	{
 		var columnType;
-		var results = new Array();
 		if(type == "artist")
 			columnType = {title:"Artist", id:"rc-1"};
 		if(type == "event")
@@ -70,7 +69,7 @@ $(document).ready( function() {
 		if(type == "genre")
 			columnType = {title:"Genre", id:"rc-4"};
 		if(type == "misc")
-			columnType = {title:"Miscellaneous", id:"5"};
+			columnType = {title:"Miscellaneous", id:"rc-5"};
 		var columnCode = $("<div>").append("<div class='autocomplete-column'><h1>" +columnType.title+ "</h1><div class='results-wrapper'><div class='results-container' id='"+columnType.id+"'></div></div></div></div>");
 		columnCode.addClass("column-wrapper");
 		columnCode.attr("id", type+"-wrapper");
@@ -81,12 +80,11 @@ $(document).ready( function() {
 			a.addClass("result");
 			openPanel(a);
 		});
-		return results;
 	}
 	function openPanel(result) 
 	{
 		var activeColumn = result.parent().parent().parent().parent();
-		var infoPanel = $("<div>").append("<div class='info-panel'></div>");
+		var infoPanel = $("<div>").append("<div class='info-panel-container'><div class='info-panel'><div class='search-container'><input class='info-search ui-autocomplete-input' placeholder='Type to filter results'></div><div class='tiles-wrapper'></div></div></div>");
 		infoPanel.addClass("tile-selection-wrapper");
 		result.mouseenter(function() {
 			if(animationIsActive == false)
