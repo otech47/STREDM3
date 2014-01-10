@@ -586,6 +586,95 @@ label
 	margin: 0% 0%;
 }
 
+/***EVENT INFO PAGE***/
+.event-wrapper{
+  height: 100%;
+  width: 100%; 
+  display: block;
+  background-image:url(../images/tmwlandgirl.jpg);
+  background-position:top center;
+  background-size:100% 100%;
+  background-repeat:no-repeat;
+  overflow: scroll;
+  background-color: rgba(255,255,255,.1);
+}
+
+#event-header{
+    font-size: 4em;
+  font-family: helvetica;
+  font-weight: bold;
+  margin: 0;
+}
+#event-header:hover{
+  color:rgba(18, 55, 186, 0.91);
+  transition:1s;
+}
+option.head {
+    selected:selected;
+    display:none;
+    disabled:disabled;
+}
+
+h1:hover{
+	color:rgba(18, 55, 186, 0.91);
+	transition:1s;
+}
+
+/* Typography
+================================= */
+
+h1 {
+	font-weight: 200;
+	margin-bottom: 30px;
+}
+h2, h3 {
+	font-size: 1.25em;
+	color: #5f5d60;
+	margin-bottom: 16px;
+	margin-top: 0;
+}
+p {
+	color: #b3aeb5;
+	line-height: 1.7;
+	font-size: 1.1em;
+	font-weight: 200;
+}
+
+.lead {
+	color: #d5c1f2;
+	margin-bottom: 70px;
+}
+.lead:nth-of-type(2) {
+	font-size: initial;
+	margin-bottom: 20px;
+}
+
+/* Jumbotron
+================================= */
+
+.jumbotron {
+	background-color: #fff;
+	background-image: url(../images/tmwlandgirl.jpg);
+	background-repeat: no-repeat;
+	background-position:  98% 100%;
+	padding: 200px 0 140px 0;
+	margin-bottom: 70px;
+}
+
+#jumbotron-container
+{
+	height: 100%;
+	background-color: white;
+	padding: 10% 0% 0% 12%;
+}
+
+
+/* Separate Divs
+================================= */
+.row #heightleft{
+	height: 50%;
+	width: 100%;
+}
 
 /*
 
