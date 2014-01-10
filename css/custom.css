@@ -301,7 +301,7 @@ i
 .panel-autocomplete-column
 {
 	height:100%;
-	width:100%;
+	width:50%;
 }
 .panel-results-wrapper
 {
@@ -327,6 +327,11 @@ i
 	margin:0 auto 25px;
 	font-size:175%;
 	box-shadow: 0 0 5px 1px;
+}
+.panel-result p
+{
+	display: table-cell;
+    vertical-align: middle;
 }
 
 /*Stredming (second screen) */
