@@ -14,10 +14,6 @@ body
 	overflow: hidden;
 }
 
-#main-header:hover h1:hover{
-	text-color:rgba(18, 55, 186, 0.91);
-	transition:1s;
-}
 .scroll-wrapper
 {
 	height:100%;
@@ -336,12 +332,12 @@ i
 {
 	height: 100%;
 	width: 100%; 
-	display: none;
+	display: block;
 	background-image:url(../images/red.jpg);
 	background-position:top center;
 	background-size:100% 100%;
 	background-repeat:no-repeat;
-	overflow: hidden;
+	overflow: scroll;
 	background-color: rgba(255,255,255,.1);
 }
 
@@ -367,7 +363,392 @@ i
 	margin: 0%;
 	padding: 0%;
 	height: 70%;
+	padding: 4% 0% 0% 0%;
 }
+
+.slide-link
+{
+	height: 90%;
+	padding: 0;
+	margin: 0;
+	background-color: white;
+}
+
+.info-slide-container
+{
+	padding: 0% 0% 0% 4%;
+	height: 100%;
+}
+
+#jumbotron-container
+{
+	height: 100%;
+	background-color: white;
+	padding: 10% 0% 0% 12%;
+}
+
+#pronounciation-header
+{
+	font-size: 3.5em;
+	font-style: italic;
+	margin: 4% 0% 4% 0%;
+}
+
+.info-memo
+{
+	margin: 0% 0% 0% 2%;
+	line-height: 1.5em;
+}
+
+#memo-p-1
+{
+	border-bottom: 1px solid #CCC;
+	padding: 0% 0% 1% 0%;
+}
+
+#memo-p-2
+{
+	padding: 1% 0% 0% 0%;
+}
+
+
+
+.page
+{
+	height: 100%;
+	width: 100%;
+	display: none;
+	background-image: url("file:///Users/JesusNajera/Documents/STREDM3/css/../images/coach.jpg");
+	background-position: top center;
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+	overflow: scroll;
+}
+
+.join-container
+{
+	margin: 0 30%;
+	background-color: white;
+	height: 100%;
+	padding-top: 4.5%;
+}
+
+.join-content-wrapper 
+{
+	padding: 0 3%;
+	height: 33.33%;
+}
+
+#join-header-container
+{
+	padding: 1% 7% 0% 3%;
+}
+
+#join-jumbotron
+{
+	margin: 0;
+	background-color: white;
+	padding: 1% 2%;
+}
+
+.icon-container
+{
+	height: 17%;
+	padding-top: 1%;
+}
+
+#join-arrow
+{
+	margin: 0% 50%;
+}
+
+#join-sm-container
+{
+	padding: 0% 30%;
+}
+
+.labels-wrapper
+{
+	box-shadow: 0px 0px 2px 2px black;
+}
+
+#sm-labels-container
+{
+	padding: 4% 2% 7% 2%;
+	height: 96%
+}
+
+.labels-container
+{
+	background-color: rgba(0,0,0,.5);
+	height: 100%;
+	width:100%;
+}
+
+.pull-right
+{
+	margin: 0% 0% 0% 0%;
+	font-size: 3.5em;
+}
+
+.list-group-item
+{
+	padding: 1% 4% 1% 4%;
+}
+
+.list-group-item-heading
+{
+	margin: 0% 50% 0% 1%;
+}
+
+.list-group-item-text
+{
+	margin: 0;
+	padding: 1% 0% 0% 1%;
+	font-size: 1.5em;
+}
+
+a.facebook-like i,.facebook-like h4.list-group-item-heading { color:#3b5998; }
+a.facebook-like:hover { background-color:#3b5998; }
+a.facebook-like:hover * { color:#FFF; }
+
+a.twitter i,.twitter h4.list-group-item-heading { color:#00acee; }
+a.twitter:hover { background-color:#00acee; }
+a.twitter:hover * { color:#FFF; }
+
+a.youtube i,.youtube h4.list-group-item-heading { color:#c4302b; }
+a.youtube:hover { background-color:#c4302b; }
+a.youtube:hover * { color:#FFF; }
+
+#join-form-container
+{
+	padding: 3% 4% 1% 4%;
+	height: 33.33%;
+}
+
+.form-wrapper
+{
+	height: 100%;
+	border: 1px solid #BBB;
+	margin: 0;
+	padding: 2%
+}
+
+.form-container
+{
+	margin: 0;
+	padding: 0% 3% 0% 3%;
+}
+
+.main-form
+{
+	height: 100%;
+}
+
+#contact-form
+{
+	background-color: rgba(255,255,255,1);
+	border-radius: 3px;
+}
+
+
+#content-wrapper
+{
+	height: 100%;
+	margin: 0;
+	padding: 0% 0% 0% 2%;
+}
+
+#text-area-wrapper
+{
+	height: 100%;
+	margin: 0;
+	padding: 0;
+}
+.info
+{
+	margin: 0%;
+	height: 100%;
+}
+
+#contact-reasons
+{
+	margin: 13.3% 0% 0% 0%;
+}
+
+label
+{
+	font-size: 1.3em;
+	color: black;
+	font-weight: normal;
+	margin: 0% 79% 0% 0%;
+	padding: 0% 0% 1% 0%;
+}
+
+#emaillabel
+{
+	margin: 0% 72% 0% 0%;
+}
+
+.message-intro
+{
+	margin: 0%;
+}
+
+#message-intro-p
+{
+	font-size: 1.3em;
+	color: black;
+	margin: 0% 74% 0% 0%;
+	padding: 0% 0% 1% 0%;
+}
+
+.text-area
+{
+	height: 83%;
+	width: 100%;
+}
+
+.submit
+{
+	margin: 0;
+	padding-top: 4%;
+}
+
+#join-button
+{
+	padding: 5% 39% 4% 39%;
+	margin: 0% 0%;
+}
+
+#event-pagej
+{
+		background-image: url("file:///Users/JesusNajera/Documents/STREDM3/css/../images/girl.jpg");
+		padding-top: 4%;
+}
+
+.eventj
+{
+	height: 100%;
+	padding-top: 5%;
+	padding: 0;
+	margin: 0;
+	background-color: transparent;
+}
+
+.eventj-wrapper
+{
+	height: 50%;
+	background-color: white;
+	padding:0;
+	margin: 0;
+}
+
+#right-wrapper
+{
+	margin-top: 53%;
+}
+
+/***EVENT INFO PAGE***/
+.event-wrapper{
+  height: 100%;
+  width: 100%; 
+  display: block;
+  background-image:url(../images/tmwlandgirl.jpg);
+  background-position:top center;
+  background-size:100% 100%;
+  background-repeat:no-repeat;
+  overflow: scroll;
+  background-color: rgba(255,255,255,.1);
+}
+
+#event-header{
+    font-size: 4em;
+  font-family: helvetica;
+  font-weight: bold;
+  margin: 0;
+}
+#event-header:hover{
+  color:rgba(18, 55, 186, 0.91);
+  transition:1s;
+}
+option.head {
+    selected:selected;
+    display:none;
+    disabled:disabled;
+}
+
+h1:hover{
+	color:rgba(18, 55, 186, 0.91);
+	transition:1s;
+}
+
+#sexy{
+	background-color: #fff;
+	background-image: url(../images/tmwlandgirl.jpg);
+	background-repeat: no-repeat;
+	background-position:  98% 100%;
+	padding: 200px 0 140px 0;
+	margin-bottom: 70px;
+}
+
+/* Typography
+================================= */
+/*
+h1 {
+	font-weight: 200;
+	margin-bottom: 30px;
+}
+h2, h3 {
+	font-size: 1.25em;
+	color: #5f5d60;
+	margin-bottom: 16px;
+	margin-top: 0;
+}
+p {
+	color: #b3aeb5;
+	line-height: 1.7;
+	font-size: 1.1em;
+	font-weight: 200;
+}
+
+.lead {
+	color: #d5c1f2;
+	margin-bottom: 70px;
+}
+.lead:nth-of-type(2) {
+	font-size: initial;
+	margin-bottom: 20px;
+}
+
+/* Jumbotron
+================================= 
+
+.jumbotron {
+	background-color: #fff;
+	background-image: url(../images/tmwlandgirl.jpg);
+	background-repeat: no-repeat;
+	background-position:  98% 100%;
+	padding: 200px 0 140px 0;
+	margin-bottom: 70px;
+}
+
+#jumbotron-container
+{
+	height: 100%;
+	background-color: white;
+	padding: 10% 0% 0% 12%;
+}
+
+
+/* Separate Divs
+================================= */
+.row #heightleft{
+	height: 50%;
+	width: 100%;
+}
+*/
+/*
 
 #myCarousel
 {
@@ -962,6 +1343,8 @@ font-weight: normal;
 	padding: 0;
 	margin: 0% 0% 0% 71%;
 }
+
+*/
 
 #ui-id-1
 {
