@@ -489,18 +489,24 @@ a.youtube i,.youtube h4.list-group-item-heading { color:#c4302b; }
 a.youtube:hover { background-color:#c4302b; }
 a.youtube:hover * { color:#FFF; }
 
+#join-form-container
+{
+	padding: 3% 4% 1% 4%;
+	height: 33.33%;
+}
+
 .form-wrapper
 {
-	margin: 0;
-	padding-top: 3%;
 	height: 100%;
+	border: 1px solid #BBB;
+	margin: 0;
+	padding: 2%
 }
 
 .form-container
 {
 	margin: 0;
-	padding: 0;
-	height: 100%;
+	padding: 0% 3% 0% 3%;
 }
 
 .main-form
@@ -536,7 +542,7 @@ a.youtube:hover * { color:#FFF; }
 
 #contact-reasons
 {
-	margin: 11% 0% 0% 0%;
+	margin: 13.3% 0% 0% 0%;
 }
 
 label
@@ -569,13 +575,19 @@ label
 .text-area
 {
 	height: 83%;
-	width: 86%;
+	width: 100%;
 }
 
 .submit
 {
-	height: 10%;
 	margin: 0;
+	padding-top: 4%;
+}
+
+#join-button
+{
+	padding: 5% 39% 4% 39%;
+	margin: 0% 0%;
 }
 
 
