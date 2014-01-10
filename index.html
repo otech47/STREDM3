@@ -157,20 +157,104 @@ mixpanel.init("ea091fd1d0073af2c48de623590cd53b");</script><!-- end Mixpanel -->
 		</div>
 
 		<div class="page" id="join-page">
-			<div class="join-container col-lg-6 row">
+			<div class="join-container col-lg-5 row">
 				<div class="join-content-wrapper row" id="join-header-container">
-					<div class="jumbotron">
+					<div class="jumbotron" id="join-jumbotron">
 					  <h1>Unity.</h1>
-					  <p>Music-addict? Daring Designer? Marketing-whiz?  </p>
+					  <p style="border-bottom: 1px solid #EEE">Festival-freak? Daring Designer? Marketing-whiz?</p>
+					  <p style="line-height: .5">Infinite reasons, join us by reaching out below</p>
+					</div>
+					<div class="icon-container">
+						<i class="fa fa-arrow-down fa-4x" id="join-arrow"></i>
+					</div>
+				</div>
+				<div class="join-content-wrapper row" id="join-sm-container">
+					<div class="labels-wrapper">
+						<div class="labels-container">
+								<div class="list-groups">
+									<a href="https://www.facebook.com/Stredm?ref=br_tf" class="list-group-item facebook-like" target="_blank" >
+				                    <h3 class="pull-right" id="fb">
+				                        <i class="fa fa-facebook-square"></i>
+				                    </h3>
+				                    <h4 class="list-group-item-heading count">
+				                        1000</h4>
+				                    <p class="list-group-item-text">
+				                        Facebook Likes</p>
+				                </a>
+				                <a href="https://twitter.com/stredm_music" class="list-group-item twitter" target="_blank">
+				                    <h3 class="pull-right">
+				                        <i class="fa fa-twitter-square"></i>
+				                    </h3>
+				                    <h4 class="list-group-item-heading count">
+				                        1000</h4>
+				                    <p class="list-group-item-text">
+				                        Twitter Followers</p>
+				                </a>
+				                <a href="http://www.youtube.com/channel/UCfUCj0dW4bTHVkrI9VTweyA" class="list-group-item youtube" target="_blank">
+			                        <h3 class="pull-right">
+			                            <i class="fa fa-youtube-play"></i>
+			                        </h3>
+			                        <h4 class="list-group-item-heading count">
+			                            1000</h4>
+			                        <p class="list-group-item-text">
+			                            Youtube Subscribers</p>
+			                    </a>
+			                    <a href="http://instagram.com/stredm" class="list-group-item youtube" target="_blank">
+			                        <h3 class="pull-right">
+			                            <i class="fa fa-instagram"></i>
+			                        </h3>
+			                        <h4 class="list-group-item-heading count">
+			                            1000</h4>
+			                        <p class="list-group-item-text">
+			                            Instagram Followers</p>
+			                    </a>
+			                  </div>
+						</div>
+					</div>
+				    <div class="icon-container" style="padding: 5% 0% 0% 0%;">
+							<i class="fa fa-arrow-down fa-4x" id="join-arrow" style=" margin: 0% 48%;"></i>
 					</div>
 				</div>
 				<div class="join-content-wrapper row">
-				</div>
-				<div class="join-content-wrapper row">
+					<div class="form-wrapper row" id="form-content-wrapper">
+						<div class="form-container col-md-6 row">
+							<form role="form" class="main-form">
+  							  <div class="info row">
+  							  	<div class="info row" id="content-wrapper">
+  							  	  <div class="form-group">
+								    <label for="firstname">Name</label>
+								    <input type="text" class="form-control" id="firstname" placeholder="First Name">
+								  </div>
+								  <div class="form-group">
+								    <label for="email" id="emaillabel">Email</label>
+								    <input type="email" class="form-control" id="email" placeholder="Enter email">
+								  </div>
+								  <select class="form-control" id="contact-reasons">
+									  <option>General</option>
+									  <option>Event Cross-Promotion</option>
+									  <option>Artist Promotions</option>
+									  <option>Inquiries</option>
+									  <option>Want to Sue Us</option>
+								  </select>
+  							  	</div>
+  							  </div>
+							</form>
+						</div>
+						<div class="form-container col-md-6 row">
+							<div id="text-area-wrapper">
+					    	 <div class="message-intro row">
+					    	 	<p id="message-intro-p">Message</p>
+					    	 </div>
+					    	 <textarea class="text-area" id="message" name="message"  rows="10"></textarea>
+					 		</div>
+					 		<div class="submit row">
+					  			<button type="submit" class="btn btn-default">Submit</button>
+					 		</div>
+						</div>
+					</div>
 				</div>
 			</div>
-		</div>
-			
+		</div>			
 	</div>
   </body>
 </html>

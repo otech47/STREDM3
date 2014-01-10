@@ -386,7 +386,7 @@ i
 {
 	height: 100%;
 	width: 100%;
-	display: block;
+	display: none;
 	background-image: url("file:///Users/JesusNajera/Documents/STREDM3/css/../images/coach.jpg");
 	background-position: top center;
 	background-size: 100% 100%;
@@ -396,7 +396,7 @@ i
 
 .join-container
 {
-	margin: 0 25%;
+	margin: 0 30%;
 	background-color: white;
 	height: 100%;
 	padding-top: 4.5%;
@@ -406,6 +406,176 @@ i
 {
 	padding: 0 3%;
 	height: 33.33%;
+}
+
+#join-header-container
+{
+	padding: 1% 7% 0% 3%;
+}
+
+#join-jumbotron
+{
+	margin: 0;
+	background-color: white;
+	padding: 1% 2%;
+}
+
+.icon-container
+{
+	height: 17%;
+	padding-top: 1%;
+}
+
+#join-arrow
+{
+	margin: 0% 50%;
+}
+
+#join-sm-container
+{
+	padding: 0% 30%;
+}
+
+.labels-wrapper
+{
+	box-shadow: 0px 0px 2px 2px black;
+}
+
+#sm-labels-container
+{
+	padding: 4% 2% 7% 2%;
+	height: 96%
+}
+
+.labels-container
+{
+	background-color: rgba(0,0,0,.5);
+	height: 100%;
+	width:100%;
+}
+
+.pull-right
+{
+	margin: 0% 0% 0% 0%;
+	font-size: 3.5em;
+}
+
+.list-group-item
+{
+	padding: 1% 4% 1% 4%;
+}
+
+.list-group-item-heading
+{
+	margin: 0% 50% 0% 1%;
+}
+
+.list-group-item-text
+{
+	margin: 0;
+	padding: 1% 0% 0% 1%;
+	font-size: 1.5em;
+}
+
+a.facebook-like i,.facebook-like h4.list-group-item-heading { color:#3b5998; }
+a.facebook-like:hover { background-color:#3b5998; }
+a.facebook-like:hover * { color:#FFF; }
+
+a.twitter i,.twitter h4.list-group-item-heading { color:#00acee; }
+a.twitter:hover { background-color:#00acee; }
+a.twitter:hover * { color:#FFF; }
+
+a.youtube i,.youtube h4.list-group-item-heading { color:#c4302b; }
+a.youtube:hover { background-color:#c4302b; }
+a.youtube:hover * { color:#FFF; }
+
+.form-wrapper
+{
+	margin: 0;
+	padding-top: 3%;
+	height: 100%;
+}
+
+.form-container
+{
+	margin: 0;
+	padding: 0;
+	height: 100%;
+}
+
+.main-form
+{
+	height: 100%;
+}
+
+#contact-form
+{
+	background-color: rgba(255,255,255,1);
+	border-radius: 3px;
+}
+
+
+#content-wrapper
+{
+	height: 100%;
+	margin: 0;
+	padding: 0% 0% 0% 2%;
+}
+
+#text-area-wrapper
+{
+	height: 100%;
+	margin: 0;
+	padding: 0;
+}
+.info
+{
+	margin: 0%;
+	height: 100%;
+}
+
+#contact-reasons
+{
+	margin: 11% 0% 0% 0%;
+}
+
+label
+{
+	font-size: 1.3em;
+	color: black;
+	font-weight: normal;
+	margin: 0% 79% 0% 0%;
+	padding: 0% 0% 1% 0%;
+}
+
+#emaillabel
+{
+	margin: 0% 72% 0% 0%;
+}
+
+.message-intro
+{
+	margin: 0%;
+}
+
+#message-intro-p
+{
+	font-size: 1.3em;
+	color: black;
+	margin: 0% 74% 0% 0%;
+	padding: 0% 0% 1% 0%;
+}
+
+.text-area
+{
+	height: 83%;
+	width: 86%;
+}
+
+.submit
+{
+	height: 10%;
+	margin: 0;
 }
 
 
