@@ -284,7 +284,8 @@ i
 	transition: all 0.2s linear;
 	background-color: rgba(150,150,150,.8);
 	font-size:220%;
-	box-shadow: 0 0 5px 1px;
+	box-shadow: 0 0 1px 1px;
+	border-radius: 8px 8px 0 0;
 	margin:2%;
 }
 .result p
@@ -301,7 +302,7 @@ i
 .panel-autocomplete-column
 {
 	height:100%;
-	width:50%;
+	width:100%;
 }
 .panel-results-wrapper
 {
@@ -319,14 +320,15 @@ i
 }
 .panel-result
 {
-	height:20%;
-	width:30%;
+	height:15%;
+	width:25%;
 	display:table;
 	transition: all .2s linear;
 	background-color: rgba(150,150,150,.8);
-	margin:0 auto 25px;
-	font-size:175%;
-	box-shadow: 0 0 5px 1px;
+	margin:2%;
+	font-size:225%;
+	box-shadow: 0 0 1px 1px;
+	border-radius: 8px 8px 0 0;
 }
 .panel-result p
 {
