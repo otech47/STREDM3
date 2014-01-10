@@ -620,9 +620,18 @@ h1:hover{
 	transition:1s;
 }
 
+#sexy{
+	background-color: #fff;
+	background-image: url(../images/tmwlandgirl.jpg);
+	background-repeat: no-repeat;
+	background-position:  98% 100%;
+	padding: 200px 0 140px 0;
+	margin-bottom: 70px;
+}
+
 /* Typography
 ================================= */
-
+/*
 h1 {
 	font-weight: 200;
 	margin-bottom: 30px;
@@ -650,7 +659,7 @@ p {
 }
 
 /* Jumbotron
-================================= */
+================================= 
 
 .jumbotron {
 	background-color: #fff;
@@ -675,7 +684,7 @@ p {
 	height: 50%;
 	width: 100%;
 }
-
+*/
 /*
 
 #myCarousel
