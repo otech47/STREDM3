@@ -52,58 +52,127 @@ $(document).ready( function() {
 	function getAllTags()
 	{
 		var autocompleteData = [ "Ultra Music Festival 2013", "Fedde Le Grand", "Above and Beyond", "Beyond Wonderland 2013", "Tomorrowland 2013", "EDC Las Vegas 2013", "Hardwell", "Dimitri Vegas and Like Mike", "Calvin Harris" ];
-		acWidget.autocomplete({
+		mainACWidget.autocomplete({
 			source: autocompleteData
 		});
-		acWidget.select();
+		mainACWidget.select();
+	}
+	function getMatchedTags(label)
+	{
+		var results = ["Hardwell", "Calvin Harris", "Deadmau5", "Swedish House Mafia"];
+		return results;
 	}
 	function columnCreate(type, tileName)
 	{
-		var columnType;
+		var columnType = {title:"Empty", id:"rc-0"};
 		if(type == "artist")
+		{
 			columnType = {title:"Artist", id:"rc-1"};
-		if(type == "event")
+		}
+		else if(type == "event")
+		{	
 			columnType = {title:"Event", id:"rc-2"};
-		if(type == "radiomix")
+		}
+		else if(type == "radiomix")
+		{	
 			columnType = {title:"Radio Mix", id:"rc-3"};
-		if(type == "genre")
+		}
+		else if(type == "genre")
+		{	
 			columnType = {title:"Genre", id:"rc-4"};
-		if(type == "misc")
+		}
+		else
+		{	
 			columnType = {title:"Miscellaneous", id:"rc-5"};
-		var columnCode = $("<div>").append("<div class='autocomplete-column'><h1>" +columnType.title+ "</h1><div class='results-wrapper'><div class='results-container' id='"+columnType.id+"'></div></div></div></div>");
-		columnCode.addClass("column-wrapper");
-		columnCode.attr("id", type+"-wrapper");
+		}
+		var columnCode = $("<div class='column-wrapper'><div class='autocomplete-column'><h1></h1><div class='results-wrapper'><div class='results-container'></div></div></div></div>");
+		columnCode.find("h1").append((columnType.title).toString());
+		columnCode.find(".results-container").attr("id", (columnType.id).toString());
+		columnCode.attr("id", type.toString()+"-wrapper");
 		columnCode.attr("style", "margin-left: -500px");
-		columnCode = columnCode.appendTo(".autocomplete-container");
+		columnCode.appendTo(".autocomplete-container");
+		$.each(tileName, function (index, value) {
+			var a = value.appendTo("#"+columnType.id).addClass("result");
+			a.mouseenter(function() {
+				openPanel(a);
+			});
+		});
+	}
+	function createPanelResults(type, tileName)
+	{
+		var columnType = {title:"Empty", id:"prc-0"};
+		if(type == "artist")
+		{
+			columnType = {title:"Event", id:"prc-2"};
+		}
+		else if(type == "event")
+		{	
+			columnType = {title:"Artist", id:"prc-1"};
+		}
+		var columnCode = $("<div class='panel-column-wrapper'><div class='panel-autocomplete-column'><div class='panel-results-wrapper'><div class='panel-results-container'></div></div></div></div>");
+		columnCode.find(".panel-results-container").attr("id", (columnType.id).toString());
+		columnCode.attr("id", type.toString()+"-panel-wrapper");
+		columnCode.appendTo(".tiles-wrapper");
 		$.each(tileName, function (index, value) {
 			var a = value.appendTo("#"+columnType.id);
-			a.addClass("result");
-			openPanel(a);
 		});
 	}
 	function openPanel(result) 
 	{
 		var activeColumn = result.parent().parent().parent().parent();
-		var infoPanel = $("<div>").append("<div class='info-panel-container'><div class='info-panel'><div class='search-container'><input class='info-search ui-autocomplete-input' placeholder='Type to filter results'></div><div class='tiles-wrapper'></div></div></div>");
+		var infoPanel = $("<div>").append("<div class='info-panel-container'><div class='info-panel'><div class='ui-widget search-container'></div><div class='tiles-wrapper'></div></div></div>");
 		infoPanel.addClass("tile-selection-wrapper");
-		result.mouseenter(function() {
-			if(animationIsActive == false)
-			{
-				animationIsActive = true;
-				activeColumn.siblings(".column-wrapper").css("margin-left","-600px");
-				result.siblings().fadeOut(100);
-				result.css("height", "80%");
-				infoPanel.appendTo(".autocomplete-container");
-				window.setTimeout(function () {
-					infoPanel.css("width","100%");
-					animationIsActive = false;
-				},300);
-			}
-		});
+		unselectedHeight = result.height();
+		if(animationIsActive == false && !panelOpen)
+		{
+			$(".search-container").empty();
+			$(".tiles-wrapper").empty();
+			animationIsActive = true;
+			activeColumn.siblings(".column-wrapper").css("margin-left","-600px");
+			result.siblings().fadeOut(100);
+			result.css("height", "80%");
+			infoPanel.appendTo(".autocomplete-container");
+			window.setTimeout(function () {
+				infoPanel.css("width","100%");
+				panelOpen = true;
+				var inputBox = $("<input class='ui-autocomplete-input' id='info-search' placeholder='Type to filter results'>").appendTo(".search-container");
+				$("#q").blur();
+				animationIsActive = false;
+				$("#info-search").slideDown();
+				inputBox.focus();
+			},300);
+			matchedTags = getMatchedTags(result.text());
+			var infoACWidget = $("#info-search").autocomplete({
+				minLength: 0
+			});
+			alert(infoACWidget.attr('id'));
+			createPanelResults(activeColumn.find("h1").text().toLowerCase(), generatePanelTiles(matchedTags));
+			alert("d");
+		}
 		activeColumn.find("h1").mouseenter(function() {
 			result.css("height", "30%");
 			result.siblings().fadeIn(100);
+			panelOpen = false;
 		});
+		// infoACWidget.click(function() {
+		// 	alert("read");
+		// 	getAllTags();
+		// });
+		// infoACWidget.autocomplete({
+		// 	response: function(event, ui) {
+		// 		var objectArray = ui.content;
+		// 		$("#ui-id-2").remove();
+		// 		$.each(objectArray, function(index, value) {
+		// 			searchTiles.push($("<div class='panel-result'><p>"+	value.label+"</p></div>"));
+		// 			searchTiles[index] = searchTiles[index].wrap("<div></div>");
+		// 		});
+		// 		$(".panel-results-container").empty();
+		// 		$(".tiles-wrapper").empty();
+		// 		updatePanelResults();
+		// 	}
+		// });
+	// 	var infoTiles = {"type":$(
+	// 	columnCreate(type, 
 	}
 	function animateColumns()
 	{
@@ -111,8 +180,7 @@ $(document).ready( function() {
 	}
 	function updateResults()
 	{
-		columnCodeArray = new Array();
-		resultsCodeArray = new Array();
+		var panelOpen = false;
 		var g = generateArtistTiles();
 		if(!(g[0]))
 		{
@@ -136,9 +204,17 @@ $(document).ready( function() {
 		// updateGenres();
 		// updateMiscs();
 	}
+	function generatePanelTiles(tags)
+	{
+		var panelTiles = new Array();
+		$.each(tags, function(index, value) {
+			panelTiles[index] = $("<div class='panel-result'><p>"+value+"</p></div>");
+		})
+		return panelTiles;
+	}
 	function generateArtistTiles()
 	{
-		var artistArray = new Array();
+		artistTiles = new Array();
 		var isEmpty = true;
 		// $.ajax({
 			// type: "GET",
@@ -148,20 +224,20 @@ $(document).ready( function() {
 				// artistArray = data;
 			// }
 		// });
-		artistArray = ["Above and Beyond", "Fedde Le Grand", "Hardwell", "Dimitri Vegas and Like Mike", "Calvin Harris" ];
-		artistTiles = new Array();
-		$.each(searchArray, function(index, value) {
-			if($.inArray(value, artistArray) != -1)
+		var artistArray = ["Above and Beyond", "Fedde Le Grand", "Hardwell", "Dimitri Vegas and Like Mike", "Calvin Harris" ];
+		$.each(searchTiles, function(index, value) {
+			if($.inArray(value.text(), artistArray) != -1)
 			{
-				artistTiles.push(tiles[index]);
+				artistTiles.push(value);
 				isEmpty = false;
 			}
 		});
+		tiles[0] = artistTiles;
 		return [isEmpty, "artist"];
 	}
 	function generateEventTiles()
 	{
-		var eventArray = new Array();
+		eventTiles = new Array();
 		var isEmpty = true;
 		// $.ajax({
 			// type: "GET",
@@ -171,15 +247,15 @@ $(document).ready( function() {
 				// artistArray = data;
 			// }
 		// });
-		eventArray = ["Ultra Music Festival 2013", "Beyond Wonderland 2013", "Tomorrowland 2013", "EDC Las Vegas 2013"];
-		eventTiles = new Array();
-		$.each(searchArray, function(index, value) {
-			if($.inArray(value, eventArray) != -1)
+		var eventArray = ["Ultra Music Festival 2013", "Beyond Wonderland 2013", "Tomorrowland 2013", "EDC Las Vegas 2013"];
+		$.each(searchTiles, function(index, value) {
+			if($.inArray(value.text(), eventArray) != -1)
 			{
-				eventTiles.push(tiles[index]);
+				eventTiles.push(value);
 				isEmpty = false;
 			}
 		});
+		tiles[1] = eventTiles;
 		return [isEmpty, "event"];
 	}
 	var stredm = function ()
@@ -187,26 +263,23 @@ $(document).ready( function() {
 		$(".stredming-wrapper").css("display","block");
 		$('.scroll-wrapper').animate({scrollTop: $(document).height()}, "1000");
 	};
-	var searchArray = new Array();
-	var acWidget = $("#q").autocomplete({
-		minLength: 0,
+	var mainACWidget = $("#q").autocomplete({
+		minLength: 0
 	});
 	var backspaceDetect;
+	var searchTiles = new Array();
 	var tiles = new Array();
 	var artistTiles = new Array();
 	var eventTiles = new Array();
 	var radiomixTiles = new Array();
 	var genreTiles = new Array();
 	var miscTiles = new Array();
-	var column;
-	var currentResult;
-	var columnCodeArray;
-	var resultsCodeArray;
 	var animationIsActive = false;
-	acWidget.click(function() {
+	var panelOpen = false;
+	mainACWidget.click(function() {
 		getAllTags();
 	});
-	acWidget.autocomplete({
+	mainACWidget.autocomplete({
 		response: function(event, ui) {
 			var objectArray = ui.content;
 			if(backspaceDetect.keyCode == 8 && $("#q").val().length == 0)
@@ -216,13 +289,9 @@ $(document).ready( function() {
 				return;
 			}
 			$("#ui-id-1").remove();
-			searchArray = new Array();
+			searchTiles = new Array();
 			$.each(objectArray, function(index, value) {
-				searchArray.push(value.label);
-			});
-			tiles = new Array();
-			$.each(searchArray, function (index, value) {
-				tiles.push($("<div>").append("<p>"+value+"</p>"));
+				searchTiles.push($("<div class='result'><p>"+value.label+"</p></div>"));
 			});
 			$(".results-container").empty();
 			$(".autocomplete-container").empty();
@@ -231,9 +300,6 @@ $(document).ready( function() {
 	});
 	$("#q").keyup( function(e) {
 		backspaceDetect = e;
-	});
-	$(".autocomplete-wrapper").mouseleave(function() {
-		acWidget.autocomplete("search");
 	});
 	$("#search-button").mouseenter(function(){
 		$("#q").css("margin-right", "200px");
@@ -244,7 +310,4 @@ $(document).ready( function() {
 			$("#q").css("margin-right", "-400px");
 		}
 	});
-
-
-
 });

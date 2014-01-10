@@ -256,6 +256,7 @@ i
     height: 80%;
     padding: 0 2%;
     width: 62%;
+    display:none;
 }
 .autocomplete-column > h1
 {
@@ -293,6 +294,40 @@ i
 {
 	display:table-cell;
 	vertical-align:middle;
+}
+.panel-column-wrapper
+{
+	height:100%;
+	width:100%;
+	padding:1%;
+	float:left;
+}
+.panel-autocomplete-column
+{
+	height:100%;
+	width:100%;
+}
+.panel-results-wrapper
+{
+	height:100%;
+	width:100%;
+	padding:1% 7%;
+}
+.panel-results-container
+{
+	height:100%;
+	width:100%;
+}
+.panel-result
+{
+	height:20%;
+	width:30%;
+	display:table;
+	transition: all .2s linear;
+	background-color: rgba(150,150,150,.8);
+	margin:0 auto 25px;
+	font-size:175%;
+	box-shadow: 0 0 5px 1px;
 }
 
 /*Stredming (second screen) */
