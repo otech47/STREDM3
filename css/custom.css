@@ -586,6 +586,34 @@ label
 	margin: 0% 0%;
 }
 
+#event-pagej
+{
+		background-image: url("file:///Users/JesusNajera/Documents/STREDM3/css/../images/girl.jpg");
+		padding-top: 4%;
+}
+
+.eventj
+{
+	height: 100%;
+	padding-top: 5%;
+	padding: 0;
+	margin: 0;
+	background-color: transparent;
+}
+
+.eventj-wrapper
+{
+	height: 50%;
+	background-color: white;
+	padding:0;
+	margin: 0;
+}
+
+#right-wrapper
+{
+	margin-top: 53%;
+}
+
 /***EVENT INFO PAGE***/
 .event-wrapper{
   height: 100%;
