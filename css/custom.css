@@ -193,7 +193,7 @@ i
 	width:100%;
 	margin: 0 auto;
 	text-align:center;
-	overflow-y:scroll;
+	overflow-y:hidden;
 	transition: all 0.5s linear;
 	padding:0 1%;
 }
@@ -205,12 +205,12 @@ i
 .column-wrapper
 {
 	height:100%;
-	width:25%;
+	width:19.5%;
 	display:inline-block;
 	transition: all 0.3s ease-out;
 	float:left;
 	padding:0 1%;
-	margin-left:-800px;
+	margin-left:-500px;
 	background-color: rgba(255,255,255,.7);
 }
 .tile-selection-wrapper
@@ -219,21 +219,21 @@ i
 	display:block;
 	height:100%;
 	width:0%;
-	transition:all 0.3s ease-out;
-	padding:0 0 0 25%;
+	transition:all 0.5s ease-out;
+	padding:0 0 0 19%;
 }
 .info-panel-container
 {
 	background-color:rgba(200,200,200,.7);
 	width:100%;
 	height:100%;
+	padding:1%;
 }
 .info-panel
 {
 	height:100%;
 	width:100%;
 	background-color:rgba(150,105,155,.7);
-	padding:1%;
 }
 .search-container
 {
@@ -245,14 +245,13 @@ i
 	height: 90%;
     width: 100%;
 }
-#info-search
+.info-search
 {
 	border-radius: 15px;
     font-size: 170%;
     height: 80%;
     padding: 0 2%;
     width: 62%;
-    display:none;
 }
 .autocomplete-column > h1
 {
@@ -274,24 +273,32 @@ i
 	width:100%;
 	display:table;
 	transition: all 1s linear;
-	overflow-x:hidden;
 }
 .result
 {
 	height:30%;
-	width:45%;
+	width:65%;
 	display:table;
-	transition: all 0.2s linear;
+	transition: all .2s linear;
 	background-color: rgba(150,150,150,.8);
-	font-size:220%;
+<<<<<<< HEAD
+	margin:25px auto;
+	font-size:175%;
 	box-shadow: 0 0 5px 1px;
+=======
+	font-size:220%;
+	box-shadow: 0 0 1px 1px;
+	border-radius: 8px 8px 0 0;
 	margin:2%;
+>>>>>>> c42d92e2d6396bdb498983ec0fb0b9449703a560
 }
 .result p
 {
 	display:table-cell;
 	vertical-align:middle;
 }
+<<<<<<< HEAD
+=======
 .panel-column-wrapper
 {
 	height:100%;
@@ -319,15 +326,22 @@ i
 }
 .panel-result
 {
-	height:20%;
-	width:30%;
+	height:15%;
+	width:25%;
 	display:table;
 	transition: all .2s linear;
 	background-color: rgba(150,150,150,.8);
-	margin:0 auto 25px;
-	font-size:175%;
-	box-shadow: 0 0 5px 1px;
+	margin:2%;
+	font-size:225%;
+	box-shadow: 0 0 1px 1px;
+	border-radius: 8px 8px 0 0;
 }
+.panel-result p
+{
+	display: table-cell;
+    vertical-align: middle;
+}
+>>>>>>> c42d92e2d6396bdb498983ec0fb0b9449703a560
 
 /*Stredming (second screen) */
 
@@ -650,7 +664,16 @@ label
 #right-wrapper
 {
 	margin-top: 54%;
+	background-image: url("file:///Users/JesusNajera/Documents/STREDM3/css/../images/cp.png");
+	background-size: 100%;
 }
+
+.promo-menu-wrapper
+{
+	height: 25%;
+	background-color: white;
+	margin: 33% 0% 0% 0%;
+	padding: 0;
 
 /***EVENT INFO PAGE***/
 .event-wrapper{

@@ -7,12 +7,9 @@ $(document).ready( function() {
 		};
 	}
 	function randomColor() {
-    	var letters = '0123456789ABCDEF'.split('');
-    	var color = '#';
-    	for (var i = 0; i < 6; i++ ) {
-     	   color += letters[Math.round(Math.random() * 15)];
-    	}
-    	return color;
+    	var choice = Math.floor(Math.random()*8);
+    	var color = ["aliceblue", "crimson", "cyan", "fuchsia", "orangered", "yellow", "white", "lime", "pink"];
+    	return color[choice];
 	}
 	function searchSet()
 	{
@@ -67,7 +64,7 @@ $(document).ready( function() {
 	}
 	function getMatchedTags(label)
 	{
-		var results = ["Hardwell", "Calvin Harris", "Deadmau5", "Swedish House Mafia"];
+		var results = ["Hardwell", "Calvin Harris", "Deadmau5", "Swedish House Mafia", "Tiesto","Avicii","Armin van Buuren", "Clockwork", "Major Lazer", "Alesso","Porter Robinson"];
 		return results;
 	}
 	function columnCreate(type, tileName)
@@ -105,11 +102,14 @@ $(document).ready( function() {
 			a.mouseenter(function() {
 				openPanel(a);
 			});
+			a.hover(function() {
+				a.css("cursor","pointer");
+			})
 		});
 		$(".results-container").isotope({
 			itemSelector : ".result",
 			layoutMode : "masonry"
-	})
+		})
 	}
 	function createPanelResults(type, tileName)
 	{
@@ -129,6 +129,10 @@ $(document).ready( function() {
 		$.each(tileName, function (index, value) {
 			var a = value.appendTo("#"+columnType.id);
 		});
+		$(".panel-results-container").isotope({
+			itemSelector : ".panel-result",
+			layoutMode : "masonry"
+		})
 		window.setTimeout(function() {
 			$(".panel-results-container").css("margin-top","0px");
 		}, 100);
@@ -170,9 +174,12 @@ $(document).ready( function() {
 			},300);
 		}
 		activeColumn.find("h1").mouseenter(function() {
-			result.css("height", "30%");
-			result.siblings().fadeIn(100);
-			panelOpen = false;
+			if(animationIsActive == false)
+			{
+				result.css("height", "30%");
+				result.siblings().fadeIn(100);
+				panelOpen = false;
+			}
 		});
 		// infoACWidget.click(function() {
 		// 	alert("read");
