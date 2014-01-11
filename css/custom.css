@@ -205,7 +205,7 @@ i
 .column-wrapper
 {
 	height:100%;
-	width:19.5%;
+	width:25%;
 	display:inline-block;
 	transition: all 0.3s ease-out;
 	float:left;
@@ -220,7 +220,7 @@ i
 	height:100%;
 	width:0%;
 	transition:all 0.5s ease-out;
-	padding:0 0 0 19%;
+	padding:0 0 0 25%;
 }
 .info-panel-container
 {
@@ -277,31 +277,23 @@ i
 .result
 {
 	height:30%;
-	width:65%;
+	width:45%;
 	display:table;
 	transition: all .2s linear;
 	background-color: rgba(150,150,150,.8);
-<<<<<<< HEAD
-<<<<<<< HEAD
 	margin:25px auto;
 	font-size:175%;
 	box-shadow: 0 0 5px 1px;
-=======
-=======
->>>>>>> c42d92e2d6396bdb498983ec0fb0b9449703a560
 	font-size:220%;
 	box-shadow: 0 0 1px 1px;
 	border-radius: 8px 8px 0 0;
 	margin:2%;
->>>>>>> c42d92e2d6396bdb498983ec0fb0b9449703a560
 }
 .result p
 {
 	display:table-cell;
 	vertical-align:middle;
 }
-<<<<<<< HEAD
-=======
 .panel-column-wrapper
 {
 	height:100%;
@@ -344,7 +336,6 @@ i
 	display: table-cell;
     vertical-align: middle;
 }
->>>>>>> c42d92e2d6396bdb498983ec0fb0b9449703a560
 
 /*Stredming (second screen) */
 
