@@ -716,10 +716,25 @@ label
 {
 	height: 80%;
 	margin: 0;
-	padding: 0;
+	padding:0% 0% 0% 5%;
 	background-color: white;
 	-webkit-backface-visbility: hidden;
 }
+
+.event-jumbotron-event
+{
+	font-size: .95em;
+}
+
+#aftermovie-text
+{
+	margin: 0% 15%;
+	font-style: italic;
+	font-weight: bold;
+	font-size: 3.5em;
+	color: #2FC0C4;
+}
+
 
 .promo-aftermovie-container
 {
