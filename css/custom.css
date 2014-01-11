@@ -742,13 +742,23 @@ label
 	margin: 0;
 	padding: 0;
 	background-color: white;
-	-webkit-backface-visbility: hidden;
+	-webkit-backface-visibility: hidden;
 }
 
 #right-wrapper
 {
 	margin-top: 54%;
+}
+
+#front-face-2
+{
 	background-image: url("file:///Users/JesusNajera/Documents/STREDM3/css/../images/cp.png");
+	background-size: 100%;
+}
+
+#back-face-2
+{
+	background-image: url("file:///Users/JesusNajera/Documents/STREDM3/css/../images/lineup2.jpeg");
 	background-size: 100%;
 }
 
@@ -759,6 +769,7 @@ label
 	margin: 34% 0% 0% 0%;
 	padding: 0;
 	background-image: url("file:///Users/JesusNajera/Documents/STREDM3/css/../images/cpbar.png");
+	-webkit-backface-visibility: hidden;
 }
 
 #promo-text
@@ -772,6 +783,11 @@ a.promo-links-property:hover
 {
 	background-color:rgba(0,0,0,.5);
 	text-decoration: 
+}
+
+.promo-links-container
+{
+	-webkit-backface-visibility: hidden;
 }
 
 /***EVENT INFO PAGE***/
