@@ -128,6 +128,12 @@ $(document).ready( function() {
 		columnCode.appendTo(".tiles-wrapper");
 		$.each(tileName, function (index, value) {
 			var a = value.appendTo("#"+columnType.id);
+			a.click(function(){
+				$('.scroll-wrapper').animate({scrollTop: $(document).height()}, '1000');
+				window.setTimeout(function(){
+					$("div.player-container").append("<div class='stredming-result'>"+result+"</div>");
+				}, 1000);
+			});
 		});
 		$(".panel-results-container").isotope({
 			itemSelector : ".panel-result",

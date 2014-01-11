@@ -188,7 +188,7 @@ $(document).ready( function() {
 			success: function(data) 
 			{
 				var result = data;
-				jQuery("div.stredming-result").append("<div class='result'>"+result+"</div>");
+				$("div.stredming-result").append("<div class='stredming-result'>"+result+"</div>");
 				stredm = false;
 				var urlSrc = $("#current-result").attr("src");
 				var urlSelection = urlSrc.substring(0, urlSrc.length-31);

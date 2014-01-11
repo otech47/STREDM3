@@ -193,7 +193,7 @@ i
 	width:100%;
 	margin: 0 auto;
 	text-align:center;
-	overflow-y:scroll;
+	overflow-y:hidden;
 	transition: all 0.5s linear;
 	padding:0 1%;
 }
