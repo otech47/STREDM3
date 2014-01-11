@@ -666,9 +666,9 @@ label
 
 #f1_container {
   position: relative;
-  margin: 10px auto;
-  width: 450px;
-  height: 281px;
+  margin: 0;
+  height: 100%;
+  width: 100%;
   z-index: 1;
 }
 #f1_container {
@@ -706,16 +706,28 @@ label
 {
 	height: 100%;
 	margin: 0;
-	padding: 1% 0% 0% 0%;
+	padding: 0% 0% 0% 0%;
 	background-color: 
 	white;
-	width: 50%;
 	-webkit-backface-visibility: hidden;
 }
 
 #event-jumbotron
 {
+	height: 80%;
+	margin: 0;
+	padding: 0;
+	background-color: white;
+	-webkit-backface-visbility: hidden;
+}
 
+.promo-aftermovie-container
+{
+	height: 20%;
+	margin: 0;
+	padding: 0;
+	background-color: white;
+	-webkit-backface-visbility: hidden;
 }
 
 #right-wrapper
