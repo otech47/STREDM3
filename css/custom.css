@@ -643,7 +643,7 @@ label
 
 #event-pagej
 {
-		background-image: url("../images/girl.jpg");
+		background-image: url("file:///Users/JesusNajera/Documents/STREDM3/css/../images/girl.jpg");
 		padding-top: 4.5%;
 }
 
@@ -748,7 +748,7 @@ label
 #right-wrapper
 {
 	margin-top: 54%;
-	background-image: url("../images/cp.png");
+	background-image: url("file:///Users/JesusNajera/Documents/STREDM3/css/../images/cp.png");
 	background-size: 100%;
 }
 
@@ -778,10 +778,9 @@ a.promo-links-property:hover
 .event-wrapper{
   height: 100%;
   width: 100%; 
-  position: relative;
   display: block;
   background-image:url(../images/tmwlandgirl.jpg);
-  background-position: center;
+  background-position:top center;
   background-size:100% 100%;
   background-repeat:no-repeat;
   overflow: scroll;
@@ -811,30 +810,13 @@ h1:hover{
 
 #sexy{
 	background-color: #fff;
-	background-image: url(../images/girl.jpg);
+	background-image: url(../images/tmwlandgirl.jpg);
 	background-repeat: no-repeat;
 	background-position:  98% 100%;
 	padding: 200px 0 140px 0;
 	margin-bottom: 70px;
 }
 
-#top-left{
-	height: 50%;
-	width: 50%;
-	float: top;
-	float: left;
-	position: scroll;
-	top: 0;
-}
-
-#bottom-right{
-	height: 50%;
-	width: 50%;
-	float: bottom;
-	float: right;
-	position: scroll;
-	bottom: 0;
-}
 /* Typography
 ================================= */
 /*
