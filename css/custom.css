@@ -781,7 +781,35 @@ a.promo-links-property:hover
 	-webkit-backface-visibility: hidden;
 }
 
-/***EVENT INFO PAGE***/
+#app-page
+{
+	background-image: url("file:///Users/JesusNajera/Documents/STREDM3/css/../images/appbg.jpg");
+}
+
+.app-container
+{
+	height: 55%;
+	background-color: 
+	white;
+	padding: 0% 0% 0% 0%;
+	margin: 14% 0% 0% 0%;
+}
+app-wrappers col-md-6
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+
+
 .event-wrapper{
   height: 100%;
   width: 100%; 
