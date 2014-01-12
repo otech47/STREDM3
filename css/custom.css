@@ -794,7 +794,14 @@ a.promo-links-property:hover
 	padding: 0% 0% 0% 0%;
 	margin: 14% 0% 0% 0%;
 }
-app-wrappers col-md-6
+
+.app-wrappers
+{
+	height: 100%;
+	background-color: white;
+	padding: 0% 0% 0% 0%;
+	margin: 14% 0% 0% 0%;
+} 
 
 
 
