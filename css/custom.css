@@ -322,14 +322,15 @@ i
 .panel-result
 {
 	height:15%;
-	width:25%;
+	width:auto;
 	display:table;
 	transition: all .2s linear;
 	background-color: rgba(150,150,150,.8);
-	margin:2%;
 	font-size:225%;
 	box-shadow: 0 0 1px 1px;
 	border-radius: 8px 8px 0 0;
+	padding:2%;
+	margin:3%;
 }
 .panel-result p
 {
