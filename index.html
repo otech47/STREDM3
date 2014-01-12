@@ -328,9 +328,71 @@ mixpanel.init("ea091fd1d0073af2c48de623590cd53b");</script><!-- end Mixpanel -->
 						  	<div class="events-promo-container col-md-4">
 						  	</div>
 						  </div>
+
 						  <div class="back face center">
-						    <p>This is nice for exposing more information about an image.</p>
-						    <p>Any content can go here.</p>
+						      <video controls poster="m/video.jpg" width="854" height="480">
+   							<!--  <source src="m/cpoint-video.ogv" type="video/ogg"> -->
+   							  <source src="m/cpoint-video.mp4" type="video/mp4">
+   							  <object type="application/x-shockwave-flash" data="m/player.swf" width="854" height="504">
+    						  <param name="allowfullscreen" value="true">
+    						  <param name="allowscriptaccess" value="always">
+   							  <param name="flashvars" value="file=cpoint-video.mp4">
+   							 <!--[if IE]><!--><param name="movie" value="m/player.swf"><!--<![endif]-->
+  							  <img src="m/video.jpg" width="854" height="480" alt="Video">
+    						<!-- <p>Your browser can&rsquo;t play HTML5 video. <a href="m/video.ogv"> Download it</a> instead.</p> -->
+   								 </object>
+   								 </video>
+						    <!--<p>This is nice for exposing more information about an image.</p>
+						    <p>Any content can go here.</p>-->
+
+						    <!-- Javascript -->
+
+										<script>
+										       function init() {
+										          // 1. Check for video support
+										          if( !document.createElement('video').canPlayType ) return;
+										          // 2. Get all video containers on the page
+										          var videos = document.querySelectorAll( 'div.video' ),
+										          videosLength = videos.length;
+										          // 3. Get every single video instance
+										          for( var i=0; i < videosLength; i++ ) {
+										             var root = videos[i];
+										             // 4. Get and create all needed elements
+										             video = root.querySelector( 'video' ),
+										             play = document.createElement( 'button' ),
+										             mute = document.createElement( 'button' );
+										             // 5. Turn off native video controls
+										             video.controls = false;
+										             // 6. Customise Play button behaviour
+										             play.innerHTML = play.title = 'Play';
+										             play.onclick = function() {
+										                if( video.paused ) {
+										                   video.play();
+										                   play.innerHTML = play.title = 'Pause';
+										                } else {
+										                   video.pause();
+										                   play.innerHTML = play.title = 'Play';
+										                }
+										             }
+										             // 7. Customise Mute button behaviour
+										             mute.innerHTML = mute.title = 'Mute';
+										             mute.onclick = function() {
+										                if( video.muted ) {
+										                   video.muted = false;
+										                   mute.innerHTML = mute.title = 'Mute';
+										                } else {
+										                   video.muted = true;
+										                   mute.innerHTML = mute.title = 'Unmute';
+										                }
+										             }
+										             // 8. Add custom controls to the video container
+										             root.appendChild( play );
+										             root.appendChild( mute );
+										          }
+										       }
+										       // 9. Initialise function on page load
+										       window.onload = init;
+										    </script>
 						  </div>
 						</div>
 					</div>
