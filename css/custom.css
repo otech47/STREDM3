@@ -430,7 +430,7 @@ i
 	height: 100%;
 	width: 100%;
 	display: none;
-	background-image: url("file:///Users/JesusNajera/Documents/STREDM3/css/../images/coach.jpg");
+	background-image: url(../images/coach.jpg);
 	background-position: top center;
 	background-size: 100% 100%;
 	background-repeat: no-repeat;
@@ -635,7 +635,7 @@ label
 
 #event-pagej
 {
-		background-image: url("file:///Users/JesusNajera/Documents/STREDM3/css/../images/girl.jpg");
+		background-image: url(../images/girl.jpg);
 		padding-top: 4.5%;
 }
 
@@ -744,13 +744,13 @@ label
 
 #front-face-2
 {
-	background-image: url("file:///Users/JesusNajera/Documents/STREDM3/css/../images/cp.png");
+	background-image: url(../images/cp.png);
 	background-size: 100%;
 }
 
 #back-face-2
 {
-	background-image: url("file:///Users/JesusNajera/Documents/STREDM3/css/../images/lineup2.jpeg");
+	background-image: url(../images/lineup2.jpeg);
 	background-size: 100%;
 }
 
@@ -760,7 +760,7 @@ label
 	background-color: white;
 	margin: 34% 0% 0% 0%;
 	padding: 0;
-	background-image: url("file:///Users/JesusNajera/Documents/STREDM3/css/../images/cpbar.png");
+	background-image: url(../images/cpbar.png);
 	-webkit-backface-visibility: hidden;
 }
 
@@ -784,7 +784,7 @@ a.promo-links-property:hover
 
 #app-page
 {
-	background-image: url("file:///Users/JesusNajera/Documents/STREDM3/css/../images/appbg.jpg");
+	background-image: url(../images/appbg.jpg);
 }
 
 .app-container
@@ -794,11 +794,6 @@ a.promo-links-property:hover
 	white;
 	padding: 0% 0% 0% 0%;
 	margin: 14% 0% 0% 0%;
-<<<<<<< HEAD
-}	
-=======
-}
->>>>>>> 576aede714f135a56b84e84409cbcbcd962c59d6
 
 
 .app-wrapper
@@ -816,7 +811,6 @@ a.promo-links-property:hover
 	padding: 6% 6%;
 	margin: 0% 0%;
 }
-
 
 
  .video-play {
@@ -885,12 +879,12 @@ option.head {
     display:none;
     disabled:disabled;
 }
-
+*/
 h1:hover{
 	color:rgba(18, 55, 186, 0.91);
 	transition:1s;
 }
-
+/*
 #sexy{
 	background-color: #fff;
 	background-image: url(../images/tmwlandgirl.jpg);
