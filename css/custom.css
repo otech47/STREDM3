@@ -795,7 +795,7 @@ a.promo-links-property:hover
 	padding: 0% 0% 0% 0%;
 	margin: 14% 0% 0% 0%;
 }
-<<<<<<< HEAD
+
 
 .app-wrappers
 {
@@ -807,17 +807,42 @@ a.promo-links-property:hover
 
 
 
+ .video-play {
+    border-radius:25px;
+    }
 
+ .video-play {
+    box-shadow:0 0 50px #FFF,
+    inset 5px 5px 20px #444,
+    inset 0 -20px 40px #000;
+    }
 
+   .video-button:after {
+    position:absolute;
+    background:url(i/buttons.png) no-repeat;
+    content:'';
+    }
 
+  .video video {
+    opacity:.4;
+    }
+    .video:hover video {
+    opacity:.6;
+    }
+    .video-on video,
+    .video-on:hover video {
+    opacity:1;
+    }
 
+    .video-button { transform:scale(1.0);}
 
+    .video-button {
+    transition:all .2s linear;
+    }
 
-
-
-
-=======
->>>>>>> 89b349d2067918e6c81f46d5b893ee63ce1622b1
+	.video-button:hover {
+	transform:scale(1.1);
+	}
 /*
 
 
