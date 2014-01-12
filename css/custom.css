@@ -737,10 +737,6 @@ label
 	color: #2FC0C4;
 }
 
-/*#aftermovie-text:hover*/ #f1_container #f1_card {
-  transform: rotateX(180deg);
-  box-shadow: -5px 5px 5px #aaa;
-}
 
 .promo-aftermovie-container
 {
@@ -831,13 +827,13 @@ a.promo-links-property:hover
 	height: 340px;
 	width: 640px;
 	overflow: hidden;
-}
+}*/
 .videoWrapper {
 	position: relative;
-	padding-bottom: 56.25%; /* 16:9 /
+	padding-bottom: 56.25%; /* 16:9 */
 	padding-top: 25px;
 	height: 0;
-}*/
+}
 .videoWrapper iframe {
 	position: absolute;
 	top: 0;
