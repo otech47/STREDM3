@@ -794,16 +794,24 @@ a.promo-links-property:hover
 	white;
 	padding: 0% 0% 0% 0%;
 	margin: 14% 0% 0% 0%;
-}
-<<<<<<< HEAD
+}	
 
-.app-wrappers
+
+.app-wrapper
 {
 	height: 100%;
 	background-color: white;
-	padding: 0% 0% 0% 0%;
-	margin: 14% 0% 0% 0%;
+	padding: 3% 4% 4% 8%;
+	margin: 0% 0% 0% 0%;
 } 
+
+#app-jumbotron
+{
+	height: 100%;
+	background-color: white;
+	padding: 6% 6%;
+	margin: 0% 0%;
+}
 
 
 
