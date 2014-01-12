@@ -882,24 +882,6 @@ a.promo-links-property:hover
 	.video-button:hover {
 	transform:scale(1.1);
 	}
-
-.bottom-nav-container
-{
-	padding: 0;
-	margin: 0;
-}
-
-#copyright-container
-{
-	padding:1.5% 0% 0% 1%;
-}
-
-#copyright-text
-{
-	width: 100%;
-	font-size: 1.25em;
-	color: black;
-}
 /*
 
 
