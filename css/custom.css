@@ -544,7 +544,7 @@ a.youtube:hover * { color:#FFF; }
 
 #join-form-container
 {
-	padding: 3% 4% 1% 4%;
+	padding: 3% 4% 5% 4%;
 	height: 33.33%;
 }
 
@@ -560,6 +560,11 @@ a.youtube:hover * { color:#FFF; }
 {
 	margin: 0;
 	padding: 0% 3% 0% 3%;
+}
+
+.form-group
+{
+	margin-bottom: 15.5%;
 }
 
 .main-form
