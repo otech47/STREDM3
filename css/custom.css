@@ -905,6 +905,21 @@ a.promo-links-property:hover
 	font-size: 1.25em;
 	color: black;
 }
+
+#feedback-text-container
+{
+	padding:.25% 0% 0% 0%;
+}
+
+#feedback-form-container
+{
+	padding:0.5% 0%;
+}
+
+#feedback-submit-container
+{
+	padding:.5% 1%;
+}
 /*
 
 
