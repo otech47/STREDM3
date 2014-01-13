@@ -318,7 +318,6 @@ $(document).ready( function() {
 				$(".tile-selection-wrapper").remove();
 				return;
 			}
-			$("#ui-id-1").remove();
 			searchTiles = new Array();
 			$.each(objectArray, function(index, value) {
 				searchTiles.push($("<div class='result'><p>"+value.label+"</p></div>"));
