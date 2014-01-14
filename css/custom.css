@@ -742,8 +742,8 @@ label
 	color: #2FC0C4;
 }
 
-#f1_container #f1_card {
-  transform: rotateX(180deg);
+#f1_container/*:hover*/ #f1_card {
+  /*transform: rotateX(180deg);*/
   box-shadow: -5px 5px 5px #aaa;
 }
 
@@ -754,6 +754,11 @@ label
 	padding: 0;
 	background-color: white;
 	-webkit-backface-visibility: hidden;
+}
+
+#aftermovie-text:hover #f1_container #f1_card{
+	transform: rotateX(180deg);
+
 }
 
 #right-wrapper
