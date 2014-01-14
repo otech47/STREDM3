@@ -856,12 +856,43 @@ a.promo-links-property:hover
 	margin: 0% 0% 0% 0%;
 } 
 
+#AA-wrapper
+{
+	background-image: url(../images/AA.png);
+	background-position: -51px -43px;
+}
+
 #app-jumbotron
 {
 	height: 100%;
 	background-color: white;
 	padding: 6% 6%;
 	margin: 0% 0%;
+}
+
+.coming-soon-wrapper 
+{
+	padding: 0% 14% 0% 14%;
+	height: 16%;
+	margin-top: 45%;
+	background-color: white;
+}
+
+.appstore-wrapper
+{
+	height: 30%;
+	padding: 0;
+	background-image: url(../images/appstore.png);
+	background-repeat: no-repeat;
+	background-position: 40px 22px;
+}
+
+#coming-soon-text
+{
+	font-style: italic;
+	font-size: 3.7em;
+	margin: 0% 0% 0% 0%;
+	padding: 2% 0%;
 }
 /*
 .youtube-box{
