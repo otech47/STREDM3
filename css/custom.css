@@ -78,15 +78,15 @@ body
 	height: 100%
 }
 
-.navbar-link a{
+.navbar-link{
 	text-decoration: none;
+	color:gray;
 }
-.navbar-link a:hover {
-	color:rgba(18, 55, 186, 0.91);
+.navbar-link:hover {
+	color: rgba(18, 55, 186, 0.91);
 	transition:1s;
-    font-size:3em;
     text-decoration: none;
-}
+  }
 
 #sm-container
 {
@@ -120,8 +120,14 @@ input#q
 	width: 25%;
 	text-align: center;
 	font-size: 2.5em;
+	text-decoration: none;
 }
 
+.navbar-text:hover{
+	color: hsla(280, 100%, 49%, 0.51);
+	transition: 1s;
+	text-decoration: none;
+}
 .main-search-wrapper 
 {
 	background-color: rgba(255,255,255,.9);
