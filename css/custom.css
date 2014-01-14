@@ -449,7 +449,17 @@ i
 	padding: 1% 0% 0% 0%;
 }
 
+.collage-container{
+	float: right;
+	padding: 0% 0% 0% 4%;
+	height: 50%;
+	height-position: center;
+}
 
+.image-box{
+	background: url(../collages/collage-dark.png);
+	overflow: auto;
+}
 
 .page
 {
