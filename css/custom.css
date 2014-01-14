@@ -859,7 +859,8 @@ a.promo-links-property:hover
 #AA-wrapper
 {
 	background-image: url(../images/AA.png);
-	background-position: -51px -43px;
+	background-position:-120px -15px;
+	padding: 0;
 }
 
 #app-jumbotron
@@ -872,19 +873,26 @@ a.promo-links-property:hover
 
 .coming-soon-wrapper 
 {
-	padding: 0% 14% 0% 14%;
+	padding: 0% 17% 0% 17%;
 	height: 16%;
-	margin-top: 45%;
+	margin-top: 68%;
 	background-color: white;
 }
 
-.appstore-wrapper
+#appstore-container
 {
-	height: 30%;
+	height: 100%;
 	padding: 0;
-	background-image: url(../images/appstore.png);
+}
+
+#app-store-container
+{
+	padding: 0%;
+	height: 100%;
+	background-image: url(../images/applogo.png);
 	background-repeat: no-repeat;
-	background-position: 40px 22px;
+	background-size: 75% 75%;
+	background-position: 0% 50%;
 }
 
 #coming-soon-text
