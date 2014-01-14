@@ -725,7 +725,7 @@ label
 	margin: 0;
 	padding:0% 0% 0% 5%;
 	background-color: white;
-	-webkit-backface-visbility: hidden;
+	-webkit-backface-visibility: hidden;
 }
 
 .event-jumbotron-event
@@ -742,7 +742,7 @@ label
 	color: #2FC0C4;
 }
 
-/*#aftermovie-text:hover*/ #f1_container #f1_card {
+#f1_container #f1_card {
   transform: rotateX(180deg);
   box-shadow: -5px 5px 5px #aaa;
 }
@@ -837,12 +837,13 @@ a.promo-links-property:hover
 	width: 640px;
 	overflow: hidden;
 }
+*/
 .videoWrapper {
 	position: relative;
-	padding-bottom: 56.25%; /* 16:9 /
+	padding-bottom: 56.25%; /* 16:9 */
 	padding-top: 25px;
 	height: 0;
-}*/
+}
 .videoWrapper iframe {
 	position: absolute;
 	top: 0;
