@@ -375,6 +375,7 @@ i
 {
 	height:100%;
 	width:100%;
+	position:relative;
 }
 .panel-results-container
 {
@@ -383,6 +384,7 @@ i
 	margin-top:-600px;
 	transition: all 0.3s ease-out;
 	overflow-y: scroll!important;
+	position:absolute!important;
 }
 .panel-result
 {
