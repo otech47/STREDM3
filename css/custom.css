@@ -464,16 +464,38 @@ i
 
 .collage-container{
 	float: right;
-	padding: 0% 0% 0% 4%;
-	height: 50%;
+	padding: 0% 0% 0% 0%;
+	height: 100%;
+	width:50%;
 	height-position: center;
 }
 
-.image-box{
-	background: url(../collages/collage-dark.png);
-	overflow: auto;
+.collage-wrapper{
+	height: 100%;
+	width:50%;
+	float: right;
+	background-color: white;
+	padding: 0%;
+	margin: 0% 0% 0% 0%;
 }
 
+#c-wrapper{
+	background-image: url(../images/collage-small.jpg);
+	background-position: auto;
+	background-repeat: no-repeat;
+
+}
+/*
+	background: url(../);
+	overflow: auto;
+	height: 50%;
+	width: 50%;
+	position: center;
+	padding-top: 25%;
+	padding-left: 25%;
+	padding-bottom: 25%;
+	padding-right: 25%;
+*/
 .page
 {
 	height: 100%;
