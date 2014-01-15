@@ -56,17 +56,17 @@ body
 
 #character-container
 {
-	padding: 0% 1%;
+	padding: 0% .5%;
 }
 
 #main-search-container
 {
-	padding: 0% 0%;
+	padding: .5% 0% 0% 1%;
 }
 
 #main-header
 {
-	font-size: 5em;
+	font-size: 5.4em;
 	font-family: helvetica;
 	font-weight: bold;
 	margin: 0;
@@ -90,12 +90,13 @@ body
 
 #sm-container
 {
-	margin: 1.5% 0% 0% 3%;
+	margin: 2% 0% 0% 4%;
 }
 
 #links-container
 {
-	padding: 3% 0% 0% 0%;
+	padding: 2% 0% 0% 8%;
+	font-size: 1.2em;
 }
 
 #search-form
