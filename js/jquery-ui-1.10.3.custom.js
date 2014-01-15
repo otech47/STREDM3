@@ -6312,10 +6312,12 @@ $.widget( "ui.autocomplete", {
 	},
 
 	_renderMenu: function( ul, items ) {
-		var that = this;
-		$.each( items, function( index, item ) {
-			that._renderItemData( ul, item );
-		});
+		// Previous code. Overwritten 1/15/24
+		// var that = this;
+		// $.each( items, function( index, item ) {
+		// 	that._renderItemData( ul, item );
+		// });
+		return;
 	},
 
 	_renderItemData: function( ul, item ) {

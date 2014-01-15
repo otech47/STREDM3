@@ -65,7 +65,26 @@ $(document).ready( function() {
 	function getMatchedTags(label)
 	{
 		var results = ["Hardwell", "Calvin Harris", "Deadmau5", "Swedish House Mafia", "Tiesto","Avicii","Armin van Buuren", "Clockwork", "Major Lazer", "Alesso","Porter Robinson"];
-		return results;
+		var postdata = {
+			label:label
+			};
+		urlArray = new Array();
+		$.ajax({
+			type: "POST",
+			url: 'request.php',
+			data: postdata,
+			error: function(one, two, three)
+			{
+				alert(one+two+three);
+
+			},
+			success: function(data) 
+			{
+				alert(data);
+				urlArray = data[0];
+				return data[1];
+			}
+		});
 	}
 	function columnCreate(type, tileName)
 	{
@@ -90,7 +109,7 @@ $(document).ready( function() {
 		{	
 			columnType = {title:"Miscellaneous", id:"rc-5"};
 		}
-		var columnCode = $("<div class='column-wrapper'><div class='autocomplete-column'><h1></h1><div class='results-wrapper'><div class='results-container'></div></div></div></div>");
+		var columnCode = $("<div class='column-wrapper'><div class='autocomplete-column'><h1></h1><div class='back-to-results'><div class='back fa-th fa-2x'></div><div class='back'>Show other results...</div></div><div class='results-wrapper'><div class='results-container'></div></div></div></div>");
 		columnCode.find("h1").append((columnType.title).toString());
 		columnCode.find(".results-container").attr("id", (columnType.id).toString());
 		columnCode.attr("id", type.toString()+"-wrapper");
@@ -98,17 +117,18 @@ $(document).ready( function() {
 		columnCode.appendTo(".autocomplete-container");
 		$.each(tileName, function (index, value) {
 			var a = value.appendTo("#"+columnType.id).addClass("result");
-			a.css("background-color", randomColor())
-			a.mouseenter(function() {
+			a.css("background-color", randomColor());
+			a.click(function() {
 				openPanel(a);
 			});
-			a.hover(function() {
-				a.css("cursor","pointer");
-			})
 		});
 		$(".results-container").isotope({
 			itemSelector : ".result",
-			layoutMode : "masonry"
+			layoutMode : "cellsByRow",
+			cellsByRow: {
+    			columnWidth: 140,
+    			rowHeight: 115
+  			}
 		})
 	}
 	function createPanelResults(type, tileName)
@@ -128,16 +148,22 @@ $(document).ready( function() {
 		columnCode.appendTo(".tiles-wrapper");
 		$.each(tileName, function (index, value) {
 			var a = value.appendTo("#"+columnType.id);
-			// a.click(function(){
-			// 	$('.scroll-wrapper').animate({scrollTop: $(document).height()}, '1000');
-			// 	window.setTimeout(function(){
-			// 		$("div.player-container").append("<div class='stredming-result'>"+result+"</div>");
-			// 	}, 1000);
-			// });
+			a.click(function(){
+				$('.scroll-wrapper').animate({scrollTop: $(document).height()}, '1000');
+				window.setTimeout(function(){
+					$("div.player-wrapper").empty();
+					$("div.player-container").append("<div class='stredming-result'>"+result+"</div>");
+
+				}, 1000);
+			});
 		});
 		var panelIsotope = $(".panel-results-container").isotope({
 			itemSelector : ".panel-result",
-			layoutMode: "masonry"
+			layoutMode : "cellsByRow",
+			cellsByRow: {
+    			columnWidth: 160,
+    			rowHeight: 115
+  			}
 		});
 		window.setTimeout(function() {
 			$(".panel-results-container").css("margin-top","0px");
@@ -148,14 +174,23 @@ $(document).ready( function() {
 		var activeColumn = result.parent().parent().parent().parent();
 		var infoPanel = $("<div>").append("<div class='info-panel-container'><div class='info-panel'><div class='ui-widget search-container'></div><div class='tiles-wrapper'></div></div></div>");
 		infoPanel.addClass("tile-selection-wrapper");
-		if(animationIsActive == false && !panelOpen)
+		if(animationIsActive == false)
 		{
 			$(".tile-selection-wrapper").remove();
 			animationIsActive = true;
+			activeHeader = activeColumn.find("h1");
 			activeColumn.css("width","25%");
 			activeColumn.siblings(".column-wrapper").css("margin-left","-800px");
 			result.siblings().fadeOut(100);
-			result.css("height", "80%");
+			activeHeader.css("opacity","0");
+			window.setTimeout(function(){
+				activeHeader.hide();
+				$(".back-to-results").show().hover(function(){
+					$(".back-to-results").css("box-shadow","0 0 3px 2px inset");
+				}, function(){
+					$(".back-to-results").css("box-shadow","0 0 0 0 inset");
+				});
+			}, 300);
 			infoPanel.appendTo(".autocomplete-container");
 			infoPanel.find(".info-panel").css("background-color", result.css("background-color"));
 			window.setTimeout(function () {
@@ -173,39 +208,22 @@ $(document).ready( function() {
 						source: matchedTags
 					});
 					infoACWidget.click(function() {
-						alert(matchedTags);
+						closePanel();
 					});
-					createPanelResults(activeColumn.find("h1").text().toLowerCase(), generatePanelTiles(matchedTags));
+					createPanelResults(activeHeader.text().toLowerCase(), generatePanelTiles(matchedTags));
 				},300);
 			},300);
 		}
-		activeColumn.find("h1").mouseenter(function() {
+		activeColumn.find(".back-to-results").click(function() {
 			if(animationIsActive == false)
 			{
-				result.css("height", "30%");
 				result.siblings().fadeIn(100);
-				panelOpen = false;
 			}
 		});
-		// infoACWidget.click(function() {
-		// 	alert("read");
-		// 	getAllTags();
-		// });
-		// infoACWidget.autocomplete({
-		// 	response: function(event, ui) {
-		// 		var objectArray = ui.content;
-		// 		$("#ui-id-2").remove();
-		// 		$.each(objectArray, function(index, value) {
-		// 			searchTiles.push($("<div class='panel-result'><p>"+	value.label+"</p></div>"));
-		// 			searchTiles[index] = searchTiles[index].wrap("<div></div>");
-		// 		});
-		// 		$(".panel-results-container").empty();
-		// 		$(".tiles-wrapper").empty();
-		// 		updatePanelResults();
-		// 	}
-		// });
-	// 	var infoTiles = {"type":$(
-	// 	columnCreate(type, 
+	}
+	function closePanel()
+	{
+		$(".tile-selection-wrapper").css("width", "0%");
 	}
 	function animateColumns()
 	{
@@ -238,7 +256,7 @@ $(document).ready( function() {
 	{
 		var panelTiles = new Array();
 		$.each(tags, function(index, value) {
-			panelTiles[index] = $("<div class='panel-result'><p>"+value+"</p></div>");
+			panelTiles[index] = $("<div class='panel-result' data-url="+url+"><p>"+value+"</p></div>");
 		})
 		return panelTiles;
 	}
@@ -306,6 +324,7 @@ $(document).ready( function() {
 	var miscTiles = new Array();
 	var animationIsActive = false;
 	var panelOpen = false;
+	var urlArray = new Array();
 	mainACWidget.click(function() {
 		getAllTags();
 	});
