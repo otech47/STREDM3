@@ -159,7 +159,7 @@ input#q
 	padding: 0;
 	background-size: 74%;
 	background-repeat: no-repeat;
-	background-position: 36%;
+	background-position: 15%;
 	border-right: 1px solid black;
 	background-image:url(../images/newlogo.png);
 }
@@ -238,9 +238,9 @@ i
 	display: inline-block;
 	-webkit-transition: all 0.3s ease-out;
 	float: left;
-	padding: 1% 1%;
+	padding: .5% 1%;
 	margin: 0% 4%;
-	border-radius: 21px;
+	border-radius: 7px;
 	box-shadow: 0px 0px 2px 1px white;
 	border-top: 1px solid white;
 	border-bottom: 1px solid white;
@@ -250,6 +250,11 @@ i
 #artist-wrapper
 {
 		background-color: rgba(16,75,255,.7);
+}
+
+#event-wrapper
+{
+	background-color:rgba(103, 73, 215, .7)
 }
 
 .tile-selection-wrapper
@@ -294,11 +299,16 @@ i
 }
 .autocomplete-column > h1
 {
-	font-size:210%;
-	border-bottom:3px double rgba(0,0,0,.8);
-	margin:0 10%;
-	height:10%;
-	transition: all 1s linear;
+	font-size: 3em;
+	border-bottom: 1px solid 
+	rgba(255,255,255,1);
+	margin: 0% 10% 1% 10%;
+	height: 6%;
+	-webkit-transition: all 1s linear;
+	color: 
+	white;
+	font-family: helvetica;
+	padding: 0% 0% 0% 0%;
 }
 .results-wrapper
 {
@@ -778,6 +788,24 @@ label
 	background-color: 
 	white;
 	-webkit-backface-visibility: hidden;
+}
+
+.past-sets-container
+{
+	padding: 0;
+	margin: 0;
+	height: 100%;
+	box-shadow: 0px 0px 0px 1px blue;
+	background-color: rgba(98,79,152,.9);
+}
+
+.past-sets-wrapper 
+{
+	padding: 0;
+	margin: 0;
+	height: 20%;
+	background-color: #2FC0C4;
+	box-shadow: 0px 0px 0px 1px blue;
 }
 
 #event-jumbotron
