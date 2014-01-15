@@ -1,48 +1,48 @@
 <?php
 
-// $con = mysqli_connect("localhost", "otech47_sc", "soundcloud1","otech47_soundcloud");
+$con = mysqli_connect("localhost", "otech47_sc", "soundcloud1","otech47_soundcloud");
 
-// if (!$con)
-// {
-// 	die('Could not connect: ' . mysql_error());
-// }
+if (!$con)
+{
+	die('Could not connect: ' . mysql_error());
+}
 
-// $label = $_POST['label'];
+$label = $_POST['label'];
 
-// $eventUrlArray = array();
-// $eventArtistArray = array();
-// $eventSql = "SELECT * FROM sets WHERE event='$label'";
-// $eventResult = mysqli_query($con, $eventSql);
-// $i = 0;
-// while($eventRow = mysqli_fetch_array($eventResult))
-// {
-// 	$eventUrlArray[$i] = $eventRow['url'];
-// 	$eventArtistArray[$i] = $eventRow['artist'];
-// 	$i++;
-// }
+$eventUrlArray = array();
+$eventArtistArray = array();
+$eventSql = "SELECT * FROM sets WHERE event='$label'";
+$eventResult = mysqli_query($con, $eventSql);
+$i = 0;
+while($eventRow = mysqli_fetch_array($eventResult))
+{
+	$eventUrlArray[$i] = $eventRow['url'];
+	$eventArtistArray[$i] = $eventRow['artist'];
+	$i++;
+}
 
-// $artistUrlArray = array();
-// $artistEventArray = array();
-// $artistSql = "SELECT * FROM sets WHERE artist='$label'";
-// $artistResult = mysqli_query($con, $artistSql);
-// $i = 0;
-// while($artistRow = mysqli_fetch_array($artistResult))
-// {
-// 	$artistUrlArray[$i] = $artistRow['url'];
-// 	$artistEventArray[$i] = $artistRow['event'];
-// 	$i++;
-// }
+$artistUrlArray = array();
+$artistEventArray = array();
+$artistSql = "SELECT * FROM sets WHERE artist='$label'";
+$artistResult = mysqli_query($con, $artistSql);
+$i = 0;
+while($artistRow = mysqli_fetch_array($artistResult))
+{
+	$artistUrlArray[$i] = $artistRow['url'];
+	$artistEventArray[$i] = $artistRow['event'];
+	$i++;
+}
 
-// if(empty($artistUrlArray))
-// {
-// 	$resultArray = array($eventUrlArray, $eventArtistArray);
-// }
-// else
-// {
-// 	$resultArray = array($artistUrlArray, $artistEventArray);
-// }
-$resultArray = (array("url1","url2","url3"),array("Hardwell", "Calvin Harris", "Deadmau5"));
-echo $resultArray;
+if(empty($artistUrlArray))
+{
+	$resultArray = array($eventUrlArray, $eventArtistArray);
+}
+else
+{
+	$resultArray = array($artistUrlArray, $artistEventArray);
+}
+
+echo json_encode($resultArray);
 // if(!empty($resultArray))
 // {
 // 	$j = rand(0, count($resultUrlArray)-1);

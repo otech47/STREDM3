@@ -56,33 +56,24 @@ $(document).ready( function() {
 	}
 	function getAllTags()
 	{
-		var autocompleteData = [ "Ultra Music Festival 2013", "Fedde Le Grand", "Above and Beyond", "Beyond Wonderland 2013", "Tomorrowland 2013", "EDC Las Vegas 2013", "Hardwell", "Dimitri Vegas and Like Mike", "Calvin Harris" ];
-		mainACWidget.autocomplete({
-			source: autocompleteData
-		});
-		mainACWidget.select();
-	}
-	function getMatchedTags(label)
-	{
-		var results = ["Hardwell", "Calvin Harris", "Deadmau5", "Swedish House Mafia", "Tiesto","Avicii","Armin van Buuren", "Clockwork", "Major Lazer", "Alesso","Porter Robinson"];
-		var postdata = {
-			label:label
-			};
-		urlArray = new Array();
+		var autocompleteData = new Array();
 		$.ajax({
-			type: "POST",
-			url: 'request.php',
-			data: postdata,
-			error: function(one, two, three)
+			type: "GET",
+			url: "../scripts/allTags.php",
+			async: false,
+			dataType: 'json',
+			success: function(data)
 			{
-				alert(one+two+three);
-
+				$.each(data, function(index,value) {
+					autocompleteData[index] = value;
+				})
 			},
-			success: function(data) 
+			complete: function() 
 			{
-				alert(data);
-				urlArray = data[0];
-				return data[1];
+				mainACWidget.autocomplete({
+					source: autocompleteData
+				});
+				mainACWidget.select();
 			}
 		});
 	}
@@ -148,17 +139,19 @@ $(document).ready( function() {
 		columnCode.appendTo(".tiles-wrapper");
 		$.each(tileName, function (index, value) {
 			var a = value.appendTo("#"+columnType.id);
+			a.attr("data-url", urlArray[index]);
 			a.click(function(){
-				$('.scroll-wrapper').animate({scrollTop: $(document).height()}, '1000');
+				$('.scroll-wrapper').animate({scrollTop: $("div.stredming-wrapper").offset().top-55}, '1000');
 				window.setTimeout(function(){
 					$("div.player-wrapper").empty();
-					$("div.player-container").append("<div class='stredming-result'>"+result+"</div>");
+					$("<div class='player-container'><div class='stredming-result'><iframe width='100%'' height='166' scrolling='no' frameborder='no' src='"+a.attr('data-url')+"&amp;color=ff6600&amp;auto_play=true&amp;show_artwork=true'></iframe></div></div>").appendTo($("div.player-wrapper"));
 
 				}, 1000);
 			});
 		});
 		var panelIsotope = $(".panel-results-container").isotope({
 			itemSelector : ".panel-result",
+			resizesContainer: false,
 			layoutMode : "cellsByRow",
 			cellsByRow: {
     			columnWidth: 160,
@@ -202,15 +195,34 @@ $(document).ready( function() {
 					animationIsActive = false;
 					inputBox.slideDown(100);
 					inputBox.focus();
-					matchedTags = getMatchedTags(result.text());
-					var infoACWidget = inputBox.autocomplete({
-						minLength: 0,
-						source: matchedTags
+					matchedTags = new Array();
+					urlArray = new Array();
+					$.ajax({
+						type: "POST",
+						url: '../scripts/request.php',
+						data: {label:result.text()},
+						dataType: 'json',
+						success: function(data) 
+						{
+							$.each(data[0], function(index, value) {
+								urlArray[index] = value;
+							});
+							$.each(data[1], function(index, value) {
+								matchedTags[index] = value;
+							});
+						},
+						complete: function() 
+						{
+							var infoACWidget = inputBox.autocomplete({
+								minLength: 0,
+								source: matchedTags
+							});
+							infoACWidget.click(function() {
+								closePanel();
+							});
+							createPanelResults(activeHeader.text().toLowerCase(), generatePanelTiles());
+						}
 					});
-					infoACWidget.click(function() {
-						closePanel();
-					});
-					createPanelResults(activeHeader.text().toLowerCase(), generatePanelTiles(matchedTags));
 				},300);
 			},300);
 		}
@@ -245,72 +257,75 @@ $(document).ready( function() {
 		window.setTimeout(function() {
 			$(".column-wrapper").css("margin-left","0");
 		},1);
-		// var test = $('.results-container').isotope({
-			// layoutMode : "masonry"
-		// });
-		// updateRadiomixes();
-		// updateGenres();
-		// updateMiscs();
 	}
-	function generatePanelTiles(tags)
+	function generatePanelTiles()
 	{
 		var panelTiles = new Array();
-		$.each(tags, function(index, value) {
-			panelTiles[index] = $("<div class='panel-result' data-url="+url+"><p>"+value+"</p></div>");
-		})
+		$.each(matchedTags, function(index, value) {
+			panelTiles.push($("<div class='panel-result'><p>"+value+"</p></div>"));
+		});
 		return panelTiles;
 	}
 	function generateArtistTiles()
 	{
 		artistTiles = new Array();
 		var isEmpty = true;
-		// $.ajax({
-			// type: "GET",
-			// url: "scripts/getAllArtists.php",
-			// success: function(data)
-			// {
-				// artistArray = data;
-			// }
-		// });
-		var artistArray = ["Above and Beyond", "Fedde Le Grand", "Hardwell", "Dimitri Vegas and Like Mike", "Calvin Harris" ];
-		$.each(searchTiles, function(index, value) {
-			if($.inArray(value.text(), artistArray) != -1)
+		var artistArray = new Array();
+		$.ajax({
+			type: "GET",
+			url: "../scripts/getAllArtists.php",
+			async: false,
+			dataType: 'json',
+			success: function(data)
 			{
-				artistTiles.push(value);
-				isEmpty = false;
+				$.each(data, function(index,value) {
+					artistArray[index] = value;
+				})
+			},
+			complete: function() 
+			{
+				$.each(searchTiles, function(index, value) {
+					if($.inArray(value.text(), artistArray) != -1)
+					{
+						artistTiles.push(value);
+						isEmpty = false;
+					}
+				});
+				tiles[0] = artistTiles;
 			}
 		});
-		tiles[0] = artistTiles;
 		return [isEmpty, "artist"];
 	}
 	function generateEventTiles()
 	{
 		eventTiles = new Array();
 		var isEmpty = true;
-		// $.ajax({
-			// type: "GET",
-			// url: "scripts/getAllArtists.php",
-			// success: function(data)
-			// {
-				// artistArray = data;
-			// }
-		// });
-		var eventArray = ["Ultra Music Festival 2013", "Beyond Wonderland 2013", "Tomorrowland 2013", "EDC Las Vegas 2013"];
-		$.each(searchTiles, function(index, value) {
-			if($.inArray(value.text(), eventArray) != -1)
+		var eventArray = new Array();
+		$.ajax({
+			type: "GET",
+			url: "../scripts/getAllEvents.php",
+			async: false,
+			dataType: 'json',
+			success: function(data)
 			{
-				eventTiles.push(value);
-				isEmpty = false;
+				$.each(data, function(index,value) {
+					eventArray[index] = value;
+				})
+			},
+			complete: function() 
+			{
+				$.each(searchTiles, function(index, value) {
+					if($.inArray(value.text(), eventArray) != -1)
+					{
+						eventTiles.push(value);
+						isEmpty = false;
+					}
+				});
+				tiles[1] = eventTiles;
 			}
 		});
-		tiles[1] = eventTiles;
 		return [isEmpty, "event"];
 	}
-	var stredm = function ()
-	{
-		$(".stredming-wrapper").css("display","block");
-		$('.scroll-wrapper').animate({scrollTop: $(document).height()}, "1000");
-	};
 	var mainACWidget = $("#q").autocomplete({
 		minLength: 0
 	});
@@ -325,6 +340,7 @@ $(document).ready( function() {
 	var animationIsActive = false;
 	var panelOpen = false;
 	var urlArray = new Array();
+	var matchedTags = new Array();
 	mainACWidget.click(function() {
 		getAllTags();
 	});
