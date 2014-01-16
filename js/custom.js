@@ -8,7 +8,7 @@ $(document).ready( function() {
 	}
 	function randomColor() {
     	var choice = Math.floor(Math.random()*8);
-    	var color = ["aliceblue", "crimson", "cyan", "fuchsia", "orangered", "yellow", "white", "lime", "pink"];
+    	var color = ["linear-gradient(to bottom, #e4f5fc 0%,#bfe8f9 20%,#9fd8ef 35%,#2ab0ed 100%)", "linear-gradient(to bottom, #f16f5c 13%,#f16f5c 20%,#f16f5c 26%,#f16f5c 36%,#f02f17 66%,#e73827 100%)", "linear-gradient(to bottom, #b3feff 0%,#4ae8f9 57%)", "linear-gradient(to bottom, #e2b1d8 0%,#dd40b6 63%,#de47ac 100%)", "linear-gradient(to bottom, #ffb76b 0%,#ffa73d 24%,#ff7c00 56%,#ff7f04 100%)", "linear-gradient(to bottom, #fcfeea 0%,#fcf944 100%)", "linear-gradient(to bottom, #fcfff4 0%,#dfe5d7 40%,#b3bead 100%)", "linear-gradient(to bottom, #b4e391 0%,#0fff02 51%,#65ed7a 100%)", "linear-gradient(to bottom, #ff5db1 38%,#ef017c 100%)"];
     	return color[choice];
 	}
 	function searchSet()
@@ -108,7 +108,7 @@ $(document).ready( function() {
 		columnCode.appendTo(".autocomplete-container");
 		$.each(tileName, function (index, value) {
 			var a = value.appendTo("#"+columnType.id).addClass("result");
-			a.css("background-color", randomColor());
+			a.css("background-image", randomColor());
 			a.click(function() {
 				openPanel(a);
 			});
@@ -185,7 +185,7 @@ $(document).ready( function() {
 				});
 			}, 300);
 			infoPanel.appendTo(".autocomplete-container");
-			infoPanel.find(".info-panel").css("background-color", result.css("background-color"));
+			infoPanel.find(".info-panel").css("background-image", result.css("background-image"));
 			window.setTimeout(function () {
 				infoPanel.css("width","100%");
 				window.setTimeout(function () {
