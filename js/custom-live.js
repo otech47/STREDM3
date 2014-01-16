@@ -217,6 +217,9 @@ $(document).ready( function() {
 								minLength: 0,
 								source: matchedTags
 							});
+							infoACWidget.click(function() {
+								closePanel();
+							});
 							createPanelResults(activeHeader.text().toLowerCase(), generatePanelTiles());
 						}
 					});
