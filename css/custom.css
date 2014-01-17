@@ -437,7 +437,7 @@ i
 	height: 30%;
 	width: 100%;
 	margin: 0%;
-	padding: 1% 3%;
+	padding:5% 0% 0% 0%;
 	background: rgb(128,0,255); /* Old browsers */
 	background: -moz-radial-gradient(center, ellipse cover, rgba(128,0,255,1) 0%, rgba(63,24,153,1) 100%); /* FF3.6+ */
 	background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%,rgba(128,0,255,1)), color-stop(100%,rgba(63,24,153,1))); /* Chrome,Safari4+ */
