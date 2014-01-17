@@ -73,6 +73,17 @@ body
 	margin: 0;
 }
 
+.navmenu
+{
+	height: 100%;
+	margin: 0% 2.5%;
+}
+
+.section
+{
+	height: 100%;
+}
+
 .nav-menu-container
 {
 	padding: 0% 0% 0% 0%;
