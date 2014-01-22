@@ -383,4 +383,16 @@ $(document).ready( function() {
 		end: false,
 		scrollChange: false
 	 });
+	$("aftermovie").click(function(){
+		$("#f1_card").toggleClass("flipped");
+	});
 });
+
+
+
+
+
+
+
+
+
