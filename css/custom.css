@@ -237,7 +237,7 @@ i
 	height: 100%;
 	width: 25%;
 	display: inline-block;
-	-webkit-transition: all 0.3s ease-out;
+	transition: all 0.3s ease-out;
 	float: left;
 	padding: 0.5% 1% 0% 1%;
 	margin: 0% 4%;
@@ -346,7 +346,7 @@ i
 	height: 100px;
 	width: 100px;
 	display: block;
-	-webkit-transition: all .2s linear;
+	transition: all .2s linear;
 	background-color: 
 	rgba(150,150,150,.8);
 	border-radius: 14px;
@@ -804,7 +804,7 @@ label
 	padding: 0% 0% 0% 0%;
 	background-color: 
 	white;
-	-webkit-backface-visibility: hidden;
+	backface-visibility: hidden;
 }
 
 .past-sets-container
@@ -831,7 +831,7 @@ label
 	margin: 0;
 	padding:0% 0% 0% 5%;
 	background-color: white;
-	-webkit-backface-visibility: hidden;
+	backface-visibility: hidden;
 }
 
 .event-jumbotron-event
@@ -859,7 +859,7 @@ label
 	margin: 0;
 	padding: 0;
 	background-color: white;
-	-webkit-backface-visibility: hidden;
+	backface-visibility: hidden;
 }
 
 #aftermovie-text:hover #f1_container #f1_card{
@@ -891,7 +891,7 @@ label
 	margin: 34% 0% 0% 0%;
 	padding: 0;
 	background-image: url(../images/cpbar.png);
-	-webkit-backface-visibility: hidden;
+	backface-visibility: hidden;
 }
 
 #promo-text
@@ -909,7 +909,7 @@ a.promo-links-property:hover
 
 .promo-links-container
 {
-	-webkit-backface-visibility: hidden;
+	backface-visibility: hidden;
 }
 
 #app-page

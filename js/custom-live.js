@@ -56,6 +56,11 @@ $(document).ready( function() {
 	}
 	function getAllTags()
 	{
+		// var autocompleteData = ["Hardwell", "Calvin Harris", "Deadmau5", "Armin Van Buuren", "Alesso", "Ultra Music Festival 2013", "EDC Las Vegas 2013", "Electric Zoo", "Tomorrowland 2013", "EDC Orlando 2013"];
+		// mainACWidget.autocomplete({
+		// 	source: autocompleteData
+		// });
+		// mainACWidget.select();
 		var autocompleteData = new Array();
 		$.ajax({
 			type: "GET",
@@ -195,6 +200,12 @@ $(document).ready( function() {
 					animationIsActive = false;
 					inputBox.slideDown(100);
 					inputBox.focus();
+					// matchedTags = ["1", "2","3","4","5","6"];
+					// var infoACWidget = inputBox.autocomplete({
+					// 			minLength: 0,
+					// 			source: matchedTags
+					// 		});
+					// createPanelResults(activeHeader.text().toLowerCase(), generatePanelTiles());
 					matchedTags = new Array();
 					urlArray = new Array();
 					$.ajax({
@@ -268,6 +279,18 @@ $(document).ready( function() {
 	}
 	function generateArtistTiles()
 	{
+		// artistTiles = new Array();
+		// var isEmpty = true;
+		// var artistArray = ["Hardwell","Calvin Harris","Deadmau5","Armin Van Buuren","Alesso"];
+		// $.each(searchTiles, function(index, value) {
+		// 	if($.inArray(value.text(), artistArray) != -1)
+		// 	{
+		// 		artistTiles.push(value);
+		// 		isEmpty = false;
+		// 	}
+		// });
+		// tiles[0] = artistTiles;
+		// return [isEmpty, "artist"];
 		artistTiles = new Array();
 		var isEmpty = true;
 		var artistArray = new Array();
@@ -298,6 +321,18 @@ $(document).ready( function() {
 	}
 	function generateEventTiles()
 	{
+		// eventTiles = new Array();
+		// var isEmpty = true;
+		// var eventArray = ["Ultra Music Festival 2013", "EDC Las Vegas 2013", "Electric Zoo", "Tomorrowland 2013", "EDC Orlando 2013"];
+		// $.each(searchTiles, function(index, value) {
+		// 	if($.inArray(value.text(), eventArray) != -1)
+		// 	{
+		// 		eventTiles.push(value);
+		// 		isEmpty = false;
+		// 	}
+		// });
+		// tiles[1] = eventTiles;
+		// return [isEmpty, "event"];
 		eventTiles = new Array();
 		var isEmpty = true;
 		var eventArray = new Array();

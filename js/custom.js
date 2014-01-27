@@ -56,26 +56,30 @@ $(document).ready( function() {
 	}
 	function getAllTags()
 	{
-		var autocompleteData = new Array();
-		$.ajax({
-			type: "GET",
-			url: "../scripts/allTags.php",
-			async: false,
-			dataType: 'json',
-			success: function(data)
-			{
-				$.each(data, function(index,value) {
-					autocompleteData[index] = value;
-				})
-			},
-			complete: function() 
-			{
-				mainACWidget.autocomplete({
-					source: autocompleteData
-				});
-				mainACWidget.select();
-			}
+		var autocompleteData = ["Hardwell", "Calvin Harris", "Deadmau5", "Armin Van Buuren", "Alesso", "Ultra Music Festival 2013", "EDC Las Vegas 2013", "Electric Zoo", "Tomorrowland 2013", "EDC Orlando 2013"];
+		mainACWidget.autocomplete({
+			source: autocompleteData
 		});
+		mainACWidget.select();
+		// $.ajax({
+		// 	type: "GET",
+		// 	url: "../scripts/allTags.php",
+		// 	async: false,
+		// 	dataType: 'json',
+		// 	success: function(data)
+		// 	{
+		// 		$.each(data, function(index,value) {
+		// 			autocompleteData[index] = value;
+		// 		})
+		// 	},
+		// 	complete: function() 
+		// 	{
+		// 		mainACWidget.autocomplete({
+		// 			source: autocompleteData
+		// 		});
+		// 		mainACWidget.select();
+		// 	}
+		// });
 	}
 	function columnCreate(type, tileName)
 	{
@@ -105,6 +109,7 @@ $(document).ready( function() {
 		columnCode.find(".results-container").attr("id", (columnType.id).toString());
 		columnCode.attr("id", type.toString()+"-wrapper");
 		columnCode.attr("style", "margin-left: -500px");
+		alert("");
 		columnCode.appendTo(".autocomplete-container");
 		$.each(tileName, function (index, value) {
 			var a = value.appendTo("#"+columnType.id).addClass("result");
@@ -124,6 +129,7 @@ $(document).ready( function() {
 	}
 	function createPanelResults(type, tileName)
 	{
+		$(".tiles-wrapper").empty();
 		var columnType = {title:"Empty", id:"prc-0"};
 		if(type == "artist")
 		{
@@ -195,31 +201,52 @@ $(document).ready( function() {
 					animationIsActive = false;
 					inputBox.slideDown(100);
 					inputBox.focus();
-					matchedTags = new Array();
-					urlArray = new Array();
-					$.ajax({
-						type: "POST",
-						url: '../scripts/request.php',
-						data: {label:result.text()},
-						dataType: 'json',
-						success: function(data) 
-						{
-							$.each(data[0], function(index, value) {
-								urlArray[index] = value;
-							});
-							$.each(data[1], function(index, value) {
-								matchedTags[index] = value;
-							});
-						},
-						complete: function() 
-						{
-							var infoACWidget = inputBox.autocomplete({
-								minLength: 0,
-								source: matchedTags
-							});
-							createPanelResults(activeHeader.text().toLowerCase(), generatePanelTiles());
-						}
+					matchedTags = ["1", "2","3","4","5","6"];
+					var infoACWidget = inputBox.autocomplete({
+						minLength: 0,
+						source: matchedTags
+						response: function(event, ui) {
+							var objectArray = ui.content;
+							if(backspaceDetect.keyCode == 8 && $("#q").val().length == 0)
+							{
+								createPanelResults(activeHeader.text().toLowerCase(), generatePanelTiles());
+								return;
+							}
+					searchTiles = new Array();
+			$.each(objectArray, function(index, value) {
+				searchTiles.push($("<div class='result'><p>"+value.label+"</p></div>"));
+			});
+			$(".results-container").empty();
+			$(".autocomplete-container").empty();
+			updateResults();
+		}
 					});
+					createPanelResults(activeHeader.text().toLowerCase(), generatePanelTiles());
+					// matchedTags = new Array();
+					// urlArray = new Array();
+					// $.ajax({
+					// 	type: "POST",
+					// 	url: '../scripts/request.php',
+					// 	data: {label:result.text()},
+					// 	dataType: 'json',
+					// 	success: function(data) 
+					// 	{
+					// 		$.each(data[0], function(index, value) {
+					// 			urlArray[index] = value;
+					// 		});
+					// 		$.each(data[1], function(index, value) {
+					// 			matchedTags[index] = value;
+					// 		});
+					// 	},
+					// 	complete: function() 
+					// 	{
+					// 		var infoACWidget = inputBox.autocomplete({
+					// 			minLength: 0,
+					// 			source: matchedTags
+					// 		});
+					// 		createPanelResults(activeHeader.text().toLowerCase(), generatePanelTiles());
+					// 	}
+					// });
 				},300);
 			},300);
 		}
@@ -267,61 +294,85 @@ $(document).ready( function() {
 	{
 		artistTiles = new Array();
 		var isEmpty = true;
-		var artistArray = new Array();
-		$.ajax({
-			type: "GET",
-			url: "../scripts/getAllArtists.php",
-			async: false,
-			dataType: 'json',
-			success: function(data)
+		var artistArray = ["Hardwell","Calvin Harris","Deadmau5","Armin Van Buuren","Alesso"];
+		$.each(searchTiles, function(index, value) {
+			if($.inArray(value.text(), artistArray) != -1)
 			{
-				$.each(data, function(index,value) {
-					artistArray[index] = value;
-				})
-			},
-			complete: function() 
-			{
-				$.each(searchTiles, function(index, value) {
-					if($.inArray(value.text(), artistArray) != -1)
-					{
-						artistTiles.push(value);
-						isEmpty = false;
-					}
-				});
-				tiles[0] = artistTiles;
+				artistTiles.push(value);
+				isEmpty = false;
 			}
 		});
+		tiles[0] = artistTiles;
 		return [isEmpty, "artist"];
+		// artistTiles = new Array();
+		// var isEmpty = true;
+		// var artistArray = new Array();
+		// $.ajax({
+		// 	type: "GET",
+		// 	url: "../scripts/getAllArtists.php",
+		// 	async: false,
+		// 	dataType: 'json',
+		// 	success: function(data)
+		// 	{
+		// 		$.each(data, function(index,value) {
+		// 			artistArray[index] = value;
+		// 		})
+		// 	},
+		// 	complete: function() 
+		// 	{
+		// 		$.each(searchTiles, function(index, value) {
+		// 			if($.inArray(value.text(), artistArray) != -1)
+		// 			{
+		// 				artistTiles.push(value);
+		// 				isEmpty = false;
+		// 			}
+		// 		});
+		// 		tiles[0] = artistTiles;
+		// 	}
+		// });
+		// return [isEmpty, "artist"];
 	}
 	function generateEventTiles()
 	{
 		eventTiles = new Array();
 		var isEmpty = true;
-		var eventArray = new Array();
-		$.ajax({
-			type: "GET",
-			url: "../scripts/getAllEvents.php",
-			async: false,
-			dataType: 'json',
-			success: function(data)
+		var eventArray = ["Ultra Music Festival 2013", "EDC Las Vegas 2013", "Electric Zoo", "Tomorrowland 2013", "EDC Orlando 2013"];
+		$.each(searchTiles, function(index, value) {
+			if($.inArray(value.text(), eventArray) != -1)
 			{
-				$.each(data, function(index,value) {
-					eventArray[index] = value;
-				})
-			},
-			complete: function() 
-			{
-				$.each(searchTiles, function(index, value) {
-					if($.inArray(value.text(), eventArray) != -1)
-					{
-						eventTiles.push(value);
-						isEmpty = false;
-					}
-				});
-				tiles[1] = eventTiles;
+				eventTiles.push(value);
+				isEmpty = false;
 			}
 		});
+		tiles[1] = eventTiles;
 		return [isEmpty, "event"];
+		// eventTiles = new Array();
+		// var isEmpty = true;
+		// var eventArray = new Array();
+		// $.ajax({
+		// 	type: "GET",
+		// 	url: "../scripts/getAllEvents.php",
+		// 	async: false,
+		// 	dataType: 'json',
+		// 	success: function(data)
+		// 	{
+		// 		$.each(data, function(index,value) {
+		// 			eventArray[index] = value;
+		// 		})
+		// 	},
+		// 	complete: function() 
+		// 	{
+		// 		$.each(searchTiles, function(index, value) {
+		// 			if($.inArray(value.text(), eventArray) != -1)
+		// 			{
+		// 				eventTiles.push(value);
+		// 				isEmpty = false;
+		// 			}
+		// 		});
+		// 		tiles[1] = eventTiles;
+		// 	}
+		// });
+		// return [isEmpty, "event"];
 	}
 	var mainACWidget = $("#q").autocomplete({
 		minLength: 0
