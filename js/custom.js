@@ -422,4 +422,28 @@ $(document).ready( function() {
 			$("#q").css("margin-right", "-400px");
 		}
 	});
+	$('#nav').onePageNav({
+	    currentClass: 'current',
+	    changeHash: true,
+		easing: 'swing',
+		filter: '',
+		scrollSpeed: 750,
+		scrollOffset: 0,
+		scrollThreshold: 1.5,
+		begin: false,
+		end: false,
+		scrollChange: false
+	 });
+	$("aftermovie").click(function(){
+		$("#f1_card").toggleClass("flipped");
+	});
 });
+
+
+
+
+
+
+
+
+

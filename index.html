@@ -22,6 +22,8 @@
 	</script>
 	<script src="js/jquery.isotope.min.js"></script>
 	<script src="js/scrollTo.js"></script>
+	<script src="js/jquery.scrollTo.js"></script>
+	<script src="js/jquery.nav.js"></script>
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
       <script src="../../assets/js/html5shiv.js"></script>
@@ -49,234 +51,260 @@ mixpanel.init("ea091fd1d0073af2c48de623590cd53b");</script><!-- end Mixpanel -->
 	<script src="js/custom.js"></script>
 	<div class="scroll-wrapper">
 		<div class="home-page-wrapper">
-			<nav class="navbar navbar-default navbar-fixed-top" role="navigation" id="main-nav">
-				<div class="navbar-header col-sm-7 navbar-left row" id="main-nav-header">
-					<div class="nav-header-container col-sm-1" id="space-container">
+			<div class="home-container">
+				<nav class="navbar navbar-default navbar-fixed-top" role="navigation" id="main-nav">
+					<div class="navbar-header col-sm-7 navbar-left row" id="main-nav-header">
+						<div class="nav-header-container col-sm-1" id="space-container">
+						</div>
+						<div class="nav-header-container col-sm-1" id="logo-container">
+						</div>
+						<div class="nav-header-container col-sm-3" id="character-container">
+							<h1 id="main-header">Stredm</h1>
+						</div>
+						<div class="nav-header-container col-sm-7" id="main-search-container"> 
+							<form class="navbar-form" action="http://bootsnipp.com/search" method="GET" id="search-form" role="search">
+								<div class="form-group form-slide" style="overflow:hidden" id="search-width">
+									<input type="text" class="form-control form-input-slide" id="q" placeholder="Start searching or press 'Enter' for random sets" style="margin-right: -400px;">
+								</div>
+								<button type="submit" class="btn btn-default search-btn" id="search-button">
+									<i class="fa fa-search fa-lg"></i>
+								</button>
+							</form>
+						</div>
 					</div>
-					<div class="nav-header-container col-sm-1" id="logo-container">
+					<div class="navbar-body col-sm-5 navbar-right" id="main-nav-body">
+						<div class="nav-menu-container col-sm-9 row" id="links-container">
+							<ul id="nav" class="list-inline">
+								<li class="navmenu"><a href="#section-1"><p class="navbar-text">Info</a></p></li>
+								<li class="navmenu"><a href="#section-2"><p class="navbar-text">Event</a></p></li>
+								<li class="navmenu"><a href="#section-3"><p class="navbar-text">Join</a></p></li>
+								<li class="navmenu"><a href="#section-4"><p class="navbar-text">App</a></p></li>
+							</ul>
+						</div>
+						<div class="nav-menu-container col-sm-3 row" id="sm-container">
+								<div class="header-icon col-sm-3">
+									<a href="https://www.facebook.com/Stredm" target="_blank">
+									<i class="fa fa-facebook-square fa-3x"></i></a>
+								</div>
+								<div class="header-icon col-sm-3">
+									<a href="http://instagram.com/stredm" target="_blank">
+									<i class="fa fa-instagram fa-3x"></i></a>
+								</div>
+								<div class="header-icon col-sm-3">
+									<a href="https://twitter.com/stredm_music" target="_blank">
+									<i class="fa fa-twitter-square fa-3x"></i>
+									</a>
+								</div>
+								<div class="header-icon col-sm-3">
+									<a href="http://www.youtube.com/channel/UCfUCj0dW4bTHVkrI9VTweyA" target="_blank">
+									<i class="fa fa-youtube-square fa-3x"></i></a>
+								</div>
+						</div>
 					</div>
-					<div class="nav-header-container col-sm-3" id="character-container">
-						<h1 id="main-header">Stredm</h1>
-					</div>
-					<div class="nav-header-container col-sm-7" id="main-search-container"> 
-						<form class="navbar-form" action="http://bootsnipp.com/search" method="GET" id="search-form" role="search">
-							<div class="form-group form-slide" style="overflow:hidden" id="search-width">
-								<input type="text" class="form-control form-input-slide" id="q" placeholder="Start searching or press 'Enter' for random sets" style="margin-right: -400px;">
+				</nav>
+
+				<div class="welcome-wrapper">
+					<div class="welcome-container row">
+						<h1 id="homepageintrotext">Sets.</h1>
+						<p style=" margin: 0% 0% 0% 5%; font-size: 1.5em; ">Festivals, Concerts, Radio Mixes & More...</P>
+						<div class="welcome-options-container row">
+							<div class="button-search-wrapper col-md-9"> 
+								<div class="form-group">
+								    <input type="search" class="form-control" id="exampleInputPassword1" placeholder="Search Arist, Event, Genre, Radio Mix and More" style=" padding: 2%; margin: 0% 0% 0% 0%; ">
+								</div>
 							</div>
-							<button type="submit" class="btn btn-default search-btn" id="search-button">
-								<i class="fa fa-search fa-lg"></i>
-							</button>
-						</form>
+							<div class="button-search-wrapper col-md-1">
+								<p style=" font-size: 1.9em; margin: 0% 12%; padding: 10% 0%; ">OR</p>
+							</div>
+							<div class="button-search-wrapper col-md-2">
+								<button class="btn btn-small" id="random-set" style=" padding: 6% 24%; margin: 3% 3%;">Random</button>
+							</div>
+						</div>
 					</div>
 				</div>
-				<div class="navbar-body col-sm-5 navbar-right" id="main-nav-body">
-					<div class="nav-menu-container col-sm-9 row" id="links-container">
-							<p class="navbar-text"><a href="#" class="navbar-link">Info</a></p>
-							<p class="navbar-text"><a href="#" class="navbar-link">Event</a></p>
-							<p class="navbar-text"><a href="#" class="navbar-link">Join</a></p>
-							<p class="navbar-text"><a href="#" class="navbar-link">App</a></p>
-					</div>
-					<div class="nav-menu-container col-sm-3 row" id="sm-container">
-							<div class="header-icon col-sm-3">
-								<a href="https://www.facebook.com/Stredm" target="_blank">
-								<i class="fa fa-facebook-square fa-3x"></i></a>
-							</div>
-							<div class="header-icon col-sm-3">
-								<a href="http://instagram.com/stredm" target="_blank">
-								<i class="fa fa-instagram fa-3x"></i></a>
-							</div>
-							<div class="header-icon col-sm-3">
-								<a href="https://twitter.com/stredm_music" target="_blank">
-								<i class="fa fa-twitter-square fa-3x"></i>
-								</a>
-							</div>
-							<div class="header-icon col-sm-3">
-								<a href="http://www.youtube.com/channel/UCfUCj0dW4bTHVkrI9VTweyA" target="_blank">
-								<i class="fa fa-youtube-square fa-3x"></i></a>
-							</div>
+				
+				<div class="autocomplete-wrapper">
+					<div class="autocomplete-container">
 					</div>
 				</div>
-			</nav>
-			
-			<div class="autocomplete-wrapper">
-				<div class="autocomplete-container">
-				</div>
+
 			</div>
 		</div>
 
 		<div class="stredming-wrapper" id="info-page">
-			<div class="player-wrapper">
-				<div class="player-container">
-				</div>
-			</div>
-			<div class="carousel-wrapper row">
-				<div class="slide-link row" id="info-slide">
-					<div class="info-slide-container col-md-6 row" id="jumbotron-wrapper">
-						<div class="jumbotron" id="jumbotron-container">
-						  <h1 id="pronounciation-header">(Stree-dee-em)</h1>
-						  <p class="info-memo" id="memo-p-1">As music festivals continue to take over the world, one thing is for sure: sets are the future of music.</p>
-						  <p class="info-memo" id="memo-p-2">Stredm. Find or randomize any set by artist,event, genre and more. </p>
-						</div>
+			<div class="section" id="section-1">
+				<div class="player-wrapper">
+					<div class="player-container">
 					</div>
-					<div class="collage-container col-md-6 row" id="c-wrapper">
-					</div>                                                                                                                      
+				</div>
+				<div class="carousel-wrapper row">
+					<div class="slide-link row" id="info-slide">
+						<div class="info-slide-container col-md-6 row" id="jumbotron-wrapper">
+							<div class="jumbotron" id="jumbotron-container">
+							  <h1 id="pronounciation-header">(Stree-dee-em)</h1>
+							  <p class="info-memo" id="memo-p-1">As music festivals continue to take over the world, one thing is for sure: sets are the future of music.</p>
+							  <p class="info-memo" id="memo-p-2">Stredm. Find or randomize any set by artist,event, genre and more. </p>
+							</div>
+						</div>
+						<div class="collage-container col-md-6 row" id="c-wrapper">
+						</div>                                                                                                                      
+					</div>
 				</div>
 			</div>
 		</div>
 		
 		<div class="page" id="event-pagej">
-			<div class="eventj col-md-6">
-				<div class="eventj-wrapper row" id="left-wrapper">
-					<div id="f1_container">
-						<div id="f1_card" class="shadow">
+			<div class="section" id="section-2">
+				<div class="eventj col-md-6">
+					<div class="eventj-wrapper row" id="left-wrapper">
+						<div id="f1_container">
+							<div id="f1_card">
 
-						  <div class="front face row" id="front-face">
-						  	<div class="events-promo-container col-md-7">
-						  		<div class="jumbotron row" id="event-jumbotron">
-						  			<h1 style="font-size: 4em; border-bottom: 1px solid #DDD;">Festivals</h1>
-						  			<p class="event-jumbotron-text">2012: 51   2013: 184   2014: ?</p>
-						  			<p class="event-jumbotron-text">Which festival family will you join?</p>
-						  			<i class="fa fa-arrow-down fa-2x" id="join-arrow" style=" margin: 4% 27%;"></i>
-						  		</div>
-						  		<div class="promo-aftermovie-container row">
-						  			<h3 id="aftermovie-text">Aftermovie</h3>
-						  		</div>
-						  	</div>
-						  	<div class="events-promo-container col-md-5" style=" padding: 19% 5% 5% 5%; ">
-						  		<div class="past-sets-container row">
-						  			<div class="past-sets-wrapper row"></div>
-						  		</div>
-						  	</div>
-						  </div>
+							  <div class="front face row" id="front-face">
+							  	<div class="events-promo-container col-md-7">
+							  		<div class="jumbotron row" id="event-jumbotron">
+							  			<h1 style="font-size: 4em; border-bottom: 1px solid #DDD;">Festivals</h1>
+							  			<p class="event-jumbotron-text">2012: 51   2013: 184   2014: ?</p>
+							  			<p class="event-jumbotron-text">Which festival family will you join?</p>
+							  			<i class="fa fa-arrow-down fa-2x" id="join-arrow" style=" margin: 4% 27%;"></i>
+							  		</div>
+							  		<div class="promo-aftermovie-container row">
+							  			<a href="#" id="aftermovie"><h3 id="aftermovie-text">Aftermovie</h3></a>
+							  		</div>
+							  	</div>
+							  	<div class="events-promo-container col-md-5" style=" padding: 19% 5% 5% 5%; ">
+							  		<div class="past-sets-container row">
+							  			<div class="past-sets-wrapper row"></div>
+							  		</div>
+							  	</div>
+							  </div>
 
-						  <div class="back face center">
-						  		<div class="videoWrapper">
-						  			<iframe width="640" height="360" src="//www.youtube.com/embed/a56pi_z9XP0" frameborder="0" allowfullscreen></iframe>
-								</div>
-							 <!-- <div class="videoWrapper">
-						 		  <iframe title="YouTube video player" class="youtube-player" type="text/html" 
-								  width="640" height="340" src="//www.youtube.com/embed/a56pi_z9XP0"
-								  allowfullscreen></iframe>
-							  </div>-->
-						  </div>
+							  <div class="back face center">
+							  		<div class="videoWrapper">
+							  			<iframe width="640" height="360" src="//www.youtube.com/embed/a56pi_z9XP0" frameborder="0" allowfullscreen></iframe>
+									</div>
+							  </div>
 
-						</div>
-					</div>
-				</div>
-			</div>
-
-			<div class="eventj col-md-6">
-				<div class="eventj-wrapper row" id="right-wrapper">
-					<div id="f1_container">
-						<div id="f1_card" class="shadow">
-						  <div class="front face row" id="front-face-2">
-						  	<div class="promo-menu-wrapper row">
-								<div class="promo-links-container col-md-6">
-									<a href="" class="promo-links-property"><h2 id="promo-text">Tickets</h2></a>
-								</div>
-								<div class="promo-links-container col-md-6">
-									<a href="" class="promo-links-property"><h2 id="promo-text">Artists</h2></a>
-								</div>
 							</div>
-						  </div>
-						  <div class="back face center" id="back-face-2">
-						  </div>
+						</div>
+					</div>
+				</div>
+
+				<div class="eventj col-md-6">
+					<div class="eventj-wrapper row" id="right-wrapper">
+						<div id="f1_container">
+							<div id="f1_card" class="shadow">
+							  <div class="front face row" id="front-face-2">
+							  	<div class="promo-menu-wrapper row">
+									<div class="promo-links-container col-md-6">
+										<a href="" class="promo-links-property"><h2 id="promo-text">Tickets</h2></a>
+									</div>
+									<div class="promo-links-container col-md-6">
+										<a href="" class="promo-links-property"><h2 id="promo-text">Artists</h2></a>
+									</div>
+								</div>
+							  </div>
+							  <div class="back face center" id="back-face-2">
+							  </div>
+							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-
 		</div>
 
 		<div class="page" id="join-page">
-			<div class="join-container col-lg-5 row">
-				<div class="join-content-wrapper row" id="join-header-container">
-					<div class="jumbotron" id="join-jumbotron">
-					  <h1>Unity.</h1>
-					  <p style="border-bottom: 1px solid #EEE">Festival-freak? Daring Designer? Marketing-whiz?</p>
-					  <p style="line-height: .5">Infinite reasons, join us by reaching out below</p>
-					</div>
-					<div class="icon-container">
-						<i class="fa fa-arrow-down fa-4x" id="join-arrow"></i>
-					</div>
-				</div>
-				<div class="join-content-wrapper row" id="join-sm-container">
-					<div class="labels-wrapper">
-						<div class="labels-container">
-								<div class="list-groups">
-									<a href="https://www.facebook.com/Stredm?ref=br_tf" class="list-group-item facebook-like" target="_blank" >
-				                    <h3 class="pull-right" id="fb">
-				                        <i class="fa fa-facebook-square"></i>
-				                    </h3>
-				                    <h4 class="list-group-item-heading count">
-				                        254</h4>
-				                    <p class="list-group-item-text">
-				                        Facebook Likes</p>
-				                </a>
-				                <a href="https://twitter.com/stredm_music" class="list-group-item twitter" target="_blank">
-				                    <h3 class="pull-right">
-				                        <i class="fa fa-twitter-square"></i>
-				                    </h3>
-				                    <h4 class="list-group-item-heading count">
-				                        652</h4>
-				                    <p class="list-group-item-text">
-				                        Twitter Followers</p>
-				                </a>
-				                <a href="http://www.youtube.com/channel/UCfUCj0dW4bTHVkrI9VTweyA" class="list-group-item youtube" target="_blank">
-			                        <h3 class="pull-right">
-			                            <i class="fa fa-youtube-play"></i>
-			                        </h3>
-			                        <h4 class="list-group-item-heading count">
-			                            209</h4>
-			                        <p class="list-group-item-text">
-			                            Youtube Subscribers</p>
-			                    </a>
-			                    <a href="http://instagram.com/stredm" class="list-group-item youtube" target="_blank">
-			                        <h3 class="pull-right">
-			                            <i class="fa fa-instagram"></i>
-			                        </h3>
-			                        <h4 class="list-group-item-heading count">
-			                            260</h4>
-			                        <p class="list-group-item-text">
-			                            Instagram Followers</p>
-			                    </a>
-			                  </div>
+			<div class="section" id="section-3">
+				<div class="join-container col-lg-5 row">
+					<div class="join-content-wrapper row" id="join-header-container">
+						<div class="jumbotron" id="join-jumbotron">
+						  <h1>Unity.</h1>
+						  <p style="border-bottom: 1px solid #EEE">Festival-freak? Daring Designer? Marketing-whiz?</p>
+						  <p style="line-height: .5">Infinite reasons, join us by reaching out below</p>
+						</div>
+						<div class="icon-container">
+							<i class="fa fa-arrow-down fa-4x" id="join-arrow"></i>
 						</div>
 					</div>
-				    <div class="icon-container" style="padding: 5% 0% 0% 0%;">
-							<i class="fa fa-arrow-down fa-4x" id="join-arrow" style=" margin: 0% 48%;"></i>
-					</div>
-				</div>
-				<div class="join-content-wrapper row" id="join-form-container">
-					<div class="form-wrapper row" id="form-content-wrapper">
-						<div class="form-container col-md-6 row">
-							<form role="form" class="main-form">
-  							  <div class="info row">
-  							  	<div class="info row" id="content-wrapper">
-  							  	  <div class="form-group">
-								    <input type="text" class="form-control" id="firstname" placeholder="First Name">
-								  </div>
-								  <div class="form-group">
-								    <input type="email" class="form-control" id="email" placeholder="Enter email">
-								  </div>
-								  <select class="form-control" id="contact-reasons">
-									  <option>General</option>
-									  <option>Event Cross-Promotion</option>
-									  <option>Artist Promotions</option>
-									  <option>Inquiries</option>
-									  <option>Want to Sue Us</option>
-								  </select>
-  							  	</div>
-  							  </div>
-							</form>
+					<div class="join-content-wrapper row" id="join-sm-container">
+						<div class="labels-wrapper">
+							<div class="labels-container">
+									<div class="list-groups">
+										<a href="https://www.facebook.com/Stredm?ref=br_tf" class="list-group-item facebook-like" target="_blank" >
+					                    <h3 class="pull-right" id="fb">
+					                        <i class="fa fa-facebook-square"></i>
+					                    </h3>
+					                    <h4 class="list-group-item-heading count">
+					                        254</h4>
+					                    <p class="list-group-item-text">
+					                        Facebook Likes</p>
+					                </a>
+					                <a href="https://twitter.com/stredm_music" class="list-group-item twitter" target="_blank">
+					                    <h3 class="pull-right">
+					                        <i class="fa fa-twitter-square"></i>
+					                    </h3>
+					                    <h4 class="list-group-item-heading count">
+					                        766</h4>
+					                    <p class="list-group-item-text">
+					                        Twitter Followers</p>
+					                </a>
+					                <a href="http://www.youtube.com/channel/UCfUCj0dW4bTHVkrI9VTweyA" class="list-group-item youtube" target="_blank">
+				                        <h3 class="pull-right">
+				                            <i class="fa fa-youtube-play"></i>
+				                        </h3>
+				                        <h4 class="list-group-item-heading count">
+				                            217</h4>
+				                        <p class="list-group-item-text">
+				                            Youtube Subscribers</p>
+				                    </a>
+				                    <a href="http://instagram.com/stredm" class="list-group-item youtube" target="_blank">
+				                        <h3 class="pull-right">
+				                            <i class="fa fa-instagram"></i>
+				                        </h3>
+				                        <h4 class="list-group-item-heading count">
+				                            356</h4>
+				                        <p class="list-group-item-text">
+				                            Instagram Followers</p>
+				                    </a>
+				                  </div>
+							</div>
 						</div>
-						<div class="form-container col-md-6 row">
-							<div id="text-area-wrapper">
-					    	 <textarea class="text-area" id="message" name="message"  rows="8.5" placeholder="Type Here!"></textarea>
-					 		</div>
-					 		<div class="submit row">
-					  			<button type="submit" class="btn btn-default" id="join-button">Submit</button>
-					 		</div>
+					    <div class="icon-container" style="padding: 5% 0% 0% 0%;">
+								<i class="fa fa-arrow-down fa-4x" id="join-arrow" style=" margin: 0% 48%;"></i>
+						</div>
+					</div>
+					<div class="join-content-wrapper row" id="join-form-container">
+						<div class="form-wrapper row" id="form-content-wrapper">
+							<div class="form-container col-md-6 row">
+								<form role="form" class="main-form">
+	  							  <div class="info row">
+	  							  	<div class="info row" id="content-wrapper">
+	  							  	  <div class="form-group">
+									    <input type="text" class="form-control" id="firstname" placeholder="First Name">
+									  </div>
+									  <div class="form-group">
+									    <input type="email" class="form-control" id="email" placeholder="Enter email">
+									  </div>
+									  <select class="form-control" id="contact-reasons">
+									  	  <option>Opportunities</option>
+										  <option>General</option>
+										  <option>Event Cross-Promotion</option>
+										  <option>Artist Promotions</option>
+										  <option>Inquiries</option>
+										  <option>Want to Sue Us</option>
+									  </select>
+	  							  	</div>
+	  							  </div>
+								</form>
+							</div>
+							<div class="form-container col-md-6 row">
+								<div id="text-area-wrapper">
+						    	 <textarea class="text-area" id="message" name="message"  rows="8.5" placeholder="Passionate about what you do? Let us know! We're always looking for innovative and hungry individuals so no matter if you love to write, film or hack, just shoot us a message!"></textarea>
+						 		</div>
+						 		<div class="submit row">
+						  			<button type="submit" class="btn btn-default" id="join-button">Submit</button>
+						 		</div>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -286,42 +314,46 @@ mixpanel.init("ea091fd1d0073af2c48de623590cd53b");</script><!-- end Mixpanel -->
 		
 
 		<div class="page" id="app-page">
-			<div class="app-container row">
-				<div class="app-wrapper col-md-6">
-					<div class="jumbotron" id="app-jumbotron">
-						<h1 style="font-size: 5em;">App</h1>
-						<p style="border-bottom: 1px solid #BBB; margin-right: 60%; margin-bottom:0;"> Get free.</P>
-						<p>Stredm uninterrupted sets.</p>
-					</div>
-				</div>
-				<div class="app-wrapper col-md-6" id="AA-wrapper">
-					<div class="app-containers col-md-9">
-						<div class="coming-soon-wrapper row">
-							<h1 id="coming-soon-text">February 2014</h1>
+			<div class="section" id="section-4">
+					<div class="app-pad col-md-12 row">
+						<div class="app-container row">
+							<div class="app-wrapper col-md-6">
+								<div class="jumbotron" id="app-jumbotron">
+									<h1 style="font-size: 5em;">App</h1>
+									<p style="border-bottom: 1px solid #BBB; margin-right: 60%; margin-bottom:0;"> Get free.</P>
+									<p>Stredm uninterrupted sets.</p>
+								</div>
+							</div>
+							<div class="app-wrapper col-md-6" id="AA-wrapper">
+								<div class="app-containers col-md-9">
+									<div class="coming-soon-wrapper row">
+										<h1 id="coming-soon-text">February 2014</h1>
+									</div>
+								</div>
+								<div class="app-containers col-md-3" id="app-store-container">
+								</div>
+							</div>
 						</div>
-					</div>
-					<div class="app-containers col-md-3" id="app-store-container">
-					</div>
-				</div>
+						<nav class="navbar navbar-default navbar-bottom" role="navigation" style="margin: 8.5% 0% 0% 0%; height: 7%;">
+						  	<div class="bottom-nav-container col-md-1" id="copyright-container">
+						  		<p class="navbar-text" id="copyright-text"> © Stredm 2014</p>
+						  	</div>
+						  	<div class="bottom-nav-container col-md-4" id="copyright-container">
+						  	</div>
+						  	<div class="bottom-nav-container col-md-3" id="feedback-text-container">
+						  		<p class="navbar-text" id="feedback-text" style="width:100%;">Shoot us some feedback!</p>
+						  	</div>
+						  	<div class="bottom-nav-container col-md-3" id="feedback-form-container">
+						  		<div class="form-group form-slide" style="margin:0" id="search-width">
+									<input type="text" class="form-control form-input-slide" id="j" placeholder="Stredm should improve by...">
+								</div>
+						  	</div>
+						  	<div class="bottom-nav-container col-md-1" id="feedback-submit-container">
+						  		<button type="submit" class="btn btn-default">Submit</button>
+						  	</div>
+						</nav>
+					</div>	
 			</div>
-			<nav class="navbar navbar-default navbar-bottom" role="navigation" style="margin: 8.5% 0% 0% 0%; height: 7%;">
-			  	<div class="bottom-nav-container col-md-1" id="copyright-container">
-			  		<p class="navbar-text" id="copyright-text"> © Stredm 2014</p>
-			  	</div>
-			  	<div class="bottom-nav-container col-md-4" id="copyright-container">
-			  	</div>
-			  	<div class="bottom-nav-container col-md-3" id="feedback-text-container">
-			  		<p class="navbar-text" id="feedback-text" style="width:100%;">Shoot us some feedback!</p>
-			  	</div>
-			  	<div class="bottom-nav-container col-md-3" id="feedback-form-container">
-			  		<div class="form-group form-slide" style="margin:0" id="search-width">
-						<input type="text" class="form-control form-input-slide" id="j" placeholder="Stredm should improve by...">
-					</div>
-			  	</div>
-			  	<div class="bottom-nav-container col-md-1" id="feedback-submit-container">
-			  		<button type="submit" class="btn btn-default">Submit</button>
-			  	</div>
-			</nav>
 		</div>
 	</div>
   </body>
