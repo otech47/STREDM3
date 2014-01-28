@@ -40,16 +40,22 @@ body
 	transition: all 0.5s ease-out;
 }
 
+.welcome-holder
+{
+	width: 100%;
+	height: 100%;
+	background-color: 
+	rgba(255,255,255,.85);
+	border-radius: 31px;
+	box-shadow: 0px 0px 1px 4px white;
+}
+
 .welcome-container
 {
 	height: 100%;
 	margin: 0;
 	width: 100%;
 	padding: 0 0 1%;
-	background-color: 
-	rgba(255,255,255,.85);
-	border-radius: 31px;
-	box-shadow: 0px 0px 1px 4px white;
 	transition: all 0.5s ease-out;
 }
 
