@@ -185,11 +185,11 @@ $(document).ready( function() {
 			activeHeader = activeColumn.find("h1");
 			activeColumn.css("width","25%");
 			activeColumn.siblings(".column-wrapper").css("margin-left","-800px");
-			result.siblings().css("opacity","0");
+			result.css("box-shadow","0 0 3px 7px white");
+			result.siblings().css("box-shadow","0 0 1px 1px");
 			activeHeader.css("opacity","0");
 			window.setTimeout(function(){
 				activeHeader.hide();
-				result.siblings().hide();
 				$(".back-to-results").show().hover(function(){
 					$(".back-to-results").css("box-shadow","0 0 3px 2px inset");
 				}, function(){
