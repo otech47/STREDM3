@@ -306,9 +306,10 @@ i
 .autocomplete-wrapper
 {
 	width: 100%;
-	height: 67%;
+	height: 55%;
 	padding: 2% 1% 0% 1%;
 	-webkit-transition: all 0.5s linear;
+	transition: all 0.5s linear;
 }
 
 .buffer
@@ -431,7 +432,7 @@ i
 }
 .results-wrapper
 {
-	height:82%;
+	height:84%;
 	transition: all 0.5s linear;
 	overflow-y:scroll;
 }
