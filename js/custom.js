@@ -160,7 +160,7 @@ $(document).ready( function() {
 				}, 1000);
 			});
 		});
-		var panelIsotope = $(".panel-results-container").isotope({
+		panelIsotope = $(".panel-results-container").isotope({
 			itemSelector : ".panel-result",
 			resizesContainer: false,
 			layoutMode : "cellsByRow",
@@ -231,7 +231,16 @@ $(document).ready( function() {
 					// 			source: matchedTags,
 					// 			response: function(event, ui) {
 					// 				var objectArray = ui.content;
+					// 				var selector = "";
 					// 				$("ul.ui-autocomplete").remove();
+					// 				$.each(objectArray, function(index, value) {
+					// 					if(index != 0)
+					// 					{
+					// 						selector = selector.concat(", ")
+					// 					}
+					// 					selector = selector.concat("div.panel-result[data-filter='"+value.label+"']");
+					// 				});
+					// 				panelIsotope.isotope({filter: selector});
 					// 			}
 					// 		});
 					// 		infoACWidget.click(function() {
@@ -249,7 +258,16 @@ $(document).ready( function() {
 						source: matchedTags,
 						response: function(event, ui) {
 							var objectArray = ui.content;
+							var selector = "";
 							$("ul.ui-autocomplete").remove();
+							$.each(objectArray, function(index, value) {
+								if(index != 0)
+								{
+									selector = selector.concat(", ")
+								}
+								selector = selector.concat("div.panel-result[data-filter='"+value.label+"']");
+							});
+							panelIsotope.isotope({filter: selector});
 						}
 					});
 					createPanelResults(activeHeader.text().toLowerCase(), generatePanelTiles());
@@ -295,7 +313,7 @@ $(document).ready( function() {
 	{
 		var panelTiles = new Array();
 		$.each(matchedTags, function(index, value) {
-			panelTiles.push($("<div class='panel-result'><p>"+value+"</p></div>"));
+			panelTiles.push($("<div class='panel-result' data-filter='"+value+"'><p>"+value+"</p></div>"));
 		});
 		return panelTiles;
 	}
@@ -410,6 +428,7 @@ $(document).ready( function() {
 	var panelOpen = false;
 	var urlArray = new Array();
 	var matchedTags = new Array();
+	var panelIsotope = null;
 	mainACWidget.click(function() {
 		getAllTags();
 	});
@@ -456,4 +475,5 @@ $(document).ready( function() {
 	$("aftermovie").click(function(){
 		$("#f1_card").toggleClass("flipped");
 	});
+
 });
