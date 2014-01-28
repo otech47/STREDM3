@@ -110,7 +110,7 @@ $(document).ready( function() {
 		{	
 			columnType = {title:"Miscellaneous", id:"rc-5"};
 		}
-		var columnCode = $("<div class='column-wrapper'><div class='autocomplete-column'><h1></h1><div class='back-to-results'><div class='back fa-th fa-2x'></div><div class='back'>Show other results...</div></div><div class='results-wrapper'><div class='results-container'></div></div></div></div>");
+		var columnCode = $("<div class='column-wrapper'><div class='autocomplete-column'><h1></h1><div class='back-to-results'><div class='back fa-th fa-2x'></div><div class='back'>Show previous results...</div></div><div class='results-wrapper'><div class='results-container'></div></div></div></div>");
 		columnCode.find("h1").append((columnType.title).toString());
 		columnCode.find(".results-container").attr("id", (columnType.id).toString());
 		columnCode.attr("id", type.toString()+"-wrapper");
@@ -156,7 +156,6 @@ $(document).ready( function() {
 				window.setTimeout(function(){
 					$("div.player-wrapper").empty();
 					$("<div class='player-container'><div class='stredming-result'><iframe width='100%'' height='166' scrolling='no' frameborder='no' src='"+a.attr('data-url')+"&amp;color=ff6600&amp;auto_play=true&amp;show_artwork=true'></iframe></div></div>").appendTo($("div.player-wrapper"));
-
 				}, 1000);
 			});
 		});
@@ -279,8 +278,10 @@ $(document).ready( function() {
 		activeColumn.find(".back-to-results").click(function() {
 			if(animationIsActive == false)
 			{
-				result.siblings().css("display","block");
-				result.siblings().css("opacity","1");
+				result.css("box-shadow","0 0 1px 1px");
+				$(".results-container").empty();
+				$(".autocomplete-container").empty();
+				updateResults();
 			}
 		});
 	}
@@ -472,8 +473,19 @@ $(document).ready( function() {
 		end: false,
 		scrollChange: false
 	 });
-	$("aftermovie").click(function(){
+	$("#aftermovie").click(function() {
 		$("#f1_card").toggleClass("flipped");
 	});
-
+	$("#random-set").click(function() {
+		$.ajax({
+			url: '../scripts/requestRandom.php',
+			dataType: 'json',
+			success: function(data)
+			{
+				$('.scroll-wrapper').animate({scrollTop: $("div.stredming-wrapper").offset().top-55}, '800');
+				$("div.player-wrapper").empty();
+				$("<div class='player-container'><div class='stredming-result'>"+data+"</div></div>").appendTo($("div.player-wrapper"));
+			}
+		});
+	});
 });

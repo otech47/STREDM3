@@ -419,7 +419,7 @@ i
 	width:80%;
 	margin:0 auto;
 	transition:all 0.2s ease-out;
-	padding-top:2%;
+	padding:3% 0;
 	cursor:pointer;
 }
 .back
