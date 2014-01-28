@@ -62,14 +62,6 @@ mixpanel.init("ea091fd1d0073af2c48de623590cd53b");</script><!-- end Mixpanel -->
 							<h1 id="main-header">Stredm</h1>
 						</div>
 						<div class="nav-header-container col-sm-7" id="main-search-container"> 
-							<form class="navbar-form" action="http://bootsnipp.com/search" method="GET" id="search-form" role="search">
-								<div class="form-group form-slide" style="overflow:hidden" id="search-width">
-									<input type="text" class="form-control form-input-slide" id="q" placeholder="Start searching or press 'Enter' for random sets" style="margin-right: -400px;">
-								</div>
-								<button type="submit" class="btn btn-default search-btn" id="search-button">
-									<i class="fa fa-search fa-lg"></i>
-								</button>
-							</form>
 						</div>
 					</div>
 					<div class="navbar-body col-sm-5 navbar-right" id="main-nav-body">
@@ -107,18 +99,18 @@ mixpanel.init("ea091fd1d0073af2c48de623590cd53b");</script><!-- end Mixpanel -->
 					<div class="welcome-container row">
 						<h1 id="homepageintrotext">Sets.</h1>
 						<p style=" margin: 0% 0% 0% 5%; font-size: 1.5em; ">Festivals, Concerts, Radio Mixes & More...</P>
-						<div class="welcome-options-container row">
-							<div class="button-search-wrapper col-md-9"> 
-								<div class="form-group">
-								    <input type="search" class="form-control" id="exampleInputPassword1" placeholder="Search Arist, Event, Genre, Radio Mix and More" style=" padding: 2%; margin: 0% 0% 0% 0%; ">
-								</div>
+					</div>
+					<div class="welcome-options-container row">
+						<div class="button-search-wrapper col-md-9" id="welcome-search-bar"> 
+							<div class="form-group">
+							    <input type="search" class="form-control" id="main-search" placeholder="Search Arist, Event, Genre, Radio Mix and More" style=" padding: 2%; margin: 0% 0% 0% 0%; ">
 							</div>
-							<div class="button-search-wrapper col-md-1">
-								<p style=" font-size: 1.9em; margin: 0% 12%; padding: 10% 0%; ">OR</p>
-							</div>
-							<div class="button-search-wrapper col-md-2">
-								<button class="btn btn-small" id="random-set" style=" padding: 6% 24%; margin: 3% 3%;">Random</button>
-							</div>
+						</div>
+						<div class="button-search-wrapper col-md-1" id="welcome-or">
+							<p style=" font-size: 1.9em; margin: 0% 12%; padding: 10% 0%; ">OR</p>
+						</div>
+						<div class="button-search-wrapper col-md-2" id="welcome-random-button">
+							<button class="btn btn-small" id="random-set" style=" padding: 6% 24%; margin: 3% 3%;">Random</button>
 						</div>
 					</div>
 				</div>

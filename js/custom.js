@@ -56,11 +56,16 @@ $(document).ready( function() {
 	}
 	function getAllTags()
 	{
+		// Test Code Start
 		var autocompleteData = ["Hardwell", "Calvin Harris", "Deadmau5", "Armin Van Buuren", "Alesso", "Ultra Music Festival 2013", "EDC Las Vegas 2013", "Electric Zoo", "Tomorrowland 2013", "EDC Orlando 2013"];
 		mainACWidget.autocomplete({
 			source: autocompleteData
 		});
 		mainACWidget.select();
+		// Test Code End
+
+		// Live Code Start
+		// var autocompleteData = new Array();
 		// $.ajax({
 		// 	type: "GET",
 		// 	url: "../scripts/allTags.php",
@@ -80,6 +85,7 @@ $(document).ready( function() {
 		// 		mainACWidget.select();
 		// 	}
 		// });
+		// Live Code End
 	}
 	function columnCreate(type, tileName)
 	{
@@ -109,7 +115,6 @@ $(document).ready( function() {
 		columnCode.find(".results-container").attr("id", (columnType.id).toString());
 		columnCode.attr("id", type.toString()+"-wrapper");
 		columnCode.attr("style", "margin-left: -500px");
-		alert("");
 		columnCode.appendTo(".autocomplete-container");
 		$.each(tileName, function (index, value) {
 			var a = value.appendTo("#"+columnType.id).addClass("result");
@@ -180,10 +185,11 @@ $(document).ready( function() {
 			activeHeader = activeColumn.find("h1");
 			activeColumn.css("width","25%");
 			activeColumn.siblings(".column-wrapper").css("margin-left","-800px");
-			result.siblings().fadeOut(100);
+			result.siblings().css("opacity","0");
 			activeHeader.css("opacity","0");
 			window.setTimeout(function(){
 				activeHeader.hide();
+				result.siblings().hide();
 				$(".back-to-results").show().hover(function(){
 					$(".back-to-results").css("box-shadow","0 0 3px 2px inset");
 				}, function(){
@@ -197,31 +203,11 @@ $(document).ready( function() {
 				window.setTimeout(function () {
 					panelOpen = true;
 					var inputBox = $("<input class='ui-autocomplete-input' id='info-search' placeholder='Type to filter results'>").appendTo(".search-container");
-					$("#q").blur();
+					$("#main-search").blur();
 					animationIsActive = false;
 					inputBox.slideDown(100);
 					inputBox.focus();
-					matchedTags = ["1", "2","3","4","5","6"];
-					var infoACWidget = inputBox.autocomplete({
-						minLength: 0,
-						source: matchedTags
-						response: function(event, ui) {
-							var objectArray = ui.content;
-							if(backspaceDetect.keyCode == 8 && $("#q").val().length == 0)
-							{
-								createPanelResults(activeHeader.text().toLowerCase(), generatePanelTiles());
-								return;
-							}
-					searchTiles = new Array();
-			$.each(objectArray, function(index, value) {
-				searchTiles.push($("<div class='result'><p>"+value.label+"</p></div>"));
-			});
-			$(".results-container").empty();
-			$(".autocomplete-container").empty();
-			updateResults();
-		}
-					});
-					createPanelResults(activeHeader.text().toLowerCase(), generatePanelTiles());
+					// Live Code Start
 					// matchedTags = new Array();
 					// urlArray = new Array();
 					// $.ajax({
@@ -242,18 +228,39 @@ $(document).ready( function() {
 					// 	{
 					// 		var infoACWidget = inputBox.autocomplete({
 					// 			minLength: 0,
-					// 			source: matchedTags
+					// 			source: matchedTags,
+					// 			response: function(event, ui) {
+					// 				var objectArray = ui.content;
+					// 			}
+					// 		});
+					// 		infoACWidget.click(function() {
+					// 			closePanel();
 					// 		});
 					// 		createPanelResults(activeHeader.text().toLowerCase(), generatePanelTiles());
 					// 	}
 					// });
+					// Live Code End
+
+					// Test Code Start
+					matchedTags = ["1","2","3","4","5","6"];
+					var infoACWidget = inputBox.autocomplete({
+						minLength: 0,
+						source: matchedTags,
+						response: function(event, ui) {
+							var objectArray = ui.content;
+						}
+					});
+					createPanelResults(activeHeader.text().toLowerCase(), generatePanelTiles());
+					// Test Code End
+
 				},300);
 			},300);
 		}
 		activeColumn.find(".back-to-results").click(function() {
 			if(animationIsActive == false)
 			{
-				result.siblings().fadeIn(100);
+				result.siblings().css("display","block");
+				result.siblings().css("opacity","1");
 			}
 		});
 	}
@@ -292,6 +299,7 @@ $(document).ready( function() {
 	}
 	function generateArtistTiles()
 	{
+		// Test code start
 		artistTiles = new Array();
 		var isEmpty = true;
 		var artistArray = ["Hardwell","Calvin Harris","Deadmau5","Armin Van Buuren","Alesso"];
@@ -304,6 +312,9 @@ $(document).ready( function() {
 		});
 		tiles[0] = artistTiles;
 		return [isEmpty, "artist"];
+		// Test code end
+
+		// Live code start
 		// artistTiles = new Array();
 		// var isEmpty = true;
 		// var artistArray = new Array();
@@ -331,9 +342,11 @@ $(document).ready( function() {
 		// 	}
 		// });
 		// return [isEmpty, "artist"];
+		// Live code end
 	}
 	function generateEventTiles()
 	{
+		// test code start
 		eventTiles = new Array();
 		var isEmpty = true;
 		var eventArray = ["Ultra Music Festival 2013", "EDC Las Vegas 2013", "Electric Zoo", "Tomorrowland 2013", "EDC Orlando 2013"];
@@ -346,6 +359,10 @@ $(document).ready( function() {
 		});
 		tiles[1] = eventTiles;
 		return [isEmpty, "event"];
+		// Test code end
+
+		// live code start
+
 		// eventTiles = new Array();
 		// var isEmpty = true;
 		// var eventArray = new Array();
@@ -373,8 +390,10 @@ $(document).ready( function() {
 		// 	}
 		// });
 		// return [isEmpty, "event"];
+
+		// live code end
 	}
-	var mainACWidget = $("#q").autocomplete({
+	var mainACWidget = $("#main-search").autocomplete({
 		minLength: 0
 	});
 	var backspaceDetect;
@@ -395,7 +414,7 @@ $(document).ready( function() {
 	mainACWidget.autocomplete({
 		response: function(event, ui) {
 			var objectArray = ui.content;
-			if(backspaceDetect.keyCode == 8 && $("#q").val().length == 0)
+			if(backspaceDetect.keyCode == 8 && $("#main-search").val().length == 0)
 			{
 				$(".column-wrapper").css("margin-left", "-500px");
 				$(".tile-selection-wrapper").remove();
@@ -410,16 +429,13 @@ $(document).ready( function() {
 			updateResults();
 		}
 	});
-	$("#q").keyup( function(e) {
+	$("#main-search").keyup( function(e) {
 		backspaceDetect = e;
 	});
-	$("#search-button").mouseenter(function(){
-		$("#q").css("margin-right", "200px");
-	});
-	$("input#q").bind('blur', function(){
-		if($("#q").val().length == 0)
+	$("input#main-search").bind('blur', function(){
+		if($("#main-search").val().length == 0)
 		{
-			$("#q").css("margin-right", "-400px");
+			$("#main-search").css("margin-right", "-400px");
 		}
 	});
 	$('#nav').onePageNav({
@@ -438,12 +454,3 @@ $(document).ready( function() {
 		$("#f1_card").toggleClass("flipped");
 	});
 });
-
-
-
-
-
-
-
-
-
