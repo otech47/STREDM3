@@ -231,6 +231,7 @@ $(document).ready( function() {
 					// 			source: matchedTags,
 					// 			response: function(event, ui) {
 					// 				var objectArray = ui.content;
+					// 				$("ul.ui-autocomplete").remove();
 					// 			}
 					// 		});
 					// 		infoACWidget.click(function() {
@@ -248,6 +249,7 @@ $(document).ready( function() {
 						source: matchedTags,
 						response: function(event, ui) {
 							var objectArray = ui.content;
+							$("ul.ui-autocomplete").remove();
 						}
 					});
 					createPanelResults(activeHeader.text().toLowerCase(), generatePanelTiles());
@@ -276,7 +278,6 @@ $(document).ready( function() {
 	{
 		var panelOpen = false;
 		var g = generateArtistTiles();
-		$("ul.ui-autocomplete").remove();
 		if(!(g[0]))
 		{
 			columnCreate(g[1], artistTiles);
@@ -414,6 +415,7 @@ $(document).ready( function() {
 	});
 	mainACWidget.autocomplete({
 		response: function(event, ui) {
+			$("ul.ui-autocomplete").remove();
 			var objectArray = ui.content;
 			if(backspaceDetect.keyCode == 8 && $("#main-search").val().length == 0)
 			{
