@@ -276,6 +276,7 @@ $(document).ready( function() {
 	{
 		var panelOpen = false;
 		var g = generateArtistTiles();
+		$("ul.ui-autocomplete").remove();
 		if(!(g[0]))
 		{
 			columnCreate(g[1], artistTiles);

@@ -622,7 +622,7 @@ i
 {
 	height: 100%;
 	width: 100%;
-	display: none;
+	display: block;
 	background-image: url(../images/coach.jpg);
 	background-position: top center;
 	background-size: 100% 100%;
