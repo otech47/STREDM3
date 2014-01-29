@@ -149,7 +149,7 @@ mixpanel.init("ea091fd1d0073af2c48de623590cd53b");</script><!-- end Mixpanel -->
 		
 		<div class="page" id="event-pagej">
 			<div class="section" id="section-2">
-				<div class="eventj col-md-6">
+				<div class="eventj col-md-6" id="event-left">
 					<div class="eventj-wrapper row" id="left-wrapper">
 						<div id="f1_container">
 							<div id="f1_card">
@@ -184,7 +184,7 @@ mixpanel.init("ea091fd1d0073af2c48de623590cd53b");</script><!-- end Mixpanel -->
 					</div>
 				</div>
 
-				<div class="eventj col-md-6">
+				<div class="eventj col-md-6" id="event-right">
 					<div class="eventj-wrapper row" id="right-wrapper">
 						<div id="f1_container">
 							<div id="f1_card" class="shadow">
@@ -209,18 +209,15 @@ mixpanel.init("ea091fd1d0073af2c48de623590cd53b");</script><!-- end Mixpanel -->
 
 		<div class="page" id="join-page">
 			<div class="section" id="section-3">
-				<div class="join-container col-lg-5 row">
-					<div class="join-content-wrapper row" id="join-header-container">
+				<div class="join-container col-lg-5">
+					<div class="join-content-wrapper" id="join-header-container">
 						<div class="jumbotron" id="join-jumbotron">
 						  <h1>Unity.</h1>
 						  <p style="border-bottom: 1px solid #EEE">Festival-freak? Daring Designer? Marketing-whiz?</p>
 						  <p style="line-height: .5">Infinite reasons, join us by reaching out below</p>
 						</div>
-						<div class="icon-container">
-							<i class="fa fa-arrow-down fa-4x" id="join-arrow"></i>
-						</div>
 					</div>
-					<div class="join-content-wrapper row" id="join-sm-container">
+					<div class="join-content-wrapper" id="join-sm-container">
 						<div class="labels-wrapper">
 							<div class="labels-container">
 									<div class="list-groups">
@@ -263,11 +260,8 @@ mixpanel.init("ea091fd1d0073af2c48de623590cd53b");</script><!-- end Mixpanel -->
 				                  </div>
 							</div>
 						</div>
-					    <div class="icon-container" style="padding: 5% 0% 0% 0%;">
-								<i class="fa fa-arrow-down fa-4x" id="join-arrow" style=" margin: 0% 48%;"></i>
-						</div>
 					</div>
-					<div class="join-content-wrapper row" id="join-form-container">
+					<div class="join-content-wrapper" id="join-form-container">
 						<div class="form-wrapper row" id="form-content-wrapper">
 							<div class="form-container col-md-6 row">
 								<form role="form" class="main-form">
@@ -291,7 +285,7 @@ mixpanel.init("ea091fd1d0073af2c48de623590cd53b");</script><!-- end Mixpanel -->
 	  							  </div>
 								</form>
 							</div>
-							<div class="form-container col-md-6 row">
+							<div class="form-container col-md-6" id="comment-box">
 								<div id="text-area-wrapper">
 						    	 <textarea class="text-area" id="message" name="message"  rows="8.5" placeholder="Passionate about what you do? Let us know! We're always looking for innovative and hungry individuals so no matter if you love to write, film or hack, just shoot us a message!"></textarea>
 						 		</div>
@@ -314,7 +308,7 @@ mixpanel.init("ea091fd1d0073af2c48de623590cd53b");</script><!-- end Mixpanel -->
 							<div class="app-wrapper col-md-6">
 								<div class="jumbotron" id="app-jumbotron">
 									<h1 style="font-size: 5em;">App</h1>
-									<p style="border-bottom: 1px solid #BBB; margin-right: 60%; margin-bottom:0;"> Get free.</P>
+									<p style="border-bottom: 1px solid #BBB; margin-right: 60%; margin-bottom:0;"> Download for free.</P>
 									<p>Stredm uninterrupted sets.</p>
 								</div>
 							</div>
@@ -328,7 +322,8 @@ mixpanel.init("ea091fd1d0073af2c48de623590cd53b");</script><!-- end Mixpanel -->
 								</div>
 							</div>
 						</div>
-						<nav class="navbar navbar-default navbar-bottom" role="navigation" style="margin: 8.5% 0% 0% 0%; height: 7%;">
+						<div class="nav-bottom-container">
+						<nav class="navbar navbar-default navbar-bottom" role="navigation">
 						  	<div class="bottom-nav-container col-md-1" id="copyright-container">
 						  		<p class="navbar-text" id="copyright-text"> © Stredm 2014</p>
 						  	</div>
@@ -346,6 +341,7 @@ mixpanel.init("ea091fd1d0073af2c48de623590cd53b");</script><!-- end Mixpanel -->
 						  		<button type="submit" class="btn btn-default">Submit</button>
 						  	</div>
 						</nav>
+					</div>
 					</div>	
 			</div>
 		</div>

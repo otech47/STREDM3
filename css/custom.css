@@ -170,9 +170,13 @@ body
 
 #section-2 
 {
-	padding-top: 4%;
+	padding-top: 3%;
 }
 
+#section-3
+{
+	padding:0 27%;
+}
 .nav-menu-container
 {
 	padding: 0% 0% 0% 0%;
@@ -634,15 +638,15 @@ i
 	background-position: top center;
 	background-size: 100% 100%;
 	background-repeat: no-repeat;
-	overflow: scroll;
 }
 
 .join-container
 {
-	margin: 0 30%;
+	margin: 0;
 	background-color: white;
 	height: 100%;
 	padding-top: 4.5%;
+	width:100%;
 }
 
 .join-content-wrapper 
@@ -661,17 +665,6 @@ i
 	margin: 0;
 	background-color: white;
 	padding: 1% 2%;
-}
-
-.icon-container
-{
-	height: 17%;
-	padding-top: 1%;
-}
-
-#join-arrow
-{
-	margin: 0% 50%;
 }
 
 #join-sm-container
@@ -772,12 +765,16 @@ a.youtube:hover * { color:#FFF; }
 {
 	height: 100%;
 	margin: 0;
-	padding: 0% 0% 0% 2%;
+	padding: 0;
 }
 
+#comment-box
+{
+	height:100%;
+}
 #text-area-wrapper
 {
-	height: 100%;
+	height: 65%;
 	margin: 0;
 	padding: 0;
 }
@@ -789,7 +786,7 @@ a.youtube:hover * { color:#FFF; }
 
 #contact-reasons
 {
-	margin: 13.3% 0% 0% 0%;
+	margin: 0;
 }
 
 label
@@ -828,7 +825,7 @@ label
 .submit
 {
 	margin: 0;
-	padding-top: 4%;
+	padding-top: 2%;
 }
 
 #join-button
@@ -984,15 +981,26 @@ label
 
 }
 
+#event-left
+{
+
+}
+
+#event-right
+{
+	padding:22% 0 0;
+}
 #right-wrapper
 {
-	margin-top: 54%;
+	margin:0;
+	height:100%;
 }
 
 #front-face-2
 {
 	background-image: url(../images/cp.png);
 	background-size: 100%;
+	padding:33% 0 0;
 }
 
 #back-face-2
@@ -1003,9 +1011,9 @@ label
 
 .promo-menu-wrapper
 {
-	height: 23%;
+	height: 100%;
 	background-color: white;
-	margin: 34% 0% 0% 0%;
+	margin: 0;
 	padding: 0;
 	background-image: url(../images/cpbar.png);
 	backface-visibility: hidden;
@@ -1027,6 +1035,9 @@ a.promo-links-property:hover
 .promo-links-container
 {
 	backface-visibility: hidden;
+	padding:0;
+	margin:0;
+	height:100%;
 }
 
 #app-page
@@ -1194,6 +1205,10 @@ a.promo-links-property:hover
 #feedback-submit-container
 {
 	padding:.5% 1%;
+}
+
+.nav-bottom-container
+{
 }
 /*
 
