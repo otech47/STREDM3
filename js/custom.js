@@ -155,7 +155,7 @@ $(document).ready( function() {
 				$('.scroll-wrapper').animate({scrollTop: $("div.stredming-wrapper").offset().top-55}, '1000');
 				window.setTimeout(function(){
 					$("div.player-wrapper").empty();
-					$("<div class='player-container'><div class='stredming-result'><iframe width='100%'' height='166' scrolling='no' frameborder='no' src='"+a.attr('data-url')+"&amp;color=ff6600&amp;auto_play=true&amp;show_artwork=true'></iframe></div></div>").appendTo($("div.player-wrapper"));
+					$("<div class='player-container'><div class='stredming-result'><iframe width='100%'' height='125' scrolling='no' frameborder='no' src='"+a.attr('data-url')+"&amp;color=ff6600&amp;auto_play=true&amp;show_artwork=true'></iframe></div></div>").appendTo($("div.player-wrapper"));
 				}, 1000);
 			});
 		});
