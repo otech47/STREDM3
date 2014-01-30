@@ -564,11 +564,31 @@ i
 	background-color: white;
 }
 
-.tracklist-wrapper
+.set-info-wrapper
 {
 	height: 11%;
 	margin:0;
 	padding:0;
+}
+
+#tracklist-box
+{
+	padding: 1.2% 14% 1.2% 10%;
+}
+
+.set-info-container
+{
+	height: 100%;
+	margin: 0;
+	padding: 0;
+}
+
+.tracklist-container
+{
+	height: 100%;
+	margin: 0;
+	padding: 0;
+	background: rgba(255, 255, 255,.84);
 }
 
 .info-slide-container
