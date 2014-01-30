@@ -123,14 +123,24 @@ $(document).ready( function() {
 				openPanel(a);
 			});
 		});
-		$(".results-container").isotope({
+		var resultsIsotope = $(".results-container");
+		resultsIsotope.isotope({
 			itemSelector : ".result",
+			resizable: false,
 			layoutMode : "cellsByRow",
 			cellsByRow: {
-    			columnWidth: 140,
-    			rowHeight: 115
+    			columnWidth: resultsIsotope.width()/2,
+    			rowHeight: resultsIsotope.height()/3
   			}
-		})
+		});
+		$(window).smartresize(function(){
+			resultsIsotope.isotope({
+				cellsByRow: {
+    				columnWidth: resultsIsotope.width()/2,
+    				rowHeight: resultsIsotope.height()/3
+    			}
+    		});
+		});
 	}
 	function createPanelResults(type, tileName)
 	{
@@ -162,11 +172,7 @@ $(document).ready( function() {
 		panelIsotope = $(".panel-results-container").isotope({
 			itemSelector : ".panel-result",
 			resizesContainer: false,
-			layoutMode : "cellsByRow",
-			cellsByRow: {
-    			columnWidth: 160,
-    			rowHeight: 115
-  			}
+			layoutMode : "straightDown"
 		});
 		window.setTimeout(function() {
 			$(".panel-results-container").css("margin-top","0px");
@@ -182,8 +188,7 @@ $(document).ready( function() {
 			$(".tile-selection-wrapper").remove();
 			animationIsActive = true;
 			activeHeader = activeColumn.find("h1");
-			activeColumn.css("width","25%");
-			activeColumn.siblings(".column-wrapper").css("margin-left","-800px");
+			activeColumn.siblings(".column-wrapper").css({"opacity":"0","max-width":"0px"});
 			result.css("box-shadow","0 0 3px 7px white");
 			result.siblings().css("box-shadow","0 0 1px 1px");
 			activeHeader.css("opacity","0");
@@ -194,11 +199,11 @@ $(document).ready( function() {
 				}, function(){
 					$(".back-to-results").css("box-shadow","0 0 0 0 inset");
 				});
+				activeColumn.siblings(".column-wrapper").hide();
 			}, 300);
 			infoPanel.appendTo(".autocomplete-container");
 			infoPanel.find(".info-panel").css("background-image", result.css("background-image"));
 			window.setTimeout(function () {
-				infoPanel.css("width","100%");
 				window.setTimeout(function () {
 					panelOpen = true;
 					var inputBox = $("<input class='ui-autocomplete-input' id='info-search' placeholder='Type to filter results'>").appendTo(".search-container");
@@ -227,6 +232,7 @@ $(document).ready( function() {
 						{
 							var infoACWidget = inputBox.autocomplete({
 								minLength: 0,
+								delay: 500,
 								source: matchedTags,
 								response: function(event, ui) {
 									var objectArray = ui.content;
@@ -415,7 +421,8 @@ $(document).ready( function() {
 		// live code end
 	}
 	var mainACWidget = $("#main-search").autocomplete({
-		minLength: 0
+		minLength: 0,
+		delay: 500
 	});
 	var backspaceDetect;
 	var searchTiles = new Array();
