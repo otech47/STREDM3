@@ -119,6 +119,7 @@ body
 	height: 8%;
 	background-color: white;
 	box-shadow: 0px 0px 1px 2px white;
+	font-family: Walkway;
 }
 
 #main-nav-header
@@ -152,7 +153,6 @@ body
 #main-header
 {
 	font-size: 5.4em;
-	font-family: helvetica;
 	font-weight: bold;
 	margin: 0;
 }
@@ -1909,15 +1909,6 @@ font-weight: normal;
 
 */
 
-#ui-id-1
-{
-	height: 47%;
-	width: 100%!important;
-	height:100%!important;
-	background-color: rgba(255, 255, 255, 0);
-	position:static!important;
-	overflow-y:scroll;
-}
 .ui-widget-content
 {
 	background: none!important;
@@ -1995,4 +1986,12 @@ font-weight: normal;
       -ms-transition-duration: 0s;
        -o-transition-duration: 0s;
           transition-duration: 0s;
+}
+
+/* Fonts */
+
+@font-face
+{
+	font-family: Walkway;
+	src: url(../fonts/Walkway_UltraBold.ttf);
 }
