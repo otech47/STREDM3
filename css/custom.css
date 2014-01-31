@@ -1335,6 +1335,10 @@ label
 
 .promo-links-property
 {
+	-webkit-box-flex:1;
+	-moz-box-flex:1;
+	-ms-flex:1;
+	flex:1;
 }
 
 a.promo-links-property:hover
@@ -1361,6 +1365,7 @@ a.promo-links-property:hover
 	-moz-box-align:center;
 	-ms-box-align:center;
 	align-items:center;
+	text-align: center;
 }
 
 #app-page
