@@ -1444,13 +1444,53 @@ a.promo-links-property:hover
 	margin: 0% 0% 0% 0%;
 	padding: 2% 0%;
 }
+
 /*
-.youtube-box{
-	height: 340px;
-	width: 640px;
-	overflow: hidden;
-}
+	Static-Mobile Page
 */
+
+.mobile-page
+{
+	height: 100%;
+	width: 100%;
+	margin: 0;
+	padding: 0;
+	background-image: url(../images/porter.jpeg);
+	display: none;
+	overflow: scroll;
+	background-size: 100%;
+	background-repeat: no-repeat;
+
+
+}
+
+.mobile-logo-wrapper
+{
+	height: 40vh;
+	width: 100vw;
+	padding:  4% 38% 0% 38%;
+	margin: 0;
+}
+
+.mobile-logo-container
+{
+	padding: 0;
+	margin: 0;
+	height: 33vh;
+	width: 19vw;
+	background-image: url(../images/mobile-logo.png);
+	border-radius: 140px;	
+	background-size: 115%;
+	background-repeat: no-repeat;
+	background-position: 50% 0%;
+}
+
+
+
+/*
+	End Static-Mobile Page
+*/
+
 .videoWrapper {
 	position: relative;
 	padding-bottom: 56.25%; /* 16:9 */
