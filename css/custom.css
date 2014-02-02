@@ -1566,17 +1566,17 @@ a.promo-links-property:hover
 
 #feedback-text-container
 {
-	padding:0% 0% 0% 6%;
+	padding:0 0 0 6vh;
 }
 
 #feedback-form-container
 {
-	padding:.7% 0% 0% 0%;
+	padding:1vh 0 0 0;
 }
 
 #feedback-submit-container
 {
-	padding:.7% 1% 0% 1%;
+	padding:1vh 1vw 0 1vw;
 }
 
 #feedback-text
