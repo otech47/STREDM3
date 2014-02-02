@@ -1221,6 +1221,8 @@ label
 	background-image: url(../images/simplecp.png);
 	backface-visibility: hidden;
 	background-repeat: no-repeat;
+	background-size: 60%;
+	position: 50% 70%;
 }
 
 .past-sets-container
