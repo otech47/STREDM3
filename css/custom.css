@@ -1144,8 +1144,8 @@ label
 
 .eventj
 {
-	height: 43vh;
-	width:48vw;
+	height: 45vh;
+	width:50vw;
 	padding: 0;
 	margin: 0;
 	background-color: transparent;
@@ -1290,8 +1290,8 @@ label
 
 #event-right
 {
-	padding: 43vh 0 0 0;
-	height:86vh;
+	padding: 50vh 0 0 0;
+	height:90vh;
 }
 #right-wrapper
 {
