@@ -1554,7 +1554,7 @@ a.promo-links-property:hover
 
 #copyright-container
 {
-	padding:1.5% 0% 0% 1%;
+	padding:0% 0% 0% 0%;
 }
 
 #copyright-text
@@ -1566,17 +1566,23 @@ a.promo-links-property:hover
 
 #feedback-text-container
 {
-	padding:.25% 0% 0% 0%;
+	padding:0% 0% 0% 6%;
 }
 
 #feedback-form-container
 {
-	padding:0.5% 0%;
+	padding:.7% 0% 0% 0%;
 }
 
 #feedback-submit-container
 {
-	padding:.5% 1%;
+	padding:.7% 1% 0% 1%;
+}
+
+#feedback-text
+{
+	width: 100%;
+	font-size: 1.9vh;
 }
 
 .nav-bottom-container
