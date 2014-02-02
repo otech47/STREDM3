@@ -1049,7 +1049,7 @@ a.youtube:hover * { color:#FFF; }
 .form-group
 {
 	margin:0;
-	padding: 1% 0% 10% 0%;
+	padding:0;
 }
 
 .main-form
