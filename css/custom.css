@@ -1218,9 +1218,9 @@ label
 	height: 100%;
 	margin: 0;
 	padding: 0% 0% 0% 0%;
-	background-color: 
-	white;
+	background-image: url(../images/simplecp.png);
 	backface-visibility: hidden;
+	background-repeat: no-repeat;
 }
 
 .past-sets-container
