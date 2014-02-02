@@ -1285,7 +1285,7 @@ label
 
 #event-left
 {
-
+	border-top: 1px solid black;
 }
 
 #event-right
