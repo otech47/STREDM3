@@ -822,7 +822,7 @@ i
 {
 	height:100%;
 	width:100%;
-	padding: 1%;
+	padding: 3vh 0;
 }
 .carousel-wrapper
 {
@@ -869,7 +869,6 @@ i
 	height: 100%;
 	margin: 0;
 	padding: 0;
-	background: rgba(255, 255, 255,.84);
 }
 
 .info-slide-container
