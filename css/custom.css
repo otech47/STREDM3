@@ -15,7 +15,14 @@ body
 	overflow: hidden;
 	font-size:100%;
 }
-
+p
+{
+	margin:0;
+}
+h1
+{
+	margin:0;
+}
 .scroll-wrapper
 {
 	height:90vh;
@@ -36,7 +43,7 @@ body
 	width: 100%;
 	height: auto;
 	margin: 0;
-	padding: 2vh 29vw;
+	padding: 2vh 25vw;
 	transition: all 0.5s ease-out;
 	display: -webkit-box;
 	display: -moz-box;
@@ -50,8 +57,8 @@ body
 
 .welcome-holder
 {
-	width: 100%;
-	height: 100%;
+	width: 50vw;
+	height: 25vh;
 	background-color: 
 	rgba(255,255,255,.85);
 	border-radius: 31px;
@@ -356,7 +363,7 @@ body
 
 #section-3
 {
-	padding:0 27%;
+	padding:0 30vw;
 }
 
 #section-4
@@ -963,31 +970,51 @@ i
 	margin: 0;
 	background-color: white;
 	height: 100%;
-	padding-top: 4.5%;
+	padding: 2vh 1vw;
 	width:100%;
+	display: -webkit-box;
+	display: -moz-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-orient:vertical;
+	-moz-box-orient:vertical;
+	-ms-box-orient: vertical;
+	flex-direction:column;
 }
 
 .join-content-wrapper 
 {
-	padding: 0 3%;
-	height: 33.33%;
+	padding: 0;
 }
 
 #join-header-container
 {
 	padding: 1% 7% 0% 3%;
+	-webkit-box-flex:1;
+	-moz-box-flex:1;
+	-ms-flex:1;
+	flex:1;
 }
 
 #join-jumbotron
 {
 	margin: 0;
 	background-color: white;
-	padding: 1% 2%;
+	padding: 1vh 1vw;
+	font-size:1.25vw;
 }
-
+#join-jumbotron h1
+{
+	font-size: 4vw;
+	margin:0 0 3vh;
+}
 #join-sm-container
 {
 	padding: 0% 30%;
+	-webkit-box-flex:1;
+	-moz-box-flex:1;
+	-ms-flex:1;
+	flex:1;
 }
 
 .labels-wrapper
@@ -1047,6 +1074,10 @@ a.youtube:hover * { color:#FFF; }
 {
 	padding: 3% 4% 5% 4%;
 	height: 33.33%;
+	-webkit-box-flex:1;
+	-moz-box-flex:1;
+	-ms-flex:1;
+	flex:1;
 }
 
 .form-wrapper
