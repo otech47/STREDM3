@@ -16,6 +16,7 @@ while($eventRow = mysqli_fetch_array($result))
 	$resultArray[$i] = $eventRow[0];
 	$i++;
 }
+$resultArray[$i] = $_SESSION['HTTP_REFERER'];
 echo json_encode($resultArray);
 
 ?>
