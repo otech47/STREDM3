@@ -999,7 +999,7 @@ i
 {
 	margin: 0;
 	background-color: white;
-	padding: 1vh 1vw;
+	padding: 0;
 	font-size:1.25vw;
 }
 #join-jumbotron h1
@@ -1007,6 +1007,7 @@ i
 	font-size: 4vw;
 	margin:0 0 3vh;
 }
+
 #join-sm-container
 {
 	padding: 0% 30%;
