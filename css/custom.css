@@ -720,6 +720,7 @@ i
 	width:100%;
 	display:table;
 	transition: all 1s linear;
+	overflow:scroll!important;
 }
 .result
 {
@@ -767,7 +768,7 @@ i
 	width:100%;
 	margin-top:-600px;
 	transition: all 0.3s ease-out;
-	overflow-y: scroll!important;
+	overflow: scroll!important;
 	position:absolute!important;
 }
 .panel-result
