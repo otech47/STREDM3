@@ -1011,11 +1011,11 @@ i
 
 #join-sm-container
 {
-	padding: 0% 30%;
-	-webkit-box-flex:1;
-	-moz-box-flex:1;
-	-ms-flex:1;
-	flex:1;
+	padding: 0% 25%;
+	-webkit-box-flex:1.5;
+	-moz-box-flex:1.5;
+	-ms-flex:1.5;
+	flex:1.5;
 }
 
 .labels-wrapper
@@ -1073,7 +1073,7 @@ a.youtube:hover * { color:#FFF; }
 
 #join-form-container
 {
-	padding: 3% 4% 5% 4%;
+	padding: 3% 4% 2% 4%;
 	height: 33.33%;
 	-webkit-box-flex:1;
 	-moz-box-flex:1;
