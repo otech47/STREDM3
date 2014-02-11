@@ -1,4 +1,5 @@
 $(document).ready( function() {
+	mixpanel.track("Page View");
 	function Queue(arr) 
 	{
 		var i = 0;
@@ -167,6 +168,17 @@ $(document).ready( function() {
 				window.setTimeout(function(){
 					$("div.player-wrapper").empty();
 					$("<div class='player-container'><div class='stredming-result'><iframe width='100%'' height='100%' scrolling='no' frameborder='no' src='"+a.attr('data-url')+"&amp;color=ff6600&amp;auto_play=true&amp;show_artwork=true'></iframe></div></div>").appendTo($("div.player-wrapper"));
+					var player = SC.Widget(document.getElementById("current-result"));
+					var fiveMinutes = 0;
+					player.bind(SC.Widget.Events.PLAY_PROGRESS, function(eventData) {
+						fiveMinutes++;
+						if(fiveMinutes > 1000)
+						{
+							mixpanel.track("Specific Set Played for 5 Minutes");
+							fiveMinutes = -50000000;
+						}	
+					});
+					mixpanel.track("Specific Set Play");
 				}, 500);
 			});
 		});
@@ -506,6 +518,20 @@ $(document).ready( function() {
 				$('.scroll-wrapper').scrollTo("div.stredming-wrapper", 500);
 				$("div.player-wrapper").empty();
 				$("<div class='player-container'><div class='stredming-result'>"+data+"</div></div>").appendTo($("div.player-wrapper"));
+				var player = SC.Widget(document.getElementById("current-result"));
+				var fiveMinutes = 0;
+				player.bind(SC.Widget.Events.PLAY_PROGRESS, function(eventData) {
+					fiveMinutes++;
+					if(fiveMinutes > 1000)
+					{
+						mixpanel.track("Random Set Played for 5 Minutes");
+						fiveMinutes = -50000000;
+					}
+				});
+				mixpanel.track("Random Set Play");
+				$("#c-wrapper").click(function() {
+					alert(fiveMinutes);
+				});
 			}
 		});
 	});
