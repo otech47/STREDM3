@@ -84,7 +84,6 @@ $(document).ready( function() {
 				mainACWidget.autocomplete({
 					source: autocompleteData
 				});
-				console.log(autocompleteData);
 				mainACWidget.select();
 			}
 		});

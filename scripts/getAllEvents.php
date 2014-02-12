@@ -7,7 +7,7 @@ if (!$con)
 	die('Could not connect: ' . mysql_error());
 }
 
-$sql = "SELECT DISTINCT event FROM sets";
+$sql = "SELECT event FROM events WHERE 1 ORDER BY event";
 $result = mysqli_query($con, $sql);
 $i = 0;
 $resultArray = array();

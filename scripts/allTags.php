@@ -7,8 +7,8 @@ if (!$con)
 	die('Could not connect: ' . mysql_error());
 }
 
-$sqle = "SELECT DISTINCT event FROM sets WHERE 1";
-$sqla = "SELECT DISTINCT artist FROM sets WHERE 1";
+$sqle = "SELECT event FROM events WHERE 1 ORDER BY event";
+$sqla = "SELECT artist FROM artists WHERE 1 ORDER BY artist";
 
 $resulte = mysqli_query($con, $sqle);
 $resulta = mysqli_query($con, $sqla);
