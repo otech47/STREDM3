@@ -9,7 +9,15 @@ $(document).ready( function() {
 	}
 	function randomColor() {
     	var choice = Math.floor(Math.random()*8);
-    	var color = ["linear-gradient(to bottom, #e4f5fc 0%,#bfe8f9 20%,#9fd8ef 35%,#2ab0ed 100%)", "linear-gradient(to bottom, #f16f5c 13%,#f16f5c 20%,#f16f5c 26%,#f16f5c 36%,#f02f17 66%,#e73827 100%)", "linear-gradient(to bottom, #b3feff 0%,#4ae8f9 57%)", "linear-gradient(to bottom, #e2b1d8 0%,#dd40b6 63%,#de47ac 100%)", "linear-gradient(to bottom, #ffb76b 0%,#ffa73d 24%,#ff7c00 56%,#ff7f04 100%)", "linear-gradient(to bottom, #fcfeea 0%,#fcf944 100%)", "linear-gradient(to bottom, #fcfff4 0%,#dfe5d7 40%,#b3bead 100%)", "linear-gradient(to bottom, #b4e391 0%,#0fff02 51%,#65ed7a 100%)", "linear-gradient(to bottom, #ff5db1 38%,#ef017c 100%)"];
+    	var color = ["linear-gradient(to bottom, #e4f5fc 0%,#bfe8f9 20%,#9fd8ef 35%,#2ab0ed 100%)", 
+    	"linear-gradient(to bottom, #f16f5c 13%,#f16f5c 20%,#f16f5c 26%,#f16f5c 36%,#f02f17 66%,#e73827 100%)", 
+    	"linear-gradient(to bottom, #b3feff 0%,#4ae8f9 57%)", 
+    	"linear-gradient(to bottom, #e2b1d8 0%,#dd40b6 63%,#de47ac 100%)", 
+    	"linear-gradient(to bottom, #ffb76b 0%,#ffa73d 24%,#ff7c00 56%,#ff7f04 100%)", 
+    	"linear-gradient(to bottom, #fcfeea 0%,#fcf944 100%)", 
+    	"linear-gradient(to bottom, #fcfff4 0%,#dfe5d7 40%,#b3bead 100%)", 
+    	"linear-gradient(to bottom, #b4e391 0%,#0fff02 51%,#65ed7a 100%)", 
+    	"linear-gradient(to bottom, #ff5db1 38%,#ef017c 100%)"];
     	return color[choice];
 	}
 	function searchSet()
@@ -57,13 +65,6 @@ $(document).ready( function() {
 	}
 	function getAllTags()
 	{
-		// Test Code Start
-		// var autocompleteData = ["Hardwell", "Calvin Harris", "Deadmau5", "Armin Van Buuren", "Alesso", "Ultra Music Festival 2013", "EDC Las Vegas 2013", "Electric Zoo", "Tomorrowland 2013", "EDC Orlando 2013"];
-		// mainACWidget.autocomplete({
-		// 	source: autocompleteData
-		// });
-		// mainACWidget.select();
-		// Test Code End
 
 		// Live Code Start
 		var autocompleteData = new Array();
@@ -83,6 +84,7 @@ $(document).ready( function() {
 				mainACWidget.autocomplete({
 					source: autocompleteData
 				});
+				console.log(autocompleteData);
 				mainACWidget.select();
 			}
 		});
@@ -91,27 +93,21 @@ $(document).ready( function() {
 	function columnCreate(type, tileName)
 	{
 		var columnType = {title:"Empty", id:"rc-0"};
-		if(type == "artist")
-		{
+		if(type == "artist") {
 			columnType = {title:"Artist", id:"rc-1"};
-		}
-		else if(type == "event")
-		{	
+		} else if(type == "event") {	
 			columnType = {title:"Event", id:"rc-2"};
-		}
-		else if(type == "radiomix")
-		{	
+		} else if(type == "radiomix") {	
 			columnType = {title:"Radio Mix", id:"rc-3"};
-		}
-		else if(type == "genre")
-		{	
+		} else if(type == "genre") {	
 			columnType = {title:"Genre", id:"rc-4"};
-		}
-		else
-		{	
+		} else {	
 			columnType = {title:"Miscellaneous", id:"rc-5"};
 		}
-		var columnCode = $("<div class='column-wrapper'><div class='autocomplete-column'><h1></h1><div class='back-to-results'><div class='back fa-th fa-2x'></div><div class='back'>Show previous results...</div></div><div class='results-wrapper'><div class='results-container'></div></div></div></div>");
+		var columnCode = $("<div class='column-wrapper'><div class='autocomplete-column'>" + 
+			"<h1></h1><div class='back-to-results'><div class='back fa-th fa-2x'></div>" + 
+			"<div class='back'>Show previous results...</div></div>" + 
+			"<div class='results-wrapper'><div class='results-container'></div></div></div></div>");
 		columnCode.find("h1").append((columnType.title).toString());
 		columnCode.find(".results-container").attr("id", (columnType.id).toString());
 		columnCode.attr("id", type.toString()+"-wrapper");
@@ -275,28 +271,6 @@ $(document).ready( function() {
 					});
 					// Live Code End
 
-					// Test Code Start
-					// matchedTags = ["1","2","3","4","5","6"];
-					// var infoACWidget = inputBox.autocomplete({
-					// 	minLength: 0,
-					// 	source: matchedTags,
-					// 	response: function(event, ui) {
-					// 		var objectArray = ui.content;
-					// 		var selector = "";
-					// 		$("ul.ui-autocomplete").remove();
-					// 		$.each(objectArray, function(index, value) {
-					// 			if(index != 0)
-					// 			{
-					// 				selector = selector.concat(", ")
-					// 			}
-					// 			selector = selector.concat("div.panel-result[data-filter='"+value.label+"']");
-					// 		});
-					// 		panelIsotope.isotope({filter: selector});
-					// 	}
-					// });
-					// createPanelResults(activeHeader.text().toLowerCase(), generatePanelTiles());
-					// Test Code End
-
 				},300);
 			},300);
 		}
@@ -346,20 +320,6 @@ $(document).ready( function() {
 	}
 	function generateArtistTiles()
 	{
-		// Test code start
-		// artistTiles = new Array();
-		// var isEmpty = true;
-		// var artistArray = ["Hardwell","Calvin Harris","Deadmau5","Armin Van Buuren","Alesso"];
-		// $.each(searchTiles, function(index, value) {
-		// 	if($.inArray(value.text(), artistArray) != -1)
-		// 	{
-		// 		artistTiles.push(value);
-		// 		isEmpty = false;
-		// 	}
-		// });
-		// tiles[0] = artistTiles;
-		// return [isEmpty, "artist"];
-		// Test code end
 
 		// Live code start
 		artistTiles = new Array();
@@ -393,20 +353,6 @@ $(document).ready( function() {
 	}
 	function generateEventTiles()
 	{
-		// test code start
-		// eventTiles = new Array();
-		// var isEmpty = true;
-		// var eventArray = ["Ultra Music Festival 2013", "EDC Las Vegas 2013", "Electric Zoo", "Tomorrowland 2013", "EDC Orlando 2013"];
-		// $.each(searchTiles, function(index, value) {
-		// 	if($.inArray(value.text(), eventArray) != -1)
-		// 	{
-		// 		eventTiles.push(value);
-		// 		isEmpty = false;
-		// 	}
-		// });
-		// tiles[1] = eventTiles;
-		// return [isEmpty, "event"];
-		// Test code end
 
 		// live code start
 
@@ -457,9 +403,8 @@ $(document).ready( function() {
 	var urlArray = new Array();
 	var matchedTags = new Array();
 	var panelIsotope = null;
-	mainACWidget.click(function() {
-		getAllTags();
-	});
+	// do once only on load
+	getAllTags();
 	mainACWidget.autocomplete({
 		search: function(event, ui) {
 			var loader = $("<div class='loader-container'><div class='loader'><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div><div class='loader-text'>Searching...</div></div>");
@@ -489,8 +434,7 @@ $(document).ready( function() {
 		backspaceDetect = e;
 	});
 	$("input#main-search").bind('blur', function(){
-		if($("#main-search").val().length == 0)
-		{
+		if($("#main-search").val().length == 0) {
 			$("#main-search").css("margin-right", "-400px");
 		}
 	});
