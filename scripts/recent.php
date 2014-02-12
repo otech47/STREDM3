@@ -7,14 +7,14 @@ if (!$con)
 die('Could not connect: ' . mysql_error());
 }
 
-$sql = "SELECT date,url FROM sets ORDER BY date DESC";
+$sql = "SELECT date,songURL FROM sets ORDER BY date DESC";
 $result = mysqli_query($con, $sql);
-$urlArray = array();
+$songURLArray = array();
 $i = 0;
 while($i<10)
 {
 	$row = mysqli_fetch_array($result);
-	$urlArray[$i] = $row['url'];
+	$songURLArray[$i] = $row['songURL'];
 	$i++;
 }
 

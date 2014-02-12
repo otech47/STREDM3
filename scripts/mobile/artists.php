@@ -8,16 +8,12 @@ if (!$con)
 }
 
 $fullArray = array();
-$sql = "SELECT id, artist, event, genre AS title, url AS songURL FROM sets WHERE popularity > 10";
+$sql = "SELECT id, artist, event, genre AS title, songURL FROM sets WHERE is_deleted = 0";
 $result = mysqli_query($con, $sql);
 $i = 0;
 while($row = mysqli_fetch_array($result))
 {
-	$fullArray[$i]['id'] = $row['id'];
-	$fullArray[$i]['artist'] = $row['artist'];
-	$fullArray[$i]['event'] = $row['event'];
-	$fullArray[$i]['title'] = $row['title'];
-	$fullArray[$i]['songURL'] = $row['songURL'];
+	$fullArray[$i] = $row;
 
 	$i++;
 }

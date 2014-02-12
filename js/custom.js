@@ -49,7 +49,7 @@ $(document).ready( function() {
 				var urlSrc = $("#current-result").attr("src");
 				var urlSelection = urlSrc.substring(0, urlSrc.length-31);
 				$(".stredming-tracklist").empty();
-				var urlpostdata = {url:urlSelection}
+				var urlpostdata = {songURL:urlSelection}
 				jQuery.ajax({
 					type: "POST",
 					url: '../scripts/requestTracklist.php',

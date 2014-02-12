@@ -13,7 +13,7 @@ if(!session_is_registered("user")){
 	}
 
 	$setsArray = array();
-	$sql = "SELECT s.id, s.radiomix, s.songURL, s.imageURL, s.url, s.date, s.popularity, s.source, s.tracklist, a.artist, e.event, g.genre ".
+	$sql = "SELECT s.id, s.radiomix, s.songURL, s.imageURL, s.date, s.popularity, s.source, s.tracklist, a.artist, e.event, g.genre ".
 			"FROM sets s ".
 			"INNER JOIN artists a ON a.id = s.artist_id ".
 			"INNER JOIN events e ON e.id = s.event_id ".
@@ -49,7 +49,6 @@ if(!session_is_registered("user")){
 		    <th>Genre</th>
 		    <th>Song URL</th>
 		    <th>Image URL</th>
-		    <th>URL</th>
 		    <th>Source</th>
 		    <th>Radio Mix</th>
 		  </tr>
@@ -85,11 +84,6 @@ if(!session_is_registered("user")){
 		  	  <td>
 			  	<div class="form-group">
 			  	  <?=$set['imageURL']?>
-				</div>
-		  	  </td>
-		  	  <td>
-			  	<div class="form-group">
-			  	  <?=$set['url']?>
 				</div>
 		  	  </td>
 		  	  <td>

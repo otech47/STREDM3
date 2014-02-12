@@ -8,7 +8,7 @@ if (!$con)
 }
 
 $resultArray = array();
-$sql = "SELECT url FROM sets";
+$sql = "SELECT songURL FROM sets WHERE 1";
 $result = mysqli_query($con, $sql);
 $i = 0;
 while($row = mysqli_fetch_array($result))

@@ -1,4 +1,5 @@
 <?php
+require_once './checkAddSlashes.php';
 
 $con = mysqli_connect("localhost", "otech47_sc", "soundcloud1","otech47_soundcloud");
 
@@ -7,9 +8,11 @@ if (!$con)
 	die('Could not connect: ' . mysql_error());
 }
 
-$url = $_POST['url'];
+$songURL = $_POST['songURL'];
+$songURL = checkAddSlashes($songURL);
+
 $resultArray = array();
-$sql = "SELECT tracklist FROM sets WHERE url='$url'";
+$sql = "SELECT tracklist FROM sets WHERE songURL='$songURL' AND is_deleted = 0";
 $result = mysqli_query($con, $sql);
 $i = 0;
 while($row = mysqli_fetch_array($result))

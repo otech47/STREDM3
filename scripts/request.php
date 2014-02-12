@@ -1,4 +1,5 @@
 <?php
+require_once './checkAddSlashes.php';
 
 $con = mysqli_connect("localhost", "otech47_sc", "soundcloud1","otech47_soundcloud");
 
@@ -8,27 +9,28 @@ if (!$con)
 }
 
 $label = $_POST['label'];
+$label = checkAddSlashes($label);
 
 $eventUrlArray = array();
 $eventArtistArray = array();
-$eventSql = "SELECT * FROM sets WHERE event='$label'";
+$eventSql = "SELECT * FROM sets AS s INNER JOIN events AS e ON e.id = s.event_id WHERE e.event = '$label' AND is_deleted = 0 AND self_hosted = 0";
 $eventResult = mysqli_query($con, $eventSql);
 $i = 0;
 while($eventRow = mysqli_fetch_array($eventResult))
 {
-	$eventUrlArray[$i] = $eventRow['url'];
+	$eventUrlArray[$i] = $eventRow['songURL'];
 	$eventArtistArray[$i] = $eventRow['artist'];
 	$i++;
 }
 
 $artistUrlArray = array();
 $artistEventArray = array();
-$artistSql = "SELECT * FROM sets WHERE artist='$label'";
+$artistSql = "SELECT * FROM sets AS s INNER JOIN artists AS a ON a.id = s.artist_id WHERE a.artist='$label' AND is_deleted = 0 AND self_hosted = 0";
 $artistResult = mysqli_query($con, $artistSql);
 $i = 0;
 while($artistRow = mysqli_fetch_array($artistResult))
 {
-	$artistUrlArray[$i] = $artistRow['url'];
+	$artistUrlArray[$i] = $artistRow['songURL'];
 	$artistEventArray[$i] = $artistRow['event'];
 	$i++;
 }
@@ -43,24 +45,5 @@ else
 }
 
 echo json_encode($resultArray);
-// if(!empty($resultArray))
-// {
-// 	$j = rand(0, count($resultUrlArray)-1);
-// 	if(strpos($resultUrlArray[$j], 'soundcloud') !== false)
-// 	{
-// 		$returnResult = "<iframe id='current-result' width='100%' height='100%' scrolling='no' frameborder='no' src=".stripslashes($resultArray[$j])."&amp;auto_play=true&amp;show_user=false"."></iframe>";
-// 		echo $returnResult;
-// 	}
-// 	else
-// 	{
-// 		$returnResult = "<iframe width='100%' height='100%' src='//www.mixcloud.com/widget/iframe/?feed=".stripslashes($resultArray[$j])."&mini=&stylecolor=&hide_artwork=&embed_type=widget_standard&hide_tracklist=1&hide_cover=1&autoplay=0' frameborder='0'></iframe>";
-// 		echo $returnResult;
-// 	}
-// }
-// else
-// {
-// 	$returnResult = "<p>No results found";
-// 	echo $returnResult;
-// }
 
 ?>

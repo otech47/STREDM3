@@ -1,4 +1,5 @@
 <?php
+require_once './checkAddSlashes.php';
 
 header('Content-Type: text/plain; charset=utf-8');
 
@@ -45,12 +46,13 @@ if(checkId('artist', $count) && checkId('event', $count) && checkId('genre', $co
 	$imageURL = uploadFile('imagefile');
 	$songURL = uploadFile('songfile');
 	$source = checkAddSlashes($_POST['source']);
+	$self_hosted = 1;
 	$radiomix = checkAddSlashes($_POST['radiomix']);
 
 
 	// echo "True $artist_id \t $event_id \t $genre_id \n$tracklist";
-	$sql =	"INSERT IGNORE INTO sets(artist_id, event_id, radiomix, genre_id, songURL, imageURL, date, source, tracklist) ".
-			"VALUES ($artist_id, $event_id, '$radiomix', $genre_id, '$songURL', '$imageURL', now(), '$source', '$tracklist')";
+	$sql =	"INSERT IGNORE INTO sets(artist_id, event_id, radiomix, genre_id, songURL, imageURL, date, source, self_hosted, tracklist) ".
+			"VALUES ($artist_id, $event_id, '$radiomix', $genre_id, '$songURL', '$imageURL', now(), '$source', $self_hosted, '$tracklist')";
 	$result = mysqli_query($con, $sql);
 	if($result) {
 		$success = "Success! Set uploaded.";
@@ -62,13 +64,6 @@ if(checkId('artist', $count) && checkId('event', $count) && checkId('genre', $co
 	header("location:/scripts/upload.php");
 } else {
 	header("location:/scripts/error.html");
-}
-
-
-function checkAddSlashes($str) {
-    //check string for \' (escaped single quote), \" (escaped double quote), \\ (escaped backslash)
-    $pattern = '/\\\\[\'"\\\\]+/';
-    return (!preg_match($pattern, $str)) ? addslashes($str) : $str;
 }
 
 function checkId($type, $count) {
