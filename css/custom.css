@@ -891,6 +891,24 @@ i
 	height: 100%;
 }
 
+#set-image-container
+{
+	padding: 1vh 1vh;
+}
+
+.set-image
+{
+	height: 100%;
+	box-shadow: 0px 0px 1px 1px white;
+
+}
+
+#set-play-button
+{
+	height: 100%;
+	width:100vh;
+}
+
 .carousel-wrapper
 {
 	width: 100%;
