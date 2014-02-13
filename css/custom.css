@@ -870,7 +870,7 @@ i
 	-moz-box-flex:3;
 	-ms-flex:3;
 	flex:3;
-	padding:1vh 0vh;
+	padding:0vh 0vh;
 	display: -webkit-box;
 	display: -moz-box;
 	display: -ms-flexbox;
@@ -941,18 +941,73 @@ i
 
 #set-title-wrapper
 {
-
+	padding-right:15vh;
+	height: 100%;
 }
 
 #set-player-wrapper
 {
+	display: -webkit-box;
+	display: -moz-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-orient:vertical;
+	-moz-box-orient:vertical;
+	-ms-box-orient: vertical;
+	flex-direction:column;
+}
 
+.player-content
+{
+	height: 100%;
+	-webkit-box-flex:1;
+	-moz-box-flex:1;
+	-ms-flex:1;
+	flex:1;
+}
+
+#time-wrapper 
+{
+	-webkit-box-flex:2;
+	-moz-box-flex:2;
+	-ms-flex:2;
+	flex:2;
+}
+
+#player-wrapper
+{
+	box-shadow: 0px 0px 1px 1px black;
 }
 
 #set-tracklist-wrapper
 {
+
+}
+
+#set-player-tracklist
+{
+	padding:2vh 19vh 0vh 0vh;
+}
+
+.tracklist
+{
+	height: 4vh;
+	padding-top: 0vh;
+	background-color: rgba(155,155,255,.8);
+	box-shadow:0px 0px 1px 1px white;
+}
+
+#tracklist-text
+{
+	padding: .5vh 0vh 0vh 6vh;
+	margin: 0;
+}
+
+.set-title
+{
 	
 }
+
 
 .carousel-wrapper
 {
