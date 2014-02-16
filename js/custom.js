@@ -65,7 +65,6 @@ $(document).ready( function() {
 	}
 	function getAllTags()
 	{
-
 		// Live Code Start
 		var autocompleteData = new Array();
 		$.ajax({
@@ -160,9 +159,9 @@ $(document).ready( function() {
 			a.attr("data-url", urlArray[index]);
 			a.click(function(){
 				$('.scroll-wrapper').scrollTo("div.stredming-wrapper", 500);
-				window.setTimeout(function(){
+				window.setTimeout(function() {
 					$("div.player-wrapper").empty();
-					$("<div class='player-container'><div class='stredming-result'><iframe width='100%'' height='100%' scrolling='no' frameborder='no' src='"+a.attr('data-url')+"&amp;color=ff6600&amp;auto_play=true&amp;show_artwork=true'></iframe></div></div>").appendTo($("div.player-wrapper"));
+					$("<div class='player-container'><div class='stredming-result'><iframe id='current-result' width='100%'' height='100%' scrolling='no' frameborder='no' src='"+a.attr('data-url')+"&amp;color=ff6600&amp;auto_play=true&amp;show_artwork=true'></iframe></div></div>").appendTo($("div.player-wrapper"));
 					var player = SC.Widget(document.getElementById("current-result"));
 					var fiveMinutes = 0;
 					player.bind(SC.Widget.Events.PLAY_PROGRESS, function(eventData) {
@@ -174,6 +173,9 @@ $(document).ready( function() {
 						}	
 					});
 					mixpanel.track("Specific Set Play");
+					$("#c-wrapper").click(function() {
+						alert(fiveMinutes);
+					});
 				}, 500);
 			});
 		});
