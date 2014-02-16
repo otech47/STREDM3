@@ -6,14 +6,14 @@ if(!session_is_registered("user")){
 } else {
 
 	$success = null;
-	if(session_is_registered("success")) {
+	// if(session_is_registered("success")) {
 		$success = $_SESSION['success'];
-	}
+	// }
 
 	$failure = null;
-	if(session_is_registered("failure")) {
+	// if(session_is_registered("failure")) {
 		$failure = $_SESSION['failure'];
-	}
+	// }
 
 	$con = mysqli_connect("localhost", "otech47_sc", "soundcloud1","otech47_soundcloud");
 
@@ -42,6 +42,16 @@ if(!session_is_registered("user")){
 		$i++;
 	}
 
+	$radiomixesArray = array();
+	$sql = "SELECT * FROM radiomixes WHERE 1";
+	$result = mysqli_query($con, $sql);
+	$i = 0;
+	while($row = mysqli_fetch_array($result))
+	{
+		$radiomixesArray[$i] = $row;
+		$i++;
+	}
+
 	$genresArray = array();
 	$sql = "SELECT * FROM genres WHERE 1";
 	$result = mysqli_query($con, $sql);
@@ -59,7 +69,7 @@ if(!session_is_registered("user")){
   	<link href="/css/bootstrap.min.css" rel="stylesheet" media="screen">
     <title>Stredm</title>
   </head>
-  <body>
+  <body style="font-size: 16px;">
   	<div class="container">
   	  <h1>Login Successful</h1>
 	  <a href="/scripts/logout.php" class="btn btn-danger" role="button">Log Out</a>
@@ -83,7 +93,12 @@ if(!session_is_registered("user")){
 		  </select>
 		  <input type="text" class="form-control" id="newartist" name="newartist" style="display:none;" />
 		</div>
-	  	<div class="form-group">
+		<div class="checkbox">
+			<label>
+				<input id="radiomixcheckbox" name="radiomixcheckbox" type="checkbox" value="radiomix"> Is this a Radio Mix?
+			</label>
+		</div>
+	  	<div class="form-group" id="eventpicker">
     	<label for="event">Event</label>
 		  <select id="event" name="event" class="form-control">
 		  	<option value="">Select Event</option>
@@ -95,6 +110,19 @@ if(!session_is_registered("user")){
 		  	<? } ?>
 		  </select>
 		  <input type="text" class="form-control" id="newevent" name="newevent" style="display:none;" />
+		</div>
+	  	<div class="form-group" id="radiomixpicker" style="display:none;">
+    	<label for="radiomix">Radio Mix</label>
+		  <select id="radiomix" name="radiomix" class="form-control">
+		  	<option value="">Select Radio Mix</option>
+		  	<option value="new">New Radio Mix</option>
+			<?php foreach($radiomixesArray as $radiomix) { ?>
+		  	  <option value="<?=$radiomix['id']?>">
+		  		<?=$radiomix['radiomix']?>
+		  	  </option>
+		  	<? } ?>
+		  </select>
+		  <input type="text" class="form-control" id="newradiomix" name="newradiomix" style="display:none;" />
 		</div>
 	  	<div class="form-group">
     	<label for="genre">Genre</label>
@@ -108,10 +136,6 @@ if(!session_is_registered("user")){
 		  	<? } ?>
 		  </select>
 		  <input type="text" class="form-control" id="newgenre" name="newgenre" style="display:none;" />
-		</div>
-		<div class="form-group" id="radioMixControls" style="display:none;">
-    	<label for="radiomix">Radio Mix</label>
-		  <input type="text" id="radiomix" name="radiomix" class="form-control"/>
 		</div>
 		<div class="form-group">
     	  <label for="songfile">Song File</label>
@@ -150,15 +174,18 @@ if(!session_is_registered("user")){
   		var v = $(this).val();
   		if(v == "new") {
   			$('#newevent').show();
-  			$('#radioMixControls').hide();
-  			$('#radioMixControls').val('');
-  		} else if(v >= 11 && v <= 13) {
-  			$('#radioMixControls').show();
   		} else {
   			$('#newevent').hide();
   			$('#newevent').val('');
-  			$('#radioMixControls').hide();
-  			$('#radioMixControls').val('');
+  		}
+  	});
+  	$('#radiomix').change(function() {
+  		var v = $(this).val();
+  		if(v == "new") {
+  			$('#newradiomix').show();
+  		} else {
+  			$('#newradiomix').hide();
+  			$('#newradiomix').val('');
   		}
   	});
   	$('#genre').change(function() {
@@ -168,6 +195,15 @@ if(!session_is_registered("user")){
   		} else {
   			$('#newgenre').hide();
   			$('#newgenre').val('');
+  		}
+  	});
+  	$('#radiomixcheckbox').change(function() {
+  		if(this.checked) {
+  			$('#eventpicker').hide();
+  			$('#radiomixpicker').show();
+  		} else {
+  			$('#eventpicker').show();  			
+  			$('#radiomixpicker').hide();
   		}
   	});
   });

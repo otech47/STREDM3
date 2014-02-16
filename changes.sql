@@ -1,8 +1,8 @@
-insert ignore into artists(artist) SELECT DISTINct artist FROM `sets` WHERE sets.artist IS NOT NULL order by artist
+insert ignore into artists(artist) SELECT DISTINCT artist FROM `sets` WHERE sets.artist IS NOT NULL order by artist
 
-insert ignore into events(event) SELECT DISTINct event FROM `sets` WHERE sets.event IS NOT NULL order by event
+insert ignore into events(event) SELECT DISTINCT event FROM `sets` WHERE sets.event IS NOT NULL order by event
 
-insert ignore into genres(genre) SELECT DISTINct genre FROM `sets` WHERE sets.genre IS NOT NULL order by genre
+insert ignore into genres(genre) SELECT DISTINCT genre FROM `sets` WHERE sets.genre IS NOT NULL order by genre
 
 
 UPDATE sets s

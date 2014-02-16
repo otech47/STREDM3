@@ -17,7 +17,12 @@ $result = mysqli_query($con, $sql);
 $i = 0;
 while($row = mysqli_fetch_array($result))
 {
-	$fullArray[$i] = $row;
+	$fullArray[$i]['id'] = $row['id'];
+	$fullArray[$i]['artist'] = $row['artist'];
+	$fullArray[$i]['event'] = $row['event'];
+	$fullArray[$i]['genre'] = $row['genre'];
+	$fullArray[$i]['imageURL'] = $row['imageURL'];
+	$fullArray[$i]['songURL'] = $row['songURL'];
 
 	$i++;
 }

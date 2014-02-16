@@ -38,32 +38,47 @@ while($row = mysqli_fetch_array($result)) {
 	$count['genre'] = $row['c'];
 }
 
-if(checkId('artist', $count) && checkId('event', $count) && checkId('genre', $count)) {
+$sql = "SELECT count(id) as c FROM radiomixes WHERE 1";
+$result = mysqli_query($con, $sql);
+while($row = mysqli_fetch_array($result)) {
+	$count['radiomix'] = $row['c'];
+}
+
+if(checkId('artist', $count) && (checkId('event', $count) || checkId('radiomix', $count)) && checkId('genre', $count)) {
 	$artist_id = setId('artist', $con);
 	$event_id = setId('event', $con);
 	$genre_id = setId('genre', $con);
+	$radiomix_id = setId('radiomix', $con);
 	$tracklist = checkAddSlashes($_POST['tracklist']);
 	$imageURL = uploadFile('imagefile');
 	$songURL = uploadFile('songfile');
 	$source = checkAddSlashes($_POST['source']);
 	$self_hosted = 1;
-	$radiomix = checkAddSlashes($_POST['radiomix']);
-
+	$is_radiomix = 0;
+	if(isset($_POST['radiomixcheckbox'])) {
+	    $is_radiomix = 1;
+	}
+	if($is_radiomix == 1) {
+		$event_id = 0;
+	} else {
+		$radiomix_id = 0;
+	}
 
 	// echo "True $artist_id \t $event_id \t $genre_id \n$tracklist";
-	$sql =	"INSERT IGNORE INTO sets(artist_id, event_id, radiomix, genre_id, songURL, imageURL, date, source, self_hosted, tracklist) ".
-			"VALUES ($artist_id, $event_id, '$radiomix', $genre_id, '$songURL', '$imageURL', now(), '$source', $self_hosted, '$tracklist')";
+	$sql =	"INSERT IGNORE INTO sets(artist_id, event_id, radiomix_id, genre_id, songURL, imageURL, date, source, self_hosted, is_radiomix, tracklist) ".
+			"VALUES ($artist_id, $event_id, '$radiomix_id', $genre_id, '$songURL', '$imageURL', now(), '$source', $self_hosted, $is_radiomix, '$tracklist')";
+			// $result = $sql;
 	$result = mysqli_query($con, $sql);
 	if($result) {
-		$success = "Success! Set uploaded.";
-		session_register("success");
+		$_SESSION['success'] = "Success! Set uploaded. sql: $sql";
+		// throw new RuntimeException("Success! Set uploaded. sql: $sql");
+		header("location:/scripts/upload.php");
 	} else {
-		$failure = "Failed! There were errors inserting the set into the database.";
-		session_register("failure");
+		$_SESSION['failure'] = "Failed! There were errors inserting the set into the database. sql: $sql";
+		throw new RuntimeException("Failed! There were errors inserting the set into the database. sql: $sql");
 	}
-	header("location:/scripts/upload.php");
 } else {
-	header("location:/scripts/error.html");
+	header("location:/error.html");
 }
 
 function checkId($type, $count) {
@@ -96,9 +111,10 @@ function setId($type, $con) {
 	$str = checkAddSlashes($_POST[$type]);
 	if($str == "new") {
 		$newtype = checkAddSlashes($_POST["new$type"]);
-		$sql = "INSERT IGNORE INTO $type"."s($type) VALUES ('$newtype')";
+		$plural = ($type == 'radiomix') 'es' : 's';
+		$sql = "INSERT IGNORE INTO $type"."$plural($type) VALUES ('$newtype')";
 		$result = mysqli_query($con, $sql);
-		$sql = "SELECT id FROM ".$type."s WHERE $type = '$newtype'";
+		$sql = "SELECT id FROM ".$type."$plural WHERE $type = '$newtype'";
 		$result = mysqli_query($con, $sql);
 		while($row = mysqli_fetch_array($result)) {
 			return $row['id'];
@@ -158,6 +174,8 @@ function uploadFile($filename) {
 	    // DO NOT USE $_FILES[$filename]['name'] WITHOUT ANY VALIDATION !!
 	    // On this example, obtain safe unique name from its binary data.
 	    $newFilename = sha1_file($_FILES[$filename]['tmp_name']);
+	    $ext = substr($_FILES[$filename]['name'], -3);
+	    $newFilename = $newFilename . "." . $ext;
 	    if (!move_uploaded_file(
 	        $_FILES[$filename]['tmp_name'],
 	        sprintf('./../uploads/%s', $newFilename)
