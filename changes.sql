@@ -4,6 +4,8 @@ insert ignore into events(event) SELECT DISTINCT event FROM `sets` WHERE sets.ev
 
 insert ignore into genres(genre) SELECT DISTINCT genre FROM `sets` WHERE sets.genre IS NOT NULL order by genre
 
+insert ignore into radiomixes(radiomix) SELECT DISTINCT radiomix FROM `sets` WHERE sets.radiomix IS NOT NULL order by radiomix
+
 
 UPDATE sets s
 JOIN artists a ON s.artist = a.artist
@@ -19,3 +21,13 @@ UPDATE sets s
 JOIN events e ON s.event = e.event
 SET s.event_id = e.id
 WHERE s.event = e.event
+
+UPDATE sets s
+JOIN radiomixes r ON s.radiomix = r.radiomix
+SET s.radiomix_id = r.id
+WHERE s.radiomix = r.radiomix
+
+UPDATE sets s
+JOIN radiomixes r ON s.radiomix = r.radiomix
+SET s.is_radiomix = 1
+WHERE s.radiomix = r.radiomix

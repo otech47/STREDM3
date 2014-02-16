@@ -213,3 +213,17 @@ pip-log.txt
 
 #Mr Developer
 .mr.developer.cfg
+
+############
+## Node.js
+############
+
+app.js
+node_modules/
+
+
+############
+## music testing
+############
+
+uploads/

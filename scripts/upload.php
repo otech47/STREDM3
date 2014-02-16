@@ -23,7 +23,7 @@ if(!session_is_registered("user")){
 	}
 
 	$artistsArray = array();
-	$sql = "SELECT * FROM artists WHERE 1";
+	$sql = "SELECT * FROM artists WHERE 1 order by artist";
 	$result = mysqli_query($con, $sql);
 	$i = 0;
 	while($row = mysqli_fetch_array($result))
@@ -33,7 +33,7 @@ if(!session_is_registered("user")){
 	}
 
 	$eventsArray = array();
-	$sql = "SELECT * FROM events WHERE 1";
+	$sql = "SELECT * FROM events WHERE 1 order by event";
 	$result = mysqli_query($con, $sql);
 	$i = 0;
 	while($row = mysqli_fetch_array($result))
@@ -43,7 +43,7 @@ if(!session_is_registered("user")){
 	}
 
 	$radiomixesArray = array();
-	$sql = "SELECT * FROM radiomixes WHERE 1";
+	$sql = "SELECT * FROM radiomixes WHERE 1 order by radiomix";
 	$result = mysqli_query($con, $sql);
 	$i = 0;
 	while($row = mysqli_fetch_array($result))
@@ -53,7 +53,7 @@ if(!session_is_registered("user")){
 	}
 
 	$genresArray = array();
-	$sql = "SELECT * FROM genres WHERE 1";
+	$sql = "SELECT * FROM genres WHERE 1 order by genre";
 	$result = mysqli_query($con, $sql);
 	$i = 0;
 	while($row = mysqli_fetch_array($result))
