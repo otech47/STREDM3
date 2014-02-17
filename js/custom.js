@@ -65,7 +65,6 @@ $(document).ready( function() {
 	}
 	function getAllTags()
 	{
-
 		// Live Code Start
 		var autocompleteData = new Array();
 		$.ajax({
@@ -159,22 +158,34 @@ $(document).ready( function() {
 			var a = value.appendTo("#"+columnType.id);
 			a.attr("data-url", urlArray[index]);
 			a.click(function(){
+				// console.log(data);
+				$('#jp_player_title').text(a.text());
+				$('#jquery_jplayer_1').jPlayer("setMedia", {
+					mp3: "uploads/"+a.attr('data-url')
+				});
+				$('#jquery_jplayer_1').jPlayer('play');
 				$('.scroll-wrapper').scrollTo("div.stredming-wrapper", 500);
-				window.setTimeout(function(){
-					$("div.player-wrapper").empty();
-					$("<div class='player-container'><div class='stredming-result'><iframe width='100%'' height='100%' scrolling='no' frameborder='no' src='"+a.attr('data-url')+"&amp;color=ff6600&amp;auto_play=true&amp;show_artwork=true'></iframe></div></div>").appendTo($("div.player-wrapper"));
-					var player = SC.Widget(document.getElementById("current-result"));
-					var fiveMinutes = 0;
-					player.bind(SC.Widget.Events.PLAY_PROGRESS, function(eventData) {
-						fiveMinutes++;
-						if(fiveMinutes > 1000)
-						{
-							mixpanel.track("Specific Set Played for 5 Minutes");
-							fiveMinutes = -50000000;
-						}	
-					});
-					mixpanel.track("Specific Set Play");
-				}, 500);
+
+				// $('.scroll-wrapper').scrollTo("div.stredming-wrapper", 500);
+				// window.setTimeout(function() {
+				// 	$("div.player-wrapper").empty();
+				// 	$("<div class='player-container'><div class='stredming-result'><iframe id='current-result' width='100%'' height='100%' scrolling='no' frameborder='no' src='"+a.attr('data-url')+"&amp;color=ff6600&amp;auto_play=true&amp;show_artwork=true'></iframe></div></div>").appendTo($("div.player-wrapper"));
+				// 	var player = SC.Widget(document.getElementById("current-result"));
+				// 	var fiveMinutes = 0;
+				// 	player.bind(SC.Widget.Events.PLAY_PROGRESS, function(eventData) {
+				// 		fiveMinutes++;
+				// 		if(fiveMinutes > 1000)
+				// 		{
+				// 			mixpanel.track("Specific Set Played for 5 Minutes");
+				// 			fiveMinutes = -50000000;
+				// 		}	
+				// 	});
+				// 	mixpanel.track("Specific Set Play");
+				// $("#c-wrapper").click(function() {
+				// 	alert(fiveMinutes);
+				// });
+
+				// }, 500);
 			});
 		});
 		panelIsotope = $(".panel-results-container").isotope({
@@ -235,11 +246,13 @@ $(document).ready( function() {
 						dataType: 'json',
 						success: function(data) 
 						{
-							$.each(data[0], function(index, value) {
-								urlArray[index] = value;
-							});
-							$.each(data[1], function(index, value) {
-								matchedTags[index] = value;
+							console.log(data);
+							$.each(data, function(index, value) {
+								console.log(index);
+								console.log(value);
+								console.log(value.songURL)
+								urlArray[index] = value.songURL;
+								matchedTags[index] = value.artist + " - " + value.event;
 							});
 						},
 						complete: function() 
@@ -458,23 +471,38 @@ $(document).ready( function() {
 			dataType: 'json',
 			success: function(data)
 			{
-				$('.scroll-wrapper').scrollTo("div.stredming-wrapper", 500);
-				$("div.player-wrapper").empty();
-				$("<div class='player-container'><div class='stredming-result'>"+data+"</div></div>").appendTo($("div.player-wrapper"));
-				var player = SC.Widget(document.getElementById("current-result"));
-				var fiveMinutes = 0;
-				player.bind(SC.Widget.Events.PLAY_PROGRESS, function(eventData) {
-					fiveMinutes++;
-					if(fiveMinutes > 1000)
-					{
-						mixpanel.track("Random Set Played for 5 Minutes");
-						fiveMinutes = -50000000;
-					}
+				console.log(data);
+				var title = data.artist + " - ";
+				if(data.is_radiomix == 1) {
+					title += data.radiomix;
+				} else {
+					title += data.event;
+				}
+				$('#jp_player_title').text(title);
+				$('#jquery_jplayer_1').jPlayer("setMedia", {
+					mp3: "uploads/"+data.songURL
 				});
-				mixpanel.track("Random Set Play");
-				$("#c-wrapper").click(function() {
-					alert(fiveMinutes);
-				});
+				 $('#jquery_jplayer_1').jPlayer('play');
+				// if(data && data.self_hosted == 1) {
+				// } else {
+					$('.scroll-wrapper').scrollTo("div.stredming-wrapper", 500);
+					// $("div.player-wrapper").empty();
+					// $("<div class='player-container'><div class='stredming-result'>"+data+"</div></div>").appendTo($("div.player-wrapper"));
+					// var player = SC.Widget(document.getElementById("current-result"));
+					// var fiveMinutes = 0;
+					// player.bind(SC.Widget.Events.PLAY_PROGRESS, function(eventData) {
+					// 	fiveMinutes++;
+					// 	if(fiveMinutes > 1000)
+					// 	{
+					// 		mixpanel.track("Random Set Played for 5 Minutes");
+					// 		fiveMinutes = -50000000;
+					// 	}
+					// });
+					// mixpanel.track("Random Set Play");
+					// $("#c-wrapper").click(function() {
+					// 	alert(fiveMinutes);
+					// });
+				// }
 			}
 		});
 	});

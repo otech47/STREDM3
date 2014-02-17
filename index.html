@@ -14,14 +14,18 @@
 	<link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.1/css/font-awesome.css" rel="stylesheet">
 	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="http://code.jquery.com/jquery.js"></script>
-	<script src="js/jquery-1.9.1.js"></script>
 	<script src="js/jquery-ui-1.10.3.custom.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="js/bootstrap.min.js"></script>
 	<script src="js/jquery.isotope.min.js"></script>
 	<script src="js/scrollTo.js"></script>
-	<script src="js/jquery.scrollTo.js"></script>
 	<script src="js/jquery.nav.js"></script>
+
+	<link href="jplayer/jPlayer.css" rel="stylesheet" media="screen">
+	<script type="text/javascript" src="jplayer/jquery.jplayer.min.js"></script>
+	<script type="text/javascript" src="jplayer/customJPlayer.js"></script>
+	<link rel="stylesheet" type="text/css" href="jplayer/customJPlayer.css">
+
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
       <script src="../../assets/js/html5shiv.js"></script>
@@ -136,45 +140,28 @@ mixpanel.init("3b68b70d647a75a20e2085f258e95e6b");</script><!-- end Mixpanel -->
 			</div>
 		</div>
 
+		<div id="stredm-audio" style="width:0px; height:0px;"></div>
 		<div class="stredming-wrapper" id="info-page">
 			<div class="section" id="section-1">
 				<div class="player-wrapper">
 					<div class="player-container">
-						<div class="player-content-container" id="big-container">
-							<div class="big-image-container" id="main-pic-container">
+						<div id="jquery_jplayer_1" class="jp-jplayer"></div>
+						<div id="jp_container_1">
+							<div class="jp-gui ui-widget ui-widget-content ui-corner-all">
+								<ul>
+									<li class="jp-play ui-state-default ui-corner-all"><a href="javascript:;" class="jp-play ui-icon ui-icon-play" tabindex="1" title="play">play</a></li>
+									<li class="jp-pause ui-state-default ui-corner-all" style="display: none;"><a href="javascript:;" class="jp-pause ui-icon ui-icon-pause" tabindex="1" title="pause" style="display: none;">pause</a></li>
+								</ul>
+								<div class="jp-progress-slider ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all" aria-disabled="false"><div class="ui-slider-range ui-widget-header ui-corner-all ui-slider-range-min" style="width: 0%;"></div><a class="ui-slider-handle ui-state-default ui-corner-all" href="#" style="left: 0%;"></a></div>
+								<div class="jp-current-time">00:00</div>
+								<div class="jp-duration">00:00</div>
+								<div class="jp-clearboth"></div>
+								<div id="jp_player_title" style="position: relative; top: 10px;"></div>
 							</div>
-							<div class="big-image-container" id="set-image-container">
-								<div class="set-image">
-								</div>
+							<div class="jp-no-solution" style="display: none;">
+								<span>Update Required</span>
+								To play the media you will need to either update your browser to a recent version or update your <a href="http://get.adobe.com/flashplayer/" target="_blank">Flash plugin</a>.
 							</div>
-							<div class="big-image-container" id="set-play-button-container">
-								<div class="set-play-button">
-								</div>
-							</div>
-						</div>
-						<div class="player-content-container" id="main-container">
-							<div class="main-player-content-container" id="set-title-wrapper">
-								<h2 class="set-title">Flume @ Boileroom 2013</h2>
-							</div>
-							<div class="main-player-content-container" id="set-player-wrapper">
-								<div class="player-content" id="time-wrapper">
-									<div class="time">
-									</div>
-								</div>
-								<div class="player-content" id="player-wrapper">
-									<div class="player">
-									</div>
-								</div>
-								<div class="player-content">
-								</div>
-							</div>
-							<div class="main-player-content-container" id="set-player-tracklist">
-								<div class="tracklist">
-									<h4 id="tracklist-text">12:43-16:32                      Wake Me Up-Avicii</h4>
-								</div>
-							</div>
-						</div>
-						<div class="player-content-container" id="icon-container">
 						</div>
 					</div>
 				</div>
@@ -201,6 +188,7 @@ mixpanel.init("3b68b70d647a75a20e2085f258e95e6b");</script><!-- end Mixpanel -->
 				</div>
 			</div>
 		</div>
+
 		
 		<div class="page" id="event-pagej">
 			<div class="section" id="section-2">

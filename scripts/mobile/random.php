@@ -1,6 +1,6 @@
 <?php
 
-$con = mysqli_connect("localhost", "otech47_sc", "soundcloud1","otech47_soundcloud");
+$con = mysqli_connect("localhost", "strenbum_user","passw0rd", "strenbum_stredm");
 
 if (!$con)
 {
@@ -8,11 +8,12 @@ if (!$con)
 }
 
 $fullArray = array();
-$sql = "SELECT s.id, a.artist, e.event, g.genre, s.imageURL, s.songURL FROM sets AS s ".
+$sql = "SELECT s.id, a.artist, e.event, r.radiomix, g.genre, s.imageURL, s.songURL, s.is_radiomix FROM sets AS s ".
 "INNER JOIN artists AS a ON a.id = s.artist_id ".
-"INNER JOIN events AS e ON e.id = s.event_id ".
+"LEFT JOIN events AS e ON e.id = s.event_id ".
+"LEFT JOIN radiomixes AS r ON r.id = s.radiomix_id ".
 "INNER JOIN genres AS g ON g.id = s.genre_id ".
-"WHERE is_deleted = 0";
+"WHERE is_deleted = 0 ";
 $result = mysqli_query($con, $sql);
 $i = 0;
 while($row = mysqli_fetch_array($result))
@@ -20,9 +21,11 @@ while($row = mysqli_fetch_array($result))
 	$fullArray[$i]['id'] = $row['id'];
 	$fullArray[$i]['artist'] = $row['artist'];
 	$fullArray[$i]['event'] = $row['event'];
+	$fullArray[$i]['radiomix'] = $row['radiomix'];
 	$fullArray[$i]['genre'] = $row['genre'];
 	$fullArray[$i]['imageURL'] = $row['imageURL'];
 	$fullArray[$i]['songURL'] = $row['songURL'];
+	$fullArray[$i]['is_radiomix'] = $row['is_radiomix'];
 
 	$i++;
 }

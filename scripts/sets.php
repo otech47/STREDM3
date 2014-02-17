@@ -11,40 +11,13 @@ if(!session_is_registered("user")) {
 	exit;
 }
 
-
-$con = mysqli_connect("localhost", "otech47_sc", "soundcloud1","otech47_soundcloud");
+$con = mysqli_connect("localhost", "strenbum_user","passw0rd", "strenbum_stredm");
 
 if (!$con) {
 	die('Could not connect: ' . mysql_error());
 }
 
-$count = array();
-
-$sql = "SELECT count(id) as c  FROM artists WHERE 1";
-$result = mysqli_query($con, $sql);
-while($row = mysqli_fetch_array($result)) {
-	$count['artist'] = $row['c'];
-}
-
-$sql = "SELECT count(id) as c  FROM events WHERE 1";
-$result = mysqli_query($con, $sql);
-while($row = mysqli_fetch_array($result)) {
-	$count['event'] = $row['c'];
-}
-
-$sql = "SELECT count(id) as c FROM genres WHERE 1";
-$result = mysqli_query($con, $sql);
-while($row = mysqli_fetch_array($result)) {
-	$count['genre'] = $row['c'];
-}
-
-$sql = "SELECT count(id) as c FROM radiomixes WHERE 1";
-$result = mysqli_query($con, $sql);
-while($row = mysqli_fetch_array($result)) {
-	$count['radiomix'] = $row['c'];
-}
-
-if(checkId('artist', $count) && (checkId('event', $count) || checkId('radiomix', $count)) && checkId('genre', $count)) {
+if(checkId('artist') && (checkId('event') || checkId('radiomix')) && checkId('genre')) {
 	$artist_id = setId('artist', $con);
 	$event_id = setId('event', $con);
 	$genre_id = setId('genre', $con);
@@ -52,8 +25,6 @@ if(checkId('artist', $count) && (checkId('event', $count) || checkId('radiomix',
 	$tracklist = checkAddSlashes($_POST['tracklist']);
 	$imageURL = uploadFile('imagefile');
 	$songURL = uploadFile('songfile');
-	$source = checkAddSlashes($_POST['source']);
-	$self_hosted = 1;
 	$is_radiomix = 0;
 	if(isset($_POST['radiomixcheckbox'])) {
 	    $is_radiomix = 1;
@@ -65,8 +36,8 @@ if(checkId('artist', $count) && (checkId('event', $count) || checkId('radiomix',
 	}
 
 	// echo "True $artist_id \t $event_id \t $genre_id \n$tracklist";
-	$sql =	"INSERT IGNORE INTO sets(artist_id, event_id, radiomix_id, genre_id, songURL, imageURL, date, source, self_hosted, is_radiomix, tracklist) ".
-			"VALUES ($artist_id, $event_id, '$radiomix_id', $genre_id, '$songURL', '$imageURL', now(), '$source', $self_hosted, $is_radiomix, '$tracklist')";
+	$sql =	"INSERT IGNORE INTO sets(artist_id, event_id, radiomix_id, genre_id, songURL, imageURL, date, is_radiomix, tracklist) ".
+			"VALUES ($artist_id, $event_id, '$radiomix_id', $genre_id, '$songURL', '$imageURL', now(), $is_radiomix, '$tracklist')";
 			// $result = $sql;
 	$result = mysqli_query($con, $sql);
 	if($result) {
@@ -75,18 +46,29 @@ if(checkId('artist', $count) && (checkId('event', $count) || checkId('radiomix',
 		header("location:/scripts/upload.php");
 	} else {
 		$_SESSION['failure'] = "Failed! There were errors inserting the set into the database. sql: $sql";
-		throw new RuntimeException("Failed! There were errors inserting the set into the database. sql: $sql");
+		header("location:/scripts/upload.php");
 	}
 } else {
-	header("location:/error.html");
+	echo checkId('artist') . ":" . checkId('event') . ":" . checkId('radiomix') . ":" . checkId('genre');
+	echo "\r\n";
+	echo ini_get('upload_max_filesize');
+	echo "\r\n";
+	echo ini_get('post_max_size');
+	echo "\r\n";
+	echo ini_get('max_execution_time');
+	echo "\r\n";
+	echo ini_get('max_input_time');
+	echo "\r\n";
+	echo ini_get('memory_limit');
+
+	// header("location:/scripts/upload.php");
 }
 
-function checkId($type, $count) {
+function checkId($type) {
 	$str = checkAddSlashes($_POST[$type]);
 	if(is_numeric($str)) {
 		$str = (int)$str;
-		$max = $count[$type];
-		if($str > -1 && $str <= $max) {
+		if($str > -1) {
 			// echo "yes '$str' max: '$max' ";
 			return true;
 		} else {
@@ -111,7 +93,7 @@ function setId($type, $con) {
 	$str = checkAddSlashes($_POST[$type]);
 	if($str == "new") {
 		$newtype = checkAddSlashes($_POST["new$type"]);
-		$plural = ($type == 'radiomix') 'es' : 's';
+		$plural = ($type == 'radiomix')? 'es' : 's';
 		$sql = "INSERT IGNORE INTO $type"."$plural($type) VALUES ('$newtype')";
 		$result = mysqli_query($con, $sql);
 		$sql = "SELECT id FROM ".$type."$plural WHERE $type = '$newtype'";
@@ -143,16 +125,17 @@ function uploadFile($filename) {
 	        case UPLOAD_ERR_NO_FILE:
 	            throw new RuntimeException('No file sent.');
 	        case UPLOAD_ERR_INI_SIZE:
+	            throw new RuntimeException('Exceeded filesize limit in php.ini.');
 	        case UPLOAD_ERR_FORM_SIZE:
-	            throw new RuntimeException('Exceeded filesize limit 1.');
+	            throw new RuntimeException('Exceeded filesize limit in form.');
 	        default:
 	            throw new RuntimeException('Unknown errors.');
 	    }
 
 	    // You should also check filesize here. 
-	    if ($_FILES[$filename]['size'] > 157286400) {
-	        throw new RuntimeException('Exceeded filesize limit.');
-	    }
+	    // if ($_FILES[$filename]['size'] > 157286400) {
+	    //     throw new RuntimeException('Exceeded filesize limit.');
+	    // }
 
 	    // DO NOT TRUST $_FILES[$filename]['mime'] VALUE !!
 	    // Check MIME Type by yourself.

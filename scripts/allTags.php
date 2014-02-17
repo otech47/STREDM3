@@ -1,17 +1,19 @@
 <?php
 
-$con = mysqli_connect("localhost", "otech47_sc", "soundcloud1","otech47_soundcloud");
+$con = mysqli_connect("localhost", "strenbum_user","passw0rd", "strenbum_stredm");
 
 if (!$con)
 {
 	die('Could not connect: ' . mysql_error());
 }
 
-$sqle = "SELECT event FROM events WHERE 1 ORDER BY event";
-$sqla = "SELECT artist FROM artists WHERE 1 ORDER BY artist";
+$sqla = "SELECT DISTINCT a.artist FROM sets AS s INNER JOIN artists AS a ON s.artist_id = a.id WHERE 1";
+$sqle = "SELECT DISTINCT e.event FROM sets AS s INNER JOIN events AS e ON s.event_id = e.id WHERE 1";
+$sqlr = "SELECT DISTINCT r.radiomix FROM sets AS s INNER JOIN radiomixes AS r ON s.radiomix_id = r.id WHERE 1";
 
 $resulte = mysqli_query($con, $sqle);
 $resulta = mysqli_query($con, $sqla);
+$resultr = mysqli_query($con, $sqlr);
 $i = 0;
 $resultArray = array();
 while($eventRow = mysqli_fetch_array($resulte)) {
@@ -20,6 +22,10 @@ while($eventRow = mysqli_fetch_array($resulte)) {
 }
 while($artistRow = mysqli_fetch_array($resulta)) {
 	$resultArray[$i] = $artistRow[0];
+	$i++;
+}
+while($radiomixRow = mysqli_fetch_array($resultr)) {
+	$resultArray[$i] = $radiomixRow[0];
 	$i++;
 }
 sort($resultArray);

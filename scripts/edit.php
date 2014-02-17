@@ -5,7 +5,7 @@ if(!session_is_registered("user")){
 	exit;
 } else {
 
-	$con = mysqli_connect("localhost", "otech47_sc", "soundcloud1","otech47_soundcloud");
+	$con = mysqli_connect("localhost", "strenbum_user","passw0rd", "strenbum_stredm");
 
 	if (!$con)
 	{

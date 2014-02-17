@@ -5,7 +5,7 @@ if(!session_is_registered("user")){
 	exit;
 } else {
 
-	$con = mysqli_connect("localhost", "otech47_sc", "soundcloud1","otech47_soundcloud");
+	$con = mysqli_connect("localhost", "strenbum_user","passw0rd", "strenbum_stredm");
 
 	if (!$con)
 	{
@@ -13,12 +13,13 @@ if(!session_is_registered("user")){
 	}
 
 	$setsArray = array();
-	$sql = "SELECT s.id, s.radiomix, s.songURL, s.imageURL, s.date, s.popularity, s.source, s.tracklist, a.artist, e.event, g.genre ".
+	$sql = "SELECT s.id, s.songURL, s.imageURL, s.date, s.popularity, s.tracklist, s.is_radiomix, a.artist, e.event, g.genre, r.radiomix ".
 			"FROM sets s ".
 			"INNER JOIN artists a ON a.id = s.artist_id ".
-			"INNER JOIN events e ON e.id = s.event_id ".
+			"LEFT JOIN events e ON e.id = s.event_id ".
+			"LEFT JOIN radiomixes r ON r.id = s.radiomix_id ".
 			"INNER JOIN genres g ON g.id = s.genre_id ".
-			"WHERE 1";
+			"WHERE is_deleted = 0";
 	$result = mysqli_query($con, $sql);
 	$i = 0;
 	while($row = mysqli_fetch_array($result))
@@ -46,11 +47,10 @@ if(!session_is_registered("user")){
 		  	<th>#</th>
 		    <th>Artist</th>
 		    <th>Event</th>
+		    <th>Radio Mix</th>
 		    <th>Genre</th>
 		    <th>Song URL</th>
 		    <th>Image URL</th>
-		    <th>Source</th>
-		    <th>Radio Mix</th>
 		  </tr>
 		</thead>
 		<tbody>
@@ -73,6 +73,11 @@ if(!session_is_registered("user")){
 		  	  </td>
 		  	  <td>
 			  	<div class="form-group">
+			  	  <?=$set['radiomix']?>
+				</div>
+		  	  </td>
+		  	  <td>
+			  	<div class="form-group">
 				  <?=$set['genre']?>
 				</div>
 		  	  </td>
@@ -85,16 +90,6 @@ if(!session_is_registered("user")){
 			  	<div class="form-group">
 			  	  <?=$set['imageURL']?>
 				</div>
-		  	  </td>
-		  	  <td>
-			  	<div class="form-group">
-			  	  <?=$set['source']?>
-			  	</div>
-		  	  </td>
-		  	  <td>
-			  	<div class="form-group">
-		  		  <?=$set['radiomix']?>
-			  	</div>
 		  	  </td>
 		  	</tr>
 	  	<? } ?>

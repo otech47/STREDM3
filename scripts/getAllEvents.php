@@ -1,13 +1,13 @@
 <?php
 
-$con = mysqli_connect("localhost", "otech47_sc", "soundcloud1","otech47_soundcloud");
+$con = mysqli_connect("localhost", "strenbum_user","passw0rd", "strenbum_stredm");
 
 if (!$con)
 {
 	die('Could not connect: ' . mysql_error());
 }
 
-$sql = "SELECT event FROM events WHERE 1 ORDER BY event";
+$sql = "SELECT DISTINCT e.event FROM sets AS s INNER JOIN events AS e ON s.event_id = e.id WHERE 1";
 $result = mysqli_query($con, $sql);
 $i = 0;
 $resultArray = array();

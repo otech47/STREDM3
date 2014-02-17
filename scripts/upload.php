@@ -9,13 +9,15 @@ if(!session_is_registered("user")){
 	// if(session_is_registered("success")) {
 		$success = $_SESSION['success'];
 	// }
+	$_SESSION['success'] = null;
 
 	$failure = null;
 	// if(session_is_registered("failure")) {
 		$failure = $_SESSION['failure'];
 	// }
+	$_SESSION['failure'] = null;
 
-	$con = mysqli_connect("localhost", "otech47_sc", "soundcloud1","otech47_soundcloud");
+	$con = mysqli_connect("localhost", "strenbum_user","passw0rd", "strenbum_stredm");
 
 	if (!$con)
 	{
@@ -76,10 +78,11 @@ if(!session_is_registered("user")){
 	  <a href="/scripts/list.php" class="btn btn-info" role="button">Set List</a>
 	  <? if($success) { ?>
 		<div class="alert alert-success"><?=$success?></div>
-	  <? } else if($failure) { ?>
-	    <div class="alert alert-failure"><?=$failure?></div>
+	  <? } if($failure) { ?>
+	    <div class="alert alert-danger"><?=$failure?></div>
 	  <? } ?>
 	  <form action="/scripts/sets.php" role="form" method='POST' enctype='multipart/form-data'>
+	  	<input type="hidden" name="MAX_FILE_SIZE" value="1048000000">
 	  	<div class="form-group">
     	<label for="artist">Artist</label>
 		  <select id="artist" name="artist" class="form-control">
@@ -144,10 +147,6 @@ if(!session_is_registered("user")){
 		<div class="form-group">
     	  <label for="imagefile">Image File</label>
 		  <input type="file" id="imagefile" name="imagefile" class="form-control"/>
-		</div>
-		<div class="form-group">
-    	  <label for="source">Source</label>
-		  <input type="text" id="source" name="source" class="form-control"/>
 		</div>
 		<div class="form-group">
     	<label for="tracklist">Track List</label>
