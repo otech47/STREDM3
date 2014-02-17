@@ -1,5 +1,6 @@
 <?php
 session_start();
+$i = 0;
 if(!session_is_registered("user")){
 	header("location:/scripts/login.php");
 	exit;
@@ -19,9 +20,9 @@ if(!session_is_registered("user")){
 			"LEFT JOIN events e ON e.id = s.event_id ".
 			"LEFT JOIN radiomixes r ON r.id = s.radiomix_id ".
 			"INNER JOIN genres g ON g.id = s.genre_id ".
-			"WHERE is_deleted = 0";
+			"WHERE is_deleted = 0 ".
+			"ORDER BY a.artist, s.id";
 	$result = mysqli_query($con, $sql);
-	$i = 0;
 	while($row = mysqli_fetch_array($result))
 	{
 		$setsArray[$i] = $row;
@@ -36,9 +37,9 @@ if(!session_is_registered("user")){
   	<link href="/css/bootstrap.min.css" rel="stylesheet" media="screen">
     <title>Stredm</title>
   </head>
-  <body>
+  <body style="font-size: 16px;">
   	<div class="container">
-  	  <h1>Login Successful</h1>
+  	  <h1><?=$i?> Sets Uploaded</h1>
 	  <a href="/scripts/logout.php" class="btn btn-danger" role="button">Log Out</a>
 	  <a href="/scripts/upload.php" class="btn btn-info" role="button">Go to Uploads</a>
 	  <table id="setsTable" class="table">

@@ -73,7 +73,7 @@ if(!session_is_registered("user")){
   </head>
   <body style="font-size: 16px;">
   	<div class="container">
-  	  <h1>Login Successful</h1>
+  	  <h1>Upload A Set</h1>
 	  <a href="/scripts/logout.php" class="btn btn-danger" role="button">Log Out</a>
 	  <a href="/scripts/list.php" class="btn btn-info" role="button">Set List</a>
 	  <? if($success) { ?>

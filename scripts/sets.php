@@ -157,7 +157,7 @@ function uploadFile($filename) {
 	    // DO NOT USE $_FILES[$filename]['name'] WITHOUT ANY VALIDATION !!
 	    // On this example, obtain safe unique name from its binary data.
 	    $newFilename = sha1_file($_FILES[$filename]['tmp_name']);
-	    $ext = substr($_FILES[$filename]['name'], -3);
+	    $ext = pathinfo($_FILES[$filename]['name'], PATHINFO_EXTENSION);
 	    $newFilename = $newFilename . "." . $ext;
 	    if (!move_uploaded_file(
 	        $_FILES[$filename]['tmp_name'],
