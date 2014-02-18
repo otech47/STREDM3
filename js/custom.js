@@ -248,11 +248,18 @@ $(document).ready( function() {
 						{
 							console.log(data);
 							$.each(data, function(index, value) {
-								console.log(index);
-								console.log(value);
-								console.log(value.songURL)
+								// console.log(index);
+								// console.log(value);
+								// console.log(value.songURL);
 								urlArray[index] = value.songURL;
-								matchedTags[index] = value.artist + " - " + value.event;
+								var title = value.artist + " - ";
+								if(value.is_radiomix == "1") {
+									title += value.radiomix;
+								} else {
+									title += value.event;
+								}
+
+								matchedTags[index] = title;
 							});
 						},
 						complete: function() 
@@ -471,9 +478,10 @@ $(document).ready( function() {
 			dataType: 'json',
 			success: function(data)
 			{
-				console.log(data);
+				// console.log(data);
+				// console.log(data.is_radiomix);
 				var title = data.artist + " - ";
-				if(data.is_radiomix == 1) {
+				if(data.is_radiomix == "1") {
 					title += data.radiomix;
 				} else {
 					title += data.event;
