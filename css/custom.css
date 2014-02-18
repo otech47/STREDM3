@@ -2779,9 +2779,16 @@ font-weight: normal;
 	z-index: 1;
 }
 .duration {
-	width: 100%;
 	width: auto;
 	right: 0px;
+}
+#current-time {
+	right: 64px;
+	left: auto;
+}
+#slash {
+	right: 48px;
+	left: auto;
 }
 .title {
 	left: 64px;
