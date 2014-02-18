@@ -36,7 +36,7 @@ if(checkId('artist') && (checkId('event') || checkId('radiomix')) && checkId('ge
 	}
 
 	// echo "True $artist_id \t $event_id \t $genre_id \n$tracklist";
-	$sql =	"INSERT IGNORE INTO sets(artist_id, event_id, radiomix_id, genre_id, songURL, imageURL, date, is_radiomix, tracklist) ".
+	$sql =	"INSERT IGNORE INTO sets(artist_id, event_id, radiomix_id, genre_id, songURL, imageURL, datetime, is_radiomix, tracklist) ".
 			"VALUES ($artist_id, $event_id, '$radiomix_id', $genre_id, '$songURL', '$imageURL', now(), $is_radiomix, '$tracklist')";
 			// $result = $sql;
 	$result = mysqli_query($con, $sql);
