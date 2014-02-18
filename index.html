@@ -9,6 +9,7 @@
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
 	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.1/css/bootstrap.min.css">
+	<link href="jplayer/jplayer.it.css" rel="stylesheet" type="text/css">
 	<link href="css/custom.css" rel="stylesheet" media="screen">
 	<script src="js/prefixfree.min.js"></script>
 	<link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.1/css/font-awesome.css" rel="stylesheet">
@@ -21,10 +22,7 @@
 	<script src="js/scrollTo.js"></script>
 	<script src="js/jquery.nav.js"></script>
 
-	<link href="jplayer/jPlayer.css" rel="stylesheet" media="screen">
-	<script type="text/javascript" src="jplayer/jquery.jplayer.min.js"></script>
-	<script type="text/javascript" src="jplayer/customJPlayer.js"></script>
-	<link rel="stylesheet" type="text/css" href="jplayer/customJPlayer.css">
+	<script type="text/javascript" src="jplayer/jplayer.it.min.js"></script>
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -146,22 +144,21 @@ mixpanel.init("3b68b70d647a75a20e2085f258e95e6b");</script><!-- end Mixpanel -->
 				<div class="player-wrapper">
 					<div class="player-container">
 						<div id="jquery_jplayer_1" class="jp-jplayer"></div>
-						<div id="jp_container_1">
-							<div class="jp-gui ui-widget ui-widget-content ui-corner-all">
-								<ul>
-									<li class="jp-play ui-state-default ui-corner-all"><a href="javascript:;" class="jp-play ui-icon ui-icon-play" tabindex="1" title="play">play</a></li>
-									<li class="jp-pause ui-state-default ui-corner-all" style="display: none;"><a href="javascript:;" class="jp-pause ui-icon ui-icon-pause" tabindex="1" title="pause" style="display: none;">pause</a></li>
-								</ul>
-								<div class="jp-progress-slider ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all" aria-disabled="false"><div class="ui-slider-range ui-widget-header ui-corner-all ui-slider-range-min" style="width: 0%;"></div><a class="ui-slider-handle ui-state-default ui-corner-all" href="#" style="left: 0%;"></a></div>
-								<div class="jp-current-time">00:00</div>
-								<div class="jp-duration">00:00</div>
-								<div class="jp-clearboth"></div>
-								<div id="jp_player_title" style="position: relative; top: 10px;"></div>
+						<div id="jp_container_1" class="audio">
+							<div class="controls">
+								<a class="play"></a>
+								<a class="pause" style="display: none;"></a>
 							</div>
-							<div class="jp-no-solution" style="display: none;">
-								<span>Update Required</span>
-								To play the media you will need to either update your browser to a recent version or update your <a href="http://get.adobe.com/flashplayer/" target="_blank">Flash plugin</a>.
+							<div class="bar">
+								<div class="seek-bar">
+									<div class="play-bar"></div>
+									<div class="title" id="jp_player_title"></div>
+									<div class="duration"></div>
+								</div>
 							</div>
+							<div class="no-solution" style="display: none;">
+							Media Player Error<br>
+							Update your browser or Flash plugin</div>
 						</div>
 					</div>
 				</div>

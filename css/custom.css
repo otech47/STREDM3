@@ -2765,3 +2765,26 @@ font-weight: normal;
     transform-origin: -10px 35px;
   }
 }
+
+#jp_container_1 {
+	width: 100%;
+	top: 70px;
+}
+
+.bar {
+	width: 100%;
+	left: 0px;
+}
+.controls {
+	z-index: 1;
+}
+.duration {
+	width: 100%;
+	width: auto;
+	right: 0px;
+}
+.title {
+	left: 64px;
+	width: auto;
+	z-index: 1;
+}
