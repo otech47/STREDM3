@@ -68,7 +68,7 @@ $radiomixSql = "SELECT s.id, a.artist, e.event, r.radiomix, g.genre, s.imageURL,
 "LEFT JOIN events AS e ON e.id = s.event_id ".
 "LEFT JOIN radiomixes AS r ON r.id = s.radiomix_id ".
 "INNER JOIN genres AS g ON g.id = s.genre_id ".
-"WHERE a.artist = '$label'".
+"WHERE r.radiomix = '$label'".
 "AND is_deleted = 0 ";
 $radiomixResult = mysqli_query($con, $radiomixSql);
 $i = 0;
@@ -86,15 +86,26 @@ while($radiomixRow = mysqli_fetch_array($radiomixResult))
 }
 
 $resultArray = array();
-if(empty($artistArray))
-{
-	$resultArray = $eventArray;
+if(!empty($artistArray)) {
+	foreach($artistArray as $a) {
+		$resultArray[$a['id']] = $a;
+	}
 }
-else
-{
-	$resultArray = $artistArray;
+if(!empty($eventArray)) {
+	foreach($eventArray as $e) {
+		$resultArray[$e['id']] = $e;
+	}
+}
+if(!empty($radiomixArray)) {
+	foreach($radiomixArray as $r) {
+		$resultArray[$r['id']] = $r;
+	}
+}
+$finalResults = array();
+foreach ($resultArray as $key => $value) {
+	$finalResults[] = $value;
 }
 
-echo json_encode($resultArray);
+echo json_encode($finalResults);
 
 ?>

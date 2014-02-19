@@ -7,7 +7,7 @@ if (!$con)
 	die('Could not connect: ' . mysql_error());
 }
 
-$sql = "SELECT DISTINCT r.radiomix FROM sets AS s INNER JOIN radiomixes AS r ON s.radiomix_id = r.id WHERE 1";
+$sql = "SELECT DISTINCT r.radiomix FROM sets AS s INNER JOIN radiomixes AS r ON s.radiomix_id = r.id WHERE is_deleted = 0";
 $result = mysqli_query($con, $sql);
 $i = 0;
 $resultArray = array();

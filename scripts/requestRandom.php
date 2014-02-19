@@ -21,9 +21,11 @@ while($row = mysqli_fetch_array($result))
 	$resultArray[$i]['id'] = $row['id'];
 	$resultArray[$i]['artist'] = $row['artist'];
 	$resultArray[$i]['event'] = $row['event'];
+	$resultArray[$i]['radiomix'] = $row['radiomix'];
 	$resultArray[$i]['genre'] = $row['genre'];
 	$resultArray[$i]['imageURL'] = $row['imageURL'];
 	$resultArray[$i]['songURL'] = $row['songURL'];
+	$resultArray[$i]['is_radiomix'] = $row['is_radiomix'];
 	$i++;
 }
 

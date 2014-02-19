@@ -19,19 +19,34 @@ if (!$con) {
 
 if(checkId('artist') && (checkId('event') || checkId('radiomix')) && checkId('genre')) {
 	$artist_id = setId('artist', $con);
-	$event_id = setId('event', $con);
 	$genre_id = setId('genre', $con);
-	$radiomix_id = setId('radiomix', $con);
 	$tracklist = checkAddSlashes($_POST['tracklist']);
-	$imageURL = uploadFile('imagefile');
-	$songURL = uploadFile('songfile');
+
+	$songURL = null;
+	if(isset($_POST['directuploadcheckbox'])) {
+		$moveURL = markAsMoved($_POST['directupload'], $con);
+	    $songURL = moveFile($moveURL);
+	} else {
+		$songURL = uploadFile('songfile');
+	}
+
+	$imageURL = null;
+	if(isset($_POST['oldimagecheckbox'])) {
+		$imageURL = $_POST['oldimage'];
+	} else {
+		$imageURL = uploadFile('imagefile');
+	}
+
 	$is_radiomix = 0;
 	if(isset($_POST['radiomixcheckbox'])) {
 	    $is_radiomix = 1;
 	}
+
 	if($is_radiomix == 1) {
 		$event_id = 0;
+		$radiomix_id = setId('radiomix', $con);
 	} else {
+		$event_id = setId('event', $con);
 		$radiomix_id = 0;
 	}
 
@@ -104,6 +119,38 @@ function setId($type, $con) {
 	} else {
 		return (int)$str;
 	}
+}
+
+function markAsMoved($id, $con) {
+	$sql = "UPDATE direct_uploads SET is_moved = 1 WHERE id=$id";
+	$result = mysqli_query($con, $sql);
+	$sql = "SELECT path FROM direct_uploads WHERE id=$id";
+	$result = mysqli_query($con, $sql);
+	while($row = mysqli_fetch_array($result)) {
+		return $row['path'];
+	}
+}
+
+function moveFile($filename) {
+	try {
+	    $newFilename = sha1_file("/home/strenbum/direct_uploads/" . $filename);
+	    $ext = pathinfo($filename, PATHINFO_EXTENSION);
+	    $newFilename = $newFilename . "." . $ext;
+	    if (!rename(
+	        	    "/home/strenbum/direct_uploads/" . $filename,
+	        sprintf('./../uploads/%s', $newFilename)
+	    )) {
+	        throw new RuntimeException('Failed to move uploaded file.');
+	    }
+	    return $newFilename;
+	    // echo 'File is uploaded successfully.';
+
+	} catch (RuntimeException $e) {
+
+	    echo $e->getMessage();
+	    return null;
+	}
+	return null;
 }
 
 function uploadFile($filename) {

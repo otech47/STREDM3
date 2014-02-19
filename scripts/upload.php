@@ -63,6 +63,35 @@ if(!session_is_registered("user")){
 		$genresArray[$i] = $row;
 		$i++;
 	}
+
+	$directUploadsArray = array();
+	$sql = "SELECT * FROM direct_uploads WHERE is_moved = 0 order by id";
+	$result = mysqli_query($con, $sql);
+	$i = 0;
+	while($row = mysqli_fetch_array($result))
+	{
+		$directUploadsArray[$i] = $row;
+		$i++;
+	}
+
+	$imagesArray = array();
+	$sql = "SELECT s.imageURL, s.is_radiomix, e.event, r.radiomix FROM sets AS s ".
+	"LEFT JOIN events AS e ON e.id = s.event_id ".
+	"LEFT JOIN radiomixes AS r ON r.id = s.radiomix_id ".
+	"WHERE s.id IN (
+	  SELECT MAX(id) FROM sets GROUP BY imageURL
+	)";
+	// $sql = "SELECT DISTINCT s.imageURL, s.is_radiomix, e.event, r.radiomix FROM sets AS s ".
+	// "LEFT JOIN events AS e ON e.id = s.event_id ".
+	// "LEFT JOIN radiomixes AS r ON r.id = s.radiomix_id ".
+	// "WHERE 1 order by imageURL";
+	$result = mysqli_query($con, $sql);
+	$i = 0;
+	while($row = mysqli_fetch_array($result))
+	{
+		$imagesArray[$i] = $row;
+		$i++;
+	}
 }
 ?>
 <!DOCTYPE html>
@@ -140,13 +169,50 @@ if(!session_is_registered("user")){
 		  </select>
 		  <input type="text" class="form-control" id="newgenre" name="newgenre" style="display:none;" />
 		</div>
-		<div class="form-group">
+		<div class="checkbox">
+			<label>
+				<input id="directuploadcheckbox" name="directuploadcheckbox" type="checkbox" value="directupload"> Naming a Direct Upload?
+			</label>
+		</div>
+		<div class="form-group" id="songfilepicker">
     	  <label for="songfile">Song File</label>
 		  <input type="file" id="songfile" name="songfile" class="form-control"/>
 		</div>
-		<div class="form-group">
+		<div class="form-group" id="directuploadpicker" style="display: none;">
+    	  <label for="directupload">Uploaded Song File</label>
+		  <select id="directupload" name="directupload" class="form-control">
+			<?php foreach($directUploadsArray as $directUpload) { ?>
+		  	  <option value="<?=$directUpload['id']?>">
+		  		<?=$directUpload['path']?>
+		  	  </option>
+		  	<? } ?>
+		  </select>
+		</div>
+		<div class="checkbox">
+			<label>
+				<input id="oldimagecheckbox" name="oldimagecheckbox" type="checkbox" value="oldimage"> Using an existing image?
+			</label>
+		</div>
+		<div class="form-group" id="imagepicker">
     	  <label for="imagefile">Image File</label>
 		  <input type="file" id="imagefile" name="imagefile" class="form-control"/>
+		</div>
+		<div class="form-group" id="oldimagepicker" style="display: none;">
+    	  <label for="oldimage">Uploaded Image File</label>
+		  <select id="oldimage" name="oldimage" class="form-control">
+			<? foreach($imagesArray as $image) { 
+				if($image['imageURL'] != null) { ?>
+		  	  <option value="<?=$image['imageURL']?>">
+		  	  	<? if($image['is_radiomix'] == 1) {
+		  	  		echo $image['radiomix'];
+		  	  	} else {
+		  	  		echo $image['event'];
+		  	  	} ?>
+		  	  </option>
+		  	<? }
+		  	} ?>
+		  </select>
+			<img id="thumbnail" style="width: 200px; height: 200px;">
 		</div>
 		<div class="form-group">
     	<label for="tracklist">Track List</label>
@@ -204,6 +270,27 @@ if(!session_is_registered("user")){
   			$('#eventpicker').show();  			
   			$('#radiomixpicker').hide();
   		}
+  	});
+  	$('#directuploadcheckbox').change(function() {
+  		if(this.checked) {
+  			$('#songfilepicker').hide();
+  			$('#directuploadpicker').show();
+  		} else {
+  			$('#songfilepicker').show();  			
+  			$('#directuploadpicker').hide();
+  		}
+  	});
+  	$('#oldimagecheckbox').change(function() {
+  		if(this.checked) {
+  			$('#imagepicker').hide();
+  			$('#oldimagepicker').show();
+  		} else {
+  			$('#imagepicker').show();
+  			$('#oldimagepicker').hide();
+  		}
+  	});
+  	$('#oldimage').change(function() {
+  		$('#thumbnail').attr("src", "http://stredm.com/uploads/"+$(this).val());
   	});
   });
   </script>

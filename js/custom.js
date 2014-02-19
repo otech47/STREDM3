@@ -1,5 +1,6 @@
 $(document).ready( function() {
 	mixpanel.track("Page View");
+	$('.duration').hide();
 	function Queue(arr) 
 	{
 		var i = 0;
@@ -40,6 +41,7 @@ $(document).ready( function() {
 			data: postdata,
 			success: function(data) 
 			{
+				console.log(data);
 				var result = data;
 				$(".stredming-wrapper").css("display","block");
 				$('.scroll-wrapper').animate({scrollTop: $(document).height()}, '1000');
@@ -157,14 +159,18 @@ $(document).ready( function() {
 		$.each(tileName, function (index, value) {
 			var a = value.appendTo("#"+columnType.id);
 			a.attr("data-url", urlArray[index]);
+			a.attr("data-img", imgArray[index]);
 			a.click(function(){
 				// console.log(data);
 				$('#jp_player_title').text(a.text());
 				$('#jquery_jplayer_1').jPlayer("setMedia", {
 					mp3: "uploads/"+a.attr('data-url')
 				});
+				$('#thumbnail').attr('src', "uploads/"+a.attr('data-img'));
+				$('.duration').show();
 				$('#jquery_jplayer_1').jPlayer('play');
 				$('.scroll-wrapper').scrollTo("div.stredming-wrapper", 500);
+				mixpanel.track("Specific Set Play");
 
 				// $('.scroll-wrapper').scrollTo("div.stredming-wrapper", 500);
 				// window.setTimeout(function() {
@@ -180,7 +186,6 @@ $(document).ready( function() {
 				// 			fiveMinutes = -50000000;
 				// 		}	
 				// 	});
-				// 	mixpanel.track("Specific Set Play");
 				// $("#c-wrapper").click(function() {
 				// 	alert(fiveMinutes);
 				// });
@@ -237,8 +242,9 @@ $(document).ready( function() {
 					inputBox.slideDown(100);
 					inputBox.focus();
 					// Live Code Start
-					matchedTags = new Array();
-					urlArray = new Array();
+					matchedTags = [];
+					urlArray = [];
+					imgArray = [];
 					$.ajax({
 						type: "POST",
 						url: '../scripts/request.php',
@@ -252,6 +258,7 @@ $(document).ready( function() {
 								// console.log(value);
 								// console.log(value.songURL);
 								urlArray[index] = value.songURL;
+								imgArray[index] = value.imageURL;
 								var title = value.artist + " - ";
 								if(value.is_radiomix == "1") {
 									title += value.radiomix;
@@ -324,6 +331,11 @@ $(document).ready( function() {
 		{
 			columnCreate(g[1], eventTiles);
 		}
+		g = generateRadiomixTiles();
+		if(!(g[0]))
+		{
+			columnCreate(g[1], radiomixTiles);
+		}
 		window.setTimeout(function() {
 			$(".loader-container").remove();
 			$(".column-wrapper").css("margin-left","0");
@@ -339,8 +351,6 @@ $(document).ready( function() {
 	}
 	function generateArtistTiles()
 	{
-
-		// Live code start
 		artistTiles = new Array();
 		var isEmpty = true;
 		var artistArray = new Array();
@@ -368,13 +378,9 @@ $(document).ready( function() {
 			}
 		});
 		return [isEmpty, "artist"];
-		// Live code end
 	}
 	function generateEventTiles()
 	{
-
-		// live code start
-
 		eventTiles = new Array();
 		var isEmpty = true;
 		var eventArray = new Array();
@@ -402,8 +408,35 @@ $(document).ready( function() {
 			}
 		});
 		return [isEmpty, "event"];
-
-		// live code end
+	}
+	function generateRadiomixTiles() {
+		radiomixTiles = new Array();
+		var isEmpty = true;
+		var radiomixArray = new Array();
+		$.ajax({
+			type: "GET",
+			url: "../scripts/getAllRadiomixes.php",
+			async: false,
+			dataType: 'json',
+			success: function(data)
+			{
+				$.each(data, function(index,value) {
+					radiomixArray[index] = value;
+				})
+			},
+			complete: function() 
+			{
+				$.each(searchTiles, function(index, value) {
+					if($.inArray(value.text(), radiomixArray) != -1)
+					{
+						radiomixTiles.push(value);
+						isEmpty = false;
+					}
+				});
+				tiles[1] = radiomixTiles;
+			}
+		});
+		return [isEmpty, "radiomix"];
 	}
 	var mainACWidget = $("#main-search").autocomplete({
 		minLength: 1,
@@ -490,7 +523,11 @@ $(document).ready( function() {
 				$('#jquery_jplayer_1').jPlayer("setMedia", {
 					mp3: "uploads/"+data.songURL
 				});
+				$('#thumbnail').attr('src', "uploads/"+data.imageURL);
+				$('.duration').show();
 				 $('#jquery_jplayer_1').jPlayer('play');
+ 				mixpanel.track("Random Set Play");
+
 				// if(data && data.self_hosted == 1) {
 				// } else {
 					$('.scroll-wrapper').scrollTo("div.stredming-wrapper", 500);
