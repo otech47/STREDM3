@@ -85,6 +85,29 @@ while($radiomixRow = mysqli_fetch_array($radiomixResult))
 	$i++;
 }
 
+$genreArray = array();
+$genreSql = "SELECT s.id, a.artist, e.event, r.radiomix, g.genre, s.imageURL, s.songURL, s.is_radiomix FROM sets AS s ".
+"INNER JOIN artists AS a ON a.id = s.artist_id ".
+"LEFT JOIN events AS e ON e.id = s.event_id ".
+"LEFT JOIN radiomixes AS r ON r.id = s.radiomix_id ".
+"INNER JOIN genres AS g ON g.id = s.genre_id ".
+"WHERE g.genre = '$label'".
+"AND is_deleted = 0 ";
+$genreResult = mysqli_query($con, $genreSql);
+$i = 0;
+while($genreRow = mysqli_fetch_array($genreResult))
+{
+	$genreArray[$i]['id'] = $genreRow['id'];
+	$genreArray[$i]['artist'] = $genreRow['artist'];
+	$genreArray[$i]['event'] = $genreRow['event'];
+	$genreArray[$i]['radiomix'] = $genreRow['radiomix'];
+	$genreArray[$i]['genre'] = $genreRow['genre'];
+	$genreArray[$i]['imageURL'] = $genreRow['imageURL'];
+	$genreArray[$i]['songURL'] = $genreRow['songURL'];
+	$genreArray[$i]['is_genre'] = $radiomixRow['is_radiomix'];
+	$i++;
+}
+
 $resultArray = array();
 if(!empty($artistArray)) {
 	foreach($artistArray as $a) {
@@ -98,6 +121,11 @@ if(!empty($eventArray)) {
 }
 if(!empty($radiomixArray)) {
 	foreach($radiomixArray as $r) {
+		$resultArray[$r['id']] = $r;
+	}
+}
+if(!empty($genreArray)) {
+	foreach($genreArray as $r) {
 		$resultArray[$r['id']] = $r;
 	}
 }

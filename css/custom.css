@@ -623,6 +623,11 @@ i
 	background-color:rgba(73, 215, 99, .7)
 }
 
+#genre-wrapper
+{
+	background-color:rgba(226, 79, 79, .7)
+}
+
 .tile-selection-wrapper
 {
 	background-color:rgba(255,255,255,.7);

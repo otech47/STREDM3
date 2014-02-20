@@ -336,6 +336,11 @@ $(document).ready( function() {
 		{
 			columnCreate(g[1], radiomixTiles);
 		}
+		g = generateGenreTiles();
+		if(!(g[0]))
+		{
+			columnCreate(g[1], genreTiles);
+		}
 		window.setTimeout(function() {
 			$(".loader-container").remove();
 			$(".column-wrapper").css("margin-left","0");
@@ -437,6 +442,35 @@ $(document).ready( function() {
 			}
 		});
 		return [isEmpty, "radiomix"];
+	}
+	function generateGenreTiles() {
+		genreTiles = new Array();
+		var isEmpty = true;
+		var genreArray = new Array();
+		$.ajax({
+			type: "GET",
+			url: "../scripts/getAllGenres.php",
+			async: false,
+			dataType: 'json',
+			success: function(data)
+			{
+				$.each(data, function(index,value) {
+					genreArray[index] = value;
+				})
+			},
+			complete: function() 
+			{
+				$.each(searchTiles, function(index, value) {
+					if($.inArray(value.text(), genreArray) != -1)
+					{
+						genreTiles.push(value);
+						isEmpty = false;
+					}
+				});
+				tiles[1] = genreTiles;
+			}
+		});
+		return [isEmpty, "genre"];
 	}
 	var mainACWidget = $("#main-search").autocomplete({
 		minLength: 1,
