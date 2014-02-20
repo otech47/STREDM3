@@ -557,7 +557,7 @@ $(document).ready( function() {
 				$('#jquery_jplayer_1').jPlayer("setMedia", {
 					mp3: "uploads/"+data.songURL
 				});
-				$('#thumbnail').attr('src', "uploads/"+data.imageURL);
+				$('#thumbnail').css('background-image', "url('../uploads/"+data.imageURL+"')");
 				$('.duration').show();
 				 $('#jquery_jplayer_1').jPlayer('play');
  				mixpanel.track("Random Set Play");
