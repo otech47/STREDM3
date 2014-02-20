@@ -104,7 +104,7 @@ while($genreRow = mysqli_fetch_array($genreResult))
 	$genreArray[$i]['genre'] = $genreRow['genre'];
 	$genreArray[$i]['imageURL'] = $genreRow['imageURL'];
 	$genreArray[$i]['songURL'] = $genreRow['songURL'];
-	$genreArray[$i]['is_genre'] = $radiomixRow['is_radiomix'];
+	$genreArray[$i]['is_radiomix'] = $genreRow['is_radiomix'];
 	$i++;
 }
 

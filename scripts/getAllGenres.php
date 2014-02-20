@@ -7,7 +7,7 @@ if (!$con)
 	die('Could not connect: ' . mysql_error());
 }
 
-$sql = "SELECT DISTINCT g.genre FROM sets AS s INNER JOIN genres AS g ON s.artist_id = g.id WHERE is_deleted = 0";
+$sql = "SELECT DISTINCT g.genre FROM sets AS s INNER JOIN genres AS g ON s.genre_id = g.id WHERE is_deleted = 0";
 $result = mysqli_query($con, $sql);
 $i = 0;
 $resultArray = array();
