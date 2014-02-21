@@ -2842,3 +2842,21 @@ font-weight: normal;
 	line-height: 0;
 	background-size: 100% 100%;
 }
+
+#mobile-content{
+	height:100%;
+	width: 100%;
+	background: url(../images/stredm_mobilepage2.jpg); 
+
+}
+
+@media screen and (min-width: 0px) and (max-width: 400px) {
+  #mobile-content { display: block; }
+  body {display: none;}
+  html {background: url(../images/stredm_mobilepage2.jpg); 
+  		background-repeat: no-repeat;}  /* show it on small screens */
+
+}
+@media screen and (min-width: 321px) and (max-width: 1024px) {
+  #mobile-content { display: none; }   /* hide it elsewhere */
+}
