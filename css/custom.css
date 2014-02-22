@@ -2851,8 +2851,8 @@ font-weight: normal;
 }
 
 @media screen and (min-width: 0px) and (max-width: 400px) {
-  #mobile-content { display: block; }
-  body {display: none;}
+   body {display: none;} 
+   #mobile-content { display: block; }
   html {background: url(../images/stredm_mobilepage2.jpg); 
   		background-repeat: no-repeat;}  /* show it on small screens */
 
@@ -2860,3 +2860,44 @@ font-weight: normal;
 @media screen and (min-width: 321px) and (max-width: 1024px) {
   #mobile-content { display: none; }   /* hide it elsewhere */
 }
+
+/* iPhone 4 ----------- */
+@media
+only screen and (-webkit-min-device-pixel-ratio : 1.5),
+only screen and (min-device-pixel-ratio : 1.5) {
+/* Styles */
+body {display: none;} 
+   #mobile-content { display: block; }
+  html {background: url(../images/stredm_mobilepage2.jpg); 
+  		background-repeat: no-repeat;}
+}
+
+/* Smartphones (portrait and landscape) ----------- */
+@media only screen 
+and (min-device-width : 320px) 
+and (max-device-width : 480px) {
+/* Styles */
+	#mobile-content { display: block; }
+  html {background: url(../images/stredm_mobilepage2.jpg); 
+  		background-repeat: no-repeat;}
+}
+
+/* Smartphones (landscape) ----------- */
+@media only screen 
+and (min-width : 321px) {
+/* Styles */
+	#mobile-content { display: block; }
+  html {background: url(../images/stredm_mobilepage2.jpg); 
+  		background-repeat: no-repeat;}
+}
+
+/* Smartphones (portrait) ----------- */
+@media only screen 
+and (max-width : 320px) {
+/* Styles */
+	#mobile-content { display: block; }
+  html {background: url(../images/stredm_mobilepage2.jpg); 
+  		background-repeat: no-repeat;}
+}
+
+
