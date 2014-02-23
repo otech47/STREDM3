@@ -28,6 +28,7 @@ h1
 	height:90vh;
 	width:100%;
 	overflow-y:scroll;
+	overflow-x:hidden;
 	font-family: Sansation;
 }
 

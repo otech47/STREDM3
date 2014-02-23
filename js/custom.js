@@ -166,7 +166,7 @@ $(document).ready( function() {
 				$('#jquery_jplayer_1').jPlayer("setMedia", {
 					mp3: "uploads/"+a.attr('data-url')
 				});
-				$('#thumbnail').attr('src', "uploads/"+a.attr('data-img'));
+				$('#thumbnail').css('background-image', "url('../uploads/"+a.attr('data-img'));
 				$('.duration').show();
 				$('#jquery_jplayer_1').jPlayer('play');
 				$('.scroll-wrapper').scrollTo("div.stredming-wrapper", 500);
