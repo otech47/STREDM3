@@ -2856,14 +2856,14 @@ font-weight: normal;
 #mobile-content{
 	height:100%;
 	width: 100%;
-	background: url(../images/stredm_mobilepage2.jpg); 
+	background: url(../images/stredm_mobile.jpg); 
 
 }
 
 @media screen and (min-width: 0px) and (max-width: 400px) {
    body {display: none;} 
    #mobile-content { display: block; }
-  html {background: url(../images/stredm_mobilepage2.jpg); 
+  html {background: url(../images/stredm-mobile.jpg); 
   		background-repeat: no-repeat;}  /* show it on small screens */
 
 }
@@ -2876,9 +2876,8 @@ font-weight: normal;
 only screen and (-webkit-min-device-pixel-ratio : 1.5),
 only screen and (min-device-pixel-ratio : 1.5) {
 /* Styles */
-body {display: none;} 
    #mobile-content { display: block; }
-  html {background: url(../images/stredm_mobilepage2.jpg); 
+  html {background: url(../images/stredm-mobile.jpg); 
   		background-repeat: no-repeat;}
 }
 
@@ -2888,7 +2887,7 @@ and (min-device-width : 320px)
 and (max-device-width : 480px) {
 /* Styles */
 	#mobile-content { display: block; }
-  html {background: url(../images/stredm_mobilepage2.jpg); 
+  html {background: url(../images/stredm-mobile.jpg); 
   		background-repeat: no-repeat;}
 }
 
@@ -2897,7 +2896,7 @@ and (max-device-width : 480px) {
 and (min-width : 321px) {
 /* Styles */
 	#mobile-content { display: block; }
-  html {background: url(../images/stredm_mobilepage2.jpg); 
+  html {background: url(../images/stredm-mobile.jpg); 
   		background-repeat: no-repeat;}
 }
 
@@ -2906,7 +2905,7 @@ and (min-width : 321px) {
 and (max-width : 320px) {
 /* Styles */
 	#mobile-content { display: block; }
-  html {background: url(../images/stredm_mobilepage2.jpg); 
+  html {background: url(../images/stredm-mobile.jpg); 
   		background-repeat: no-repeat;}
 }
 
