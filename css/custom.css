@@ -114,7 +114,7 @@ h1
 	-ms-box-align:center;
 	align-items:center;
 }
-#random-set
+.welcome-button
 {
   background-color: hsl(0, 0%, 79%) !important;
   background-repeat: repeat-x;
@@ -134,7 +134,10 @@ h1
   padding:10%;
   width:100%;
 }
+#browse
+{
 
+}
 #homepageintrotext
 {
 	font-size: 6vh;
@@ -177,7 +180,7 @@ h1
 .button-search-wrapper
 {
 	margin:0;
-	padding: 0;
+	padding: 0 0.5vw;
 	transition: all 1s ease-out;
 }
 
@@ -204,6 +207,13 @@ h1
 
 }
 #welcome-random-button
+{
+	-webkit-box-flex:2;
+	-moz-box-flex:2;
+	-ms-flex:2;
+	flex:2;
+}
+#welcome-browse-button
 {
 	-webkit-box-flex:2;
 	-moz-box-flex:2;
@@ -780,7 +790,6 @@ i
 	width:100%;
 	margin-top:-600px;
 	transition: all 0.3s ease-out;
-	overflow: scroll!important;
 	position:absolute!important;
 }
 .panel-result

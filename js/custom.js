@@ -21,50 +21,6 @@ $(document).ready( function() {
     	"linear-gradient(to bottom, #ff5db1 38%,#ef017c 100%)"];
     	return color[choice];
 	}
-	function searchSet()
-	{
-		var searchString = window.location.search.substring(1);
-		var searchArray = searchString.split('&');
-		var temp1 = searchArray[0].split('=');
-		var temp2 = searchArray[1].split('=');
-		var event = temp1[1];
-		var artist = temp2[1];
-		event = event.replace(/%20/g, " ");
-		artist = artist.replace(/%20/g, " ");
-		var postdata = {
-			event:event,
-			artist:artist
-			};
-		jQuery.ajax({
-			type: "POST",
-			url: '../scripts/request.php',
-			data: postdata,
-			success: function(data) 
-			{
-				console.log(data);
-				var result = data;
-				$(".stredming-wrapper").css("display","block");
-				$('.scroll-wrapper').animate({scrollTop: $(document).height()}, '1000');
-				$(".stredming-player-container").slideDown(100);
-				$(".stredming-result").empty();
-				jQuery("div.stredming-result").append("<div class='result'>"+result+"</div>");
-				var urlSrc = $("#current-result").attr("src");
-				var urlSelection = urlSrc.substring(0, urlSrc.length-31);
-				$(".stredming-tracklist").empty();
-				var urlpostdata = {songURL:urlSelection}
-				jQuery.ajax({
-					type: "POST",
-					url: '../scripts/requestTracklist.php',
-					data: urlpostdata,
-					success: function(data) 
-					{
-						var result = data;
-						jQuery("div.stredming-tracklist").append("<div class='tracklist-result'>"+result+"</div>");
-					}
-				});
-			}
-		});
-	}
 	function getAllTags()
 	{
 		// Live Code Start
@@ -144,17 +100,18 @@ $(document).ready( function() {
 	{
 		$(".tiles-wrapper").empty();
 		var columnType = {title:"Empty", id:"prc-0"};
-		if(type == "artist")
-		{
-			columnType = {title:"Event", id:"prc-2"};
-		}
-		else if(type == "event")
-		{	
+		if(type == "artist-wrapper") {
 			columnType = {title:"Artist", id:"prc-1"};
+		} else if(type == "event-wrapper") {	
+			columnType = {title:"Event", id:"prc-2"};
+		} else if(type == "radiomix-wrapper") {	
+			columnType = {title:"Radio Mix", id:"prc-3"};
+		} else if(type == "genre-wrapper") {	
+			columnType = {title:"Genre", id:"prc-4"};
 		}
-		var columnCode = $("<div class='panel-column-wrapper'><div class='panel-autocomplete-column'><div class='panel-results-wrapper'><div class='panel-results-container'></div></div></div></div>");
+		var columnCode = $("<div class='panel-results-wrapper'><div class='panel-results-container'></div></div>");
 		columnCode.find(".panel-results-container").attr("id", (columnType.id).toString());
-		columnCode.attr("id", type.toString()+"-panel-wrapper");
+		columnCode.attr("id", type.toString()+"-panel");
 		columnCode.appendTo(".tiles-wrapper");
 		$.each(tileName, function (index, value) {
 			var a = value.appendTo("#"+columnType.id);
@@ -162,7 +119,14 @@ $(document).ready( function() {
 			a.attr("data-img", imgArray[index]);
 			a.click(function(){
 				// console.log(data);
-				$('#jp_player_title').text(a.text());
+				var playerTitle;
+				if(valueArray[index].is_radiomix == 1) {
+					playerTitle = valueArray[index].artist + " - " + valueArray[index].radiomix;
+				}
+				else {
+					playerTitle = valueArray[index].artist + " - " + valueArray[index].event;
+				}
+				$('#jp_player_title').text(playerTitle);
 				$('#jquery_jplayer_1').jPlayer("setMedia", {
 					mp3: "uploads/"+a.attr('data-url')
 				});
@@ -254,18 +218,29 @@ $(document).ready( function() {
 						{
 							console.log(data);
 							$.each(data, function(index, value) {
-								// console.log(index);
-								// console.log(value);
-								// console.log(value.songURL);
+								valueArray[index] = value;
 								urlArray[index] = value.songURL;
 								imgArray[index] = value.imageURL;
-								var title = value.artist + " - ";
-								if(value.is_radiomix == "1") {
-									title += value.radiomix;
-								} else {
-									title += value.event;
+								var title;
+								if(activeColumn.attr("id") == "artist-wrapper") {
+									if(value.is_radiomix == "1") {
+										title = value.radiomix;
+									}
+									else {
+										title = value.event;
+									}
 								}
-
+								if(activeColumn.attr("id") == "genre-wrapper") {
+									if(value.is_radiomix == "1") {
+										title = value.artist + " - " + value.radiomix;
+									}
+									else {
+										title = value.artist + " - " + value.event;
+									}
+								}
+								else {
+									title = value.artist;
+								}
 								matchedTags[index] = title;
 							});
 						},
@@ -273,7 +248,7 @@ $(document).ready( function() {
 						{
 							var infoACWidget = inputBox.autocomplete({
 								minLength: 0,
-								delay: 1000,
+								delay: 100,
 								source: matchedTags,
 								response: function(event, ui) {
 									var objectArray = ui.content;
@@ -292,7 +267,7 @@ $(document).ready( function() {
 							infoACWidget.click(function() {
 								closePanel();
 							});
-							createPanelResults(activeHeader.text().toLowerCase(), generatePanelTiles());
+							createPanelResults(activeColumn.attr("id"), generatePanelTiles());
 						}
 					});
 					// Live Code End
@@ -308,6 +283,9 @@ $(document).ready( function() {
 				$(".autocomplete-container").empty();
 				updateResults();
 			}
+		});
+		infoPanel.mouseover(function() {
+			$(".panel-results-container").css("overflow-y","scroll");
 		});
 	}
 	function closePanel()
@@ -473,7 +451,7 @@ $(document).ready( function() {
 		return [isEmpty, "genre"];
 	}
 	var mainACWidget = $("#main-search").autocomplete({
-		minLength: 1,
+		minLength: 0,
 		delay: 300
 	});
 	var backspaceDetect;
@@ -488,24 +466,18 @@ $(document).ready( function() {
 	var panelOpen = false;
 	var urlArray = new Array();
 	var matchedTags = new Array();
+	var valueArray = new Array();
 	var panelIsotope = null;
 	// do once only on load
 	getAllTags();
 	mainACWidget.autocomplete({
 		search: function(event, ui) {
-			var loader = $("<div class='loader-container'><div class='loader'><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div><div class='loader-text'>Searching...</div></div>");
+			var loader = $("<div class='loader-container'><div class='loader'><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div><div class='loader-text'>Loading...</div></div>");
 			loader.appendTo(".autocomplete-container");
 		},
 		response: function(event, ui) {
 			$("ul.ui-autocomplete").remove();
 			var objectArray = ui.content;
-			if(backspaceDetect.keyCode == 8 && $("#main-search").val().length == 0)
-			{
-				$(".loader-container").remove();
-				$(".column-wrapper").css("margin-left", "-500px");
-				$(".tile-selection-wrapper").remove();
-				return;
-			}
 			searchTiles = new Array();
 			$.each(objectArray, function(index, value) {
 				searchTiles.push($("<div class='result'><p>"+value.label+"</p></div>"));
@@ -538,6 +510,9 @@ $(document).ready( function() {
 	 });
 	$("#aftermovie").click(function() {
 		$("#f1_card").toggleClass("flipped");
+	});
+	$("#browse").click(function() {
+		mainACWidget.autocomplete("search", "");
 	});
 	$("#random-set").click(function() {
 		$.ajax({
