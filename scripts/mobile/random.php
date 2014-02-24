@@ -32,7 +32,6 @@ while($row = mysqli_fetch_array($result))
 $j = rand(0, count($fullArray)-1);
 $newArray[0] = $fullArray[$j];
 
-$returnResult = stripslashes($fullArray[$j]);
 echo json_encode($newArray);
 
 ?>

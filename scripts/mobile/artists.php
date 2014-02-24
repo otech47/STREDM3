@@ -7,21 +7,16 @@ if (!$con)
 	die('Could not connect: ' . mysql_error());
 }
 
-$fullArray = array();
-$sql = "SELECT id, artist, event, genre AS title, songURL FROM sets WHERE is_deleted = 0";
+$sql = "SELECT DISTINCT a.id, a.artist FROM sets AS s INNER JOIN artists AS a ON s.artist_id = a.id WHERE is_deleted = 0 ORDER BY a.artist ASC";
 $result = mysqli_query($con, $sql);
 $i = 0;
-while($row = mysqli_fetch_array($result))
+$resultArray = array();
+while($artistRow = mysqli_fetch_array($result))
 {
-	$fullArray[$i] = $row;
-
+	$resultArray[$i]['id'] = $artistRow['id'];
+	$resultArray[$i]['artist'] = $artistRow['artist'];
 	$i++;
 }
-$j = rand(0, count($fullArray)-1);
-$newArray[0] = $fullArray[$j];
-
-$returnResult = stripslashes($fullArray[$j]);
-echo json_encode($newArray);
-
+echo json_encode($resultArray);
 
 ?>

@@ -8,12 +8,12 @@ die('Could not connect: ' . mysql_error());
 }
 
 $fullArray = array();
-$sql = "SELECT s.id, a.artist, e.event, r.radiomix,  g.genre, s.imageURL, s.songURL, s.is_radiomix FROM sets AS s ".
+$sql = "SELECT s.id, a.artist, e.event, r.radiomix, g.genre, s.imageURL, s.songURL, s.is_radiomix FROM sets AS s ".
 "INNER JOIN artists AS a ON a.id = s.artist_id ".
 "LEFT JOIN events AS e ON e.id = s.event_id ".
 "LEFT JOIN radiomixes AS r ON r.id = s.radiomix_id ".
 "INNER JOIN genres AS g ON g.id = s.genre_id ".
-"WHERE is_deleted = 0 ORDER BY s.popularity DESC LIMIT 0 , 20";
+"WHERE is_deleted = 0 ORDER BY s.datetime DESC LIMIT 0 , 20";
 $result = mysqli_query($con, $sql);
 $songURLArray = array();
 $i = 0;
