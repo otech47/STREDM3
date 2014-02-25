@@ -120,7 +120,7 @@ $(document).ready( function() {
 			a.click(function(){
 				// console.log(data);
 				var playerTitle;
-				if(valueArray[index].is_radiomix == 1) {
+				if(valueArray[index].is_radiomix == "1") {
 					playerTitle = valueArray[index].artist + " - " + valueArray[index].radiomix;
 				}
 				else {
