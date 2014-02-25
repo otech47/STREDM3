@@ -221,7 +221,7 @@ $(document).ready( function() {
 								valueArray[index] = value;
 								urlArray[index] = value.songURL;
 								imgArray[index] = value.imageURL;
-								var title;
+								var title = "";
 								if(activeColumn.attr("id") == "artist-wrapper") {
 									if(value.is_radiomix == "1") {
 										title = value.radiomix;
@@ -230,7 +230,7 @@ $(document).ready( function() {
 										title = value.event;
 									}
 								}
-								if(activeColumn.attr("id") == "genre-wrapper") {
+								else if(activeColumn.attr("id") == "genre-wrapper") {
 									if(value.is_radiomix == "1") {
 										title = value.artist + " - " + value.radiomix;
 									}
