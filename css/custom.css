@@ -2856,14 +2856,14 @@ font-weight: normal;
 #mobile-content{
 	height:100%;
 	width: 100%;
-	background: url(../images/stredm_mobile.jpg); 
+	background: url(../images/stredm-mobile-resize.jpg); 
 
 }
 
 @media screen and (min-width: 0px) and (max-width: 400px) {
    body {display: none;} 
    #mobile-content { display: block; }
-  html {background: url(../images/stredm-mobile.jpg); 
+  html {background: url(../images/stredm-mobile-resize.jpg); 
   		background-repeat: no-repeat;}  /* show it on small screens */
 }
 
@@ -2874,7 +2874,7 @@ font-weight: normal;
 /* iPhone 4 ----------- */
 @media only screen and (-webkit-min-device-pixel-ratio : 1.5), only screen and (min-device-pixel-ratio : 1.5) {
   #mobile-content { display: block; }
-  html {background: url(../images/stredm-mobile.jpg); 
+  html {background: url(../images/stredm-mobile-resize.jpg); 
   		background-repeat: no-repeat;}
 }
 
@@ -2882,21 +2882,21 @@ font-weight: normal;
 /* Smartphones (portrait and landscape) ----------- */
 @media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
   #mobile-content { display: block; }
-  html {background: url(../images/stredm-mobile.jpg); 
+  html {background: url(../images/stredm-mobile-resize.jpg); 
   		background-repeat: no-repeat;}
 }
 
 /* Smartphones (landscape) ----------- */
 @media only screen and (min-width : 321px) {
   #mobile-content { display: block; }
-  html {background: url(../images/stredm-mobile.jpg); 
+  html {background: url(../images/stredm-mobile-resize.jpg); 
   		background-repeat: no-repeat;}
 }
 
 /* Smartphones (portrait) ----------- */
 @media only screen and (max-width : 320px) {
   #mobile-content { display: block; }
-  html {background: url(../images/stredm-mobile.jpg); 
+  html {background: url(../images/stredm-mobile-resize.jpg); 
   		background-repeat: no-repeat;}
 }
 
