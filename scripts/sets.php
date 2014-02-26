@@ -24,8 +24,7 @@ if(checkId('artist') && (checkId('event') || checkId('radiomix')) && checkId('ge
 
 	$songURL = null;
 	if(isset($_POST['directuploadcheckbox'])) {
-		$moveURL = markAsMoved($_POST['directupload'], $con);
-	    $songURL = moveFile($moveURL);
+	    $songURL = moveFile($_POST['directupload']);
 	} else {
 		$songURL = uploadFile('songfile');
 	}

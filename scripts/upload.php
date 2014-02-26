@@ -65,13 +65,11 @@ if(!session_is_registered("user")){
 	}
 
 	$directUploadsArray = array();
-	$sql = "SELECT * FROM direct_uploads WHERE is_moved = 0 order by id";
-	$result = mysqli_query($con, $sql);
-	$i = 0;
-	while($row = mysqli_fetch_array($result))
-	{
-		$directUploadsArray[$i] = $row;
-		$i++;
+	$files = scandir("/home/strenbum/direct_uploads");
+	foreach ($files as $key => $file) {
+		if(strpos($file, '.') !== (int) 0) {
+			$directUploadsArray[] = $file;
+		}
 	}
 
 	$imagesArray = array();
@@ -182,8 +180,8 @@ if(!session_is_registered("user")){
     	  <label for="directupload">Uploaded Song File</label>
 		  <select id="directupload" name="directupload" class="form-control">
 			<?php foreach($directUploadsArray as $directUpload) { ?>
-		  	  <option value="<?=$directUpload['id']?>">
-		  		<?=$directUpload['path']?>
+		  	  <option value="<?=$directUpload?>">
+		  		<?=$directUpload?>
 		  	  </option>
 		  	<? } ?>
 		  </select>
