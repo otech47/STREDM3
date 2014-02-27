@@ -144,26 +144,6 @@ $(document).ready( function() {
 				$("#jquery_jplayer_1").bind($.jPlayer.event.play, function(event) {
 					timer.once(300000);
 				});
-
-				// $('.scroll-wrapper').scrollTo("div.stredming-wrapper", 500);
-				// window.setTimeout(function() {
-				// 	$("div.player-wrapper").empty();
-				// 	$("<div class='player-container'><div class='stredming-result'><iframe id='current-result' width='100%'' height='100%' scrolling='no' frameborder='no' src='"+a.attr('data-url')+"&amp;color=ff6600&amp;auto_play=true&amp;show_artwork=true'></iframe></div></div>").appendTo($("div.player-wrapper"));
-				// 	var player = SC.Widget(document.getElementById("current-result"));
-				// 	var fiveMinutes = 0;
-				// 	player.bind(SC.Widget.Events.PLAY_PROGRESS, function(eventData) {
-				// 		fiveMinutes++;
-				// 		if(fiveMinutes > 1000)
-				// 		{
-				// 			mixpanel.track("Specific Set Played for 5 Minutes");
-				// 			fiveMinutes = -50000000;
-				// 		}	
-				// 	});
-				// $("#c-wrapper").click(function() {
-				// 	alert(fiveMinutes);
-				// });
-
-				// }, 500);
 			});
 		});
 		panelIsotope = $(".panel-results-container").isotope({
@@ -543,29 +523,18 @@ $(document).ready( function() {
 				});
 				$('#thumbnail').css('background-image', "url('../uploads/"+data.imageURL+"')");
 				$('.duration').show();
-				 $('#jquery_jplayer_1').jPlayer('play');
+				$('#jquery_jplayer_1').jPlayer('play');
+				$('.scroll-wrapper').scrollTo("div.stredming-wrapper", 500);
  				mixpanel.track("Random Set Play");
-
-				// if(data && data.self_hosted == 1) {
-				// } else {
-					$('.scroll-wrapper').scrollTo("div.stredming-wrapper", 500);
-					// $("div.player-wrapper").empty();
-					// $("<div class='player-container'><div class='stredming-result'>"+data+"</div></div>").appendTo($("div.player-wrapper"));
-					// var player = SC.Widget(document.getElementById("current-result"));
-					// var fiveMinutes = 0;
-					// player.bind(SC.Widget.Events.PLAY_PROGRESS, function(eventData) {
-					// 	fiveMinutes++;
-					// 	if(fiveMinutes > 1000)
-					// 	{
-					// 		mixpanel.track("Random Set Played for 5 Minutes");
-					// 		fiveMinutes = -50000000;
-					// 	}
-					// });
-					// mixpanel.track("Random Set Play");
-					// $("#c-wrapper").click(function() {
-					// 	alert(fiveMinutes);
-					// });
-				// }
+ 				var timer = $.timer(function() {
+					mixpanel.track("Random Set Played for 5 Minutes");
+				});
+				$("#jquery_jplayer_1").bind($.jPlayer.event.pause, function(event) {
+					timer.pause();
+				});
+				$("#jquery_jplayer_1").bind($.jPlayer.event.play, function(event) {
+					timer.once(300000);
+				});
 			}
 		});
 	});
