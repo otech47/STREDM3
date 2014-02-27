@@ -135,6 +135,12 @@ $(document).ready( function() {
 				$('#jquery_jplayer_1').jPlayer('play');
 				$('.scroll-wrapper').scrollTo("div.stredming-wrapper", 500);
 				mixpanel.track("Specific Set Play");
+				// var timer = $.timer(function() {
+				// 	// mixpanel.track("Specific Set Played for 5 Minutes");
+				// 	alert("test");
+				// });
+				// timer.set({time:5000, autostart:true});
+				// timer.play();
 
 				// $('.scroll-wrapper').scrollTo("div.stredming-wrapper", 500);
 				// window.setTimeout(function() {
