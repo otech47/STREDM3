@@ -137,13 +137,8 @@ $(document).ready( function() {
 				mixpanel.track("Specific Set Play");
 				var timer = $.timer(function() {
 					mixpanel.track("Specific Set Played for 5 Minutes");
-				});
-				$("#jquery_jplayer_1").bind($.jPlayer.event.pause, function(event) {
-					timer.pause();
-				});
-				$("#jquery_jplayer_1").bind($.jPlayer.event.play, function(event) {
-					timer.once(300000);
-				});
+				}, 5000, false);
+				timer.once(300000);
 			});
 		});
 		panelIsotope = $(".panel-results-container").isotope({
