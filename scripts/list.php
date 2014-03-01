@@ -23,7 +23,7 @@ if(!session_is_registered("user")){
 	}
 
 	$setsArray = array();
-	$sql = "SELECT s.id, s.songURL, s.imageURL, s.date, s.popularity, s.tracklist, s.is_radiomix, s.is_deleted, a.artist, e.event, g.genre, r.radiomix ".
+	$sql = "SELECT s.id, s.songURL, s.imageURL, s.datetime, s.popularity, s.tracklist, s.is_radiomix, s.is_deleted, a.artist, e.event, g.genre, r.radiomix ".
 			"FROM sets s ".
 			"INNER JOIN artists a ON a.id = s.artist_id ".
 			"LEFT JOIN events e ON e.id = s.event_id ".
