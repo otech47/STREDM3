@@ -62,7 +62,7 @@ $(document).ready( function() {
 		}
 		var columnCode = $("<div class='column-wrapper'><div class='autocomplete-column'>" + 
 			"<h1></h1><div class='back-to-results'><div class='back fa-th fa-2x'></div>" + 
-			"<div class='back'>Show previous results...</div></div>" + 
+			"<div class='back-text'>  Show previous results...</div></div>" + 
 			"<div class='results-wrapper'><div class='results-container'></div></div></div></div>");
 		columnCode.find("h1").append((columnType.title).toString());
 		columnCode.find(".results-container").attr("id", (columnType.id).toString());
@@ -440,7 +440,7 @@ $(document).ready( function() {
 		return [isEmpty, "genre"];
 	}
 	var mainACWidget = $("#main-search").autocomplete({
-		minLength: 0,
+		minLength: 3,
 		delay: 300
 	});
 	var backspaceDetect;
@@ -501,7 +501,9 @@ $(document).ready( function() {
 		$("#f1_card").toggleClass("flipped");
 	});
 	$("#browse").click(function() {
-		mainACWidget.autocomplete("search", "");
+		mainACWidget.autocomplete("option","minLength",0);
+		mainACWidget.autocomplete("search","");
+		mainACWidget.autocomplete("option","minLength",3);
 	});
 	$("#random-set").click(function() {
 		$.ajax({

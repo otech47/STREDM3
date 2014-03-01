@@ -14,6 +14,8 @@ body
 	background-repeat:no-repeat;
 	overflow: hidden;
 	font-size:100%;
+	font-weight:900;
+	font-family:Nexa;
 }
 p
 {
@@ -22,6 +24,7 @@ p
 h1
 {
 	margin:0;
+	font-family: Nexa;
 }
 .scroll-wrapper
 {
@@ -29,7 +32,7 @@ h1
 	width:100%;
 	overflow-y:scroll;
 	overflow-x:hidden;
-	font-family: Sansation;
+	font-family: Nexa;
 }
 
 .home-page-wrapper
@@ -243,7 +246,7 @@ h1
 {
 	background-color: white;
 	box-shadow: 0px 0px 1px 2px white;
-	font-family: Walkway;
+	font-family: Nexa;
 	-webkit-box-flex:1;
 	-moz-box-flex:1;
 	-ms-flex:1;
@@ -353,7 +356,6 @@ h1
 	font-size: 5.4em;
 	font-weight: bold;
 	margin: 0;
-	font-family:Walkway;
 	letter-spacing:1px;
 	padding-left: 3%;
 }
@@ -694,7 +696,6 @@ i
 	rgba(255,255,255,1);
 	transition: all 0.3s linear;
 	color: white;
-	font-family: helvetica;
 	padding: 0;
 	margin:0;
 	-webkit-box-flex:1;
@@ -725,6 +726,15 @@ i
 	margin:0;
 	font-size:3vh;
 	color:white;
+}
+.back-text
+{
+	color: #FFFFFF;
+    display: inline-block;
+    font-size: 2.5vh;
+    line-height: 1;
+    margin: 0;
+    white-space: pre;
 }
 .results-wrapper
 {
@@ -2697,6 +2707,18 @@ font-weight: normal;
 	font-family: Sansation;
 	src: url(../fonts/Sansation_Regular.ttf);
 }
+@font-face
+{
+	font-family: Lovelo;
+	src: url(../fonts/Lovelo Black.otf);
+}
+@font-face
+{
+	font-family: Nexa;
+	src: url(../fonts/Nexa Light.otf);
+}
+
+
 
 /* Animations */
 .loader-container
