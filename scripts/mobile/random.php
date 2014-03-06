@@ -29,8 +29,21 @@ while($row = mysqli_fetch_array($result))
 
 	$i++;
 }
-$j = rand(0, count($fullArray)-1);
-$newArray[0] = $fullArray[$j];
+$newArray = array();
+for($i=0; $i<10; $i++) {
+	$j = rand(0, count($fullArray)-1);
+	$notExists = true;
+	foreach ($newArray as $key => $value) {
+		if($value['id'] == $fullArray[$j]['id']) {
+			$notExists = false;
+		}
+	}
+	if($notExists) {
+		$newArray[$i] = $fullArray[$j];
+	} else {
+		$i--;
+	}
+}
 
 echo json_encode($newArray);
 

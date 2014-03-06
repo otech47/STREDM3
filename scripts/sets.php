@@ -120,16 +120,6 @@ function setId($type, $con) {
 	}
 }
 
-function markAsMoved($id, $con) {
-	$sql = "UPDATE direct_uploads SET is_moved = 1 WHERE id=$id";
-	$result = mysqli_query($con, $sql);
-	$sql = "SELECT path FROM direct_uploads WHERE id=$id";
-	$result = mysqli_query($con, $sql);
-	while($row = mysqli_fetch_array($result)) {
-		return $row['path'];
-	}
-}
-
 function moveFile($filename) {
 	try {
 	    $newFilename = sha1_file("/home/strenbum/direct_uploads/" . $filename);

@@ -8,8 +8,8 @@ if (!$con)
 }
 
 $sqla = "SELECT DISTINCT a.artist FROM sets AS s INNER JOIN artists AS a ON s.artist_id = a.id WHERE 1";
-$sqle = "SELECT DISTINCT e.event FROM sets AS s INNER JOIN events AS e ON s.event_id = e.id WHERE 1";
-$sqlr = "SELECT DISTINCT r.radiomix FROM sets AS s INNER JOIN radiomixes AS r ON s.radiomix_id = r.id WHERE 1";
+$sqle = "SELECT DISTINCT e.event FROM sets AS s INNER JOIN events AS e ON s.event_id = e.id WHERE e.is_radiomix = 0";
+$sqlr = "SELECT DISTINCT e.event FROM sets AS s INNER JOIN events AS e ON s.event_id = e.id WHERE e.is_radiomix = 1";
 $sqlg = "SELECT DISTINCT g.genre FROM sets AS s INNER JOIN genres AS g ON s.genre_id = g.id WHERE 1";
 
 $resulte = mysqli_query($con, $sqle);
