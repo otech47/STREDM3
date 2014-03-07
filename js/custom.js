@@ -119,13 +119,7 @@ $(document).ready( function() {
 			a.attr("data-img", imgArray[index]);
 			a.click(function(){
 				// console.log(data);
-				var playerTitle;
-				if(valueArray[index].is_radiomix == "1") {
-					playerTitle = valueArray[index].artist + " - " + valueArray[index].radiomix;
-				}
-				else {
-					playerTitle = valueArray[index].artist + " - " + valueArray[index].event;
-				}
+				var playerTitle = valueArray[index].artist + " - " + valueArray[index].event;
 				$('#jp_player_title').text(playerTitle);
 				$('#jquery_jplayer_1').jPlayer("setMedia", {
 					mp3: "uploads/"+a.attr('data-url')
@@ -207,22 +201,10 @@ $(document).ready( function() {
 								imgArray[index] = value.imageURL;
 								var title = "";
 								if(activeColumn.attr("id") == "artist-wrapper") {
-									if(value.is_radiomix == "1") {
-										title = value.radiomix;
-									}
-									else {
-										title = value.event;
-									}
-								}
-								else if(activeColumn.attr("id") == "genre-wrapper") {
-									if(value.is_radiomix == "1") {
-										title = value.artist + " - " + value.radiomix;
-									}
-									else {
-										title = value.artist + " - " + value.event;
-									}
-								}
-								else {
+									title = value.event;
+								} else if(activeColumn.attr("id") == "genre-wrapper") {
+									title = value.artist + " - " + value.event;
+								} else {
 									title = value.artist;
 								}
 								matchedTags[index] = title;
@@ -508,12 +490,7 @@ $(document).ready( function() {
 			{
 				// console.log(data);
 				// console.log(data.is_radiomix);
-				var title = data.artist + " - ";
-				if(data.is_radiomix == "1") {
-					title += data.radiomix;
-				} else {
-					title += data.event;
-				}
+				var title = data.artist + " - " + data.event;
 				$('#jp_player_title').text(title);
 				$('#jquery_jplayer_1').jPlayer("setMedia", {
 					mp3: "uploads/"+data.songURL

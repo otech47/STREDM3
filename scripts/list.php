@@ -23,12 +23,12 @@ if(!session_is_registered("user")){
 	}
 
 	$setsArray = array();
-	$sql = "SELECT s.id, s.songURL, s.imageURL, s.datetime, s.popularity, s.tracklist, s.is_radiomix, s.is_deleted, a.artist, e.event, g.genre, r.radiomix ".
+	$sql = "SELECT s.id, s.songURL, i.imageURL, s.datetime, s.popularity, s.tracklist, e.is_radiomix, s.is_deleted, a.artist, e.event, g.genre ".
 			"FROM sets s ".
-			"INNER JOIN artists a ON a.id = s.artist_id ".
-			"LEFT JOIN events e ON e.id = s.event_id ".
-			"LEFT JOIN radiomixes r ON r.id = s.radiomix_id ".
-			"INNER JOIN genres g ON g.id = s.genre_id ".
+			"INNER JOIN artists AS a ON a.id = s.artist_id ".
+			"INNER JOIN events AS e ON e.id = s.event_id ".
+			"INNER JOIN images AS i ON i.id = e.image_id ".
+			"INNER JOIN genres AS g ON g.id = s.genre_id ".
 			"WHERE 1 ".
 			"ORDER BY s.is_deleted ASC, a.artist ASC, s.id ASC";
 	$result = mysqli_query($con, $sql);
@@ -86,12 +86,16 @@ if(!session_is_registered("user")){
 		  	  </td>
 		  	  <td>
 			  	<div class="form-group">
-			  	  <?=$set['event']?>
+			  	  <? if(!$set['is_radiomix']) { ?>
+			  		<?=$set['event']?>
+			  	  <? } ?>
 				</div>
 		  	  </td>
 		  	  <td>
 			  	<div class="form-group">
-			  	  <?=$set['radiomix']?>
+			  	  <? if($set['is_radiomix']) { ?>
+			  		<?=$set['event']?>
+			  	  <? } ?>
 				</div>
 		  	  </td>
 		  	  <td>

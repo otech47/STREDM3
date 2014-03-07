@@ -7,7 +7,8 @@ if (!$con)
 	die('Could not connect: ' . mysql_error());
 }
 
-$sql = "SELECT DISTINCT e.id, e.event FROM sets AS s INNER JOIN events AS e ON s.event_id = e.id WHERE is_deleted = 0 ORDER BY e.event ASC";
+$sql = "SELECT DISTINCT e.id, e.event FROM sets AS s INNER JOIN events AS e ON s.event_id = e.id ".
+"WHERE s.is_deleted IS FALSE AND e.is_radiomix IS FALSE ORDER BY e.event ASC";
 $result = mysqli_query($con, $sql);
 $i = 0;
 $resultArray = array();

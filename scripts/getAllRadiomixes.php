@@ -7,7 +7,8 @@ if (!$con)
 	die('Could not connect: ' . mysql_error());
 }
 
-$sql = "SELECT DISTINCT e.event FROM sets AS s INNER JOIN events AS e ON s.event_id = e.id WHERE s.is_deleted = 0 AND e.is_radiomix = 1";
+$sql = "SELECT DISTINCT e.event FROM sets AS s INNER JOIN events AS e ON s.event_id = e.id ".
+"WHERE s.is_deleted = 0 AND e.is_radiomix = 1";
 $result = mysqli_query($con, $sql);
 $i = 0;
 $resultArray = array();

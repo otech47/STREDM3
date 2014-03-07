@@ -35,7 +35,7 @@ if(!session_is_registered("user")){
 	}
 
 	$eventsArray = array();
-	$sql = "SELECT * FROM events WHERE 1 order by event";
+	$sql = "SELECT * FROM events WHERE is_radiomix IS FALSE order by event";
 	$result = mysqli_query($con, $sql);
 	$i = 0;
 	while($row = mysqli_fetch_array($result))
@@ -45,7 +45,7 @@ if(!session_is_registered("user")){
 	}
 
 	$radiomixesArray = array();
-	$sql = "SELECT * FROM radiomixes WHERE 1 order by radiomix";
+	$sql = "SELECT * FROM events WHERE is_radiomix IS TRUE order by event";
 	$result = mysqli_query($con, $sql);
 	$i = 0;
 	while($row = mysqli_fetch_array($result))
@@ -73,12 +73,10 @@ if(!session_is_registered("user")){
 	}
 
 	$imagesArray = array();
-	$sql = "SELECT s.imageURL, s.is_radiomix, e.event, r.radiomix FROM sets AS s ".
-	"LEFT JOIN events AS e ON e.id = s.event_id ".
-	"LEFT JOIN radiomixes AS r ON r.id = s.radiomix_id ".
-	"WHERE s.id IN (
-	  SELECT MAX(id) FROM sets GROUP BY imageURL
-	)";
+	$sql = "SELECT i.imageURL, e.is_radiomix, e.event FROM sets AS s ".
+	"INNER JOIN events AS e ON e.id = s.event_id ".
+	"INNER JOIN images AS i ON i.id = e.image_id ".
+	"WHERE 1 GROUP BY i.imageURL";
 	// $sql = "SELECT DISTINCT s.imageURL, s.is_radiomix, e.event, r.radiomix FROM sets AS s ".
 	// "LEFT JOIN events AS e ON e.id = s.event_id ".
 	// "LEFT JOIN radiomixes AS r ON r.id = s.radiomix_id ".
@@ -148,7 +146,7 @@ if(!session_is_registered("user")){
 		  	<option value="new">New Radio Mix</option>
 			<?php foreach($radiomixesArray as $radiomix) { ?>
 		  	  <option value="<?=$radiomix['id']?>">
-		  		<?=$radiomix['radiomix']?>
+		  		<?=$radiomix['event']?>
 		  	  </option>
 		  	<? } ?>
 		  </select>
@@ -202,7 +200,7 @@ if(!session_is_registered("user")){
 				if($image['imageURL'] != null) { ?>
 		  	  <option value="<?=$image['imageURL']?>">
 		  	  	<? if($image['is_radiomix'] == 1) {
-		  	  		echo $image['radiomix'];
+		  	  		echo $image['event'];
 		  	  	} else {
 		  	  		echo $image['event'];
 		  	  	} ?>
@@ -282,14 +280,18 @@ if(!session_is_registered("user")){
   		if(this.checked) {
   			$('#imagepicker').hide();
   			$('#oldimagepicker').show();
+  			showImage();
   		} else {
   			$('#imagepicker').show();
   			$('#oldimagepicker').hide();
   		}
   	});
   	$('#oldimage').change(function() {
-  		$('#thumbnail').attr("src", "http://stredm.com/uploads/"+$(this).val());
+  		showImage();
   	});
   });
+	function showImage() {
+		$('#thumbnail').attr("src", "http://stredm.com/uploads/"+$('#oldimage').val());
+	}
   </script>
 </html>

@@ -108,3 +108,12 @@ JOIN images i ON e.imageURL = i.imageURL
 SET e.image_id = i.id
 WHERE 1
 
+insert ignore into sets_to_artists(artist, set_id) SELECT a.artist, s.id FROM sets AS s INNER JOIN artists AS a ON a.id = s.artist_id WHERE 1 IS NOT NULL order by a.artist
+
+insert ignore into artists2(artist) SELECT sa.artist FROM sets_to_artists AS sa WHERE 1 GROUP BY sa.artist
+
+UPDATE sets_to_artists sa
+JOIN artists2 a ON sa.artist = a.artist
+SET sa.artist_id = a.id
+WHERE 1
+

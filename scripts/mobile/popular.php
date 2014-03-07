@@ -8,12 +8,12 @@ die('Could not connect: ' . mysql_error());
 }
 
 $fullArray = array();
-$sql = "SELECT s.id, a.artist, e.event, r.radiomix,  g.genre, s.imageURL, s.songURL, s.is_radiomix FROM sets AS s ".
+$sql = "SELECT s.id, a.artist, e.event,  g.genre, i.imageURL, s.songURL, e.is_radiomix FROM sets AS s ".
 "INNER JOIN artists AS a ON a.id = s.artist_id ".
-"LEFT JOIN events AS e ON e.id = s.event_id ".
-"LEFT JOIN radiomixes AS r ON r.id = s.radiomix_id ".
+"INNER JOIN events AS e ON e.id = s.event_id ".
+"INNER JOIN images AS i ON i.id = e.image_id ".
 "INNER JOIN genres AS g ON g.id = s.genre_id ".
-"WHERE is_deleted = 0 ORDER BY s.popularity DESC LIMIT 0 , 20";
+"WHERE is_deleted IS FALSE ORDER BY s.popularity DESC LIMIT 0 , 20";
 $result = mysqli_query($con, $sql);
 $songURLArray = array();
 $i = 0;
@@ -22,7 +22,6 @@ while($row = mysqli_fetch_array($result))
 	$fullArray[$i]['id'] = $row['id'];
 	$fullArray[$i]['artist'] = $row['artist'];
 	$fullArray[$i]['event'] = $row['event'];
-	$fullArray[$i]['radiomix'] = $row['radiomix'];
 	$fullArray[$i]['genre'] = $row['genre'];
 	$fullArray[$i]['imageURL'] = $row['imageURL'];
 	$fullArray[$i]['songURL'] = $row['songURL'];

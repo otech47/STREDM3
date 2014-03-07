@@ -17,9 +17,10 @@ if($_GET['get'] == 1) {
 $label = checkAddSlashes($label);
 
 $artistArray = array();
-$artistSql = "SELECT s.id, a.artist, e.event, g.genre, s.imageURL, s.songURL, e.is_radiomix FROM sets AS s ".
+$artistSql = "SELECT s.id, a.artist, e.event, g.genre, i.imageURL, s.songURL, e.is_radiomix FROM sets AS s ".
 "INNER JOIN artists AS a ON a.id = s.artist_id ".
 "INNER JOIN events AS e ON e.id = s.event_id ".
+"INNER JOIN images AS i ON i.id = e.image_id ".
 "INNER JOIN genres AS g ON g.id = s.genre_id ".
 "WHERE a.artist = '$label'".
 "AND s.is_deleted = 0 ";
@@ -39,9 +40,10 @@ while($artistRow = mysqli_fetch_array($artistResult))
 }
 
 $eventArray = array();
-$eventSql = "SELECT s.id, a.artist, e.event, g.genre, s.imageURL, s.songURL, e.is_radiomix FROM sets AS s ".
+$eventSql = "SELECT s.id, a.artist, e.event, g.genre, i.imageURL, s.songURL, e.is_radiomix FROM sets AS s ".
 "INNER JOIN artists AS a ON a.id = s.artist_id ".
 "INNER JOIN events AS e ON e.id = s.event_id ".
+"INNER JOIN images AS i ON i.id = e.image_id ".
 "INNER JOIN genres AS g ON g.id = s.genre_id ".
 "WHERE e.event = '$label'".
 "AND s.is_deleted = 0 ".
@@ -62,9 +64,10 @@ while($eventRow = mysqli_fetch_array($eventResult))
 }
 
 $radiomixArray = array();
-$radiomixSql = "SELECT s.id, a.artist, e.event, g.genre, s.imageURL, s.songURL, e.is_radiomix FROM sets AS s ".
+$radiomixSql = "SELECT s.id, a.artist, e.event, g.genre, i.imageURL, s.songURL, e.is_radiomix FROM sets AS s ".
 "INNER JOIN artists AS a ON a.id = s.artist_id ".
 "INNER JOIN events AS e ON e.id = s.event_id ".
+"INNER JOIN images AS i ON i.id = e.image_id ".
 "INNER JOIN genres AS g ON g.id = s.genre_id ".
 "WHERE e.event = '$label'".
 "AND s.is_deleted = 0 ".
@@ -85,9 +88,10 @@ while($radiomixRow = mysqli_fetch_array($radiomixResult))
 }
 
 $genreArray = array();
-$genreSql = "SELECT s.id, a.artist, e.event, g.genre, s.imageURL, s.songURL, e.is_radiomix FROM sets AS s ".
+$genreSql = "SELECT s.id, a.artist, e.event, g.genre, i.imageURL, s.songURL, e.is_radiomix FROM sets AS s ".
 "INNER JOIN artists AS a ON a.id = s.artist_id ".
 "INNER JOIN events AS e ON e.id = s.event_id ".
+"INNER JOIN images AS i ON i.id = e.image_id ".
 "INNER JOIN genres AS g ON g.id = s.genre_id ".
 "WHERE g.genre = '$label'".
 "AND s.is_deleted = 0 ";

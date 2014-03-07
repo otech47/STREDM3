@@ -7,7 +7,8 @@ if (!$con)
 	die('Could not connect: ' . mysql_error());
 }
 
-$sql = "SELECT DISTINCT a.id, a.artist FROM sets AS s INNER JOIN artists AS a ON s.artist_id = a.id WHERE is_deleted = 0 ORDER BY a.artist ASC";
+$sql = "SELECT DISTINCT a.id, a.artist FROM sets AS s INNER JOIN artists AS a ON s.artist_id = a.id ".
+"WHERE s.is_deleted IS FALSE ORDER BY a.artist ASC";
 $result = mysqli_query($con, $sql);
 $i = 0;
 $resultArray = array();
