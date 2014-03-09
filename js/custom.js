@@ -417,7 +417,7 @@ $(document).ready( function() {
 		return [isEmpty, "genre"];
 	}
 	var mainACWidget = $("#main-search").autocomplete({
-		minLength: 3,
+		minLength: 1,
 		delay: 300
 	});
 	var backspaceDetect;
