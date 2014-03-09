@@ -480,7 +480,7 @@ $(document).ready( function() {
 	$("#browse").click(function() {
 		mainACWidget.autocomplete("option","minLength",0);
 		mainACWidget.autocomplete("search","");
-		mainACWidget.autocomplete("option","minLength",3);
+		mainACWidget.autocomplete("option","minLength",1);
 	});
 	$("#random-set").click(function() {
 		$.ajax({
