@@ -16,13 +16,13 @@ $genre = checkAddSlashes($_GET['genre']);
 
 $artistArray = array();
 if($artist != '') {
-	$artistSql = "SELECT s.id, a.artist, e.event, r.radiomix, g.genre, s.imageURL, s.songURL, s.is_radiomix FROM sets AS s ".
+	$artistSql = "SELECT s.id, a.artist, e.event, g.genre, i.imageURL, s.songURL, e.is_radiomix FROM sets AS s ".
 	"INNER JOIN artists AS a ON a.id = s.artist_id ".
-	"LEFT JOIN events AS e ON e.id = s.event_id ".
-	"LEFT JOIN radiomixes AS r ON r.id = s.radiomix_id ".
+	"INNER JOIN events AS e ON e.id = s.event_id ".
+	"INNER JOIN images AS i ON i.id = e.image_id ".
 	"INNER JOIN genres AS g ON g.id = s.genre_id ".
 	"WHERE a.artist = '$artist'".
-	"AND is_deleted = 0 ";
+	"AND s.is_deleted IS FALSE ";
 	$artistResult = mysqli_query($con, $artistSql);
 	$i = 0;
 	while($artistRow = mysqli_fetch_array($artistResult))
@@ -41,13 +41,14 @@ if($artist != '') {
 
 $eventArray = array();
 if($event != '') {
-	$eventSql = "SELECT s.id, a.artist, e.event, r.radiomix, g.genre, s.imageURL, s.songURL, s.is_radiomix FROM sets AS s ".
+	$eventSql = "SELECT s.id, a.artist, e.event, g.genre, i.imageURL, s.songURL, e.is_radiomix FROM sets AS s ".
 	"INNER JOIN artists AS a ON a.id = s.artist_id ".
-	"LEFT JOIN events AS e ON e.id = s.event_id ".
-	"LEFT JOIN radiomixes AS r ON r.id = s.radiomix_id ".
+	"INNER JOIN events AS e ON e.id = s.event_id ".
+	"INNER JOIN images AS i ON i.id = e.image_id ".
 	"INNER JOIN genres AS g ON g.id = s.genre_id ".
 	"WHERE e.event = '$event'".
-	"AND is_deleted = 0 ";
+	"AND s.is_deleted IS FALSE ".
+	"AND e.is_radiomix IS FALSE ";
 	$eventResult = mysqli_query($con, $eventSql);
 	$i = 0;
 	while($eventRow = mysqli_fetch_array($eventResult))
@@ -66,13 +67,14 @@ if($event != '') {
 
 $radiomixArray = array();
 if($radiomix != '') {
-	$radiomixSql = "SELECT s.id, a.artist, e.event, r.radiomix, g.genre, s.imageURL, s.songURL, s.is_radiomix FROM sets AS s ".
+	$radiomixSql = "SELECT s.id, a.artist, e.event, g.genre, i.imageURL, s.songURL, e.is_radiomix FROM sets AS s ".
 	"INNER JOIN artists AS a ON a.id = s.artist_id ".
-	"LEFT JOIN events AS e ON e.id = s.event_id ".
-	"LEFT JOIN radiomixes AS r ON r.id = s.radiomix_id ".
+	"INNER JOIN events AS e ON e.id = s.event_id ".
+	"INNER JOIN images AS i ON i.id = e.image_id ".
 	"INNER JOIN genres AS g ON g.id = s.genre_id ".
-	"WHERE r.radiomix = '$radiomix'".
-	"AND is_deleted = 0 ";
+	"WHERE e.event = '$radiomix'".
+	"AND s.is_deleted IS FALSE ".
+	"AND e.is_radiomix IS TRUE ";
 	$radiomixResult = mysqli_query($con, $radiomixSql);
 	$i = 0;
 	while($radiomixRow = mysqli_fetch_array($radiomixResult))
@@ -91,13 +93,13 @@ if($radiomix != '') {
 
 $genreArray = array();
 if($genre != '') {
-	$genreSql = "SELECT s.id, a.artist, e.event, r.radiomix, g.genre, s.imageURL, s.songURL, s.is_radiomix FROM sets AS s ".
+	$genreSql = "SELECT s.id, a.artist, e.event, g.genre, i.imageURL, s.songURL, e.is_radiomix FROM sets AS s ".
 	"INNER JOIN artists AS a ON a.id = s.artist_id ".
-	"LEFT JOIN events AS e ON e.id = s.event_id ".
-	"LEFT JOIN radiomixes AS r ON r.id = s.radiomix_id ".
+	"INNER JOIN events AS e ON e.id = s.event_id ".
+	"INNER JOIN images AS i ON i.id = e.image_id ".
 	"INNER JOIN genres AS g ON g.id = s.genre_id ".
 	"WHERE g.genre = '$genre'".
-	"AND is_deleted = 0 ";
+	"AND s.is_deleted IS FALSE ";
 	$genreResult = mysqli_query($con, $genreSql);
 	$i = 0;
 	while($genreRow = mysqli_fetch_array($genreResult))

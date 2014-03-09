@@ -13,7 +13,8 @@ $sql = "SELECT s.id, a.artist, e.event,  g.genre, i.imageURL, s.songURL, e.is_ra
 "INNER JOIN events AS e ON e.id = s.event_id ".
 "INNER JOIN images AS i ON i.id = e.image_id ".
 "INNER JOIN genres AS g ON g.id = s.genre_id ".
-"WHERE is_deleted IS FALSE ORDER BY s.popularity DESC LIMIT 0 , 20";
+"WHERE is_deleted IS FALSE ".
+"ORDER BY s.id ASC, sa.number ASC, s.popularity DESC LIMIT 0 , 20";
 $result = mysqli_query($con, $sql);
 $songURLArray = array();
 $i = 0;
