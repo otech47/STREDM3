@@ -23,8 +23,6 @@ $(document).ready( function() {
 	}
 	function getAllTags()
 	{
-		// Live Code Start
-		var autocompleteData = new Array();
 		$.ajax({
 			type: "GET",
 			url: "../scripts/allTags.php",
@@ -32,19 +30,24 @@ $(document).ready( function() {
 			dataType: 'json',
 			success: function(data)
 			{
-				$.each(data, function(index,value) {
-					autocompleteData[index] = value;
+				$.each(data[0], function(index,value) {
+					artistArray[index] = value;
+					autocompleteTags.push(value);
 				})
-			},
-			complete: function() 
-			{
-				mainACWidget.autocomplete({
-					source: autocompleteData
-				});
-				mainACWidget.select();
+				$.each(data[1], function(index,value) {
+					eventArray[index] = value;
+					autocompleteTags.push(value);
+				})
+				$.each(data[2], function(index,value) {
+					radiomixArray[index] = value;
+					autocompleteTags.push(value);
+				})
+				$.each(data[3], function(index,value) {
+					genreArray[index] = value;
+					autocompleteTags.push(value);
+				})
 			}
 		});
-		// Live Code End
 	}
 	function columnCreate(type, tileName)
 	{
@@ -302,124 +305,56 @@ $(document).ready( function() {
 	{
 		artistTiles = new Array();
 		var isEmpty = true;
-		var artistArray = new Array();
-		$.ajax({
-			type: "GET",
-			url: "../scripts/getAllArtists.php",
-			async: false,
-			dataType: 'json',
-			success: function(data)
+		$.each(searchTiles, function(index, value) {
+			if($.inArray(value.text(), artistArray) != -1)
 			{
-				$.each(data, function(index,value) {
-					artistArray[index] = value;
-				})
-			},
-			complete: function() 
-			{
-				$.each(searchTiles, function(index, value) {
-					if($.inArray(value.text(), artistArray) != -1)
-					{
-						artistTiles.push(value);
-						isEmpty = false;
-					}
-				});
-				tiles[0] = artistTiles;
+				artistTiles.push(value);
+				isEmpty = false;
 			}
 		});
+		tiles[0] = artistTiles;
 		return [isEmpty, "artist"];
 	}
 	function generateEventTiles()
 	{
 		eventTiles = new Array();
 		var isEmpty = true;
-		var eventArray = new Array();
-		$.ajax({
-			type: "GET",
-			url: "../scripts/getAllEvents.php",
-			async: false,
-			dataType: 'json',
-			success: function(data)
+		$.each(searchTiles, function(index, value) {
+			if($.inArray(value.text(), eventArray) != -1)
 			{
-				$.each(data, function(index,value) {
-					eventArray[index] = value;
-				})
-			},
-			complete: function() 
-			{
-				$.each(searchTiles, function(index, value) {
-					if($.inArray(value.text(), eventArray) != -1)
-					{
-						eventTiles.push(value);
-						isEmpty = false;
-					}
-				});
-				tiles[1] = eventTiles;
+				eventTiles.push(value);
+				isEmpty = false;
 			}
 		});
+		tiles[1] = eventTiles;
 		return [isEmpty, "event"];
 	}
 	function generateRadiomixTiles() {
 		radiomixTiles = new Array();
 		var isEmpty = true;
-		var radiomixArray = new Array();
-		$.ajax({
-			type: "GET",
-			url: "../scripts/getAllRadiomixes.php",
-			async: false,
-			dataType: 'json',
-			success: function(data)
+		$.each(searchTiles, function(index, value) {
+			if($.inArray(value.text(), radiomixArray) != -1)
 			{
-				$.each(data, function(index,value) {
-					radiomixArray[index] = value;
-				})
-			},
-			complete: function() 
-			{
-				$.each(searchTiles, function(index, value) {
-					if($.inArray(value.text(), radiomixArray) != -1)
-					{
-						radiomixTiles.push(value);
-						isEmpty = false;
-					}
-				});
-				tiles[1] = radiomixTiles;
+				radiomixTiles.push(value);
+				isEmpty = false;
 			}
 		});
+		tiles[2] = radiomixTiles;
 		return [isEmpty, "radiomix"];
 	}
 	function generateGenreTiles() {
 		genreTiles = new Array();
 		var isEmpty = true;
-		var genreArray = new Array();
-		$.ajax({
-			type: "GET",
-			url: "../scripts/getAllGenres.php",
-			async: false,
-			dataType: 'json',
-			success: function(data)
+		$.each(searchTiles, function(index, value) {
+			if($.inArray(value.text(), genreArray) != -1)
 			{
-				$.each(data, function(index,value) {
-					genreArray[index] = value;
-				})
-			},
-			complete: function() 
-			{
-				$.each(searchTiles, function(index, value) {
-					if($.inArray(value.text(), genreArray) != -1)
-					{
-						genreTiles.push(value);
-						isEmpty = false;
-					}
-				});
-				tiles[1] = genreTiles;
+				genreTiles.push(value);
+				isEmpty = false;
 			}
 		});
+		tiles[3] = genreTiles;
 		return [isEmpty, "genre"];
 	}
-	var mainACWidget = $("#main-search").autocomplete({
-		minLength: 1,
-		delay: 300
-	});
 	var backspaceDetect;
 	var searchTiles = new Array();
 	var tiles = new Array();
@@ -434,8 +369,20 @@ $(document).ready( function() {
 	var matchedTags = new Array();
 	var valueArray = new Array();
 	var panelIsotope = null;
-	// do once only on load
+	var artistArray = new Array()
+	var eventArray = new Array()
+	var radiomixArray = new Array()
+	var genreArray = new Array()
+	var autocompleteTags = new Array();
 	getAllTags();
+	var mainACWidget = $("#main-search").autocomplete({
+		minLength: 1,
+		delay: 300
+	});
+	mainACWidget.autocomplete({
+		source: autocompleteTags
+	});
+	mainACWidget.select();
 	mainACWidget.autocomplete({
 		search: function(event, ui) {
 			var loader = $("<div class='loader-container'><div class='loader'><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div><div class='loader-text'>Loading...</div></div>");

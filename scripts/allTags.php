@@ -19,22 +19,28 @@ $resultg = mysqli_query($con, $sqlg);
 $i = 0;
 $resultArray = array();
 while($eventRow = mysqli_fetch_array($resulte)) {
-	$resultArray[$i] = $eventRow[0];
+	$resultArray[1][$i] = $eventRow[0];
 	$i++;
 }
+sort($resultArray[1]);
+$i = 0;
 while($artistRow = mysqli_fetch_array($resulta)) {
-	$resultArray[$i] = $artistRow[0];
+	$resultArray[0][$i] = $artistRow[0];
 	$i++;
 }
+sort($resultArray[0]);
+$i = 0;
 while($radiomixRow = mysqli_fetch_array($resultr)) {
-	$resultArray[$i] = $radiomixRow[0];
+	$resultArray[2][$i] = $radiomixRow[0];
 	$i++;
 }
+sort($resultArray[2]);
+$i = 0;
 while($genreRow = mysqli_fetch_array($resultg)) {
-	$resultArray[$i] = $genreRow[0];
+	$resultArray[3][$i] = $genreRow[0];
 	$i++;
 }
-sort($resultArray);
+sort($resultArray[3]);
 echo json_encode($resultArray);
 
 ?>
