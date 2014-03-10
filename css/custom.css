@@ -1396,7 +1396,7 @@ label
 
 #event-pagej
 {
-		background-image: url(../images/girl.jpg);
+		background-image: url(../images/counterpoint-kingston-downs.jpeg);
 		padding-top: 0%;
 }
 
@@ -1436,17 +1436,34 @@ label
   transition: all 1.0s linear;
 }
 
+#f2_container {
+  position: relative;
+  margin: 0;
+  height: 100%;
+  width: 100%;
+  z-index: 1;
+}
+
+#f2_container {
+  perspective: 1000;
+}
+
+#f2_card {
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: all 1.0s linear;
+}
+
 #f1_card.flipped {
 	transform: rotateX(180deg);
     box-shadow: -5px 5px 5px #aaa;
 }
 
-/*
-#f1_container:hove #f1_card {
-  transform: rotateX(180deg);
-  box-shadow: -5px 5px 5px #aaa;
+#f2_card.flipped {
+	transform: rotateX(180deg);
+    box-shadow: -5px 5px 5px #aaa;
 }
-*/
 
 #aftermovie:hover
 {
@@ -1471,6 +1488,37 @@ label
   background-color: #aaa;
 }
 
+.face2 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  margin: 0;
+}
+
+.face2.back2 {
+  display: block;
+  transform: rotateX(180deg);
+  box-sizing: border-box;
+  padding: 10px;
+  color: white;
+  text-align: center;
+  background-color: #aaa;
+}
+
+.lineupWrapper img:hover {
+    -webkit-transform:rotateX(180deg);
+}
+
+.back {
+  transform: rotateX(180deg);
+  -webkit-transform: rotateX(180deg);
+}
+
+.back2 {
+  transform: rotateX(180deg);
+  -webkit-transform: rotateX(180deg);
+}
 .events-promo-container
 {
 	height: 100%;
@@ -1481,6 +1529,7 @@ label
 	background-repeat: no-repeat;
 	background-size: 60%;
 	background-position: 50% 70%;
+	-webkit-backface-visibility: hidden;
 }
 
 .past-sets-container
@@ -1529,6 +1578,11 @@ label
   box-shadow: -5px 5px 5px #aaa;
 }
 
+#f2_container/*:hover*/ #f2_card {
+  /*transform: rotateX(180deg);*/
+  box-shadow: -5px 5px 5px #aaa;
+}
+
 .promo-aftermovie-container
 {
 	height: 20%;
@@ -1540,9 +1594,12 @@ label
 
 #aftermovie-text:hover #f1_container #f1_card{
 	transform: rotateX(180deg);
-
 }
-
+/*
+#promo-text-2:hover #f2_container #f2_card{
+	transform: rotateX(180deg);
+}
+*/
 #event-left
 {
 	border-top: 1px solid black;
@@ -1570,6 +1627,7 @@ label
 {
 	background-image: url(../images/cp-lineup.png);
 	background-size: 100%;
+	padding:33vh 0 0;
 }
 
 .promo-menu-wrapper
@@ -1594,6 +1652,31 @@ label
 	font-size:4vh;
 }
 
+#promo-text-2
+{
+	color: white;
+	font-weight: bold;
+	margin: 0;
+	font-size:4vh;
+	backface-visibility: hidden;
+	-webkit-backface-visibility: hidden;
+}
+
+.lineupWrapper {
+	position: relative;
+	background-image: url(../images/cp-lineup.png);
+	background-size: 100%;
+	height: 0;
+}
+
+.lineupWrapper img {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
+
 .promo-links-property
 {
 	-webkit-box-flex:1;
@@ -1608,9 +1691,40 @@ a.promo-links-property:hover
 	text-decoration: 
 }
 
+a#promo-links-property-2:hover
+{
+	background-color:rgba(0,0,0,.5);
+	text-decoration: 
+}
+
+a#promo-links-property-2:active #f1_container #f1_card{
+	-webkit-transform: rotateX(180deg);
+	transform: rotateX(180deg);
+}
+
+#promo-text-2:hover #f1_container #f1_card{
+	transform: rotateX(180deg);
+}
+/*
+a#promo-text-2:active #f1_container #f1_card{
+	-webkit-transform: rotateX(180deg);
+	transform: rotateX(180deg);
+}
+*/
+#promo-links-property-2
+{
+	-webkit-box-flex:1;
+	-moz-box-flex:1;
+	-ms-flex:1;
+	flex:1;
+	backface-visibility: hidden;
+	-webkit-backface-visibility: hidden;
+}
+
 .promo-links-container
 {
 	backface-visibility: hidden;
+	-webkit-backface-visibility: hidden;
 	padding:0;
 	margin:0;
 	height:100%;
@@ -1627,6 +1741,34 @@ a.promo-links-property:hover
 	-ms-box-align:center;
 	align-items:center;
 	text-align: center;
+}
+
+.promo-links-container-2
+{
+	padding:0;
+	margin:0;
+	height:100%;
+	-webkit-box-flex:1;
+	-moz-box-flex:1;
+	-ms-flex:1;
+	flex:1;
+	display: -webkit-box;
+	display: -moz-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-align:center;
+	-moz-box-align:center;
+	-ms-box-align:center;
+	align-items:center;
+	text-align: center;
+	backface-visibility: hidden;
+	-webkit-backface-visibility: hidden;
+}
+
+a#promo-links-property-2:hover #f2_container #f2_card{
+	transform: rotateX(180deg);
+    box-shadow: -5px 5px 5px #aaa;
+    background-color:rgba(0,0,0,.5);
 }
 
 #app-page
