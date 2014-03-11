@@ -460,7 +460,7 @@ i
 .column-wrapper
 {
 	height: 56vh;
-	max-width: 22%;
+	max-width: 22vw;
 	transition: all 0.3s ease-out;
 	float: left;
 	padding: 0.5vh 1vw 0%;
