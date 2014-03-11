@@ -377,7 +377,7 @@ $(document).ready( function() {
 	getAllTags();
 	var mainACWidget = $("#main-search").autocomplete({
 		minLength: 1,
-		delay: 300
+		delay: 100
 	});
 	mainACWidget.autocomplete({
 		source: autocompleteTags
@@ -401,8 +401,14 @@ $(document).ready( function() {
 			updateResults();
 		}
 	});
-	$("#main-search").keyup( function(e) {
-		backspaceDetect = e;
+	$("#main-search").keyup(function(e) {
+		key = e.keyCode || e.charCode;
+		if((key == 8 || key == 46) && mainACWidget.val() == "")
+		{
+			mainACWidget.autocomplete("option","minLength",0);
+			mainACWidget.autocomplete("search","");
+			mainACWidget.autocomplete("option","minLength",1);
+		}
 	});
 	$("input#main-search").bind('blur', function(){
 		if($("#main-search").val().length == 0) {
