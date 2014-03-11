@@ -642,8 +642,8 @@ i
 }
 .panel-results-wrapper
 {
-	height:100%;
-	width:100%;
+	height:48vh;
+	width:71vw;
 	position:relative;
 }
 .panel-results-container

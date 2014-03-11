@@ -253,9 +253,6 @@ $(document).ready( function() {
 				updateResults();
 			}
 		});
-		infoPanel.mouseover(function() {
-			$(".panel-results-container").css("overflow-y","scroll");
-		});
 	}
 	function closePanel()
 	{
@@ -464,6 +461,9 @@ $(document).ready( function() {
 				});
 			}
 		});
+	});
+	$(document).mousemove(function() {
+		$(".panel-results-container").css("overflow-y","scroll");
 	});
 	$(".navmenu:nth-child(1)").click(function(){
 		$(".scroll-wrapper").scrollTo("#section-1", 500);
