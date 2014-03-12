@@ -416,8 +416,8 @@ i
 
 .autocomplete-wrapper
 {
-	width: 100%;
-	padding: 2vh 1vw 0%;
+	width: 99vw;
+	padding: 2vh 1vw 0% 0;
 	-webkit-transition: all 0.5s linear;
 	transition: all 0.5s linear;
 	-webkit-box-flex:7;
@@ -435,7 +435,7 @@ i
 }
 .autocomplete-container
 {
-	width:98vw;
+	width:99vw;
 	margin: 0 auto;
 	text-align:center;
 	overflow-y:hidden;
@@ -454,6 +454,7 @@ i
 	-ms-flex:1;
 	flex:1;
 	overflow-x:hidden;
+	background-color: white;
 }
 .column-wrapper
 {
