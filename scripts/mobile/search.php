@@ -111,42 +111,62 @@ while($genreRow = mysqli_fetch_array($genreResult))
 }
 
 $resultArray = array();
+$artistCount = count($artistArray);
+$newArtistArray = array();
+$eventCount = count($eventArray);
+$newEventArray = array();
+$radiomixCount = count($radiomixArray);
+$newRadiomixArray = array();
+$genreCount = count($genreArray);
+$newGenreArray = array();
 
-if(!empty($artistArray)) {
-	$i = 0;
-	foreach($artistArray as $a) {
-		$resultArray[$a['id']] = $a;
-		$i++;
-		if($i >= 1) break;
+$total = 0;
+$lastTotal = 0;
+$i = 0;
+while ($total < 12) {
+	if($i < $artistCount) {
+		$newArtistArray[] = $artistArray[$i];
+		$lastTotal++;
 	}
-}
-if(!empty($eventArray)) {
-	$i = 0;
-	foreach($eventArray as $e) {
-		$resultArray[$e['id']] = $e;
-		$i++;
-		if($i >= 2) break;
+	if($i < $eventCount) {
+		$newEventArray[] = $eventArray[$i];
+		$lastTotal++;
 	}
-}
-if(!empty($radiomixArray)) {
-	$i = 0;
-	foreach($radiomixArray as $r) {
-		$resultArray[$r['id']] = $r;
-		$i++;
-		if($i >= 2) break;
+	if($i < $radiomixCount) {
+		$newRadiomixArray[] = $radiomixArray[$i];
+		$lastTotal++;
 	}
-}
-if(!empty($genreArray)) {
-	$i = 0;
-	foreach($genreArray as $g) {
-		$resultArray[$g['id']] = $g;
-		$i++;
-		if($i >= 1) break;
+	if($i < $genreCount) {
+		$newGenreArray[] = $genreArray[$i];
+		$lastTotal++;
 	}
+	if($lastTotal == $total) {
+		break;
+	}
+	$total = $lastTotal;
+	$i++;
 }
+
 $finalResults = array();
-foreach ($resultArray as $key => $value) {
-	$finalResults[] = $value;
+if(!empty($newArtistArray)) {
+	foreach($newArtistArray as $a) {
+		$finalResults[] = $a;
+	}
+}
+if(!empty($newEventArray)) {
+	foreach($newEventArray as $e) {
+		$finalResults[] = $e;
+	}
+}
+if(!empty($newRadiomixArray)) {
+	foreach($newRadiomixArray as $r) {
+		$finalResults[] = $r;
+	}
+}
+if(!empty($newGenreArray)) {
+	foreach($newGenreArray as $g) {
+		$finalResults[] = $g;
+	}
 }
 
 echo json_encode($finalResults);
