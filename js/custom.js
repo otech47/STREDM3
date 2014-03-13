@@ -121,7 +121,6 @@ $(document).ready( function() {
 			a.attr("data-url", urlArray[index]);
 			a.attr("data-img", imgArray[index]);
 			a.click(function(){
-				// console.log(data);
 				var playerTitle = valueArray[index].artist + " - " + valueArray[index].event;
 				$('#jp_player_title').text(playerTitle);
 				$('#jquery_jplayer_1').jPlayer("setMedia", {
@@ -152,6 +151,86 @@ $(document).ready( function() {
 		window.setTimeout(function() {
 			$(".panel-results-container").css("margin-top","0px");
 		}, 100);
+	}
+	function playSet()
+	{
+		var urlString = window.location.search;
+		urlString = urlString.substring(1);
+		var nvPairs = urlString.split("&");
+		var name = new Array();
+		var value = new Array();
+		var choice;
+		for(i = 0 ; i < nvPairs.length; i++)
+		{
+			var nvPair = nvPairs[i].split("=");
+			name[i] = nvPair[0];
+			value[i] = nvPair[1].replace(/%20/g, " ");
+		}
+		if (nvPairs.length == 1)
+		{
+			$.ajax({
+				type: "POST",
+				url: '../scripts/request.php',
+				data: {label:value[0]},
+				dataType: 'json',
+				success: function(data)
+				{
+					choice = Math.floor((Math.random()*data.length)+1);
+					var playerTitle = data[choice].artist + " - " + data[choice].event;
+					$('#jp_player_title').text(playerTitle);
+					$('#jquery_jplayer_1').jPlayer("setMedia", {
+						mp3: "uploads/"+data[choice].songURL
+					});
+					$('#thumbnail').css('background-image', "url('../uploads/"+data[choice].imageURL+"')");
+					$('.duration').show();
+					$('#jquery_jplayer_1').jPlayer('play');
+					$('.scroll-wrapper').scrollTo("div.stredming-wrapper", 500);
+					mixpanel.track("Specific Set Play");
+					var timer = $.timer(function() {
+						mixpanel.track("Specific Set Played for 5 Minutes");
+					}, 5000, false);
+					timer.once(300000);
+				}
+			});
+		}
+		if (nvPairs.length == 2)
+		{
+			$.ajax({
+				type: "POST",
+				url: '../scripts/request.php',
+				data: {label:value[0]},
+				dataType: 'json',
+				success: function(data)
+				{
+					$.each(data, function(index, value2) {
+						console.log(value[1]);
+						console.log(value2.event);
+						if(value2.event == value[1])
+						{
+							choice = index;
+						}
+						else if(value2.artist == value[1])
+						{
+							choice = index;
+						}
+					});
+					var playerTitle = data[choice].artist + " - " + data[choice].event;
+					$('#jp_player_title').text(playerTitle);
+					$('#jquery_jplayer_1').jPlayer("setMedia", {
+						mp3: "uploads/"+data[choice].songURL
+					});
+					$('#thumbnail').css('background-image', "url('../uploads/"+data[choice].imageURL+"')");
+					$('.duration').show();
+					$('#jquery_jplayer_1').jPlayer('play');
+					$('.scroll-wrapper').scrollTo("div.stredming-wrapper", 500);
+					mixpanel.track("Specific Set Play");
+					var timer = $.timer(function() {
+						mixpanel.track("Specific Set Played for 5 Minutes");
+					}, 5000, false);
+					timer.once(300000);
+				}
+			});
+		}
 	}
 	function openPanel(result) 
 	{
@@ -377,7 +456,11 @@ $(document).ready( function() {
 		delay: 100
 	});
 	mainACWidget.autocomplete({
-		source: autocompleteTags
+		source: autocompleteTags,
+		messages: {
+			noResults: 'No results found',
+			results: function() {}
+		}
 	});
 	mainACWidget.select();
 	mainACWidget.autocomplete({
@@ -387,6 +470,7 @@ $(document).ready( function() {
 		},
 		response: function(event, ui) {
 			$("ul.ui-autocomplete").remove();
+			$(".ui-helper-hidden-accessible").remove();
 			var objectArray = ui.content;
 			searchTiles = new Array();
 			$.each(objectArray, function(index, value) {
@@ -477,4 +561,8 @@ $(document).ready( function() {
 	$(".navmenu:nth-child(4)").click(function(){
 		$(".scroll-wrapper").scrollTo("#section-4", 500);
 	});
+	if(window.location.search.length > 0)
+	{
+		playSet();
+	}
 });

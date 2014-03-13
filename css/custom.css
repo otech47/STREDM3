@@ -43,7 +43,7 @@ h1
 }
 .home-container
 {
-	width: 100vw;
+	width: 99vw;
 	height: 90vh;
 	padding: 0;
 	margin: 0;
@@ -60,9 +60,9 @@ h1
 }
 .welcome-wrapper
 {
-	width: 100vw;
+	width: 99vw;
 	margin: 0;
-	padding: 2vh 25vw;
+	padding: 0vh 1vw;
 	transition: all 0.5s ease-out;
 	display: -webkit-box;
 	display: -moz-box;
@@ -76,12 +76,10 @@ h1
 
 .welcome-holder
 {
-	width: 50vw;
+	width: 97vw;
 	height: 25vh;
-	background-color: 
-	rgba(255,255,255,.85);
-	border-radius: 31px;
-	box-shadow: 0px 0px 1px 4px white;
+	background-color: rgba(255,255,255,0.85);
+	box-shadow: 0px 0px 0px 4px white;
 	display: -webkit-box;
 	display: -moz-box;
 	display: -ms-flexbox;
@@ -91,7 +89,6 @@ h1
 	-ms-box-orient: vertical;
 	flex-direction:column;
 }
-
 .welcome-container
 {
 	margin: 0;
@@ -150,8 +147,8 @@ h1
 }
 .welcome-options-container
 {
-	width: 50vw;
-	padding: 1vh 2vw;
+	width: 97vw;
+	padding: 1vh 0 0 2vw;
 	margin: 0;
 	-webkit-box-flex:5;
 	-moz-box-flex:5;
@@ -161,14 +158,14 @@ h1
 	display: -moz-box;
 	display: -ms-flexbox;
 	display: flex;
-	-webkit-box-align:center;
-	-moz-box-align:center;
-	-ms-box-align:center;
-	align-items:center;
+	-webkit-box-align:flex-end;
+	-moz-box-align:flex-end;
+	-ms-box-align:flex-end;
+	align-items:flex-end;
 }
 .welcome-button
 {
- 	background-color: hsl(0, 0%, 79%) !important;
+ 	background-color: rgba(0,0,0,0);
  	background-repeat: repeat-x;
   	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#134134134", endColorstr="#c9c9c9");
  	background-image: -khtml-gradient(linear, left top, left bottom, from(#134134134), to(#c9c9c9));
@@ -178,13 +175,22 @@ h1
 	background-image: -webkit-linear-gradient(top, #134134134, #c9c9c9);
 	background-image: -o-linear-gradient(top, #134134134, #c9c9c9);
 	background-image: linear-gradient(#134134134, #c9c9c9);
-	border-color: #c9c9c9 #c9c9c9 hsl(0, 0%, 68.5%);
 	color: #333 !important;
 	text-shadow: 0 1px 1px rgba(255, 255, 255, 0.69);
 	-webkit-font-smoothing: antialiased;
 	-moz-user-select: none;
-	padding:10%;
+	padding:0;
 	width:100%;
+	height:25vh;
+	border-radius:0;
+	font-size:5vh;
+	-webkit-transition: all 0.15s linear;
+	transition: all 0.15s linear;
+	border:none;
+}
+.welcome-button:hover
+{
+	background-color:rgba(255,255,255,0.85);
 }
 #browse
 {
@@ -193,16 +199,18 @@ h1
 .options-item-wrapper
 {
 	margin:0;
-	padding: 0 0.5vw;
 }
 
 #welcome-search-bar
 {
 	z-index:1100;
-	-webkit-box-flex:10;
-	-moz-box-flex:10;
-	-ms-flex:10;
-	flex:10;
+	-webkit-box-flex:4;
+	-moz-box-flex:4;
+	-ms-flex:4;
+	flex:4;
+	align-self:flex-end;
+	padding: 0 1vw 2vh 0;
+
 }
 #welcome-random-button
 {
@@ -210,6 +218,8 @@ h1
 	-moz-box-flex:2;
 	-ms-flex:2;
 	flex:2;
+	height:25vh;
+	border-left: 2px solid white;
 }
 #welcome-browse-button
 {
@@ -217,11 +227,12 @@ h1
 	-moz-box-flex:2;
 	-ms-flex:2;
 	flex:2;
+	height:25vh;
+	border-left: 2px solid white;
 }
 #main-nav
 {
 	background-color: white;
-	box-shadow: 0px 0px 1px 2px white;
 	display: -webkit-box;
 	display: -moz-box;
 	display: -ms-flexbox;
