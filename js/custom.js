@@ -71,7 +71,6 @@ $(document).ready( function() {
 		columnCode.find(".results-container").attr("id", (columnType.id).toString());
 		columnCode.attr("id", type.toString()+"-wrapper");
 		columnCode.attr("style", "margin-left: -500px");
-		$(".loader-container").remove();
 		columnCode.appendTo(".autocomplete-container");
 		$.each(tileName, function (index, value) {
 			var a = value.appendTo("#"+columnType.id).addClass("result");
@@ -80,7 +79,7 @@ $(document).ready( function() {
 				openPanel(a);
 			});
 		});
-		var resultsIsotope = $(".results-container");
+		var resultsIsotope = $(".results-wrapper");
 		resultsIsotope.isotope({
 			itemSelector : ".result",
 			resizable: false,
@@ -121,6 +120,8 @@ $(document).ready( function() {
 			a.attr("data-url", urlArray[index]);
 			a.attr("data-img", imgArray[index]);
 			a.click(function(){
+				var link = "?artist="+valueArray[index].artist+"&event="+valueArray[index].event;
+				window.history.replaceState("string", "Title", link);
 				var playerTitle = valueArray[index].artist + " - " + valueArray[index].event;
 				$('#jp_player_title').text(playerTitle);
 				$('#jquery_jplayer_1').jPlayer("setMedia", {
@@ -296,6 +297,10 @@ $(document).ready( function() {
 						{
 							var infoACWidget = inputBox.autocomplete({
 								minLength: 0,
+								messages: {
+									noResults: 'No results found',
+									results: function() {}
+								},
 								delay: 100,
 								source: matchedTags,
 								response: function(event, ui) {
@@ -365,9 +370,8 @@ $(document).ready( function() {
 			columnCreate(g[1], genreTiles);
 		}
 		window.setTimeout(function() {
-			$(".loader-container").remove();
 			$(".column-wrapper").css("margin-left","0");
-		},1);
+		},100);
 	}
 	function generatePanelTiles()
 	{
@@ -450,6 +454,7 @@ $(document).ready( function() {
 	var radiomixArray = new Array()
 	var genreArray = new Array()
 	var autocompleteTags = new Array();
+	var pageLoaded = false;
 	getAllTags();
 	var mainACWidget = $("#main-search").autocomplete({
 		minLength: 1,
@@ -465,8 +470,7 @@ $(document).ready( function() {
 	mainACWidget.select();
 	mainACWidget.autocomplete({
 		search: function(event, ui) {
-			var loader = $("<div class='loader-container'><div class='loader'><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div><div class='loader-text'>Loading...</div></div>");
-			loader.appendTo(".autocomplete-container");
+			$(".autocomplete-container").css("margin-left","0");
 		},
 		response: function(event, ui) {
 			$("ul.ui-autocomplete").remove();
@@ -476,10 +480,13 @@ $(document).ready( function() {
 			$.each(objectArray, function(index, value) {
 				searchTiles.push($("<div class='result'><p>"+value.label+"</p></div>"));
 			});
-			$(".results-container").empty();
-			$(".column-wrapper").remove();
-			$(".tile-selection-wrapper").remove();
-			updateResults();
+			$(".column-wrapper").css("margin-left","-100vw")
+			window.setTimeout(function() {
+				$(".results-container").empty();
+				$(".column-wrapper").remove();
+				$(".tile-selection-wrapper").remove();
+				updateResults();
+			}, 200);
 		}
 	});
 	$("#main-search").keyup(function(e) {
@@ -522,8 +529,8 @@ $(document).ready( function() {
 			dataType: 'json',
 			success: function(data)
 			{
-				// console.log(data);
-				// console.log(data.is_radiomix);
+				var link = "?artist="+data.artist+"&event="+data.event;
+				window.history.replaceState("string", "Title", link);
 				var title = data.artist + " - " + data.event;
 				$('#jp_player_title').text(title);
 				$('#jquery_jplayer_1').jPlayer("setMedia", {
@@ -535,14 +542,9 @@ $(document).ready( function() {
 				$('.scroll-wrapper').scrollTo("div.stredming-wrapper", 500);
  				mixpanel.track("Random Set Play");
  				var timer = $.timer(function() {
-					mixpanel.track("Random Set Played for 5 Minutes");
-				});
-				$("#jquery_jplayer_1").bind($.jPlayer.event.pause, function(event) {
-					timer.pause();
-				});
-				$("#jquery_jplayer_1").bind($.jPlayer.event.play, function(event) {
-					timer.once(300000);
-				});
+						mixpanel.track("Random Set Played for 5 Minutes");
+				}, 5000, false);
+				timer.once(300000);
 			}
 		});
 	});
@@ -561,8 +563,17 @@ $(document).ready( function() {
 	$(".navmenu:nth-child(4)").click(function(){
 		$(".scroll-wrapper").scrollTo("#section-4", 500);
 	});
-	if(window.location.search.length > 0)
+	if((window.location.search.length > 0) && (pageLoaded == false))
 	{
+		console.log(window.location.search.length > 0);
+		console.log(pageLoaded == false);
 		playSet();
 	}
+	$("#logo-container").click(function() {
+		location.reload();
+	});
+	$("#main-header").click(function() {
+		location.reload();
+	});
+	pageLoaded = true;
 });
