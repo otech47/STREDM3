@@ -18,17 +18,17 @@ $resultr = mysqli_query($con, $sqlr);
 $resultg = mysqli_query($con, $sqlg);
 $i = 0;
 $resultArray = array();
-while($eventRow = mysqli_fetch_array($resulte)) {
-	$resultArray[1][$i] = $eventRow[0];
-	$i++;
-}
-sort($resultArray[1]);
-$i = 0;
 while($artistRow = mysqli_fetch_array($resulta)) {
 	$resultArray[0][$i] = $artistRow[0];
 	$i++;
 }
 sort($resultArray[0]);
+$i = 0;
+while($eventRow = mysqli_fetch_array($resulte)) {
+	$resultArray[1][$i] = $eventRow[0];
+	$i++;
+}
+sort($resultArray[1]);
 $i = 0;
 while($radiomixRow = mysqli_fetch_array($resultr)) {
 	$resultArray[2][$i] = $radiomixRow[0];

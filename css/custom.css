@@ -8,7 +8,7 @@ body
 {
 	height:100vh;
 	width:100vw;
-	background-image:url(../images/miami.jpg);
+	background-image:url(../images/ultrasetup.jpg);
 	background-position:top center;
 	background-size:100vw 100vh;
 	background-repeat:no-repeat;
@@ -43,7 +43,7 @@ h1
 }
 .home-container
 {
-	width: 99vw;
+	width: 100vw;
 	height: 90vh;
 	padding: 0;
 	margin: 0;
@@ -60,23 +60,24 @@ h1
 }
 .welcome-wrapper
 {
-	width: 99vw;
+	width: 100vw;
 	margin: 0;
-	padding: 0vh 1vw;
-	transition: all 0.5s ease-out;
+	padding: 25vh 0 0;
+	transition: all 0.3s ease-out;
 	display: -webkit-box;
 	display: -moz-box;
 	display: -ms-flexbox;
 	display: flex;
-	-webkit-box-flex:3;
-	-moz-box-flex:3;
-	-ms-flex:3;
-	flex:3;
+	-webkit-box-flex:1;
+	-moz-box-flex:1;
+	-ms-flex:1;
+	flex:1;
+	z-index: 5;
 }
 
 .welcome-holder
 {
-	width: 97vw;
+	width: 100vw;
 	height: 25vh;
 	background-color: rgba(255,255,255,0.85);
 	box-shadow: 0px 0px 0px 4px white;
@@ -88,13 +89,14 @@ h1
 	-moz-box-orient:vertical;
 	-ms-box-orient: vertical;
 	flex-direction:column;
+	transition: all 0.3s ease-out;
 }
 .welcome-container
 {
 	margin: 0;
-	width: 50vw;
+	width: 50.5vw;
 	padding: 0;
-	transition: all 0.5s ease-out;
+	transition: all 0.3s ease-out;
 	-webkit-box-flex:8;
 	-moz-box-flex:8;
 	-ms-flex:8;
@@ -147,8 +149,8 @@ h1
 }
 .welcome-options-container
 {
-	width: 97vw;
-	padding: 1vh 0 0 2vw;
+	width: 100vw;
+	padding: 0;
 	margin: 0;
 	-webkit-box-flex:5;
 	-moz-box-flex:5;
@@ -162,6 +164,9 @@ h1
 	-moz-box-align:flex-end;
 	-ms-box-align:flex-end;
 	align-items:flex-end;
+	transition:all 0.3s ease-out;
+	border-left: 2px solid white;
+	border-right: 2px solid white;
 }
 .welcome-button
 {
@@ -184,8 +189,7 @@ h1
 	height:25vh;
 	border-radius:0;
 	font-size:5vh;
-	-webkit-transition: all 0.15s linear;
-	transition: all 0.15s linear;
+	transition: all 0.3s ease-out;
 	border:none;
 }
 .welcome-button:hover
@@ -199,6 +203,7 @@ h1
 .options-item-wrapper
 {
 	margin:0;
+	transition: all 0.2s ease-out;
 }
 
 #welcome-search-bar
@@ -209,8 +214,24 @@ h1
 	-ms-flex:4;
 	flex:4;
 	align-self:flex-end;
-	padding: 0 1vw 2vh 0;
+	padding: 1vh 1vw;
 
+}
+#main-search
+{
+	background-color: #FFFFFF;
+    background-image: none;
+    border: 1px solid #CCCCCC;
+    border-radius: 4px;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
+    color: #555555;
+    display: block;
+    font-size: 2vh;
+    height: 5vh;
+    padding: 0;
+    transition: all 0.3s ease-in-out;
+    vertical-align: middle;
+    width: 100%;
 }
 #welcome-random-button
 {
@@ -429,14 +450,13 @@ i
 
 .autocomplete-wrapper
 {
-	width: 99vw;
-	padding: 2vh 1vw 0% 0;
-	-webkit-transition: all 0.5s linear;
-	transition: all 0.5s linear;
-	-webkit-box-flex:7;
-	-moz-box-flex:7;
-	-ms-flex:7;
-	flex:7;
+	width: 100vw;
+	padding: 0;
+	transition: all 0.5s ease-out;
+	-webkit-box-flex:9;
+	-moz-box-flex:9;
+	-ms-flex:9;
+	flex:9;
 	display: -webkit-box;
 	display: -moz-box;
 	display: -ms-flexbox;
@@ -448,7 +468,7 @@ i
 }
 .autocomplete-container
 {
-	width:99vw;
+	width:100vw;
 	margin: 0 auto 0 -100vw;
 	text-align:center;
 	overflow-y:hidden;
@@ -470,14 +490,13 @@ i
 }
 .column-wrapper
 {
-	height: 56vh;
-	max-width: 24.25vw;
+	height: 75vh;
+	max-width: 24.5vw;
 	transition: all 0.2s ease-out;
 	float: left;
 	padding:0;
 	margin: 0;
 	box-shadow: 0px 0px 0px 1px white;
-	border-top: 1px solid white;
 	-webkit-box-flex:1;
 	-moz-box-flex:1;
 	-ms-flex:1;
@@ -509,7 +528,7 @@ i
 }
 .autocomplete-column
 {
-	height:55vh;
+	height:75vh;
 	transition: all 1s linear;
 	display: -webkit-box;
 	display: -moz-box;
@@ -519,7 +538,6 @@ i
 	-moz-box-orient:vertical;
 	-ms-box-orient: vertical;
 	flex-direction:column;
-	padding-bottom: 1vh;
 }
 .autocomplete-column > h1
 {
@@ -530,11 +548,8 @@ i
 	color: white;
 	padding: 0;
 	margin:0;
-	-webkit-box-flex:1;
-	-moz-box-flex:1;
-	-ms-flex:1;
-	-webkit-flex:1;
-	flex:1;
+	width:23vw;
+	height:6vh;
 }
 .tile-selection-wrapper
 {
@@ -543,7 +558,7 @@ i
 	display: -moz-box;
 	display: -ms-flexbox;
 	display: flex;
-	height:56vh;
+	height:75vh;
 	transition:all 0.5s ease-out;
 	-webkit-box-flex:1;
 	-moz-box-flex:1;
@@ -556,12 +571,12 @@ i
 {
 	background-color:rgba(200,200,200,.7);
 	width:72vw;
-	height:55vh;
+	height:75vh;
 	padding:0.5vh 0.5vw;
 }
 .info-panel
 {
-	height:54vh;
+	height:74vh;
 	width:71vw;
 }
 .search-container
@@ -578,22 +593,17 @@ i
 }
 .tiles-wrapper
 {
-	height: 48vh;
+	height: 68vh;
     width: 71vw;
 }
 .back-to-results
 {
 	display:none;
-	height:auto;
+	height:6vh;
 	margin:0 auto;
 	transition:all 0.2s ease-out;
 	padding:1.5vh 1vw 0;
 	cursor:pointer;
-	-webkit-box-flex:1;
-	-moz-box-flex:1;
-	-ms-flex:1;
-	-webkit-flex:1;
-	flex:1;
 	width:21vw;
 }
 .back
@@ -623,20 +633,21 @@ i
 	-ms-flex:9;
 	-webkit-flex:9;
 	flex:9;
-	padding:0 1vw;
+	padding:1vh 1.5vw 0 0;
+	height:69vh;
 }
 .results-container
 {
-	height:44vh!important;
-	width:21vw;
+	height:68vh!important;
+	width:23vw;
 	display:table;
 	transition: all 1s linear;
 	overflow:scroll!important;
 }
 .result
 {
-	height:30%;
-	width:40%;
+	height:22.66vh;
+	width:11.5vw;
 	display: -webkit-box;
 	display: -moz-box;
 	display: -ms-flexbox;
@@ -645,10 +656,9 @@ i
 	background-color: 
 	rgba(150,150,150,.8);
 	font-size: 2vh;
-	box-shadow: 0 0 0px 1px;
-	border-radius: 2px;
 	margin: 0;
 	cursor: pointer;
+	box-shadow: 0 0 0 1px white inset
 }
 .result:hover
 {
@@ -658,10 +668,11 @@ i
 {
 	width:100%;
 	margin:auto;
+	color:black;
 }
 .panel-results-wrapper
 {
-	height:48vh;
+	height:68vh;
 	width:71vw;
 	position:relative;
 }
@@ -1790,8 +1801,6 @@ a#promo-links-property-2:hover #f2_container #f2_card{
 	overflow: scroll;
 	background-size: 100%;
 	background-repeat: no-repeat;
-
-
 }
 
 .mobile-logo-wrapper
@@ -2892,12 +2901,11 @@ font-weight: normal;
 	line-height: 0;
 	background-size: 100% 100%;
 }
-
 #mobile-content{
 	height:100%;
 	width: 100%;
-	background: url(../images/stredm-mobile-resize.jpg); 
-
+	background: url(../images/stredm-mobile-resize.jpg);
+	display:none;
 }
 
 @media screen and (min-width: 0px) and (max-width: 400px) {
@@ -2905,10 +2913,6 @@ font-weight: normal;
    #mobile-content { display: block; }
   html {background: url(../images/stredm-mobile-resize.jpg); 
   		background-repeat: no-repeat;}  /* show it on small screens */
-}
-
-@media screen and (min-width: 321px) and (max-width: 1024px) {
-  #mobile-content { display: none; }   /* hide it elsewhere */
 }
 
 /* iPhone 4 ----------- */
