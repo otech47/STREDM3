@@ -7,7 +7,7 @@ if (!$con)
 	die('Could not connect: ' . mysql_error());
 }
 
-$sqla = "SELECT DISTINCT a.artist FROM sets AS s INNER JOIN artists AS a ON s.artist_id = a.id WHERE 1";
+$sqla = "SELECT DISTINCT a.artist FROM sets AS s INNER JOIN artists2 AS a ON s.artist_id = a.id WHERE 1";
 $sqle = "SELECT DISTINCT e.event FROM sets AS s INNER JOIN events AS e ON s.event_id = e.id WHERE e.is_radiomix = 0";
 $sqlr = "SELECT DISTINCT e.event FROM sets AS s INNER JOIN events AS e ON s.event_id = e.id WHERE e.is_radiomix = 1";
 $sqlg = "SELECT DISTINCT g.genre FROM sets AS s INNER JOIN genres AS g ON s.genre_id = g.id WHERE 1";
