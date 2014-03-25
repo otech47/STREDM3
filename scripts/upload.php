@@ -24,7 +24,7 @@ if(!session_is_registered("user")){
 	$con = connect();
 
 	$artistsArray = array();
-	$sql = "SELECT * FROM artists2 WHERE 1 order by artist";
+	$sql = "SELECT * FROM artists WHERE 1 order by artist";
 	$result = mysqli_query($con, $sql);
 	$i = 0;
 	while($row = mysqli_fetch_array($result))

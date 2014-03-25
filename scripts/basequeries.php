@@ -1,14 +1,14 @@
 <?php
 
 // String version of query below
-// SELECT s.id, group_concat(a.artist order by sa.number ASC separator ' & ') artist, e.event, g.genre, i.imageURL, s.songURL, e.is_radiomix FROM sets AS s INNER JOIN sets_to_artists sa ON sa.set_id = s.id INNER JOIN artists2 AS a ON a.id = sa.artist_id INNER JOIN events AS e ON e.id = s.event_id INNER JOIN images AS i ON i.id = e.image_id INNER JOIN genres AS g ON g.id = s.genre_id WHERE s.is_deleted IS FALSE AND a.artist = 'fedde le grand' GROUP BY s.id ORDER BY s.id ASC, sa.number ASC
+// SELECT s.id, group_concat(a.artist order by sa.number ASC separator ' & ') artist, e.event, g.genre, i.imageURL, s.songURL, e.is_radiomix FROM sets AS s INNER JOIN sets_to_artists sa ON sa.set_id = s.id INNER JOIN artists AS a ON a.id = sa.artist_id INNER JOIN events AS e ON e.id = s.event_id INNER JOIN images AS i ON i.id = e.image_id INNER JOIN genres AS g ON g.id = s.genre_id WHERE s.is_deleted IS FALSE AND a.artist = 'fedde le grand' GROUP BY s.id ORDER BY s.id ASC, sa.number ASC
 
 function setQuery($con, $whereClause = null, $orderClause = null, $matchField = null, $allFields = false) {
 	$resultArray = array();
 	$sql = "SELECT s.id, group_concat(a.artist order by sa.number ASC separator ' & ') artist, ".
 	"e.event, g.genre, i.imageURL, s.songURL, e.is_radiomix FROM sets AS s ".
 	"INNER JOIN sets_to_artists sa ON sa.set_id = s.id ".
-	"INNER JOIN artists2 AS a ON a.id = sa.artist_id ".
+	"INNER JOIN artists AS a ON a.id = sa.artist_id ".
 	"INNER JOIN events AS e ON e.id = s.event_id ".
 	"INNER JOIN images AS i ON i.id = e.image_id ".
 	"INNER JOIN genres AS g ON g.id = s.genre_id ";
@@ -31,7 +31,7 @@ function setQuery($con, $whereClause = null, $orderClause = null, $matchField = 
 	}
 	$sql .= " FROM sets AS s ".
 	"INNER JOIN sets_to_artists sa ON sa.set_id = s.id ".
-	"INNER JOIN artists2 AS a ON a.id = sa.artist_id ".
+	"INNER JOIN artists AS a ON a.id = sa.artist_id ".
 	"INNER JOIN events AS e ON e.id = s.event_id ".
 	"INNER JOIN images AS i ON i.id = e.image_id ".
 	"INNER JOIN genres AS g ON g.id = s.genre_id ".
@@ -84,7 +84,7 @@ function fetchRows($result, $matchField, $allFields) {
 function artistQuery($con, $simple = false) {
 	$sql = "SELECT DISTINCT a.id, a.artist FROM sets AS s ".
 	"INNER JOIN sets_to_artists AS sa ON sa.set_id = s.id ".
-	"INNER JOIN artists2 AS a ON sa.artist_id = a.id ".
+	"INNER JOIN artists AS a ON sa.artist_id = a.id ".
 	"WHERE s.is_deleted IS FALSE ".
 	"ORDER BY a.artist ASC";
 	$result = mysqli_query($con, $sql);
@@ -126,12 +126,12 @@ function radiomixQuery($con, $simple = false) {
 	$result = mysqli_query($con, $sql);
 	$i = 0;
 	$resultArray = array();
-	while($eventRow = mysqli_fetch_array($result)) {
+	while($radiomixRow = mysqli_fetch_array($result)) {
 		if($simple) {
-			$resultArray[$i] = $eventRow['event'];
+			$resultArray[$i] = $radiomixRow['event'];
 		} else {
-			$resultArray[$i]['id'] = $eventRow['id'];
-			$resultArray[$i]['radiomix'] = $eventRow['event'];
+			$resultArray[$i]['id'] = $radiomixRow['id'];
+			$resultArray[$i]['radiomix'] = $radiomixRow['event'];
 		}
 		$i++;
 	}
