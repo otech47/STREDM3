@@ -15,13 +15,13 @@ if($_GET['get'] == 1) {
 }
 $label = checkAddSlashes($label);
 
-$artistArray = setQuery($con, "AND a.artist = '$label'");
+$artistArray = setQuery($con, "WHERE a.artist = '$label' AND s.is_deleted IS FALSE");
 
-$eventArray = setQuery($con, "AND e.event = '$label' AND e.is_radiomix = 0");
+$eventArray = setQuery($con, "WHERE e.event = '$label' AND e.is_radiomix = 0 AND s.is_deleted IS FALSE");
 
-$radiomixArray = setQuery($con, "AND e.event = '$label' AND e.is_radiomix = 1");
+$radiomixArray = setQuery($con, "WHERE e.event = '$label' AND e.is_radiomix = 1 AND s.is_deleted IS FALSE");
 
-$genreArray = setQuery($con, "AND g.genre = '$label'");
+$genreArray = setQuery($con, "WHERE g.genre = '$label' AND s.is_deleted IS FALSE");
 
 $resultArray = array();
 if(!empty($artistArray)) {

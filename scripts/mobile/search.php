@@ -15,13 +15,13 @@ if($_POST['post'] == 1) {
 }
 $label = checkAddSlashes($label);
 
-$artistArray = setQuery($con, "AND a.artist LIKE '%$label%'", null, "artist");
+$artistArray = setQuery($con, "WHERE a.artist LIKE '%$label%' AND s.is_deleted IS FALSE", null, "artist");
 
-$eventArray = setQuery($con, "AND e.event LIKE '%$label%' AND e.is_radiomix IS FALSE", null, "event");
+$eventArray = setQuery($con, "WHERE e.event LIKE '%$label%' AND e.is_radiomix IS FALSE AND s.is_deleted IS FALSE", null, "event");
 
-$radiomixArray = setQuery($con, "AND e.event LIKE '%$label%' AND e.is_radiomix IS TRUE", null, "event");
+$radiomixArray = setQuery($con, "WHERE e.event LIKE '%$label%' AND e.is_radiomix IS TRUE AND s.is_deleted IS FALSE", null, "event");
 
-$genreArray = setQuery($con, "AND g.genre LIKE '%$label%'", null, "genre");
+$genreArray = setQuery($con, "WHERE g.genre LIKE '%$label%' AND s.is_deleted IS FALSE", null, "genre");
 
 $resultArray = array();
 $artistCount = count($artistArray);
