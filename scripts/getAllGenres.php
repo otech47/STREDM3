@@ -1,11 +1,9 @@
 <?php
-require_once './connect.php';
-
 require_once './basequeries.php';
 
-$con = connect();
+$baseQueries = new BaseQueries();
 
-$resultArray = genreQuery($con, true);
+$resultArray = $baseQueries->genreQuery(true);
 
 echo json_encode($resultArray);
 

@@ -1,14 +1,12 @@
 <?php
-require_once './connect.php';
-
 require_once './basequeries.php';
 
-$con = connect();
+$baseQueries = new BaseQueries();
 
-$resulta = artistQuery($con, true);
-$resulte = eventQuery($con, true);
-$resultr = radiomixQuery($con, true);
-$resultg = genreQuery($con, true);
+$resulta = $baseQueries->artistQuery(true);
+$resulte = $baseQueries->eventQuery(true);
+$resultr = $baseQueries->radiomixQuery(true);
+$resultg = $baseQueries->genreQuery(true);
 $i = 0;
 $resultArray = array();
 foreach($resulta as $artistRow) {

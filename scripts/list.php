@@ -1,9 +1,5 @@
 <?php
-require_once './connect.php';
-
 require_once './basequeries.php';
-
-$con = connect();
 
 session_start();
 $i = 0;
@@ -21,9 +17,9 @@ if(!session_is_registered("user")){
 	$failure = $_SESSION['failure'];
 	$_SESSION['failure'] = null;
 
-	$con = connect();
+	$baseQueries = new BaseQueries();
 
-	$setsArray = setQuery($con, "WHERE 1 ", "ORDER BY s.is_deleted ASC, a.artist ASC, s.id ASC", null, true);
+	$setsArray = $baseQueries->setQuery("WHERE 1 ", "ORDER BY s.is_deleted ASC, a.artist ASC, s.id ASC", null, true);
 	foreach ($setsArray as $set) {
 		if($set['is_deleted'] == 1) {
 			$deletedSets++;

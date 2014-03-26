@@ -1,11 +1,9 @@
 <?php
-require_once './../connect.php';
-
 require_once './../basequeries.php';
 
-$con = connect();
+$baseQueries = new BaseQueries();
 
-$fullArray = setQuery($con, null, "ORDER BY RAND() LIMIT 10");
+$fullArray = $baseQueries->setQuery(null, "ORDER BY RAND() LIMIT 10");
 
 echo json_encode($fullArray);
 

@@ -1,12 +1,9 @@
 <?php
-
-require_once './connect.php';
-
 require_once './basequeries.php';
 
-$con = connect();
+$baseQueries = new BaseQueries();
 
-$resultArray = radiomixQuery($con, true);
+$resultArray = $baseQueries->radiomixQuery(true);
 
 echo json_encode($resultArray);
 

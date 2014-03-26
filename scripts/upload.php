@@ -1,6 +1,4 @@
 <?php
-require_once './connect.php';
-
 require_once './basequeries.php';
 
 session_start();
@@ -8,64 +6,15 @@ if(!session_is_registered("user")){
 	header("location:/scripts/login.php");
 	exit;
 } else {
+	$baseQueries = new BaseQueries();
 
-	$success = null;
-	// if(session_is_registered("success")) {
-		$success = $_SESSION['success'];
-	// }
-	$_SESSION['success'] = null;
+	$artistsArray = $baseQueries->allArtists();
 
-	$failure = null;
-	// if(session_is_registered("failure")) {
-		$failure = $_SESSION['failure'];
-	// }
-	$_SESSION['failure'] = null;
+	$eventsArray = $baseQueries->allEvents();
 
-	$con = connect();
+	$radiomixesArray = $baseQueries->allRadiomixes();
 
-	$artistsArray = array();
-	$sql = "SELECT * FROM artists WHERE 1 order by artist";
-	$result = mysqli_query($con, $sql);
-	$i = 0;
-	while($row = mysqli_fetch_array($result))
-	{
-		$artistsArray[$i] = $row;
-		$i++;
-	}
-
-	$eventsArray = array();
-	$sql = "SELECT e.id, e.event, i.imageURL FROM events AS e ".
-	"INNER JOIN images AS i ON i.id = e.image_id ".
-	"WHERE is_radiomix IS FALSE order by event";
-	$result = mysqli_query($con, $sql);
-	$i = 0;
-	while($row = mysqli_fetch_array($result))
-	{
-		$eventsArray[$i] = $row;
-		$i++;
-	}
-
-	$radiomixesArray = array();
-	$sql = "SELECT e.id, e.event, i.imageURL FROM events AS e ".
-	"INNER JOIN images AS i ON i.id = e.image_id ".
-	"WHERE is_radiomix IS TRUE order by event";
-	$result = mysqli_query($con, $sql);
-	$i = 0;
-	while($row = mysqli_fetch_array($result))
-	{
-		$radiomixesArray[$i] = $row;
-		$i++;
-	}
-
-	$genresArray = array();
-	$sql = "SELECT * FROM genres WHERE 1 order by genre";
-	$result = mysqli_query($con, $sql);
-	$i = 0;
-	while($row = mysqli_fetch_array($result))
-	{
-		$genresArray[$i] = $row;
-		$i++;
-	}
+	$genresArray = $baseQueries->allGenres();
 
 	$directUploadsArray = array();
 	$files = scandir("/home/strenbum/direct_uploads");
@@ -75,21 +24,8 @@ if(!session_is_registered("user")){
 		}
 	}
 
-	$imagesArray = array();
-	$sql = "SELECT e.id, i.imageURL, e.is_radiomix, e.event FROM events AS e ".
-	"INNER JOIN images AS i ON i.id = e.image_id ".
-	"WHERE 1 GROUP BY i.imageURL";
-	// $sql = "SELECT DISTINCT s.imageURL, s.is_radiomix, e.event, r.radiomix FROM sets AS s ".
-	// "LEFT JOIN events AS e ON e.id = s.event_id ".
-	// "LEFT JOIN radiomixes AS r ON r.id = s.radiomix_id ".
-	// "WHERE 1 order by imageURL";
-	$result = mysqli_query($con, $sql);
-	$i = 0;
-	while($row = mysqli_fetch_array($result))
-	{
-		$imagesArray[$i] = $row;
-		$i++;
-	}
+	$imagesArray = $baseQueries->allImages();
+
 }
 ?>
 <!DOCTYPE html>

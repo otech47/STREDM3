@@ -1,11 +1,9 @@
 <?php
 require_once './../checkAddSlashes.php';
 
-require_once './../connect.php';
-
 require_once './../basequeries.php';
 
-$con = connect();
+$baseQueries = new BaseQueries();
 
 $label = '';
 if($_POST['post'] == 1) {
@@ -15,13 +13,13 @@ if($_POST['post'] == 1) {
 }
 $label = checkAddSlashes($label);
 
-$artistArray = setQuery($con, "WHERE a.artist LIKE '%$label%' AND s.is_deleted IS FALSE", null, "artist");
+$artistArray = $baseQueries->setQuery("WHERE a.artist LIKE '%$label%' AND s.is_deleted IS FALSE", null, "artist");
 
-$eventArray = setQuery($con, "WHERE e.event LIKE '%$label%' AND e.is_radiomix IS FALSE AND s.is_deleted IS FALSE", null, "event");
+$eventArray = $baseQueries->setQuery("WHERE e.event LIKE '%$label%' AND e.is_radiomix IS FALSE AND s.is_deleted IS FALSE", null, "event");
 
-$radiomixArray = setQuery($con, "WHERE e.event LIKE '%$label%' AND e.is_radiomix IS TRUE AND s.is_deleted IS FALSE", null, "event");
+$radiomixArray = $baseQueries->setQuery("WHERE e.event LIKE '%$label%' AND e.is_radiomix IS TRUE AND s.is_deleted IS FALSE", null, "event");
 
-$genreArray = setQuery($con, "WHERE g.genre LIKE '%$label%' AND s.is_deleted IS FALSE", null, "genre");
+$genreArray = $baseQueries->setQuery("WHERE g.genre LIKE '%$label%' AND s.is_deleted IS FALSE", null, "genre");
 
 $resultArray = array();
 $artistCount = count($artistArray);

@@ -1,11 +1,9 @@
 <?php
 require_once './checkAddSlashes.php';
 
-require_once './connect.php';
-
 require_once './basequeries.php';
 
-$con = connect();
+$baseQueries = new BaseQueries();
 
 $label = '';
 if($_GET['get'] == 1) {
@@ -15,13 +13,13 @@ if($_GET['get'] == 1) {
 }
 $label = checkAddSlashes($label);
 
-$artistArray = setQuery($con, "WHERE a.artist = '$label' AND s.is_deleted IS FALSE");
+$artistArray = $baseQueries->setQuery("WHERE a.artist = '$label' AND s.is_deleted IS FALSE");
 
-$eventArray = setQuery($con, "WHERE e.event = '$label' AND e.is_radiomix = 0 AND s.is_deleted IS FALSE");
+$eventArray = $baseQueries->setQuery("WHERE e.event = '$label' AND e.is_radiomix = 0 AND s.is_deleted IS FALSE");
 
-$radiomixArray = setQuery($con, "WHERE e.event = '$label' AND e.is_radiomix = 1 AND s.is_deleted IS FALSE");
+$radiomixArray = $baseQueries->setQuery("WHERE e.event = '$label' AND e.is_radiomix = 1 AND s.is_deleted IS FALSE");
 
-$genreArray = setQuery($con, "WHERE g.genre = '$label' AND s.is_deleted IS FALSE");
+$genreArray = $baseQueries->setQuery("WHERE g.genre = '$label' AND s.is_deleted IS FALSE");
 
 $resultArray = array();
 if(!empty($artistArray)) {

@@ -1,12 +1,9 @@
 <?php
-
-require_once './connect.php';
-
 require_once './basequeries.php';
 
-$con = connect();
+$baseQueries = new BaseQueries();
 
-$resultArray = eventQuery($con, true);
+$resultArray = $baseQueries->eventQuery(true);
 
 echo json_encode($resultArray);
 

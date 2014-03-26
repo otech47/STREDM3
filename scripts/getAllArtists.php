@@ -1,11 +1,9 @@
 <?php
-require_once './connect.php';
-
 require_once './basequeries.php';
 
-$con = connect();
+$baseQueries = new BaseQueries();
 
-$resultArray = artistQuery($con, true);
+$resultArray = $baseQueries->artistQuery(true);
 
 echo json_encode($resultArray);
 
