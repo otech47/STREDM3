@@ -1,4 +1,6 @@
 <?php
+require_once './basequeries.php';
+
 session_start();
 $i = 0;
 $deletedSets = 0;
@@ -15,32 +17,15 @@ if(!session_is_registered("user")){
 	$failure = $_SESSION['failure'];
 	$_SESSION['failure'] = null;
 
-	$con = mysqli_connect("localhost", "strenbum_user","passw0rd", "strenbum_stredm");
+	$baseQueries = new BaseQueries();
 
-	if (!$con)
-	{
-		die('Could not connect: ' . mysql_error());
-	}
-
-	$setsArray = array();
-	$sql = "SELECT s.id, s.songURL, i.imageURL, s.datetime, s.popularity, s.tracklist, e.is_radiomix, s.is_deleted, a.artist, e.event, g.genre ".
-			"FROM sets s ".
-			"INNER JOIN artists AS a ON a.id = s.artist_id ".
-			"INNER JOIN events AS e ON e.id = s.event_id ".
-			"INNER JOIN images AS i ON i.id = e.image_id ".
-			"INNER JOIN genres AS g ON g.id = s.genre_id ".
-			"WHERE 1 ".
-			"ORDER BY s.is_deleted ASC, a.artist ASC, s.id ASC";
-	$result = mysqli_query($con, $sql);
-	while($row = mysqli_fetch_array($result))
-	{
-		$setsArray[$i] = $row;
-		if($setsArray[$i]['is_deleted'] == 1) {
+	$setsArray = $baseQueries->setQuery("WHERE 1 ", "ORDER BY s.is_deleted ASC, a.artist ASC, s.id ASC", null, true);
+	foreach ($setsArray as $set) {
+		if($set['is_deleted'] == 1) {
 			$deletedSets++;
 		}
 		$i++;
 	}
-
 }
 ?>
 <!DOCTYPE html>

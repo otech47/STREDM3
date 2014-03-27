@@ -1,68 +1,20 @@
 <?php
+require_once './basequeries.php';
+
 session_start();
 if(!session_is_registered("user")){
 	header("location:/scripts/login.php");
 	exit;
 } else {
+	$baseQueries = new BaseQueries();
 
-	$success = null;
-	// if(session_is_registered("success")) {
-		$success = $_SESSION['success'];
-	// }
-	$_SESSION['success'] = null;
+	$artistsArray = $baseQueries->allArtists();
 
-	$failure = null;
-	// if(session_is_registered("failure")) {
-		$failure = $_SESSION['failure'];
-	// }
-	$_SESSION['failure'] = null;
+	$eventsArray = $baseQueries->allEvents();
 
-	$con = mysqli_connect("localhost", "strenbum_user","passw0rd", "strenbum_stredm");
+	$radiomixesArray = $baseQueries->allRadiomixes();
 
-	if (!$con)
-	{
-		die('Could not connect: ' . mysql_error());
-	}
-
-	$artistsArray = array();
-	$sql = "SELECT * FROM artists WHERE 1 order by artist";
-	$result = mysqli_query($con, $sql);
-	$i = 0;
-	while($row = mysqli_fetch_array($result))
-	{
-		$artistsArray[$i] = $row;
-		$i++;
-	}
-
-	$eventsArray = array();
-	$sql = "SELECT * FROM events WHERE is_radiomix IS FALSE order by event";
-	$result = mysqli_query($con, $sql);
-	$i = 0;
-	while($row = mysqli_fetch_array($result))
-	{
-		$eventsArray[$i] = $row;
-		$i++;
-	}
-
-	$radiomixesArray = array();
-	$sql = "SELECT * FROM events WHERE is_radiomix IS TRUE order by event";
-	$result = mysqli_query($con, $sql);
-	$i = 0;
-	while($row = mysqli_fetch_array($result))
-	{
-		$radiomixesArray[$i] = $row;
-		$i++;
-	}
-
-	$genresArray = array();
-	$sql = "SELECT * FROM genres WHERE 1 order by genre";
-	$result = mysqli_query($con, $sql);
-	$i = 0;
-	while($row = mysqli_fetch_array($result))
-	{
-		$genresArray[$i] = $row;
-		$i++;
-	}
+	$genresArray = $baseQueries->allGenres();
 
 	$directUploadsArray = array();
 	$files = scandir("/home/strenbum/direct_uploads");
@@ -72,22 +24,8 @@ if(!session_is_registered("user")){
 		}
 	}
 
-	$imagesArray = array();
-	$sql = "SELECT i.imageURL, e.is_radiomix, e.event FROM sets AS s ".
-	"INNER JOIN events AS e ON e.id = s.event_id ".
-	"INNER JOIN images AS i ON i.id = e.image_id ".
-	"WHERE 1 GROUP BY i.imageURL";
-	// $sql = "SELECT DISTINCT s.imageURL, s.is_radiomix, e.event, r.radiomix FROM sets AS s ".
-	// "LEFT JOIN events AS e ON e.id = s.event_id ".
-	// "LEFT JOIN radiomixes AS r ON r.id = s.radiomix_id ".
-	// "WHERE 1 order by imageURL";
-	$result = mysqli_query($con, $sql);
-	$i = 0;
-	while($row = mysqli_fetch_array($result))
-	{
-		$imagesArray[$i] = $row;
-		$i++;
-	}
+	$imagesArray = $baseQueries->allImages();
+
 }
 ?>
 <!DOCTYPE html>
@@ -114,9 +52,7 @@ if(!session_is_registered("user")){
 		  	<option value="">Select Artist</option>
 		  	<option value="new">New Artist</option>
 		  	<?php foreach($artistsArray as $artist) { ?>
-		  	  <option value="<?=$artist['id']?>">
-		  	  	<?=$artist['artist']?>
-		  	  </option>
+		  	  <option value="<?=$artist['id']?>"><?=$artist['artist']?></option>
 		  	<? } ?>
 		  </select>
 		  <input type="text" class="form-control" id="newartist" name="newartist" style="display:none;" />
@@ -132,9 +68,7 @@ if(!session_is_registered("user")){
 		  	<option value="">Select Event</option>
 		  	<option value="new">New Event</option>
 			<?php foreach($eventsArray as $event) { ?>
-		  	  <option value="<?=$event['id']?>">
-		  		<?=$event['event']?>
-		  	  </option>
+		  	  <option value="<?=$event['id']?>"><?=$event['event']?></option>
 		  	<? } ?>
 		  </select>
 		  <input type="text" class="form-control" id="newevent" name="newevent" style="display:none;" />
@@ -145,22 +79,33 @@ if(!session_is_registered("user")){
 		  	<option value="">Select Radio Mix</option>
 		  	<option value="new">New Radio Mix</option>
 			<?php foreach($radiomixesArray as $radiomix) { ?>
-		  	  <option value="<?=$radiomix['id']?>">
-		  		<?=$radiomix['event']?>
-		  	  </option>
+		  	  <option value="<?=$radiomix['id']?>"><?=$radiomix['event']?></option>
 		  	<? } ?>
 		  </select>
 		  <input type="text" class="form-control" id="newradiomix" name="newradiomix" style="display:none;" />
 		</div>
+		<div id="imagepicker" style="display: none;">
+    	  <label for="imagefile">Image File</label>
+		  <input type="file" id="imagefile" name="imagefile" class="form-control"/>
+		</div>
+		<div id="oldimagepicker" style="display: none;">
+	  <label for="oldimage">Uploaded Image File</label>
+	  <select id="oldimage" name="oldimage" class="form-control">
+		<? foreach($imagesArray as $image) { 
+			if($image['imageURL'] != null) { ?>
+	  	  <option value="<?=$image['id']?>"><?=$image['imageURL']?></option>
+	  	<? }
+	  	} ?>
+	  </select>
+		<img id="thumbnail" style="width: 200px; height: 200px;">
+	  </div>
 	  	<div class="form-group">
     	<label for="genre">Genre</label>
 		  <select id="genre" name="genre" class="form-control">
 		  	<option value="">Select Genre</option>
 		  	<option value="new">New Genre</option>
 			<?php foreach($genresArray as $genre) { ?>
-		  	  <option value="<?=$genre['id']?>">
-		  		<?=$genre['genre']?>
-		  	  </option>
+		  	  <option value="<?=$genre['id']?>"><?=$genre['genre']?></option>
 		  	<? } ?>
 		  </select>
 		  <input type="text" class="form-control" id="newgenre" name="newgenre" style="display:none;" />
@@ -178,37 +123,9 @@ if(!session_is_registered("user")){
     	  <label for="directupload">Uploaded Song File</label>
 		  <select id="directupload" name="directupload" class="form-control">
 			<?php foreach($directUploadsArray as $directUpload) { ?>
-		  	  <option value="<?=$directUpload?>">
-		  		<?=$directUpload?>
-		  	  </option>
+		  	  <option value="<?=$directUpload?>"><?=$directUpload?></option>
 		  	<? } ?>
 		  </select>
-		</div>
-		<div class="checkbox">
-			<label>
-				<input id="oldimagecheckbox" name="oldimagecheckbox" type="checkbox" value="oldimage"> Using an existing image?
-			</label>
-		</div>
-		<div class="form-group" id="imagepicker">
-    	  <label for="imagefile">Image File</label>
-		  <input type="file" id="imagefile" name="imagefile" class="form-control"/>
-		</div>
-		<div class="form-group" id="oldimagepicker" style="display: none;">
-    	  <label for="oldimage">Uploaded Image File</label>
-		  <select id="oldimage" name="oldimage" class="form-control">
-			<? foreach($imagesArray as $image) { 
-				if($image['imageURL'] != null) { ?>
-		  	  <option value="<?=$image['imageURL']?>">
-		  	  	<? if($image['is_radiomix'] == 1) {
-		  	  		echo $image['event'];
-		  	  	} else {
-		  	  		echo $image['event'];
-		  	  	} ?>
-		  	  </option>
-		  	<? }
-		  	} ?>
-		  </select>
-			<img id="thumbnail" style="width: 200px; height: 200px;">
 		</div>
 		<div class="form-group">
     	<label for="tracklist">Track List</label>
@@ -235,18 +152,31 @@ if(!session_is_registered("user")){
   		var v = $(this).val();
   		if(v == "new") {
   			$('#newevent').show();
+  			$('#imagepicker').show();
+  			$('#oldimagepicker').hide();
   		} else {
   			$('#newevent').hide();
   			$('#newevent').val('');
+  			$('#imagepicker').hide();
+  			$('#oldimagepicker').show();
+  			$('#oldimage').val(v);
+  			showImage();
   		}
   	});
   	$('#radiomix').change(function() {
   		var v = $(this).val();
+  		console.log(v);
   		if(v == "new") {
   			$('#newradiomix').show();
+  			$('#imagepicker').show();
+  			$('#oldimagepicker').hide();
   		} else {
   			$('#newradiomix').hide();
   			$('#newradiomix').val('');
+  			$('#imagepicker').hide();
+  			$('#oldimagepicker').show();
+  			$('#oldimage').val(v);
+  			showImage();
   		}
   	});
   	$('#genre').change(function() {
@@ -276,22 +206,19 @@ if(!session_is_registered("user")){
   			$('#directuploadpicker').hide();
   		}
   	});
-  	$('#oldimagecheckbox').change(function() {
-  		if(this.checked) {
-  			$('#imagepicker').hide();
-  			$('#oldimagepicker').show();
-  			showImage();
-  		} else {
-  			$('#imagepicker').show();
-  			$('#oldimagepicker').hide();
-  		}
-  	});
   	$('#oldimage').change(function() {
   		showImage();
   	});
   });
 	function showImage() {
-		$('#thumbnail').attr("src", "http://stredm.com/uploads/"+$('#oldimage').val());
+		var s = "#oldimage option[value='" + $('#oldimage').val() + "']";
+		console.log(s);
+		var t = $(s).text();
+		console.log(t);
+		if(t != null) {
+			t.trim();
+		}
+		$('#thumbnail').attr("src", "http://stredm.com/uploads/" + t);
 	}
   </script>
 </html>
