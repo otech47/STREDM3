@@ -39,11 +39,6 @@ if(!session_is_registered("user")){
   	  <h1>Upload A Set</h1>
 	  <a href="/scripts/logout.php" class="btn btn-danger" role="button">Log Out</a>
 	  <a href="/scripts/list.php" class="btn btn-info" role="button">Set List</a>
-	  <? if($success) { ?>
-		<div class="alert alert-success"><?=$success?></div>
-	  <? } if($failure) { ?>
-	    <div class="alert alert-danger"><?=$failure?></div>
-	  <? } ?>
 	  <form action="/scripts/sets.php" role="form" method='POST' enctype='multipart/form-data'>
 	  	<input type="hidden" name="MAX_FILE_SIZE" value="1048000000">
 	  	<div class="form-group">
