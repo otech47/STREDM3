@@ -43,14 +43,14 @@ if($imageURL != "") {
 $eventId = -1;
 if($radiomixcheckbox == true) {
 	if($imageId >= 0) {
-		$eventId = $baseQueries->runInsertGetId("INSERT INTO events(event, image_id, is_radiomix) VALUES ('$radiomix', '$imageId', true) ON DUPLICATE KEY UPDATE id=LAST_INSERT_ID(id)");
+		$eventId = $baseQueries->runInsertGetId("INSERT INTO events(event, image_id, is_radiomix) VALUES ('$radiomix', '$imageId', true) ON DUPLICATE KEY UPDATE id=LAST_INSERT_ID(id), image_id = $imageId");
 	} else {
 		$eventId = $baseQueries->runInsertGetId("INSERT INTO events(event, is_radiomix) VALUES ('$radiomix', true) ON DUPLICATE KEY UPDATE id=LAST_INSERT_ID(id)");
 	}
 	check(($eventId == -1), "event: ".$radiomix);
 } else {
 	if($imageId >= 0) {
-		$eventId = $baseQueries->runInsertGetId("INSERT INTO events(event, image_id, is_radiomix) VALUES ('$event', '$imageId', false) ON DUPLICATE KEY UPDATE id=LAST_INSERT_ID(id)");
+		$eventId = $baseQueries->runInsertGetId("INSERT INTO events(event, image_id, is_radiomix) VALUES ('$event', '$imageId', false) ON DUPLICATE KEY UPDATE id=LAST_INSERT_ID(id), image_id = $imageId");
 	} else {
 		$eventId = $baseQueries->runInsertGetId("INSERT INTO events(event, is_radiomix) VALUES ('$event', false) ON DUPLICATE KEY UPDATE id=LAST_INSERT_ID(id)");
 	}
