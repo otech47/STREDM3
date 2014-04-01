@@ -201,7 +201,7 @@ class BaseQueries {
 
 	public function allArtists() {
 		$artistsArray = array();
-		$sql = "SELECT * FROM artists WHERE 1 order by artist";
+		$sql = "SELECT artist FROM artists WHERE 1 order by artist";
 		$result = $this->db->query($sql);
 		$i = 0;
 		while($row = $result->fetch_assoc())
@@ -214,7 +214,7 @@ class BaseQueries {
 
 	public function allEvents() {
 		$eventsArray = array();
-		$sql = "SELECT e.id, e.event, i.imageURL FROM events AS e ".
+		$sql = "SELECT e.event, i.imageURL FROM events AS e ".
 		"INNER JOIN images AS i ON i.id = e.image_id ".
 		"WHERE is_radiomix IS FALSE order by event";
 		$result = $this->db->query($sql);
@@ -229,7 +229,7 @@ class BaseQueries {
 
 	public function allRadiomixes() {
 		$radiomixesArray = array();
-		$sql = "SELECT e.id, e.event, i.imageURL FROM events AS e ".
+		$sql = "SELECT e.event AS radiomix, i.imageURL FROM events AS e ".
 		"INNER JOIN images AS i ON i.id = e.image_id ".
 		"WHERE is_radiomix IS TRUE order by event";
 		$result = $this->db->query($sql);
@@ -244,7 +244,7 @@ class BaseQueries {
 
 	public function allGenres() {
 		$genresArray = array();
-		$sql = "SELECT * FROM genres WHERE 1 order by genre";
+		$sql = "SELECT genre FROM genres WHERE 1 order by genre";
 		$result = $this->db->query($sql);
 		$i = 0;
 		while($row = $result->fetch_assoc())
@@ -271,135 +271,18 @@ class BaseQueries {
 	}
 
 	public function run($sql) {
-		return $this->db->query($sql);
+		$this->db->query($sql);
 	}
 
-	public function addSet() {
-		if(checkId('artist') && (checkId('event') || checkId('radiomix')) && checkId('genre')) {
-			$artist_id = setId('artist', $con);
-			$genre_id = setId('genre', $con);
-			$tracklist = checkAddSlashes($_POST['tracklist']);
-
-			$songURL = null;
-			if(isset($_POST['directuploadcheckbox'])) {
-			    $songURL = moveFile($_POST['directupload']);
-			} else {
-				$songURL = uploadFile('songfile');
-			}
-
-			$imageURL = null;
-			if(isset($_POST['oldimagecheckbox'])) {
-				$imageURL = $_POST['oldimage'];
-			} else {
-				$imageURL = uploadFile('imagefile');
-			}
-
-			$is_radiomix = 0;
-			if(isset($_POST['radiomixcheckbox'])) {
-			    $is_radiomix = 1;
-			}
-
-			if($is_radiomix == 1) {
-				$event_id = 0;
-				$radiomix_id = setId('radiomix', $con);
-			} else {
-				$event_id = setId('event', $con);
-				$radiomix_id = 0;
-			}
-
-			// echo "True $artist_id \t $event_id \t $genre_id \n$tracklist";
-			$sql =	"INSERT IGNORE INTO sets(artist_id, event_id, radiomix_id, genre_id, songURL, imageURL, datetime, is_radiomix, tracklist) ".
-					"VALUES ($artist_id, $event_id, '$radiomix_id', $genre_id, '$songURL', '$imageURL', now(), $is_radiomix, '$tracklist')";
-					// $result = $sql;
-			$result = $this->db->query(l);
-			if($result) {
-				$_SESSION['success'] = "Success! Set uploaded. sql: $sql";
-				// throw new RuntimeException("Success! Set uploaded. sql: $sql");
-				header("location:/scripts/upload.php");
-			} else {
-				$_SESSION['failure'] = "Failed! There were errors inserting the set into the database. sql: $sql";
-				header("location:/scripts/upload.php");
-			}
-		} else {
-			echo checkId('artist') . ":" . checkId('event') . ":" . checkId('radiomix') . ":" . checkId('genre');
-			echo "\r\n";
-			echo ini_get('upload_max_filesize');
-			echo "\r\n";
-			echo ini_get('post_max_size');
-			echo "\r\n";
-			echo ini_get('max_execution_time');
-			echo "\r\n";
-			echo ini_get('max_input_time');
-			echo "\r\n";
-			echo ini_get('memory_limit');
-
-			// header("location:/scripts/upload.php");
-		}
+	public function runInsertGetId($sql) {
+		$this->db->query($sql);
+		return $this->db->insert_id;
 	}
 
-	function checkId($type) {
-		$str = checkAddSlashes($_POST[$type]);
-		if(is_numeric($str)) {
-			$str = (int)$str;
-			if($str > -1) {
-				// echo "yes '$str' max: '$max' ";
-				return true;
-			} else {
-				// echo "no '$str' max: '$max' ";
-				return false;
-			}
-		} else if($str == "new") {
-			$newstr = checkAddSlashes($_POST['new'.$type]);
-			if($newstr !== '') {
-				// echo "yes '$str' newstr: '$newstr' ";
-				return true;
-			} else {
-				// echo "no '$str' newstr: '$newstr' ";
-				return false;	
-			}
-		} else {
-			return false;
-		}
+	public function lastId() {
+		return $this->db->insert_id;
 	}
 
-	function setId($type, $con) {
-		$str = checkAddSlashes($_POST[$type]);
-		if($str == "new") {
-			$newtype = checkAddSlashes($_POST["new$type"]);
-			$plural = ($type == 'radiomix')? 'es' : 's';
-			$sql = "INSERT IGNORE INTO $type"."$plural($type) VALUES ('$newtype')";
-			$result = $this->db->query(l);
-			$sql = "SELECT id FROM ".$type."$plural WHERE $type = '$newtype'";
-			$result = $this->db->query(l);
-			while($row = $result->fetch_assoc()) {
-				return $row['id'];
-			}
-		} else {
-			return (int)$str;
-		}
-	}
-
-	function moveFile($filename) {
-		try {
-		    $newFilename = sha1_file("/home/strenbum/direct_uploads/" . $filename);
-		    $ext = pathinfo($filename, PATHINFO_EXTENSION);
-		    $newFilename = $newFilename . "." . $ext;
-		    if (!rename(
-		        	    "/home/strenbum/direct_uploads/" . $filename,
-		        sprintf('./../uploads/%s', $newFilename)
-		    )) {
-		        throw new RuntimeException('Failed to move uploaded file.');
-		    }
-		    return $newFilename;
-		    // echo 'File is uploaded successfully.';
-
-		} catch (RuntimeException $e) {
-
-		    echo $e->getMessage();
-		    return null;
-		}
-		return null;
-	}
 }
 
 ?>
