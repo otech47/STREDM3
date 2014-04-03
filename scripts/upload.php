@@ -38,7 +38,7 @@ if(!session_is_registered("user")){
   <body style="font-size: 16px;">
   	<div class="alert alert-success fade in">
       <button type="button" class="close" data-dismiss="alert" aria-hidden="true">x</button>
-      <strong>Ready!</strong> The page is ready. First, choose a song file. Then, pick the artist(s). You can drag and drop these.<br>
+      <strong>Ready!</strong> The page is ready. First, choose a song file. Then, pick the artist(s). You can drag and drop these. Order will be retained.<br>
       Select an event or radio mix, and overwrite the image if it looks wrong. Choose a genre and hit submit.
     </div>
   	<div class="container">

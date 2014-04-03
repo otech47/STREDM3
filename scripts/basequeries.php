@@ -62,31 +62,45 @@ class BaseQueries {
 		"INNER JOIN events AS e ON e.id = s.event_id ".
 		"INNER JOIN images AS i ON i.id = e.image_id ".
 		"INNER JOIN genres AS g ON g.id = s.genre_id ".
-		"WHERE s.id IN(";
+		"WHERE s.id ";
+		$setsSqlIn = "IN(";
 		$joiner = "";
 		$resultsFound = false;
 		while($row = $result->fetch_assoc()) {
 			$resultsFound = true;
-			$sql .= $joiner;
+			$setsSqlIn .= $joiner;
 			$joiner = ", ";
-			$sql .= $row['id'];
+			$setsSqlIn .= $row['id'];
 		}
+		$setsSqlIn .= ")";
 		if($resultsFound) {
-
-			$sql .= ") ";
-			$sql .= "GROUP BY s.id ";
+			$sql .= $setsSqlIn;
+			$sql .= " GROUP BY s.id ";
 			if($orderClause != null && $orderClause != "") {
 				$sql .= $orderClause;
 			} else {
 				$sql .= " ORDER BY s.id ASC, sa.number ASC ";
 			}
+			$tracksArray = $this->getTracks($setsSqlIn);
 			$result = $this->db->query($sql);
-			$resultArray = $this->fetchRows($result, $matchField, $allFields);
+			$resultArray = $this->fetchRows($result, $matchField, $allFields, $tracksArray);
 		}
 		return $resultArray;
 	}
 
-	public function fetchRows($result, $matchField, $allFields) {
+	public function getTracks($setsSqlIn) {
+		$tracksArray = array();
+		$tracksSql = "SELECT t.set_id, t.number, t.track FROM tracks AS t WHERE t.set_id ".$setsSqlIn." AND t.is_deleted IS FALSE ORDER BY t.set_id, t.number";
+		$result = $this->db->query($tracksSql);
+		if($result) {
+			while ($row = $result->fetch_assoc()) {
+				$tracksArray[$row['set_id']][$row['number']] = $row['track'];
+			}
+		}
+		return $tracksArray;
+	}
+
+	public function fetchRows($result, $matchField, $allFields, $tracksArray = null) {
 		$i = 0;
 		$resultArray = array();
 		while($row = $result->fetch_assoc()) {
@@ -102,6 +116,9 @@ class BaseQueries {
 			}
 			if($allFields) {
 				$resultArray[$i]['is_deleted'] = $row['is_deleted'];
+			}
+			if(!empty($tracksArray)) {
+				$resultArray[$i]['tracklist'] = $tracksArray[$row['id']];
 			}
 			$i++;
 		}
