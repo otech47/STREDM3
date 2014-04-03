@@ -90,6 +90,19 @@ $(document).ready( function() {
 			var a = value.appendTo("#"+columnType.id).addClass("result");
 			a.css("background-color", backgroundColors[type]);
 			a.click(function() {
+				if(type == "artist")
+				{
+					var link = "?artist="+a.text();
+				}
+				if(type == "event" || type == "radiomix")
+				{
+					var link = "?event="+a.text();
+				}
+				if(type == "genre")
+				{
+					var link = "?genre="+a.text();
+				}
+				window.history.replaceState("string", "Title", link);
 				openPanel(a);
 			});
 		});
@@ -144,7 +157,8 @@ $(document).ready( function() {
 				$('#thumbnail').css('background-image', "url('../uploads/"+a.attr('data-img')+"')");
 				$('.duration').show();
 				$('#jquery_jplayer_1').jPlayer('play');
-				$('.scroll-wrapper').scrollTo("div.stredming-wrapper", 500);
+				var offset = $(".welcome-holder").height();
+				$('.scroll-wrapper').scrollTo("div.stredming-wrapper", 500, {offset:-offset});
 				mixpanel.track("Specific Set Play");
 				var timer = $.timer(function() {
 					mixpanel.track("Specific Set Played for 5 Minutes");
@@ -194,21 +208,24 @@ $(document).ready( function() {
 				dataType: 'json',
 				success: function(data)
 				{
-					choice = Math.floor((Math.random()*data.length)+1);
-					var playerTitle = data[choice].artist + " - " + data[choice].event;
-					$('#jp_player_title').text(playerTitle);
-					$('#jquery_jplayer_1').jPlayer("setMedia", {
-						mp3: "uploads/"+data[choice].songURL
-					});
-					$('#thumbnail').css('background-image', "url('../uploads/"+data[choice].imageURL+"')");
-					$('.duration').show();
-					$('#jquery_jplayer_1').jPlayer('play');
-					$('.scroll-wrapper').scrollTo("div.stredming-wrapper", 500);
-					mixpanel.track("Specific Set Play");
-					var timer = $.timer(function() {
-						mixpanel.track("Specific Set Played for 5 Minutes");
-					}, 5000, false);
-					timer.once(300000);
+					mainACWidget.autocomplete("search", value[0]);
+					window.setTimeout(function() {
+						$("div.result").click();
+					}, 500)
+					// resultToClick = $("div.result p:contains('"+value[0]+"')");
+					// console.log(value[0]);
+					// var i = 0;
+					// while(resultToClick.text() != value[0])
+					// {
+					// 	console.log(resultToClick);
+					// 	console.log(value[0]);
+					// 	resultToClick = $("div.result p:contains('"+value[0]+"')");
+					// 	i++;
+					// 	if(i >= 1000)
+					// 	{
+					// 		break;
+					// 	}
+					// }
 				}
 			});
 		}
@@ -241,7 +258,8 @@ $(document).ready( function() {
 					$('#thumbnail').css('background-image', "url('../uploads/"+data[choice].imageURL+"')");
 					$('.duration').show();
 					$('#jquery_jplayer_1').jPlayer('play');
-					$('.scroll-wrapper').scrollTo("div.stredming-wrapper", 500);
+					var offset = $(".welcome-holder").height();
+					$('.scroll-wrapper').scrollTo("div.stredming-wrapper", 500, {offset:-offset});
 					mixpanel.track("Specific Set Play");
 					var timer = $.timer(function() {
 						mixpanel.track("Specific Set Played for 5 Minutes");
@@ -562,7 +580,8 @@ $(document).ready( function() {
 				$('#thumbnail').css('background-image', "url('../uploads/"+data.imageURL+"')");
 				$('.duration').show();
 				$('#jquery_jplayer_1').jPlayer('play');
-				$('.scroll-wrapper').scrollTo("div.stredming-wrapper", 500);
+				var offset = $(".welcome-holder").height();
+				$('.scroll-wrapper').scrollTo("div.stredming-wrapper", 500, {offset:-offset});
  				mixpanel.track("Random Set Play");
  				var timer = $.timer(function() {
 						mixpanel.track("Random Set Played for 5 Minutes");
