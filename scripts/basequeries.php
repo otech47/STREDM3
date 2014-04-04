@@ -22,6 +22,8 @@ class BaseQueries {
 		{
 			die('Could not connect: ' . mysql_error());
 		}
+
+		$this->db->set_charset('utf8');
 	}
 
 	private function disconnect() {
@@ -94,7 +96,7 @@ class BaseQueries {
 		$result = $this->db->query($tracksSql);
 		if($result) {
 			while ($row = $result->fetch_assoc()) {
-				$tracksArray[$row['set_id']][$row['number']] = $row['track'];
+				$tracksArray[$row['set_id']][$row['number']] = trim($row['track']);
 			}
 		}
 		return $tracksArray;
