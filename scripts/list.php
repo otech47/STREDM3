@@ -103,11 +103,16 @@ if(!session_is_registered("user")){
 				  <button id="addtrack-<?=$set['id']?>" data-id="<?=$set['id']?>" data-title="<?=$set['artist']." - ".$set['event']?>" class="btn btn-small btn-primary" data-toggle="modal" data-target="#tracklistModal">
 					Add Tracks
 				  </button>
-				  <div id="tracklist-<?=$set['id']?>" data-trackcount="<? echo count($set['tracklist']); ?>" style="display: none;">
-				  	<? if(!empty($set['tracklist'])) { foreach ($set['tracklist'] as $trackIndex => $track) { ?>
-						<input type='text' id='<?=$set['id']?>-<?=$trackIndex?>' value='<?=$track?>' class='form-control'>
-				  	<? } } ?>
-				  </div>
+				  <textarea id="tracklist-<?=$set['id']?>" data-trackcount="<? echo count($set['tracklist']); ?>" style="display: none;">
+				  	<? if(!empty($set['tracklist'])) {
+				  		$joinStr = "";
+				  		foreach ($set['tracklist'] as $trackIndex => $track) { 
+				  			echo $joinStr;
+				  			$joinStr = ",";
+							echo $track;
+						}
+				  	} ?>
+				  </textarea>
 				</div>
 			  </td>
 			  <td>
@@ -143,14 +148,8 @@ if(!session_is_registered("user")){
 	      <div class="modal-body">
 			<form id="trackForm" action="/scripts/tracks.php" method="POST">
 				<table id="setsTable" class="table">
-			  	<thead>
-				  <tr>
-				  	<th>Track Name</th>
-				    <th></th>
-				  </tr>
-				</thead>
-				<tbody id="trackFormBody">
-				</tbody>
+				  	<thead><tr><th>Tracks</th></tr></thead>
+					<tbody id="trackFormBody"></tbody>
 				</table>
 				<input id="trackFormSetId" name="set_id" type="hidden">
 			</form>
@@ -171,16 +170,7 @@ if(!session_is_registered("user")){
   <script type="text/javascript">
   $(document).ready(function() {
   	var trackNo = 0;
-  	$('#addTrack').click(function() {
-  		$('#trackFormBody').append("<tr id='trackRow-"+trackNo+"'><td><div class='form-group'><input type='text'"
-  			+" name='tracklist[]' class='form-control'></div></td><td><div class='form-group'><button id='deleteTrack-"+trackNo
-  			+"' type='button' class='btn btn-danger'>Remove</button></div></td></tr>");
-  		$('#deleteTrack-'+trackNo).click(function() {
-  			$('#trackRow-'+trackNo).remove();
-  		});
-  		trackNo++;
-  	});
-  	$('#closeTracks').click(function() {
+	$('#closeTracks').click(function() {
   		$('#trackFormBody').empty();
   	});
   	$('#closeModal').click(function() {
@@ -193,17 +183,14 @@ if(!session_is_registered("user")){
   		var id = $(this).attr('data-id');
   		$('#trackFormBody').empty();
   		$('#trackFormSetId').val(id);
-  		var trackCount = $('#tracklist-'+id).attr('data-trackcount');
-  		$("[id|='"+id+"']").each(function(index) {
-  			var track = $(this).val();
-  			$('#trackFormBody').append("<tr id='trackRow-"+index+"'><td><div class='form-group'><input type='text'"
-  			+" name='tracklist[]' value='"+track+"' class='form-control'></div></td><td><div class='form-group'><button id='deleteTrack-"+index
-  			+"' type='button' class='btn btn-danger'>Remove</button></div></td></tr>");
-
-			$('#deleteTrack-'+index).click(function() {
-				$('#trackRow-'+index).remove();
-			});
+  		var tracks = $('#tracklist-'+id).val().split(",");
+  		var tracklistTextarea = "<tr><td><div class='form-group'><textarea"
+  			+" name='tracklist' class='form-control' rows='12'>";
+  		$.each(tracks, function(index, value) {
+			tracklistTextarea += value.trim() + "\n";
   		});
+		tracklistTextarea += "</textarea></div></td></tr>";
+		$('#trackFormBody').append(tracklistTextarea);
   	});
   });
   </script>

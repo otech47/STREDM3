@@ -20,11 +20,17 @@ $setId = $_POST['set_id'];
 $baseQueries->run("UPDATE tracks AS t SET t.is_deleted = TRUE WHERE t.set_id = $setId");
 // add tracks
 $i = 0;
+if(!empty($tracklist)) {
+	$tracklist = trim($tracklist);
+	$tracklist = explode("\n", $tracklist);
+	array_filter($tracklist, 'trim');
+}
 foreach ($tracklist as $track) {
-	$trackId = $baseQueries->runInsertGetId("INSERT INTO tracks(set_id, number, track, is_deleted) ".
-		"VALUES ('$setId', '$i', '$track', FALSE) ON DUPLICATE KEY UPDATE id=LAST_INSERT_ID(id), track = '$track', is_deleted = FALSE");
-	// echo $track."\r\n";
-	$i++;
+	if($track != "") {
+		$trackId = $baseQueries->runInsertGetId("INSERT INTO tracks(set_id, number, track, is_deleted) ".
+			"VALUES ('$setId', '$i', '$track', FALSE) ON DUPLICATE KEY UPDATE id=LAST_INSERT_ID(id), track = '$track', is_deleted = FALSE");
+		$i++;
+	}
 }
 
 header("location:/scripts/list.php");
