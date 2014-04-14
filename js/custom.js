@@ -183,7 +183,8 @@ $(document).ready( function() {
 	}
 	function playSet()
 	{
-		var urlString = window.location.search.replace(/%20/g, " ");
+		var urlString = window.location.search.replace(/%20/g, " ").replace(/\+/g, " ");
+		console.log(urlString);
 		var regex = /&(?=\S)/;
 		urlString = urlString.substring(1);
 		var nvPairs = urlString.split(regex);
@@ -192,12 +193,9 @@ $(document).ready( function() {
 		var choice;
 		for(i = 0 ; i < nvPairs.length; i++)
 		{
-			console.log(nvPairs[i]);
 			var nvPair = nvPairs[i].split("=");
 			name[i] = nvPair[0];
 			value[i] = nvPair[1];
-			console.log(name[i]);
-			console.log(value[i]);
 		}
 		if (nvPairs.length == 1)
 		{
