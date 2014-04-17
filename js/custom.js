@@ -11,17 +11,17 @@ $(document).ready( function() {
 	function animateWelcomeBar() {
 		if($("html").width() > 568)
 		{
-		$(".welcome-holder").css("padding","0vh 10vw");
-		$(".welcome-wrapper").css("padding","0vh 0vw");
-		$(".welcome-container").hide();
-		$(".welcome-holder").css("width","");
-		$(".welcome-holder").css("height","7vh");
-		$(".welcome-options-container").css("width","80vw");
-		$(".welcome-options-container").css("align-items","center");
-		$(".options-item-wrapper").css("height","7vh");
-		$(".welcome-button").css("height","7vh");
-		$(".welcome-button").css("font-size","4vh");
-		$(".welcome-holder").css("position","fixed");
+			$(".welcome-holder").css("padding","0vh 10vw");
+			$(".welcome-wrapper").css("padding","0vh 0vw");
+			$(".welcome-container").hide();
+			$(".welcome-holder").css("width","");
+			$(".welcome-holder").css("height","7vh");
+			$(".welcome-options-container").css("width","80vw");
+			$(".welcome-options-container").css("align-items","center");
+			$(".options-item-wrapper").css("height","7vh");
+			$(".welcome-button").css("height","7vh");
+			$(".welcome-button").css("font-size","4vh");
+			$(".welcome-holder").css("position","fixed");
 		}
 	}
 	function randomColor() {
@@ -164,8 +164,9 @@ $(document).ready( function() {
 				$('#thumbnail').css('background-image', "url('../uploads/"+a.attr('data-img')+"')");
 				$('.duration').show();
 				$('#jquery_jplayer_1').jPlayer('play');
-				var offset = $(".welcome-holder").height();
-				$('.scroll-wrapper').scrollTo("div.stredming-wrapper", 500, {offset:-offset});
+				$(".fb-share-button").attr("data-href", "http://stredm.com/"+link);
+				FB.XFBML.parse();
+				$('.scroll-wrapper').scrollTo("div.stredming-wrapper", 500, {offset:-($("body").height()*.07)});
 				mixpanel.track("Specific Set Play");
 				var timer = $.timer(function() {
 					mixpanel.track("Specific Set Played for 5 Minutes");
@@ -263,6 +264,8 @@ $(document).ready( function() {
 					$('#thumbnail').css('background-image', "url('../uploads/"+data[choice].imageURL+"')");
 					$('.duration').show();
 					$('#jquery_jplayer_1').jPlayer('play');
+					$(".fb-share-button").attr("data-href", urlstring);
+					FB.XFBML.parse();
 					var offset = $(".welcome-holder").height();
 					$('.scroll-wrapper').scrollTo("div.stredming-wrapper", 500, {offset:-offset});
 					mixpanel.track("Specific Set Play");
@@ -588,6 +591,8 @@ $(document).ready( function() {
 				$('#thumbnail').css('background-image', "url('../uploads/"+data.imageURL+"')");
 				$('.duration').show();
 				$('#jquery_jplayer_1').jPlayer('play');
+				$(".fb-share-button").attr("data-href", "http://stredm.com/"+link);
+				FB.XFBML.parse();
 				var offset = $(".welcome-holder").height();
 				$('.scroll-wrapper').scrollTo("div.stredming-wrapper", 500, {offset:-offset});
  				mixpanel.track("Random Set Play");
@@ -602,16 +607,16 @@ $(document).ready( function() {
 		$(".panel-results-container").css("overflow-y","scroll");
 	});
 	$(".navmenu:nth-child(1)").click(function(){
-		$(".scroll-wrapper").scrollTo("#section-1", 500);
+		$(".scroll-wrapper").scrollTo("#section-1", 500, {offset:-($("body").height()*.07)});
 	});
 	$(".navmenu:nth-child(2)").click(function(){
-		$(".scroll-wrapper").scrollTo("#section-2", 500);
+		$(".scroll-wrapper").scrollTo("#section-2", 500, {offset:-($("body").height()*.07)});
 	});
 	$(".navmenu:nth-child(3)").click(function(){
-		$(".scroll-wrapper").scrollTo("#section-3", 500);
+		$(".scroll-wrapper").scrollTo("#section-3", 500, {offset:-($("body").height()*.07)});
 	});
 	$(".navmenu:nth-child(4)").click(function(){
-		$(".scroll-wrapper").scrollTo("#section-4", 500);
+		$(".scroll-wrapper").scrollTo("#section-4", 500, {offset:-($("body").height()*.07)});
 	});
 	if((window.location.search.length > 0) && (pageLoaded == false))
 	{

@@ -253,7 +253,6 @@ h1
 }
 #main-nav
 {
-	background-color: white;
 	display: -webkit-box;
 	display: -moz-box;
 	display: -ms-flexbox;
@@ -263,6 +262,13 @@ h1
 	-ms-box-orient: horizontal;
 	flex-direction:row;
 	height:10vh;
+	background: -moz-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(255,255,255,0.75) 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,255,255,1)), color-stop(100%,rgba(255,255,255,0.75))); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(top, rgba(255,255,255,1) 0%,rgba(255,255,255,0.75) 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(top, rgba(255,255,255,1) 0%,rgba(255,255,255,0.75) 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(top, rgba(255,255,255,1) 0%,rgba(255,255,255,0.75) 100%); /* IE10+ */
+background: linear-gradient(to bottom, rgba(255,255,255,1) 0%,rgba(255,255,255,0.75) 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#bfffffff',GradientType=0 ); /* IE6-9 */
 }
 
 #main-nav-header
@@ -415,7 +421,7 @@ h1
 }
 .section
 {
-	height: 90vh;
+	height: 83vh;
 }
 #section-2 
 {
@@ -744,15 +750,7 @@ i
 	height:27vh;
 	width:100vw;
 	padding: 0 2vw;
-	display: none;
-	display: -webkit-box;
-	display: -moz-box;
-	display: -ms-flexbox;
-	display: flex;
-	-webkit-box-orient:horizontal;
-	-moz-box-orient:horizontal;
-	-ms-box-orient: horizontal;
-	flex-direction:row;
+	position:relative;
 }
 #jp_container_1 {
 	font-size:2.5vh;
@@ -800,6 +798,19 @@ i
 	font-size: 8vh;
 	width:100%;
 }
+.bar-container
+{
+	display: -webkit-box;
+	display: -moz-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-orient:vertical;
+	-moz-box-orient:vertical;
+	-ms-box-orient: vertical;
+	flex-direction:column;
+	height:27vh;
+	padding:7vh 0 0 0;
+}
 .bar {
 	left:0;
 	height:13vh;
@@ -835,7 +846,27 @@ i
 {
 	height: 100%;
 }
+.social-share-container
+{
+	display: -webkit-box;
+	display: -moz-box;
+	display: -ms-flexbox;
+	display: flex;
+	justify-content:flex-end;
+	height:7vh;
+}
+.fb-share-container
+{
 
+}
+.fb-share-button span
+{
+	vertical-align: inherit!important;
+}
+.tweet-container
+{
+
+}
 #big-container
 {
 	-webkit-box-flex:2;
@@ -1122,7 +1153,7 @@ i
 */
 .page
 {
-	height: 90vh;
+	height: 83vh;
 	width: 100vw;
 	display: block;
 	background-image: url(../images/coach.jpg);
@@ -1366,13 +1397,16 @@ label
 	margin: 0;
 	background-color: transparent;
 }
-
+#left-wrapper
+{
+	height:41.5vh;
+}
 .eventj-wrapper
 {
-	height: 100%;
 	background-color: white;
 	padding:0;
 	margin: 0;
+	height:auto;
 }
 
 #f1_container {
@@ -1389,11 +1423,35 @@ label
 
 #f1_card {
   width: 100%;
-  height: 100%;
+  height: 41.5vh;
   transform-style: preserve-3d;
   transition: all 1.0s linear;
 }
-
+#front-face
+{
+	display: -webkit-box;
+	display: -moz-box;
+	display: -ms-flexbox;
+	display: flex;
+	width:50vw;
+	height:41.5vh;
+	background-color: white;
+}
+.event-panel-left
+{
+	height:41.5vh;
+	width:30vw;
+}
+.event-panel-right
+{
+	width:20vw;
+	background-image: url(../images/simplecp.png);
+	backface-visibility: hidden;
+	background-repeat: no-repeat;
+	background-size: 60%;
+	background-position: 50% 70%;
+	-webkit-backface-visibility: hidden;
+}
 #f2_container {
   position: relative;
   margin: 0;
@@ -1430,10 +1488,9 @@ label
 
 .face {
   position: absolute;
-  width: 100%;
-  height: 100%;
   backface-visibility: hidden;
   margin: 0;
+  width:50vw;
 }
 
 .face.back {
@@ -1482,12 +1539,7 @@ label
 	height: 100%;
 	margin: 0;
 	padding: 0% 0% 0% 0%;
-	background-image: url(../images/simplecp.png);
-	backface-visibility: hidden;
-	background-repeat: no-repeat;
-	background-size: 60%;
-	background-position: 50% 70%;
-	-webkit-backface-visibility: hidden;
+	
 }
 
 .past-sets-container
@@ -1510,16 +1562,24 @@ label
 
 #event-jumbotron
 {
-	height: 80%;
+	height: 31.5vh;
 	margin: 0;
-	padding:0% 0% 0% 5%;
+	padding:0% 0% 0% 2vw;
 	background-color: white;
 	backface-visibility: hidden;
+}
+.event-jumbotron h1
+{
+	font-size:6vh;
+}
+.event-jumbotron-text
+{
+	font-size:2vh;
 }
 
 .event-jumbotron-event
 {
-	font-size: .95em;
+	font-size: 2vh;
 }
 
 #aftermovie-text
@@ -1543,7 +1603,7 @@ label
 
 .promo-aftermovie-container
 {
-	height: 20%;
+	height: 10vh;
 	margin: 0;
 	padding: 0;
 	background-color: white;
@@ -1561,12 +1621,13 @@ label
 #event-left
 {
 	border-top: 1px solid black;
+	height:55vh;
 }
 
 #event-right
 {
-	padding: 45vh 0 0 0;
-	height:90vh;
+	padding: 41.5vh 0 0 0;
+	height:83vh;
 }
 #right-wrapper
 {
