@@ -15,11 +15,12 @@ if(!session_is_registered("user")) {
 $baseQueries = new BaseQueries();
 
 $artists = explode(',', $_POST['artist']);
-$isRadiomix = $_POST['radiomixcheckbox'];
+$radiomixcheckbox = $_POST['radiomixcheckbox'];
 $event = $_POST['event'];
 $radiomix = $_POST['radiomix'];
 $directupload = $_POST['directupload'];
 $genre = $_POST['genre'];
+$episode = $_POST['episode'];
 // $tracklist = explode(',', $_POST['tracklist']);
 $genreId = -1;
 
@@ -29,7 +30,7 @@ $genreId = $baseQueries->runInsertGetId("INSERT INTO genres(genre) VALUES ('$gen
 check(($genreId == -1), "genre: ".$genre);
 // replace image
 $imageURL = "";
-if($radiomixcheckbox == true) {
+if(isset($radiomixcheckbox)) {
 	$imageURL = uploadFile('updatedRadiomixImage');
 } else {
 	$imageURL = uploadFile('updatedEventImage');
@@ -41,7 +42,7 @@ if($imageURL != "") {
 }
 
 $eventId = -1;
-if($radiomixcheckbox == true) {
+if(isset($radiomixcheckbox)) {
 	if($imageId >= 0) {
 		$eventId = $baseQueries->runInsertGetId("INSERT INTO events(event, image_id, is_radiomix) VALUES ('$radiomix', '$imageId', true) ON DUPLICATE KEY UPDATE id=LAST_INSERT_ID(id), image_id = $imageId");
 	} else {
@@ -67,6 +68,11 @@ $sql =	"INSERT IGNORE INTO sets(event_id, genre_id, songURL, datetime, popularit
 $baseQueries->run($sql);
 $setId = $baseQueries->lastId();
 check(($setId == -1), "set: VALUES ($eventId, $genreId, '$songURL', now(), 0)");
+
+if(isset($radiomixcheckbox) && !empty($episode)) {
+	$episodeId = $baseQueries->runInsertGetId("INSERT INTO episodes(set_id, episode) VALUES ('$setId', '$episode') ON DUPLICATE KEY UPDATE id=LAST_INSERT_ID(id), episode = '$episode'");
+	check(($episodeId == -1), "episode: VALUES ('$setId', '$episode')");
+}
 
 // add a2s
 $i = 0;

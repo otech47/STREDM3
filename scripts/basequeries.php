@@ -54,7 +54,7 @@ class BaseQueries {
 		}
 		$result = $this->db->query($sql);
 		$sql = "SELECT s.id, group_concat(a.artist order by sa.number ASC separator ' & ') artist, ".
-		"e.event, g.genre, i.imageURL, s.songURL, e.is_radiomix ";
+		"TRIM(CONCAT(e.event,' ',IFNULL(p.episode,''))) AS event, g.genre, i.imageURL, s.songURL, e.is_radiomix ";
 		if($allFields) {
 			$sql .= " , s.is_deleted ";
 		}
@@ -64,6 +64,7 @@ class BaseQueries {
 		"INNER JOIN events AS e ON e.id = s.event_id ".
 		"INNER JOIN images AS i ON i.id = e.image_id ".
 		"INNER JOIN genres AS g ON g.id = s.genre_id ".
+		"LEFT JOIN episodes AS p ON p.set_id = s.id ".
 		"WHERE s.id ";
 		$setsSqlIn = "IN(";
 		$joiner = "";
@@ -81,7 +82,7 @@ class BaseQueries {
 			if($orderClause != null && $orderClause != "") {
 				$sql .= $orderClause;
 			} else {
-				$sql .= " ORDER BY s.id ASC, sa.number ASC ";
+				$sql .= " ORDER BY IFNULL(p.episode,  ""), s.id ASC, sa.number ASC ";
 			}
 			$tracksArray = $this->getTracks($setsSqlIn);
 			$result = $this->db->query($sql);

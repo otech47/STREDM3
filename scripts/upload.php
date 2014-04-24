@@ -46,7 +46,7 @@ if(!session_is_registered("user")){
 	  <a href="/scripts/logout.php" class="btn btn-danger" role="button">Log Out</a>
 	  <a href="/scripts/list.php" class="btn btn-info" role="button">Set List</a>
     <br>
-	  <form name="set" action="/scripts/sets.php" role="form" method='POST' enctype='multipart/form-data'>
+	  <form name="set" action="/scripts/sets.php" role="form" method='POST' enctype='multipart/form-data' novalidate>
       <div class="form-group" id="directuploadpicker">
         <label for="directupload">Choose an Uploaded Song File</label>
         <input type="text" id="directupload" name="directupload" class="form-control" required>
@@ -70,6 +70,8 @@ if(!session_is_registered("user")){
   	  <div class="form-group" id="radiomixpicker" style="display:none;">
       	<label for="radiomix">Radio Mix</label>
   		  <input id="radiomix" name="radiomix" type="text" data-role="tagsinput" placeholder="Type a radio mix">
+        <label for="episode">Episode Number</label>
+        <input id="episode" name="episode" type="number" class="form-control" placeholder="Type an episode number">
         <label id="updatedRadiomixLabel" for="updatedRadiomixImage" style="display:none;">Update or Upload an image (optional)</label>
         <input type="file" id="updatedRadiomixImage" name="updatedRadiomixImage" class="form-control" style="display:none;"/>
   		</div>
