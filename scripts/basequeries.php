@@ -82,7 +82,7 @@ class BaseQueries {
 			if($orderClause != null && $orderClause != "") {
 				$sql .= $orderClause;
 			} else {
-				$sql .= " ORDER BY IFNULL(p.episode,  ""), s.id ASC, sa.number ASC ";
+				$sql .= " ORDER BY IFNULL(p.episode,  ''), s.id ASC, sa.number ASC ";
 			}
 			$tracksArray = $this->getTracks($setsSqlIn);
 			$result = $this->db->query($sql);
