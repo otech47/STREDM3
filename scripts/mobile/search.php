@@ -12,6 +12,7 @@ if($_POST['post'] == 1) {
 	$label = $_GET['label'];
 }
 $label = checkAddSlashes($label);
+$label = trim($label);
 
 $artistArray = $baseQueries->setQuery("WHERE a.artist LIKE '%$label%' AND s.is_deleted IS FALSE", null, "artist");
 
@@ -34,28 +35,55 @@ $newGenreArray = array();
 $total = 0;
 $lastTotal = 0;
 $i = 0;
-while ($total < 12) {
-	if($i < $artistCount) {
-		$newArtistArray[] = $artistArray[$i];
-		$lastTotal++;
+
+if(strlen($label) < 3) {
+	while ($total < 12) {
+		if($i < $artistCount) {
+			$newArtistArray[] = $artistArray[$i];
+			$lastTotal++;
+		}
+		if($i < $eventCount) {
+			$newEventArray[] = $eventArray[$i];
+			$lastTotal++;
+		}
+		if($i < $radiomixCount) {
+			$newRadiomixArray[] = $radiomixArray[$i];
+			$lastTotal++;
+		}
+		if($i < $genreCount) {
+			$newGenreArray[] = $genreArray[$i];
+			$lastTotal++;
+		}
+		if($lastTotal == $total) {
+			break;
+		}
+		$total = $lastTotal;
+		$i++;
 	}
-	if($i < $eventCount) {
-		$newEventArray[] = $eventArray[$i];
-		$lastTotal++;
+} else {
+	while (true) {
+		if($i < $artistCount) {
+			$newArtistArray[] = $artistArray[$i];
+			$lastTotal++;
+		}
+		if($i < $eventCount) {
+			$newEventArray[] = $eventArray[$i];
+			$lastTotal++;
+		}
+		if($i < $radiomixCount) {
+			$newRadiomixArray[] = $radiomixArray[$i];
+			$lastTotal++;
+		}
+		if($i < $genreCount) {
+			$newGenreArray[] = $genreArray[$i];
+			$lastTotal++;
+		}
+		if($lastTotal == $total) {
+			break;
+		}
+		$total = $lastTotal;
+		$i++;
 	}
-	if($i < $radiomixCount) {
-		$newRadiomixArray[] = $radiomixArray[$i];
-		$lastTotal++;
-	}
-	if($i < $genreCount) {
-		$newGenreArray[] = $genreArray[$i];
-		$lastTotal++;
-	}
-	if($lastTotal == $total) {
-		break;
-	}
-	$total = $lastTotal;
-	$i++;
 }
 
 $finalResults = array();
