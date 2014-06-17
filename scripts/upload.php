@@ -1,7 +1,9 @@
 <?php
 require_once './basequeries.php';
-
 session_start();
+
+require_once './aws.phar';
+
 if(!session_is_registered("user")){
 	header("location:/scripts/login.php");
 	exit;
@@ -71,7 +73,7 @@ if(!session_is_registered("user")){
       	<label for="radiomix">Radio Mix</label>
   		  <input id="radiomix" name="radiomix" type="text" data-role="tagsinput" placeholder="Type a radio mix">
         <label for="episode">Episode Number</label>
-        <input id="episode" name="episode" type="number" class="form-control" placeholder="Type an episode number">
+        <input id="episode" name="episode" type="text" class="form-control" placeholder="Type an episode number or description">
         <label id="updatedRadiomixLabel" for="updatedRadiomixImage" style="display:none;">Update or Upload an image (optional)</label>
         <input type="file" id="updatedRadiomixImage" name="updatedRadiomixImage" class="form-control" style="display:none;"/>
   		</div>
@@ -118,13 +120,13 @@ if(!session_is_registered("user")){
   		showImageUpdater(false);
   	});
 
-    $('#directupload').selectize({
-        maxItems: 1,
-        labelField: 'filename',
-        valueField: 'filename',
-        searchField: 'filename',
-        options: <?php echo json_encode($directUploadsArray); ?>,
-    });
+    // $('#directupload').selectize({
+    //     maxItems: 1,
+    //     labelField: 'filename',
+    //     valueField: 'filename',
+    //     searchField: 'filename',
+    //     options: <?php echo json_encode($directUploadsArray); ?>,
+    // });
 
     $('#artist').selectize({
       plugins: ['remove_button', 'drag_drop'],
